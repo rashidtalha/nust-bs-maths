@@ -1,0 +1,151 @@
+\documentclass[11pt]{penrose}
+
+\usepackage{mathsphystools}
+\usepackage{thmstyles}
+
+\def\apsi{\qbar{\psi}}
+
+\title{PHY 443: Quantum Field Theory}
+\subtitle{Brief lecture notes}
+\author{Rashid M. Talha}
+\affiliation{School of Natural Sciences, NUST}
+\date{\today}
+\begin{document}
+
+\maketitle
+
+\textbf{Textbook:} Modern Particle Physics, Mark Thomson
+
+\section{The Klein-Gordon Equation}
+
+\section{The Dirac Equation}
+
+DERIVATION
+
+CONVERSION TO THE COVARIANT FORM
+
+The Dirac equation is covariant form is
+\begin{equation}
+    \paren*{ i\gamma^\mu \pd_\mu - m} \psi = 0
+\end{equation}
+
+THE VERSION WITH $\hbar$ and $c$.
+
+\subsection{Adjoint Dirac Equation}
+In order to construct the adjoint Dirac equation we take the Hermitian adjoint of the full equation, carefully reserving the order of the matrix multiplications
+\begin{equation}
+    i \gamma^\mu \pd_\mu \psi - m \psi = 0
+    \implies
+    -i \pd_\mu \psi^\dagger \paren*{ \gamma^\mu }^\dagger - m \psi^\dagger = 0.
+\end{equation}
+Note that $\paren*{ \gamma^\mu }^\dagger = \gamma^0 \gamma^\mu \gamma^0$. Multiply this equation by $\gamma^0$ from the right to get
+\begin{equation}
+    -i \pd_\mu \psi^\dagger \gamma^0 \gamma^\mu \gamma^0 \gamma^0 - m \psi^\dagger \gamma^0 = 0.
+\end{equation}
+Now, by using $\paren*{\gamma^0}^2 = I$ and defining $\apsi = \psi^\dagger \gamma^0$ we obtain
+\begin{equation}
+    -i \pd_\mu \apsi \gamma^\mu - m \apsi = 0.
+\end{equation}
+This is the adjoint Dirac equation, and the new object $\apsi$ is called the adjoint Dirac spinor.
+
+\subsection{Dirac Current}
+Following the standard procedure we take the difference of the Dirac equation pre-multiplied by $\apsi$ and the adjoint Dirac equation post-multiplied by $\psi$,
+\begin{equation}
+    \apsi \paren*{ i\gamma^\mu \pd_\mu \psi - m \psi} - \paren*{-i \pd_\mu \apsi \gamma^\mu - m \apsi} \psi = 0
+\end{equation}
+Expanding this while maintaining the order in which each factor appears, we get
+\begin{equation}
+    i \apsi \gamma^\mu \pd_\mu \psi - m \apsi \psi + i \pd_\mu \apsi \gamma^\mu \psi - m \apsi \psi = 0
+    \implies
+    i \paren*{ \apsi \gamma^\mu \pd_\mu \psi + \pd_\mu \apsi \gamma^\mu \psi } = 0
+\end{equation}
+
+Now, $\pd_\mu \paren*{ \apsi \gamma^\mu \psi } = \apsi \gamma^\mu \pd_\mu \psi + \pd_\mu \apsi \gamma^\mu \psi$ because $\gamma^\mu$ are constant matrices. Therefore, we obtain
+\begin{equation}
+    i \pd_\mu \paren*{ \apsi \gamma^\mu \psi } = 0.
+\end{equation}
+From this we identify a conserved current
+\begin{equation}
+    \pd_\mu j^\mu = 0
+    \quad\text{with}\quad
+    j^\mu = \apsi \gamma^\mu \psi
+\end{equation}
+This is known as the Dirac (vector) $4$-current. It is the conserved current associated with the $\U(1)$ symmetry of the Dirac equation. We can separate it into a probability density and $3$-current by comparing with $j^\mu = \paren*{c\rho, \vec{J}}$. In particular,
+\begin{equation}
+    \rho = \frac{1}{c} \apsi \gamma^0 \psi = \frac{1}{c} \psi^\dagger \psi
+    \quad\text{and}\quad
+    \vec{J} = \apsi \vec{\gamma} \psi = \psi^\dagger \vec{\alpha} \psi
+\end{equation}
+
+This expression for $\rho$ shows that the probability density associated with the Dirac equation is non-negative because
+\begin{equation}
+    \rho = \frac{1}{c} \psi^\dagger \psi = \frac{1}{c} \paren*{ \abs{\psi_1}^2 + \abs{\psi_2}^2 + \abs{\psi_3}^2 + \abs{\psi_4}^2 } \geq 0.
+\end{equation}
+
+\section{Gamma Matrices}
+
+\section{Spin Angular Momentum}
+In the Heisenberg picture of quantum mechanics, the operators have time dependence and their expectation value evolves according to the Heisenberg equation
+\begin{equation}
+    \frac{d \mean{\qop{O}}}{dt} = i \braket{\psi}[\comm{\qop{H}, \qop{O}}]{\psi}.
+\end{equation}
+As a result, the expectation value $\mean{\qop{O}}$ of an operator $\qop{O}$ is conserved when it commutes with the associated Hamiltonian
+\begin{equation}
+    \frac{d \mean{\qop{O}}}{dt} = 0 \iff \comm{H, O} = 0
+\end{equation}
+and not conserved otherwise.
+
+We shall later discuss that fermionic particles satisfy the Dirac equation. At this stage, we can ask whether certain physical quantities are conserved for such particles. Of interest is the (orbital) angular momentum $\vec{L}$. We can construct its quantum operator through the correspondence principle
+\begin{equation}
+    \vec{L} = \vec{r} \times \vec{p} \to \qop{\vec{L}} = \qop{\vec{r}} \times \qop{\vec{p}}.
+\end{equation}
+In particular $\qop{L}_x = \qop{y} \qop{p}_z - \qop{z} \qop{p}_y$.
+
+To check if the expectation value of $\qop{\vec{L}}$ is conserved for fermions we must check if it commutes with the Dirac Hamiltonian $\qop{H}_D = c \vec{\alpha} \cdot \vec{p} + m c^2 \beta$.
+
+We find that $\comm{ \qop{H}_D, \qop{\vec{L}} } = -i \hbar c \paren*{\vec{\alpha} \times \vec{p}} \neq 0$. Therefore, $\mean{\qop{\vec{L}}}$ is not conserved. (Full calculations in the appendix.)
+
+One explanation for this could be that we failed to account for the \emph{total} angular momentum. This leads to the postulate of a `spin' angular momentum, $\vec{S}$, so that the total angular momentum $\vec{J} = \vec{L} + \vec{S}$ is conserved. That is
+\begin{equation}
+    \comm{\qop{H}_D, \qop{\vec{L}} + \qop{\vec{S}}} = 0.
+\end{equation}
+
+The operator corresponding to the spin angular momentum has the form
+\begin{equation}
+    \qop{\vec{S}} = \frac{\hbar}{2} \vec{\Sigma}
+\end{equation}
+where the components of $\vec{\Sigma}$ are $4\times4$ matrices (in block form) 
+\begin{equation}
+    \Sigma_i =
+    \begin{pmatrix}
+    \sigma_i & 0 \\ 0 & \sigma_i
+    \end{pmatrix}
+    \quad\text{for } i = x, y, z.
+\end{equation}
+Here $\sigma_i$ are the $2 \times 2$ Pauli matrices satisfying $\comm{\sigma_a, \sigma_b} = 2i \varepsilon_{abc} \sigma_c$.
+
+We find that $\comm{\qop{H}_D, \qop{\vec{S}}} = i\hbar c \paren*{\vec{\alpha} \times \vec{p}}$. (Full calculations in the appendix.)
+
+Consequently,
+\begin{equation}
+    \comm{\qop{H}_D, \qop{\vec{L}} + \qop{\vec{S}}}
+    = \comm{\qop{H}_D, \qop{\vec{L}}} + \comm{\qop{H}_D, \qop{\vec{S}}}
+    - i\hbar c \paren*{\vec{\alpha} \times \vec{p}} + i\hbar c \paren*{\vec{\alpha} \times \vec{p}}
+    = 0,
+\end{equation}
+preserving the conservation of the total angular momentum $\vec{J}$ for particles satisfying the Dirac equation.
+
+\section{Solutions of the Klein-Gordon Equation}
+% + Solutions of KG Equation, using the plane wave ansatz
+
+\section{Solutions of the Dirac Equation}
+% + Why is the plane wave ansatz suitable for the DE? (transforming DE into KG by conjugation etc)
+% + Solutions of Dirac Equation, using the plane wave ansatz (get the momentum space equation for the 4-spinor u)
+% + Expansion of alpha .p, beta mc^2, sigma . p (Dirac Pauli representation), the full Hd as a 4x4 matrix
+
+\appendix
+\section{Commutation Relations of the Dirac Hamiltonian and Angular Momentum Operators}
+% + What is the operator for L? Lx? Ly? Lz? (Lx = y pz - z py)
+% + Explicit calculation of the commutation relation [HD, Lx]. Generalise to Ly, Lz and then L = Lx i + Ly j + Lz k
+
+\end{document}

@@ -1,0 +1,323 @@
+\documentclass[11pt]{penrose}
+
+\usepackage{mathsphystools}
+\usepackage{thmstyles}
+
+\title{MATH 325: Group Theory I}
+\subtitle{Brief lecture notes}
+\author{Rashid M. Talha}
+\affiliation{School of Natural Sciences, NUST}
+\date{\today}
+\begin{document}
+
+\maketitle
+
+\textbf{Textbook:} Contemporary Abstract Algebra, Joseph Gallian
+
+\section{Introduction}
+\begin{ndfn}
+    A binary operation is a map $* : X \times X \to X$, $(a,b) \mapsto a * b$.
+\end{ndfn}
+
+By definition, a binary operation ensure that $a * b \in X$ for all $a, b \in X$. This property is called closure.
+
+\begin{ndfn}
+    A binary operation $* : X \times X \to X$ is called commutative if
+    \begin{equation*}
+        \forall a, b \in X, \quad a * b = b * a
+    \end{equation*}
+\end{ndfn}
+
+\begin{ndfn}
+    Let $G$ be a non-empty set, and $* : G \times G \to G$ be a binary operation. The pair $(G, *)$ is called a group if it satisfies all of the following
+    \begin{enumerate}
+        \item (Associativity) $\forall a, b, c \in G$, $(a * b) * c = a * (b * c)$
+        \item (Identity) $\exists e \in G$ such that $\forall a \in G$, $a * e = e * a = a$
+        \item (Inverse) $\forall a \in G$, $\exists a^{-1} \in G$ such that $a * a^{-1} = a^{-1} * a = e$
+    \end{enumerate}
+\end{ndfn}
+
+\begin{ndfn}
+    A group $(G, *)$ is called Abelian if the binary operation $*$ is commutative. That is
+    \begin{equation*}
+        \forall a, b \in G, \quad a * b = b * a
+    \end{equation*}
+\end{ndfn}
+
+Typically we write $a * b$ simply as $ab$ and call the binary operation a multiplication. In the case where the binary operation is the usual addition, we write $a + b$ instead.
+
+Similarly, we often refer to $G$ as the group and don't explicitly mention the pair $(G, *)$.
+
+\begin{nthm}
+    Each group has a unique identity element.
+\end{nthm}
+\begin{proof}
+    Let $e, f \in G$ be identity elements. Then, for all $a \in G$
+    \begin{equation*}
+        ea = ae = a
+        \qquad\text{and}\qquad
+        fa = af = a.
+    \end{equation*}
+    In particular, (taking $a=f$ in the first case and $a=e$ in the second)
+    \begin{equation*}
+        ef = fe = f
+        \qquad\text{and}\qquad
+        fe = ef = e.
+    \end{equation*}
+    As a result, $e = ef = f$.
+\end{proof}
+
+\begin{nthm}
+    Each $a \in G$ has a unique inverse element.
+\end{nthm}
+\begin{proof}
+    Take any $a \in G$. Let $a^{-1}, b \in G$ be inverse elements of $a$. That means
+    \begin{equation*}
+        a a^{-1} = a^{-1} a = e
+        \qquad\text{and}\qquad
+        a b = b a = e.
+    \end{equation*}
+    As a result, $b = b e = b(a a^{-1}) = (b a) a^{-1} = e a^{-1} = a^{-1}$.
+\end{proof}
+
+\begin{nthm}
+    Let $G$ be a group. Then, for all $a \in G$, $(a^{-1})^{-1} = a$.
+\end{nthm}
+\begin{proof}
+    Take any $a \in G$. Then, it has an inverse $a^{-1} \in G$ such that $a a^{-1} = e$. Since, $a^{-1} \in G$ it also has an inverse $(a^{-1})^{-1}$ such that $a^{-1} (a^{-1})^{-1} = e$.
+
+    Therefore,
+    $a = a e = a \paren*{a^{-1} (a^{-1})^{-1}} = \paren*{a a^{-1}} (a^{-1})^{-1} = e (a^{-1})^{-1} = (a^{-1})^{-1}$.
+\end{proof}
+
+\begin{nthm}
+    Let $G$ be a group. Then, for all $a, b \in G$, $(ab)^{-1} = b^{-1} a^{-1}$.
+\end{nthm}
+\begin{proof}
+    Note that $(ab)^{-1} (ab) = (ab) (ab)^{-1} = e$ by definition of the inverse of $ab$.
+
+    Now,
+    \begin{equation*}
+        (b^{-1} a^{-1}) (a b)
+        = b^{-1} ((a^{-1} a) b)
+        = b^{-1} (e b)
+        = b^{-1} b
+        = e.
+    \end{equation*}
+    And,
+    \begin{equation*}
+        (a b) (b^{-1} a^{-1})
+        = a ((b b^{-1}) a^{-1})
+        = a (e a^{-1})
+        = a a^{-1}
+        = e.
+    \end{equation*}
+
+    So, $b^{-1} a^{-1}$ is also an inverse of $ab$. By uniqueness of inverse, $b^{-1} a^{-1} = (ab)^{-1}$.
+\end{proof}
+
+\begin{nthm}
+    Take $a, b, c \in G$. Then,
+    \begin{enumerate}
+        \item $ab = ac \implies b = c$.
+        \item $ba = ca \implies b = c$.
+    \end{enumerate}
+\end{nthm}
+\begin{proof}
+    Since $a \in G$, we have $a^{-1} \in G$ such that $a a^{-1} = a^{-1} a = e$. Therefore,
+    \begin{equation*}
+        ab = ac
+        \implies a^{-1} (ab) = a^{-1} (ac)
+        \implies (a^{-1} a)b = (a^{-1} a)c
+        \implies eb = ec
+        \implies b = c
+    \end{equation*}
+    Similarly,
+    \begin{equation*}
+        ba = ca
+        \implies (ba)a^{-1} = (ca)a^{-1}
+        \implies b (a a^{-1}) = c (a a^{-1})
+        \implies be = ce
+        \implies b = c
+    \end{equation*}
+\end{proof}
+
+\begin{nthm}
+    Let $G$ be a group. Take $a, b \in G$. Then, the equation $a x = b$ has a unique solution. Likewise, the equation $y a = b$ has a unique solution.
+\end{nthm}
+\begin{proof}
+    (Existence.) Since $a \in G$, we have $a^{-1} \in G$ such that $a^{-1} a = e$. So,
+    \begin{equation*}
+        ax = b
+        \implies a^{-1} (a x) = a^{-1} b
+        \implies (a^{-1} a) x = a^{-1} b
+        \implies e x = a^{-1} b
+        \implies x = a^{-1} b.
+    \end{equation*}
+    And $a b^{-1} \in H$ due to the closure property. So, $x = ab^{-1} \in H$.
+
+    (Uniqueness.) Suppose there are $x_1, x_2 \in H$ that satisfy $a x = b$. Then, $a x_1 = b$ and $a x_2 = b$. So, by the cancellation property
+    \begin{equation*}
+        a x_1 = a x_2
+        \implies x_1 = x_2
+    \end{equation*}
+    
+    The proof for $y a = b$ is analogous, with multiplications on the right hand side.
+\end{proof}
+
+\begin{ndfn}
+    The order of a group $G$, denoted $\abs{G}$ or $O(G)$, is the number of elements in $G$. If $G$ has infinitely many elements then $\abs{G} = \infty$.
+\end{ndfn}
+
+\begin{egg}
+    Some examples of groups are
+    \begin{enumerate}
+        \item $(\R,+)$, $(\C,+)$, $(\Z,+)$, $(\Q,+)$, $(\R^{*},\cdot)$, $(\C^{*},\cdot)$, $(\Q^{*},\cdot)$, $(\R^{+},\cdot)$. Here $\R^{*} = \R - \set{0}$, and $\R^{+} = \set{r \in \R \st r > 0}$.
+        \item The set of $n$th roots of unity $U_n = \set{\exp(\frac{2\pi i}{n}) \in C | n = 0, 1, \dots, n-1}$ forms a group under the multiplication of complex numbers.
+        \item The set of $n \times n$ matrices with entries in $\R$ is denoted as $M_{n}(\R)$. This forms a group under the usual additional of matrices.
+        \item $\GL_{n}(\R) = \set{A \in M_{n}(\R) \st \det A \neq 0}$ with the usual matrix multiplication is called the general linear group of order $n$.
+        \item The usual matrix multiplication makes $\SL_{n}(\R) = \set{A \in M_{n}(\R) \st \det A = 1}$ into a group, called the the special linear group of order $n$.
+    \end{enumerate}
+\end{egg}
+
+\begin{negg}
+    Consider the set with a single element $G = \set{e}$ and the binary operation $e * e = e$. This forms a group, called the trivial group. Note that for the trivial group $\abs{G} = 1$.
+\end{negg}
+
+\begin{ndfn}
+    A non-empty subset $H \subseteq G$ is called a subgroup of $G$ if it is a group under the same binary operation. We denote this as $H \subgroup G$.
+\end{ndfn}
+
+\begin{ndfn}
+    $H \subgroup G$ is called a proper subgroup if $H \neq G$. This is sometimes emphasised by writing $H < G$. A proper subgroup is called non-trivial if $H \neq \set{e}$.
+\end{ndfn}
+
+\begin{egg}
+    Some examples of subgroups are
+    \begin{enumerate}
+        \item $\Z \subgroup \R$.
+        \item $\R^{+} \subgroup \R^{*}$.
+        \item $2\Z \subgroup \Z$, with $2\Z = \set{2k \st k \in \Z}$.
+        \item $\SL_{n}(\R) \subgroup \GL_{n}(\R)$.
+    \end{enumerate}
+\end{egg}
+
+\begin{nthm}
+    Let $G$ be a group. A non-empty subset $H \subseteq G$ is a subgroup of $G$ if and only if
+    \begin{enumerate}
+        \item $a, b \in H \implies ab \in H$.
+        \item $a \in H \implies a^{-1} \in H$.
+    \end{enumerate}
+\end{nthm}
+\begin{proof}
+    Suppose $H \subgroup G$. Then, $H$ is a group under the same binary operation. In particular, both the closure property and the existence of inverse property holds in $H$.
+
+    Conversely, the closure property is explicitly given. Associativity is inherited from the binary operation on $G$. Also, the existence of inverse property is explicitly given. Finally, since $H$ is non-empty, take $a \in H$. Then, $a^{-1} \in H$. By the closure property, $a a^{-1} = e \in H$. Therefore, $H$ also contains the identity element. As a result, $H$ is a group with respect to the same binary operation. That is, $H \subgroup G$.
+\end{proof}
+
+\begin{nthm}
+    Let $G$ be a group. A non-empty subset $H \subseteq G$ is a subgroup of $G$ if and only if $a, b \in H \implies ab^{-1} \in H$.
+\end{nthm}
+\begin{proof}
+    Suppose $H \subgroup G$. Then, $H$ is a group under the same binary operation. Take $a, b \in H$. Then, by the previous subgroup test $b^{-1} \in H$. Again, by the previous subgroup test, $a b^{-1} \in H$.
+
+    For the converse, we check that $H$ satisfies all the group axioms.
+
+    Firstly, $H$ has the same binary operation as $G$, so associativity is inherited from $G$.
+
+    Next, since $H$ is non-empty, take any $a \in H$. Then, $a a^{-1} \in H$ implies $e \in H$. So, $H$ contains the identity element.
+
+    Similarly, take $e, a \in H$. Then, $e a^{-1} \in H$ implies $a^{-1} \in H$. Therefore, each element of $H$ has an inverse within $H$.
+
+    Lastly, take $a, b \in H$. Then, $b^{-1} \in H$. So, $a \left(b^{-1}\right)^{-1} \in H$ implies $ab \in H$, since $\left(b^{-1}\right)^{-1} = b$.
+
+    Therefore, $H$ is a group under the same binary operation as $G$. So, $H \subgroup G$.
+\end{proof}
+
+\begin{nthm}
+    Let $H_i \subgroup G$, for all $i \in I$. Then, $H = \cap_{i \in I} H_i$ is a subgroup of $G$.
+\end{nthm}
+\begin{proof}
+    Firstly, $e \in H_i$ for all $i \in I$ because each $H_i$ is a subgroup of $G$. As a result, $e \in H$. So, $H$ is non-empty.
+
+    Take $a, b \in H$. Then, $a, b \in H_i$ for all $i \in I$. As $H_i$ are subgroups, $ab^{-1} \in H_i$ for all $i \in I$. Therefore, $ab^{-1} \in H$. By the subgroup criteria, this shows that $H \subgroup G$.
+\end{proof}
+
+\begin{nthm}
+    Let $G$ be a group and take $a \in G$. The set $H = \set{a^n \st n \in \Z}$ is a subgroup of $G$. Here, $a^0 = e$ and $a^{-n} = \left(a^{-1}\right)^{n}$.
+\end{nthm}
+\begin{proof}
+    Firstly, $H$ is non-empty because $a^0 = e \in H$.
+
+    Next, take any $a^{n}, a^{m} \in H$. Then, $(a^{m})^{-1} = a^{-m}$. So,
+    \begin{equation*}
+        a^{n} (a^{m})^{-1}
+        = a^{n} a^{-m}
+        = a^{n - m} \in H,
+    \end{equation*}
+    since $n - m \in \Z$.
+
+    By the subgroup criteria, this shows that $H \subgroup G$.
+\end{proof}
+
+\begin{nthm}
+    $H_1, H_2 \subgroup G$. Then, $H_1 \cup H_2$ is a subgroup of $G$ if and only if $H_1 \subseteq H_2$ or $H_2 \subseteq H_1$.
+\end{nthm}
+\begin{proof}
+    Suppose (WLOG) $H_1 \subseteq H_2$. Then, $H_1 \cup H_2 = H_2$. And $H_2 \subgroup G$. Therefore, $H_1 \cup H_2 \subgroup G$.
+
+    Conversely, suppose $H_1 \subsetneq H_2$ and $H_2 \subsetneq H_1$ but $H_1 \cup H_2$ is a subgroup of $G$. Then, \dots
+\end{proof}
+
+\section{Modular Addition}
+
+\begin{ndfn}
+    Let $a, b, n$ be positive integers. We say that $a$ is congruent to $b$ modulo $n$ if $n$ divide $a-b$. That is $n | (a-b)$. This is denoted as $a \equiv b \mod n$.
+\end{ndfn}
+
+\begin{ndfn}
+    Take $a \in \Z$, and fix some integer $n \geq 2$. The set of all the integers that are equivalent to $a$ modulo $n$ is called the residue class of $a$ modulo $n$. We write this as
+    \begin{equation}
+        [a]_n = \set{b \in \Z \st a \equiv b \mod n}.
+    \end{equation}
+\end{ndfn}
+
+REMARK: $[a]_n$ and  $[b]_n$ are either equal of disjoint. (This was skipped.)
+
+\section{$\Z_n$}
+\begin{ndfn}
+    Fix some integer $n \geq 2$. The set of all the residue classes modulo $n$ in $\Z$ is defined to be
+    \begin{equation}
+        \Z_n = \set{[a]_n \st a \in \Z}.
+    \end{equation}
+\end{ndfn}
+
+We can define a binary operation $+_n$ on this set with
+\begin{equation}
+    [a]_n +_n [b]_n \coloneq [a + b]_n.
+\end{equation}
+It needs to be shown that this is well-defined; that is
+\begin{equation}
+    [a]_n +_n [b]_n = [c]_n +_n [d]_n
+\end{equation}
+if $[a]_n = [c]_n$ and $[b]_n = [d]_n$. (This was skipped.)
+
+\begin{nthm}
+    The set $\Z_n$ forms a group with respect to $+_n$.
+\end{nthm}
+\begin{proof}
+    TBC.
+\end{proof}
+
+Usually we write $[a]_n$ simply as $a$ and drop the the subscript from $+_n$ when it is clear from context.
+
+\section{Klein $4$-Group}
+Consider a set $G = \set{e, a, b, c}$ with a binary operation that satisfies WAGHERA.
+
+\section{Group of Quaternions}
+AS A MATRIX SUBGROUP.
+
+THEN CONVERT TO ABSTRACT REPRESENTATION.
+
+
+\end{document}

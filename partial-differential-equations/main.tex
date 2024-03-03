@@ -1,0 +1,369 @@
+\documentclass[11pt]{penrose}
+
+\usepackage{mathsphystools}
+\usepackage{thmstyles}
+
+\usepackage{lipsum}
+
+\title{MATH 353: Partial Differential Equations}
+\subtitle{Brief lecture notes}
+\author{Rashid M. Talha}
+\affiliation{School of Natural Sciences, NUST}
+\date{\today}
+\begin{document}
+
+\maketitle
+
+\textbf{Textbook:} Linear Partial Differential Equations for Scientists and Engineers, Tyn Myint-U and Lokenath Debnath
+
+\section{Introduction}
+A general partial differential equation (PDE) can be expressed as
+\begin{equation}
+    F(x,y,\dots, u, u_x, u_y, \dots, u_{xx}, u_{xy}, \dots) = 0
+\end{equation}
+where $x, y, \dots$ are the independent variables and $u = u(x,y,\dots)$ is an unknown function. The terms $u_x, u_y, u_{xy}, \dots$ represent derivatives of $u$. For example,
+\begin{equation*}
+    u_{xy} = \frac{\pd^2 u}{\pd y \pd x}.
+\end{equation*}
+
+The unknown function $u$ is defined over some domain $D \subseteq \R^{n}$.
+\begin{equation}
+    u : D \to \R
+    \qquad\text{with}\qquad
+    (x, y, \dots) \mapsto u(x, y, \dots)
+\end{equation}
+
+The goal is to find a suitable $u$ (either explicitly or implicitly) that satisfies the given PDE.
+
+\begin{ndfn}
+    A PDE is said to be well-posed if
+    \begin{enumerate}
+        \item It has a solution; and
+        \item that solution is unique; and
+        \item that solution depends on the prescribed initial/boundary data continuously.
+    \end{enumerate}
+\end{ndfn}
+
+\section{General Classification}
+
+The order of the PDE is the order of the highest derivative term.
+
+A PDE where each term containing the unknown function or its derivatives appears linearly, is called a linear PDE. A general $k$th order linear PDE of $n$ variables can be written as
+\begin{equation*}
+    EQQ
+\end{equation*}
+In particular, a general 2nd order PDE takes the form
+\begin{equation*}
+    \sum_{i,j=1}^{n} a_{i,j} u_{x_i x_j} + \sum_{i=1}^{n} b_i u_{x_i} + c u = d.
+\end{equation*}
+where, $a_{i,j}$, $b_{i}$, $c$ and $d$ are all functions of $x_1, \dots, x_n$.
+
+Similarly, a general 1st order PDE can be expressed as
+\begin{equation*}
+    \sum_{i=1}^{n} \alpha_i (x_1, \dots, x_n) u_{x_i} + \beta (x_1, \dots, x_n) u = \gamma (x_1, \dots, x_n).
+\end{equation*}
+
+A PDE that is not linear is called non-linear.
+
+A PDE is called quasi-linear if it is linear in the highest order derivatives. For example, a first order quasi-linear PDE in two independent variables has the general form
+\begin{equation}
+    a(x,y,u) u_x + b(x,y,u) u_y = c(x,y,u).
+\end{equation}
+
+A PDE is called semi-linear if the coefficients of the highest order derivatives only contains independent variables. For example, a first order semi-linear PDE in two independent variables has the general form
+\begin{equation}
+    a(x,y) u_x + b(x,y) u_y = c(x,y,u).
+\end{equation}
+
+\section{First Order Quasi-Linear PDEs}
+
+\begin{nthm}
+    Consider $\phi = \phi(x,y,z)$ and $\psi = \psi(x,y,z)$ such that $z = z(x,y)$. If $f(\phi, \psi) = 0$ for some arbitrary function $f$, then $\phi$ and $\psi$ satisfy the first order PDE
+    \begin{equation}
+        p \frac{\pd(\phi, \psi)}{\pd(y,z)} + q \frac{\pd(\phi, \psi)}{\pd(z,x)} = \frac{\pd(\phi, \psi)}{\pd(x,y)}
+    \end{equation}
+    where, $p = z_x$, $q = y_z$, and
+    \begin{equation*}
+        \frac{\pd(\phi, \psi)}{\pd(x,y)} \equiv
+        \begin{vmatrix}
+            \phi_x & \phi_y\\
+            \psi_x & \psi_y
+        \end{vmatrix}
+    \end{equation*}
+\end{nthm}
+\begin{proof}
+    Differentiating $f(\phi, \psi) = 0$ with respect to $x$ and $y$, separately, gives the following two equations
+    \begin{align}
+        f_{\phi} \paren*{\phi_x + p \phi_z} + f_{\psi} \paren*{\psi_x + p \psi_z} &= 0\\
+        f_{\phi} \paren*{\phi_y + q \phi_z} + f_{\psi} \paren*{\psi_y + q \psi_z} &= 0
+    \end{align}
+
+    This can be written as a matrix equation
+    \begin{equation}
+        \begin{pmatrix}
+        \phi_x + p \phi_z & \psi_x + p \psi_z\\
+        \phi_y + q \phi_z & \psi_y + q \psi_z\\
+        \end{pmatrix}
+        \begin{pmatrix}
+        f_{\phi} \\ f_{\psi}
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+        0 \\ 0
+        \end{pmatrix}
+    \end{equation}
+    This has a non-trivial solution precisely when the determinant of the coefficient matrix vanishes. Several lines of algebraic manipulations lead to the required result
+    \begin{equation}
+    \begin{vmatrix}
+        \phi_x + p \phi_z & \psi_x + p \psi_z\\
+        \phi_y + q \phi_z & \psi_y + q \psi_z\\
+    \end{vmatrix} = 0
+    \implies
+    p \frac{\pd(\phi, \psi)}{\pd(y,z)}
+    + q \frac{\pd(\phi, \psi)}{\pd(z,x)}
+    = \frac{\pd(\phi, \psi)}{\pd(x,y)}
+    \end{equation}
+\end{proof}
+
+\begin{nthm}
+    The general solution of a first order, quasi-linear PDE
+    \begin{equation}
+        a(x,y,u) u_x + b(x,y,u) u_y = c(x,y,u)
+    \end{equation}
+    is $f(\phi, \psi) = 0$, where $f$ is an arbitrary function and $\phi(x,y,u)=c_1$ and $\psi(x,y,u)=c_2$ are solutions of the characteristic equations
+    \begin{equation}
+        \frac{dx}{a(x,y,u)} = \frac{dy}{b(x,y,u)} = \frac{du}{c(x,y,u)}.
+    \end{equation}
+
+    (The solution curves $\phi = c_1$ and $\psi = c_2$ are called the characteristic curves of the given PDE.)
+\end{nthm}
+\begin{proof}
+    The ratios in the characteristic equations can all be equated to a common parameter
+    \begin{equation}
+        \frac{dx}{a(x,y,u)} = \frac{dy}{b(x,y,u)} = \frac{du}{c(x,y,u)} = dt.
+    \end{equation}
+    As a result, we can write $dx = a dt$, $dy = b dt$ and $du = c dt$.
+
+    Now, $\phi(x,y,u) = c_1$ gives
+    \begin{equation}
+        d\phi = \phi_x dx + \phi_y dy + \phi_u du = 0
+        \implies a \phi_x + b \phi_y + c \phi_u = 0.
+    \end{equation}
+    Similarly,
+    \begin{equation}
+        d\psi = \psi_x dx + \psi_y dy + \psi_u du = 0
+        \implies a \psi_x + b \psi_y + c \psi_u = 0.
+    \end{equation}
+
+    Simultaneously solving these two equations (for $a, b, c$) gives
+    \begin{equation}
+        \frac{a}{\frac{\pd(\phi, \psi)}{\pd(y,u)}} = \frac{b}{\frac{\pd(\phi, \psi)}{\pd(u,x)}} = \frac{c}{\frac{\pd(\phi, \psi)}{\pd(x,y)}} = \lambda.
+    \end{equation}
+    Equivalently,
+    \begin{equation}
+        \frac{\pd(\phi, \psi)}{\pd(y,u)} = \frac{a}{\lambda}, \quad
+        \frac{\pd(\phi, \psi)}{\pd(u,x)} = \frac{b}{\lambda}, \quad
+        \frac{\pd(\phi, \psi)}{\pd(x,y)} = \frac{c}{\lambda}.
+    \end{equation}
+
+    Now, since $f(\phi, \psi) = 0$, the previous theorem shows that $f = 0$ satisfies the PDE
+    \begin{equation}
+        p \frac{\pd(\phi, \psi)}{\pd(y,u)}
+        + q \frac{\pd(\phi, \psi)}{\pd(u,x)}
+        = \frac{\pd(\phi, \psi)}{\pd(x,y)},
+    \end{equation}
+    with $p = u_x$ and $q = u_y$. Using the expressions found above, we get
+    \begin{equation}
+        p \frac{\pd(\phi, \psi)}{\pd(y,u)}
+        + q \frac{\pd(\phi, \psi)}{\pd(u,x)}
+        = \frac{\pd(\phi, \psi)}{\pd(x,y)}
+        \iff
+        a p + b q = c.
+    \end{equation}
+
+    In other words, this $f(\phi,\psi) = 0$ satisfies the PDE $ap + bq = c$.
+
+
+
+\end{proof}
+
+% \subsection*{Worked Examples}
+
+\section{Canonical Form of the First Order Linear PDEs}
+The method developed for the first order quasi-linear PDEs can also be applied to linear PDEs as a special cases where the coefficient functions take a particular form. However, when dealing only with linear first order PDEs, it is often more convenient to first transform them into a form that is easier to integrate. This is called the canonical (or standard) form.
+
+As already noted, the general first order linear PDE in two variables is
+\begin{equation}
+    a(x,y) u_x + b(x,y) u_y + c(x,y) u = d(x,y).
+\end{equation}
+
+We introduce new variables $\xi = \xi(x,y)$ and $\eta = \eta(x,y)$ such that the Jacobian of this transformation is non-zero. That is
+\begin{equation}
+    J = \abs*{\frac{\pd(\xi, \eta)}{\pd(x,y)}} =
+    \begin{vmatrix}
+        \xi_x & \xi_y \\ \eta_x & \eta_y
+    \end{vmatrix}
+    \neq 0.
+\end{equation}
+Then, the chain rule gives,
+\begin{equation}
+    u_x = u_\xi \xi_x + u_\eta \eta_x,
+    \qquad
+    u_y = u_\xi \xi_y + u_\eta \eta_y.
+\end{equation}
+This converts the original PDE into
+\begin{equation}
+    A u_\xi + B u_\eta + cu = d,
+\end{equation}
+with $A = a \xi_x + b \xi_y$ and $B = a \eta_x + b \eta_y$.
+
+Out of all the possible change of variables, we seek the ones where $A$ vanishes. In other words, we pick $\xi = \xi(x,y)$ such that it satisfies the (simpler) first order linear PDE
+\begin{equation}
+    a \xi_x + b \xi_y = 0
+\end{equation}
+
+We can't also require $B = 0$ simultaneously, otherwise $\xi$ and $\eta$ will no longer be independent (as they will follow from the same PDE), and their Jacobian will vanish.
+
+Overall, if we can find a suitable $\xi = \xi(x,y)$ then we have transformed the original first order linear PDE into its canonical form
+\begin{equation}
+    a u_x + b u_y + c u = d
+    \quad\to\quad B u_\eta + cu = d
+    \quad\to\quad u_\eta + \alpha(\xi, \eta) u = \beta(\xi, \eta).
+\end{equation}
+Here, $\alpha = c/B$ and $\beta = d/b$.
+
+% \subsection*{Worked Examples}
+\begin{negg}
+    Reduce $u_x - u_y = u$ to its canonical form, and obtain its general solution.
+
+    Comparing this with the general form of the quasi-linear equation, we note that $a = 1$, $b = -1$ and $c = u$.
+
+    We start by finding a suitable $\xi$ from $a \xi_x + b \xi_y = 0$. The corresponding characteristic equations are
+    \begin{equation*}
+        \frac{dx}{1} = \frac{dy}{-1} = \frac{d\xi}{0}.
+    \end{equation*}
+    For these, $d\xi = 0$ immediately gives $\xi = c_1$ as one characteristic curve. For the second characteristic curve, we solve the first two ratios to obtain $y = -x + c_2$, or $x + y = c_2$. So, a particular solution for $\xi$ is, $\xi = x+y$.
+
+    (Here, the general solution would have been $f(\phi, x+y) = 0$. We, firstly, we write this as $\xi = g(x+y)$, and then pick the simplest non-trivial case $g(x+y) = x+y$ as a particular choice of the change of variables for $\xi$.)
+
+    We pick a simple (but independent) expression $\eta = y$
+
+    Using $\xi = x+y$ and $\eta = y$, we find that $u_x = u_\xi$ and $u_y = u_\xi + u_\eta$. So,
+    \begin{equation}
+        u_x - u_y = u
+        \implies
+        u_\eta = u.
+    \end{equation}
+
+    This integrates to $u = f(\xi) e^{-\eta}$, where $f$ is an arbitrary function. Converting back into $x$ and $y$, we obtain
+    \begin{equation}
+        u(x, y) = f(x+y) e^{-y}.
+    \end{equation}
+\end{negg}
+
+\section{Geometry of the First Order Quasilinear PDEs}
+Consider a general first order quasilinear PDE in two variables
+\begin{equation}
+    \alpha(x, y, u) u_x + \beta(x, y, u) u_y - c(x, y, u) = 0
+\end{equation}
+Its solution is the surface $u = u(x,y)$. We can re-write this equation of a surface as
+\begin{equation}
+    f(x, y, u) \equiv u(x,y) - u = 0.
+\end{equation}
+Noting that the gradient of this new function $f$ is $\nabla f = \paren{ u_x, u_y, -1 }$, we can express the given PDE as dot product
+\begin{equation}
+    \paren{a, b, c} \cdot \paren{ u_x, u_y, -1 } = 0.
+\end{equation}
+
+The gradient of $f$ represents a normal vector to the surface $f$ at the point $(x, y, u)$. Therefore, the previous equation states that the solution surface $u = u(x,y)$ is such that the vector $\paren{a, b, c}$ always lies in its tangent plane at $(x, y, u)$.
+
+Suppose we have a parametrised curve $\paren{x(t), y(t), u(t)}$ lying on the surface $f(x,y,u) = 0$ at the point $\paren{x,y,u}$. Then, its tangent vector $\paren{dx/dt, dy/dt, du/dt}$ is again perpendicular to $\nabla f$ and lies in the tangent plane. We can therefore, equate $\paren{dx/dt, dy/dt, du/dt}$ with $\paren{a, b, c}$ to get a set of ODEs
+\begin{equation}
+    \frac{dx}{dt} = a(x,y,u),
+    \frac{dy}{dt} = b(x,y,u),
+    \frac{du}{dt} = c(x,y,u).
+\end{equation}
+Equivalently,
+\begin{equation}
+    \frac{dx}{a} = \frac{dy}{b} = \frac{du}{c}.
+\end{equation}
+These are called the characteristic equations, and their solutions are called characteristic curves.
+
+We find that these lead to two families surfaces of solutions
+\begin{equation}
+    \phi(x,y,u) = c_1
+    \qquad\text{and}\qquad
+    \psi(x,y,u) = c_2.
+\end{equation}
+Their intersection leads to a two-parameter family of curves $g(\phi, \psi) = 0$ which we saw was the general solution to the given quasilinear PDE.
+
+\section{Separation of Variables}
+Some PDEs admit solutions $u(x,y)$ that can be separated into independent functions of $x$ and $y$. For example, we can have
+\begin{equation}
+    u(x,y) = X(x) Y(y)
+    \quad\text{or}\quad
+    u(x,y) = X(x) + Y(y)
+\end{equation}
+among other choices. (We will only focus on these two choices.)
+
+Substituting such an ansatz into the given PDE, we try to move all the $x$ and $y$-dependent terms to opposite sides of the equals signs. This step requires careful algebraic manipulations. Two functions of two different variables can only be equal to each other for all values of those variables if and only if they are equal to the same constant.
+\begin{equation}
+    f(x) = g(y), \forall x,y
+    \implies
+    f(x) = \lambda, g(x) = \lambda
+\end{equation}
+
+\begin{negg}
+    Consider the equation $y^2 u_x^2 + x^2 u_y^2 = \paren{xyu}^2$.
+
+    We will try to solve it using the separation of variables with $u(x,y) = f(x)g(y) \neq 0$. Substituting this form of $u(x,y)$ into the PDE gives
+    \begin{equation}
+        \paren*{y f'(x) g(y)}^2 + \paren*{x f(x) g'(y)}^2 = \paren{xy f(x) g(y)}^2
+    \end{equation}
+    Dividing throughout by $x^2 y^2 f(x)^2 g(y)^2$ and rearranging, gives
+    \begin{equation}
+        \frac{1}{x^2}\paren*{\frac{f'(x)}{f(x)}}^2
+        = 1 - \frac{1}{y^2} \paren*{\frac{g'(y)}{g(y)}} = \lambda^2
+    \end{equation}
+    for some constant $\lambda^2$; the square indicates that this constant must be positive because the LHS is always positive.
+
+    This leads to a set of ODES
+    \begin{equation}
+        f'(x) = x\lambda f(x)
+        \quad\text{and}\quad
+        g'(y) = y g(y) \sqrt{1 - \lambda^2}
+    \end{equation}
+    whose solution is
+    \begin{equation}
+        f(x) = A \exp\paren*{ \frac{\lambda}{2} x^2}
+        \quad\text{and}\quad
+        g(y) = B \exp\paren*{ \frac{1}{2} y^2 \sqrt{1 - \lambda^2}}.
+    \end{equation}
+    with arbitrary constants $A, B$.
+
+    As a result, the full solution of the PDE becomes
+    \begin{equation}
+        u(x,y) = C \exp\paren*{ \frac{\lambda}{2}x^2 + \frac{1}{2}y^2 \sqrt{1 - \lambda^2} },
+    \end{equation}
+    where $C$ is again an arbitray constant.
+\end{negg}
+
+\begin{negg}
+    We will solve the first order non-linear PDE $u_x^2 + u_y + x^2 = 0$ with the ansatz $u(x,y) = f(x) + g(y)$.
+
+    The substitution into the PDE gives
+    \begin{equation}
+        \paren*{f'(x)}^2 + g'(y) + x^2 = 0
+        \implies
+        \paren*{f'(x)}^2 + x^2 = - g'(y) = \lambda^2.
+    \end{equation}
+    Solving these separate ODEs gives
+    \begin{equation}
+        f(x) = A + \frac{1}{2} \lambda^2 \paren*{ \asin\paren*{\frac{x}{\lambda}} + \frac{x}{\lambda}\sqrt{1 - \frac{x^2}{\lambda^2}} }
+        \quad\text{and}\quad
+        g(y) = -\lambda^2 y + B.
+    \end{equation}
+    Therefore, $u(x,y) = \frac{1}{2} \lambda^2 \paren*{ \asin\paren*{\frac{x}{\lambda}} + \frac{x}{\lambda}\sqrt{1 - \frac{x^2}{\lambda^2}} -2y }  + C$.
+\end{negg}
+
+\end{document}

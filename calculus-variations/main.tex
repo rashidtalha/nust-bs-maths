@@ -1,0 +1,348 @@
+\documentclass[11pt]{penrose}
+
+\usepackage{mathsphystools}
+\usepackage{thmstyles}
+
+\title{MATH 354: Calculus of Variations}
+\subtitle{Brief lecture notes}
+\author{Rashid M. Talha}
+\affiliation{School of Natural Sciences, NUST}
+\date{\today}
+\begin{document}
+
+\maketitle
+
+\textbf{Textbook:} Calculus of Variations, I. M. Gelfand and S. V. Fomin
+
+\section{Euler-Lagrange Equation}
+\begin{nthm}
+    Consider the functional
+    \begin{equation}
+        J[y] = \int_{a}^{b} F(x, y, y') \,dx,
+    \end{equation}
+    defined on the set of functions $y \in C^{1}[a,b]$, with $y(a) = A$ and $y(b) = B$. Then, a necessary condition for $J[y]$ to have an extreme is that $y$ satisfies the Euler-Lagrange equation
+    \begin{equation}
+        \frac{\pd F}{\pd y} - \frac{d}{dx} \paren*{\frac{\pd F}{\pd y'}} = 0
+    \end{equation}
+\end{nthm}
+\begin{proof}
+    TBC.
+\end{proof}
+
+This is a second order ODE in $y$
+\begin{equation}
+    \frac{\pd F}{\pd y} - \frac{\pd^2 F}{\pd x \pd y'} - y' \frac{\pd^2 F}{\pd y \pd y'} - y'' \frac{\pd^2 F}{\pd y' \pd y'} = 0
+\end{equation}
+We shall later see that if the highest order derivative contained in the integrand is $y^{(k)}$, then the resulting Euler-Lagrange equation is a $2k$ order ODE. Similarly, if the integrand contains multiple independent variables then we obtain a PDE instead.
+
+The integral curves of this equation are called extremals.
+
+\section{First Integrals and Special Cases}
+For some integrands $F(x,y,y')$ the Euler-Lagrange equation can be reduced into a first order ODE, called the first integral. In some other cases, the Euler-Lagrange equation can be rearranged into a more practically useful form.
+
+\begin{enumerate}
+    \item $F = F(x,y')$\\
+    Here, $\frac{\pd F}{\pd y} = 0$. As a result, $\frac{d}{dx} \paren*{\frac{\pd F}{\pd y'}} = 0$, if $y$ satisfies the Euler-Lagrange equation. Therefore, $y$ satisfies the Euler-Lagrange equation if and only if
+    \begin{equation}
+        \frac{\pd F}{\pd y'} = c
+    \end{equation}
+    for some constant $c \in \R$.
+
+    \item $F = F(y,y')$\\
+    It is easy to show that, in this case, $y$ satisfies the Euler-Lagrange equation if and only if
+    \begin{equation}
+        F - y' \frac{\pd F}{\pd y'} = c,
+    \end{equation}
+    for some constant $c \in \R$. This is because
+    \begin{align}
+        \frac{d}{dx} \paren*{ F - y' \frac{\pd F}{\pd y'} }
+        &= \frac{\pd F}{\pd x} + y' \frac{\pd F}{\pd y} + y'' \frac{\pd F}{\pd y'} - y'' \frac{\pd F}{\pd y'} - y' \frac{d}{dx} \paren*{\frac{\pd F}{\pd y'}}\\
+        &= y' \paren*{ \frac{\pd F}{\pd y} - \frac{d}{dx} \paren*{\frac{\pd F}{\pd y'}} }.
+    \end{align}
+    So, if the Euler-Lagrange equation is satisfied then the LHS is zero. Conversely, if the LHS is zero, then the Euler-Lagrange equation is satisfied. (The case that $y' = 0$, when the LHS vanishes leads to $F = \text{constant}$, which again implies that the Euler-Lagrange equation is satisfied.)
+
+    \item $F = F(x,y)$\\
+    In this case, the Euler-Lagrange equation reduces to $\frac{\pd F}{\pd y} (x,y) = 0$. This is an algebraic equation; not an ODE.
+\end{enumerate}
+
+Another important class of functionals that is often encountered is
+\begin{equation}
+    J[y] = \int_{a}^{b} g(x,y) \sqrt{1 + y'^2} dx.
+\end{equation}
+Using the Euler-Lagrange equation we obtain (after several lines of careful differentiation and algebraic manipulations)
+\begin{equation}
+    g_y - y g_x - \frac{y''}{1 + y'^2} g = 0.
+\end{equation}
+
+For example, if $g(x, y) \equiv 1$, then we immediately obtain $y'' = 0$, which leads to $y = ax + b$ for $a, b \in \R$. This is the solution to the length functional variational problem.
+
+\begin{nex}
+    Find the extremum of $J[y] = \int_{1}^{2} \frac{1}{x} \sqrt{1 + y'^2} \,dx$ such that $y(1) = 0$ and $y(2) = 1$.
+
+    (This leads to $y = c \pm \frac{1}{k}\sqrt{1 - (xk)^2}$.)
+\end{nex}
+
+\begin{nex}
+    Find the extremum of $J[y] = \int_{x_1}^{x_2} 2\pi y \sqrt{1 + y'^2} \,dx$ subject to $y(x_1) = y_1$ and $y(x_2) = y_2$.
+
+    (This leads to $y \sim \cosh x$.)
+\end{nex}
+
+\begin{nex}
+    Find the extremum of $J[y] = \int_{x_1}^{x_2} (x-y)^2 dx$.
+\end{nex}
+
+\section{Existence and Uniqueness of Solutions to Variational Problems}
+The variational problems are usually posed as boundary value problems, where the solution is required to exist over the entire domain. Unlike the initial value ODE problems, there are no general results for the existence of uniqueness of solutions for boundary value problems. Moreover, the existence and uniqueness theorems for IVPs only discuss the solution in a neighbourhood of the initial point, and this might not extend to cover the entire domain.
+
+A certain class of variational (boundary value) problems, however, does have an associated existence and uniqueness theorem.
+\begin{nthm}[Bernstein]
+    Consider the ODE $y'' = G(x, y, y')$. If the functions $F$, $F_y$ and $F_{y'}$ are continuous at every finite point $(x,y)$ for any finite $y'$, and if a constant $k > 0$ and function
+    \begin{equation*}
+        \alpha = \alpha(x,y) \geq 0,
+        \qquad
+        \beta = \beta(x,y) \geq 0
+    \end{equation*}
+    (which are bounder in every finite region of the plane) can be found such that
+    \begin{equation*}
+        F_y (x,y,y') > k,
+        \qquad
+        \abs*{F(x,y,y')} \leq \alpha y'^2 + \beta
+    \end{equation*}
+    then one and only one integral curve of the stated ODE passes through any two point $(a, A)$ and $(b, B)$ where $a \neq b$.
+\end{nthm}
+
+\section{Multiple Independent Variables}
+Suppose the functional $J$ takes as its input a function of multiple variables $z = z(x,y)$. Here, $x$ and $y$ are both independent variables, and $J = J[z]$. (For simplicity we restrict to two independent variables. All of the following results can easily be extended to more independent variables.) In that case, we can write
+\begin{equation}
+    J[z] = \int_{R} F(x, y, z(x,y), z_x (x,y), z_y (x,y)) \,dx\,dy.
+\end{equation}
+Here, $R$ is some suitable closed region in the plane. The goal now is to find a function $z = z(x,y)$ such that $z \in C^2$ and $z$ satisfies the prescribed boundary conditions on $\pd R$, and that it extremises the functional $J[z]$.
+
+\begin{nlemma}
+    If $\alpha(x,y)$ is a fixed function which is continuous in a closed region $R$, and if the integral
+    \begin{equation}
+        \int_{R} \alpha(x,y) h(x,y) \,dx\,dy
+    \end{equation}
+    vanishes for every function $h$ that is twice continuously differentiable on $R$ and equals zero in the boundary $\pd R$, then $\alpha(x,y) \equiv 0$.
+\end{nlemma}
+
+The corresponding Euler-Lagrange equation is
+\begin{equation}
+    \frac{\pd F}{\pd z}
+    - \frac{\pd}{\pd x} \paren*{\frac{\pd F}{\pd z_x}}
+    - \frac{\pd}{\pd y} \paren*{\frac{\pd F}{\pd z_y}}
+    = 0
+\end{equation}
+
+% STATE THIS AS A THEOREM AND PROVE IT (USES GREEN'S THEOREM)
+
+\begin{negg}
+    Consider the functional
+    \begin{equation}
+        J[z] = \int_{R} \paren*{z_{x}^{2} + z_{y}^{2} + 2zf(x,y)} \,dx\,dy.
+    \end{equation}
+
+    Its Euler-Lagrange equation is the Poisson equation
+    \begin{equation}
+        z_{xx} + z_{yy} = f(x,y)
+    \end{equation}
+\end{negg}
+
+\begin{negg}
+    Finding the surface $z = z(x,y)$ of least area, bounded by a given contour can be represented as a variational problem with the functional
+    \begin{equation}
+        J[z] = \int_{R} \sqrt{1 + z_{x}^{2} + z_{y}^{2}} \,dx\,dy.
+    \end{equation}
+
+    The Euler-Lagrange equation for this functional becomes
+    \begin{equation}
+        r (1 + q^2) - 2spq + t(1 + p^2) = 0
+    \end{equation}
+    where $p = z_x$, $q = z_y$, $r = z_{xx}$, $s = z_{xy}$ and $t = z_{yy}$.
+
+    This is a complicated non-linear PDE. However, a result from differential geometry states that for a surface given by $z = z(x,y)$, the mean curvature $M$ takes the form
+    \begin{equation}
+        M = \frac{r (1 + q^2) - 2spq + t(1 + p^2)}{\sqrt{1 + p^2 + q^2}}
+    \end{equation}
+
+    Therefore, the required surfaces are precisely those whose mean curvature vanishes. Surfaces whose mean curvature is zero are called minimal surfaces.
+\end{negg}
+
+\section{Case of Variable End Point}
+Suppose we need to find the function $y = y(x)$ that extremises the functional
+\begin{equation}
+    J[y] = \int_{x_1}^{x_2} F(x, y, y') \,dx
+\end{equation}
+subject to the the condition $y(x_1) = y_1$, but whose second endpoint $y(x_2)$ is not fixed.
+
+In this case the variation $\delta J$ with $y \to y+h$ require $h(x_1) = 0$ but $h(x_2)$ is not fixed. From the usual procedure of Taylor expansion we obtain
+\begin{align}
+    \delta J
+    &= \int_{x_1}^{x_2} h(x) \paren*{ \frac{\pd F}{\pd y} - \frac{d}{dx}\paren*{\frac{\pd F}{\pd y'}} } \,dx
+    \;- h(x_1) \left.\frac{\pd F}{\pd y'}\right|_{x_1}
+    \;- h(x_2) \left.\frac{\pd F}{\pd y'}\right|_{x_2}\\
+    &= \int_{x_1}^{x_2} h(x) \paren*{ \frac{\pd F}{\pd y} - \frac{d}{dx}\paren*{\frac{\pd F}{\pd y'}} } \,dx
+    \;- h(x_2) \left.\frac{\pd F}{\pd y'}\right|_{x_2}
+\end{align}
+
+This variation needs to be zero for all suitable $h$. In particular, it must vanish for the case where $h(x_2) = 0$. The second boundary term vanishes for this choice of $h$, and, using the fundamental theorem of calculus of variations, we get
+\begin{equation}
+    \delta J
+    = \int_{x_1}^{x_2} h(x) \paren*{ \frac{\pd F}{\pd y} - \frac{d}{dx}\paren*{\frac{\pd F}{\pd y'}} } \,dx = 0
+    \implies
+    \frac{\pd F}{\pd y} - \frac{d}{dx}\paren*{\frac{\pd F}{\pd y'}} = 0.
+\end{equation}
+This shows that if $y$ is a critical point of $J$ then it must satisfy the Euler-Lagrange equation. However, note that this Euler-Lagrange equation is independent of $h$. Therefore, it must remain zero even when a different choice of $h$ is selected. In particular, if we revert to the case that $h$ is arbitrary (subject to $h(x_1) = 0$) then the variation $\delta J$ reduces to
+\begin{equation}
+    \delta J
+    = \int_{x_1}^{x_2} h(x) \paren*{ \frac{\pd F}{\pd y} - \frac{d}{dx}\paren*{\frac{\pd F}{\pd y'}} } \,dx
+    \;- h(x_2) \left.\frac{\pd F}{\pd y'}\right|_{x_2}
+    = - h(x_2) \left.\frac{\pd F}{\pd y'}\right|_{x_2}.
+\end{equation}
+Therefore, $\delta J = 0$ gives
+\begin{equation}
+    \left.\frac{\pd F}{\pd y'}\right|_{x_2} = 0.
+\end{equation}
+
+Overall, a function $y \in C^2[x_1, x_2]$ is a critical point of the given functional $J[y]$ subject to the condition $y(x_1) = y_1$ only if it satisfies the \emph{system} of equations
+\begin{equation}
+    \frac{\pd F}{\pd y} - \frac{d}{dx}\paren*{\frac{\pd F}{\pd y'}} = 0
+    \quad\text{and}\quad
+    \frac{\pd F}{\pd y'} \paren*{ x_2, y(x_2), y'(x_2) } = 0.
+\end{equation}
+
+Similarly, if the other point is fixed (while the first varies) then the condition becomes
+\begin{equation}
+    \frac{\pd F}{\pd y'} \paren*{ x_1, y(x_1), y'(x_1) } = 0.
+\end{equation}
+
+Likewise, if both end points are variable, then the resulting set of equations is
+\begin{equation}
+    \begin{gathered}
+        \frac{\pd F}{\pd y} - \frac{d}{dx}\paren*{\frac{\pd F}{\pd y'}} = 0,\\
+        \frac{\pd F}{\pd y'} \paren*{ x_1, y(x_1), y'(x_1) } = 0
+        \quad\text{and}\quad
+        \frac{\pd F}{\pd y'} \paren*{ x_2, y(x_2), y'(x_2) } = 0.
+    \end{gathered}
+\end{equation}
+
+\begin{negg}
+    Consider a massive particle in the $xy$-plane. It slide down under the influence of gravity. Find the trajectory $y=y(x)$ such that this particle reaches the vertical line $x=b$ in the shortest time under the influence of gravity. Without loss of generality, we take the starting point to be the origin $(0,0)$ and assume that $b > 0$.
+
+    This corresponds to minimising the functional
+    \begin{equation}
+        T[y] = \int_{a}^{b} \sqrt{\frac{1 + y'^2}{2 g y}} \,dx.
+    \end{equation}
+    subject to $y(0)=0$ (and $y(b)$ is not fixed).
+
+    This functional is independent of $x$ so the associated first integral gives
+    \begin{equation}
+        F - y' \frac{\pd F}{\pd y'} = \text{constant}
+        \implies
+        \frac{1}{ \sqrt{y \paren*{1 + y'^2}} } = k
+        \implies
+        y'^2 = \frac{k}{y} - 1
+    \end{equation}
+    where $k$ is an arbitrary constant.
+
+    We solve this by introducing a parameter $\theta$, such that $y' = \cot\paren*{\frac{\theta}{2}}$. Consequently,
+    \begin{equation}
+        y'^2 = \frac{k}{y} - 1
+        \implies
+        1 + \cot^2 \frac{\theta}{2} = \frac{k}{y}
+        \implies
+        y = k \sin^2 \frac{\theta}{2}
+        \implies
+        y = \frac{k}{2} \paren*{1 - \cos\theta}
+    \end{equation}
+    and
+    \begin{equation}
+        \frac{dy}{dx} = \cot\frac{\theta}{2}
+        \implies
+        dx = \tan\frac{\theta}{2} \,dy
+        \implies
+        x = k \int \tan\frac{\theta}{2} \sin\frac{\theta}{2} \cos\frac{\theta}{2}\,d\theta.
+    \end{equation}
+    Here, we used $y = k \sin^2 \frac{\theta}{2}$ to get $dy = k \sin\frac{\theta}{2} \cos\frac{\theta}{2} \,d\theta$. This integral can be evaluated to obtain the corresponding parametric expression  for $x$ by using elementary trigonometric relations
+    \begin{equation}
+        x
+        = k \int \sin^2 \paren*{\frac{\theta}{2}} \,d\theta
+        = \frac{k}{2} \int \paren*{1 - \cos\theta} \,d\theta
+        = c + \frac{k}{2} \paren*{\theta - \sin\theta}
+    \end{equation}
+    Overall,
+    \begin{equation}
+        x = c + \frac{k}{2} \paren*{\theta - \sin\theta},
+        \quad
+        y = \frac{k}{2} \paren*{1 - \cos\theta}
+    \end{equation}
+
+    At one end point we have $y = 0$ when $x = 0$. While the variable end point condition
+    \begin{equation}
+        \left. \frac{\pd F}{\pd y'} \right|_{x=b} = 0
+        \implies
+        \left. \frac{y'}{ \sqrt{2g} \sqrt{y \paren*{1 + y'^2}}} \right|_{x=b} = 0
+    \end{equation}
+    gives $y' = 0$ when $x = b$.
+
+    Now, $y = 0$ when $x = 0$ means that we need to simultaneously solve
+    \begin{equation}
+        c + \frac{k}{2} \paren*{\theta - \sin\theta} = 0
+        \quad\text{and}\quad
+        \frac{k}{2} \paren*{1 - \cos\theta} = 0
+    \end{equation}
+    The second equation gives $\theta = 0$, because $k = 0$ would result in the trivial solution $y \equiv 0$. Using this value of $\theta$ in the first equation gives $c = 0$.
+
+    Next, $y' = 0$ at $x = b$ corresponds to the system
+    \begin{equation}
+        \frac{k}{2} \paren*{\theta - \sin\theta} = b
+        \quad\text{and}\quad
+        \cot \frac{\theta}{2} = 0.
+    \end{equation}
+    Again, the second equation gives $\theta = n\pi$, but we can't take $\theta = 0$ otherwise the first equation will reduce to the contradiction $0 = b > 0$. Taking $\theta = \pi$ gives $k = 2b/\pi$. Therefore, the solution to this variational problem is a cycloid
+    \begin{equation}
+        x = \frac{b}{\pi} \paren*{\theta - \sin\theta},
+        \quad
+        y = \frac{b}{\pi} \paren*{1 - \cos\theta}.
+    \end{equation}
+\end{negg}
+
+% \section{Invariance of the Euler-Lagrange Equation}
+
+\section{Other topics}
+\subsection{Variational Derivative}
+Let $f$ be a real-valued function of $n$ variables. We study its differential and partial derivatives in real analysis. Analogous concepts also exist for real-valued functional. Among these, the concept of partial derivatives is generalised to the concept of a variational derivative. The procedure is carried out as follows:
+
+We approximate the continuous function $y = y(x)$ as a polygonal line
+\begin{equation}
+    (x_0, y_0), \dots, (x_{n+1}, y_{n+1}).
+\end{equation}
+This discretises the functional $J[y] = \int_a^b F(x, y, y') \,dx$ subject to $y(a) = A$ and $y(b) = B$ into a function of $n$ variables
+\begin{equation}
+    J(y_1, \dots, y_n)
+    = \sum_{i=0}^{n} F \paren*{x_i, y_i, \frac{y_{i+1} - y_i}{\Delta x}} \Delta x.
+\end{equation}
+(This is not a function of $n+2$ variables because $y_0 = A$ and $y_{n+1} = B$ are fixed.)
+
+We can now calculate $\pd J / \pd y_k$ as the usual partial derivative to obtain
+\begin{align*}
+    \frac{\pd J}{\pd y_k} (y_1, \dots, y_n)
+    = {} & \frac{\pd F}{\pd y} \paren*{x_k, y_k, \frac{y_{k+1} - y_k}{\Delta x}} \Delta x\\
+    &+ \frac{\pd F}{\pd y'} \paren*{x_{k-1}, y_{k-1}, \frac{y_k - y_{k-1}}{\Delta x}} \Delta x
+    - \frac{\pd F}{\pd y'} \paren*{x_k, y_k, \frac{y_{k+1} - y_k}{\Delta x}} \Delta x.
+\end{align*}
+Dividing by $\Delta x$ and taking the limit $\Delta x \to 0$ reduces this expression to
+\begin{equation}
+    \frac{\pd J}{\pd y_k \Delta x}
+    = \frac{\pd F}{\pd y} (x, y, y')
+    - \frac{d}{dx} \paren*{ \frac{\pd F}{\pd y'} (x, y, y') },
+\end{equation}
+where
+\begin{equation}
+    \frac{\delta J}{\delta y} \equiv \lim_{\Delta x \to 0} \frac{\pd J}{\pd y_k \Delta x}
+\end{equation}
+is called the variational derivative of the functional $J[y]$. We note that the variational derivative is precisely the LHS of the Euler-Lagrange equation.
+
+
+\end{document}

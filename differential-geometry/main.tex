@@ -1,0 +1,414 @@
+\documentclass[11pt]{penrose}
+
+\usepackage{mathsphystools}
+\usepackage{thmstyles}
+
+\title{MATH 382: Differential Geometry}
+\subtitle{Brief lecture notes}
+\author{Rashid M. Talha}
+\affiliation{School of Natural Sciences, NUST}
+\date{\today}
+\begin{document}
+
+\maketitle
+
+\textbf{Textbook:} Elementary Differential Geometry, Andrew Pressley
+
+\section{Introduction}
+\begin{ndfn}
+    A parametrised curve in $\R^n$ is a map $\gamma : (\alpha, \beta) \to \R^n$ for some $-\infty \leq \alpha < \beta \leq \infty$.
+
+    A parametrised curve whose image is $C$, is called a parametrisation of $C$. Parametrisations are not unique.
+\end{ndfn}
+
+We shall focus only on smooth parametrised curves. Smoothness refers to the fact that each component of $\gamma \in \R^n$ is assumed to be sufficiently continuously differentiable. Usually, twice continuously differentiable parametrisations will be sufficient. All curves in the following sections will be parametrised and smooth.
+
+\begin{ndfn}
+    The tangent vector to a curve $\gamma = \gamma(t)$ at $t$ is $\vec{T} = d\gamma/dt = \dot{\gamma}(t)$.
+\end{ndfn}
+
+% PROP: CONSTANT TANGENT VECTOR OVER AN INTERVAL ==> CURVE IS PART OF A STRAIGHT LINE
+
+\section{Arc-Length}
+\begin{ndfn}
+    The arc-length of a curve $\gamma = \gamma(t)$ is the function
+    \begin{equation}
+        s(t) = \int_{t_0}^{t} \abs*{\dot{\gamma}(u)} \,du.
+    \end{equation}
+\end{ndfn}
+
+Note that $s(t_0) = 0$ and that $s$ is a monotonically increasing function. From the fundamental theorem of calculus,
+\begin{equation}
+    \frac{ds}{dt} = \abs{\dot{\gamma}(t)}
+\end{equation}
+As $\gamma(t)$ is the position vector to a point on the curve, its derivative $\dot{\gamma}(t)$ can be interpreted as a velocity vector. As a result, $\abs{\dot{\gamma}(t)}$ represents the speed.
+
+\begin{ndfn}
+    The speed of a curve $\gamma = \gamma(t)$ at $t$ is $\abs{\dot{\gamma}(t)} \equiv ds/dt$.
+
+    We say that $\gamma$ is a unit-speed curve is $\abs{\dot{\gamma}(t)} = 1$ for all $t$.
+\end{ndfn}
+
+\begin{nprop}
+    Let $\vec{a}(t)$ be a unit vector that depends smoothly on $t$. Then, for all $t$
+    \begin{equation}
+        \vec{a}(t) \cdot \dot{\vec{a}}(t) = 0.
+    \end{equation}
+    (i.e. $\dot{\vec{a}}(t)$ is either zero or perpendicular to $\vec{a}(t)$ for all $t$.)
+\end{nprop}
+\begin{proof}
+    Since $\vec{a}(t)$ is a unit vector, we have $\vec{a}(t) \cdot \vec{a}(t) = 1$. Differentiating this with respect to $t$ gives
+    \begin{equation}
+        \vec{a}(t) \cdot \dot{\vec{a}}(t) + \dot{\vec{a}}(t) \cdot \vec{a}(t) = 0
+        \implies
+        2 \vec{a}(t) \cdot \dot{\vec{a}}(t) = 0
+        \implies
+        \vec{a}(t) \cdot \dot{\vec{a}}(t) = 0.
+    \end{equation}
+\end{proof}
+
+As a consequence, if $\gamma$ is a unit speed curve then $\dot{\gamma}$ is perpendicular to $\gamma$ (indeed coinciding with the terminology 'tangent' vector). Likewise, $\ddot{\gamma}$ is either zero or perpendicular to $\dot{\gamma}$.
+
+\section{Reparametrisations and Regular Curves}
+
+\section{Closed Curves}
+\begin{ndfn}
+    A curve $\gamma : \R \to \R^n$ is said to be $T$-periodic for $T \in R$ if
+    \begin{equation}
+        \gamma(t + T) = \gamma(t)
+        \quad\forall t \in \R.
+    \end{equation}
+\end{ndfn}
+
+Clearly, every curve is $0$-periodic. Moreover, if a curve is $T$-periodic then it is also $(-T)$-periodic as $\gamma(t - T) = \gamma((t-T) + T) = \gamma(t)$. Consequently, if $\gamma$ is $T$-periodic for $T \neq 0$, then we can always find a $T' > 0$ such that $\gamma$ is $T'$-periodic.
+
+\begin{ndfn}
+    The period of a curve $\gamma$ is the smallest positive number $T > 0$ such that $\gamma$ is $T$-periodic.
+\end{ndfn}
+
+(The existence of a period (a least positive real number) is not obvious because not every set of positive real numbers has a smallest element. Its existence is proved in the exercises.)
+
+\begin{ndfn}
+    If $\gamma$ is $T$-periodic for $T \neq 0$ then $\gamma$ is called a closed curve.
+\end{ndfn}
+
+Closed curves (of periodicity $T$) are usually defined only over the interval $[0, T]$.
+
+\section{Curvature of Curves}
+Let $\gamma$ be a (regular) parametrised curve. Intuitively we know that $\gamma$ might bend or curve in different directions for different values of $t$. It might bend just slightly or more sharply. To quantify this behaviour, we introduce the concept of \emph{curvature}, which measures the degree to which a curve deviates from its tangent line.
+
+Taylor expansion gives
+\begin{equation}
+    \gamma(t + \Delta t)
+    = \gamma(t) + \dot{\gamma}(t) \Delta t + \frac{1}{2} \ddot{\gamma}(t) \paren*{\Delta t}^2
+    + O(\paren*{\Delta t}^3)
+\end{equation}
+The second order term gives the deviation from the tangent line, and its strength is determined by the value of $\abs*{\ddot{\gamma}(t)}$. Therefore, we introduce the following definition.
+
+\begin{ndfn}
+    Let $\gamma = \gamma(t)$ be a unit speed parametrisation of a curve. Its curvature $\kappa(t)$ at the point $\gamma(t)$ is $\abs{\ddot{\gamma}(t)}$.
+\end{ndfn}
+
+\begin{egg}
+    Consider the unit speed parametrisation of a circle with radius $R$ and centre $(x_0, y_0)$
+    \begin{equation}
+        \gamma(t) = \paren*{ x_0 + R \cos\paren*{ \frac{t}{R} }, y_0 + R \sin\paren*{ \frac{t}{R} } }
+    \end{equation}
+    Then,
+    \begin{equation}
+        \dot{\gamma} = \paren*{ -\sin\paren*{ \frac{t}{R} }, \cos\paren*{ \frac{t}{R} } }
+        \quad\text{and}\quad
+        \ddot{\gamma} = \paren*{ -\frac{1}{R} \cos\paren*{ \frac{t}{R} }, -\frac{1}{R} \sin\paren*{ \frac{t}{R} } }
+    \end{equation}
+    So, $\abs{\dot{\gamma}(t)} = 1$ for all $t$, showing that it is indeed a unit speed parametrisation. And, $\kappa = \abs{\ddot{\gamma}(t)} = \frac{1}{R}$, as expected.
+\end{egg}
+
+\begin{egg}
+    The unit speed parametrisation of a helix around the $z$-axis is
+    \begin{equation}
+        \beta(t) = \paren*{ a \cos\paren*{\frac{s}{c}}, a \sin\paren*{\frac{s}{c}}, b\paren*{\frac{s}{c}} }
+    \end{equation}
+    with $c = \sqrt{a^2 + b^2}$ and $a, b \in \R$.
+
+    By calculating $\abs{\ddot{\gamma}(t)}$, we find that $\kappa = \frac{a}{a^2 + b^2}$.
+\end{egg}
+
+For a general parametrised curve (not necessarily unit speed), we have the following result.
+\begin{nprop}
+    Let $\gamma(t)$ be a regular curve in $\R^3$, then its curvature is
+    \begin{equation}
+        \kappa(t) = \frac{\abs{ \ddot{\gamma} \times \dot{\gamma} }}{ \abs{\dot{\gamma}}^3 }.
+    \end{equation}
+\end{nprop}
+\begin{proof}
+    By definition $\kappa(t) = \abs*{ \frac{d^2 \gamma}{ds^2} }$. So,
+    \begin{equation}
+        \kappa(t)
+        = \abs*{ \frac{d^2 \gamma}{ds^2} }
+        = \abs*{ \frac{d}{ds} \paren*{\frac{d\gamma}{ds}} }
+        = \abs*{ \frac{dt}{ds} \frac{d}{dt} \paren*{\frac{d\gamma}{dt} \frac{dt}{ds}} }
+        = \abs*{ \frac{\frac{d}{dt} \paren*{ \frac{ d\gamma/dt }{ ds/dt } }}{\frac{ds}{dt}} }.
+    \end{equation}
+    Using the quotient rule
+    \begin{equation}
+        \frac{d}{dt} \paren*{ \frac{ d\gamma/dt }{ ds/dt } }
+        = \dfrac{ \frac{ds}{dt} \frac{d^2 \gamma}{dt^2} - \frac{d^2 s}{dt^2} \frac{d\gamma}{dt} }{ \paren*{\frac{ds}{dt}}^2 }
+    \end{equation}
+    Therefore,
+    \begin{equation}
+        \kappa(t)
+        = \abs*{ \dfrac{ \frac{ds}{dt} \frac{d^2 \gamma}{dt^2} - \frac{d^2 s}{dt^2} \frac{d\gamma}{dt} }{ \paren*{\frac{ds}{dt}}^3 } }
+    \end{equation}
+
+    Now, $\paren*{\frac{ds}{dt}}^2 = \abs*{ \frac{d\gamma}{dt} }^2 = \dot{\gamma} \cdot \dot{\gamma}$. Moreover, differentiating this identity with respect to $t$ gives $\frac{ds}{dt} \frac{d^2 s}{dt^2} = \dot{\gamma} \cdot \ddot{\gamma}$.
+
+    Multiplying the numerator and the denominator of $\kappa$ by $ds/dt$ and substituting these expressions gives
+    \begin{equation}
+        \kappa(t)
+        = \abs*{ \dfrac{ \frac{ds}{dt} \frac{d^2 \gamma}{dt^2} - \frac{d^2 s}{dt^2} \frac{d\gamma}{dt} }{ \paren*{\frac{ds}{dt}}^3 } }
+        = \abs*{ \dfrac{ \paren*{\frac{ds}{dt}}^2 \frac{d^2 \gamma}{dt^2} - \frac{ds}{dt} \frac{d^2 s}{dt^2} \frac{d\gamma}{dt} }{ \paren*{\frac{ds}{dt}}^4 } }
+        = \abs*{ \dfrac{ \paren*{\dot{\gamma} \cdot \dot{\gamma}} \ddot{\gamma} - \paren*{\dot{\gamma} \cdot \ddot{\gamma}} \dot{\gamma} }{ \paren*{\dot{\gamma} \cdot \dot{\gamma}}^2 } }
+    \end{equation}
+
+    Using $\vec{a} \times (\vec{b} \times \vec{c}) = (\vec{a} \cdot \vec{c})\vec{b} - (\vec{a} \cdot \vec{b})\vec{c}$, we get
+    \begin{equation}
+        \abs*{ \paren*{\dot{\gamma} \cdot \dot{\gamma}} \ddot{\gamma} - \paren*{\dot{\gamma} \cdot \ddot{\gamma}} \dot{\gamma} }
+        = \abs*{ \dot{\gamma} \times \paren*{\ddot{\gamma} \times \dot{\gamma}} }
+        = \abs*{ \dot{\gamma} } \abs*{ \ddot{\gamma} \times \dot{\gamma} }.
+    \end{equation}
+    In the final step we used the fact that $\ddot{\gamma} \times \dot{\gamma}$ is perpendicular to $\dot{\gamma}$. Therefore, the magnitude doesn't have a separate factor of $\sin$.
+
+    Moreover, $\dot{\gamma} \cdot \dot{\gamma} = \abs*{\dot{\gamma}}^2$ implies $\abs*{ \paren*{\dot{\gamma} \cdot \dot{\gamma}}^2 } = \abs*{\dot{\gamma}}^4$. Therefore,
+    \begin{equation}
+        \kappa
+        = \abs*{ \dfrac{ \paren*{\dot{\gamma} \cdot \dot{\gamma}} \ddot{\gamma} - \paren*{\dot{\gamma} \cdot \ddot{\gamma}} \dot{\gamma} }{ \paren*{\dot{\gamma} \cdot \dot{\gamma}}^2 } }
+        = \frac{\abs*{ \dot{\gamma} } \abs*{ \ddot{\gamma} \times \dot{\gamma} }}{\abs*{\dot{\gamma}}^4}
+        = \frac{\abs*{ \ddot{\gamma} \times \dot{\gamma} }}{\abs*{\dot{\gamma}}^3}.
+    \end{equation}
+\end{proof}
+
+\section{Curvature of Planar Curves}
+
+For planar curves, the notion of curvature can be refined further. In this section, we focus entirely on curves in $\R^2$.
+
+Let $\gamma(s)$ be a unit speed parametrised curve. Its tangent vector was defined to be
+\begin{equation}
+    \vec{T} = \dot{\gamma} \equiv \frac{d\gamma}{ds}.
+\end{equation}
+Moreover, $\abs{\vec{T}} = \abs*{\dot{\gamma}} = 1$ (unit speed). So, $\vec{T}$ is a unit vector in this case.
+
+There are now two choices for the normal vector: $\pi/2$ radians in the clockwise direction, or the counter clockwise direction.
+
+We define a unit vector, $\vec{n}_s$ by rotating $\vec{T}$ counter clockwise by $\pi/2$. This is called the signed unit normal; it is a unit vector because it has the same magnitude as $\vec{T}$, and it is a normal vector because by construction it is perpendicular to the tangent vector.
+
+We also know that
+\begin{equation}
+    \abs{T} = 1
+    \implies \vec{T} \cdot \vec{T} = 1
+    \implies 2 \vec{T} \cdot \dot{\vec{T}} = 0
+    \implies \dot{\gamma} \cdot \ddot{\gamma} = 0.
+\end{equation}
+That means, $\ddot{\gamma}$ is perpendicular to $\vec{T}$, and therefore, parallel (or anti-parallel) to $\vec{n}_s$. This can be written as
+\begin{equation}
+    \frac{d\vec{T}}{ds} \equiv \ddot{\gamma} = \kappa_s \vec{n}_s.
+\end{equation}
+The factor $\kappa_s$ is called the signed curvature of $\gamma$.
+
+We observe that
+\begin{equation}
+    \kappa = \abs*{\ddot{\gamma}} = \abs*{\kappa_s \vec{n}_s} = \abs{\kappa_s \vec{n}_s}
+\end{equation}
+because $\abs*{\vec{n}_s} = 1$.
+
+This relation can be better understood through the following figure. THE FOUR-CURVE DIAGRAM.
+
+
+Before proceeding further, we generalise these objects for a general regular curve, $\gamma(t)$, by considering its arc-length reparametrisation. That means
+\begin{equation}
+    \vec{T}
+    = \frac{d\gamma(t)}{ds}
+    = \frac{dt}{ds} \frac{d\gamma(t)}{dt}
+    = \frac{d\gamma/dt}{ds/dt}
+    = \frac{d\gamma/dt}{\abs{d\gamma/dt}}
+    \equiv \frac{\dot{\gamma}}{\abs{\dot{\gamma}}}
+\end{equation}
+And,
+\begin{equation*}
+    \frac{d\vec{T}}{dt}
+    = \frac{d\vec{T}}{ds} \frac{ds}{dt}
+    = \kappa_s \vec{n}_s \abs*{\frac{d\gamma}{dt}}
+\end{equation*}
+
+Let $\gamma(s)$ be a unit speed parametrised curve. Let $\varphi(s)$ denote the angle that the tangent vector $\vec{T} \equiv \dot{\gamma}(s)$ makes with the positive $x$-axis. That is
+\begin{equation}
+    \vec{T} \equiv \dot{\gamma}(s) = \paren*{\cos\varphi(s), \sin\varphi(s)}.
+\end{equation}
+We call $\varphi$ the turning angle of $\gamma$. This quantity allows us to calculate the signed curvature $\kappa_s$ directly.
+
+\begin{nprop}
+    Let $\gamma(s)$ be a unit speed parametrised plane curve, and let $\varphi(s)$ be its turning angle. Then,
+    \begin{equation*}
+        \kappa_s = \frac{d\varphi}{ds}.
+    \end{equation*}
+    (This states that the signed curvature is the rate at which the tangent vector of the curve rotates. It is positive if the tangent vector rotates counter clockwise, and positive if it rotates clockwise.)
+\end{nprop}
+\begin{proof}
+    By definition, $\vec{T} \equiv \dot{\gamma}(s) = \paren*{\cos\varphi(s), \sin\varphi(s)}$. Therefore,
+    \begin{equation}
+        \frac{d\vec{T}}{ds} \equiv \ddot{\gamma} = \paren*{-\sin\varphi(s), \cos\varphi(s)} \frac{d\varphi}{ds}.
+    \end{equation}
+    Moreover, $\vec{n}_s = \paren*{-\sin\varphi(s), \cos\varphi(s)}$ because it is obtained by rotating $\vec{T}$ counter clockwise by $\pi/2$. Therefore, comparison with $\ddot{\gamma} = \kappa_s \vec{n}_s$ gives
+    \begin{equation}
+        \ddot{\gamma} = \paren*{-\sin\varphi(s), \cos\varphi(s)} \frac{d\varphi}{ds} = \frac{d\varphi}{ds} \vec{n}_s
+        \implies
+        \kappa_s = \frac{d\varphi}{ds}.
+    \end{equation}
+\end{proof}
+
+It is useful to note that $\vec{T} = \paren*{\cos\varphi(s), \sin\varphi(s)}$ and $\vec{T} = \paren*{\dot{x}, \dot{y}}$ collectively implies
+\begin{equation}
+    \tan\varphi(s) = \frac{\dot{y}}{\dot{x}} \equiv \frac{dy/dt}{dx/dt},
+\end{equation}
+where $t$ is any regular parameter. However, since $\varphi = \varphi(s)$, the resulting quotient must be re-expressed in terms of a unit speed parameter $s$.
+
+\begin{negg}
+    Consider a catenary $\gamma(t) = (t, \cosh(t))$. In order to calculate its signed curvature $\kappa_s$, we start by noting its arc-length function
+    \begin{equation}
+        s = \int_0^t \abs*{\dot{\gamma}} du
+        = \int_0^t \sqrt{1 + \sinh^2(u)} du
+        = \sinh(t).
+    \end{equation}
+
+    Next,
+    \begin{equation}
+        \tan\varphi(s) = \frac{dy/dt}{dx/dt}
+        = \frac{\sinh(t)}{1} = s.
+    \end{equation}
+    Equivalently, $\varphi(s) = \atan{s}$. Therefore,
+    \begin{equation}
+        \kappa_s = \frac{d\varphi}{ds} = \frac{1}{1+s^2}
+    \end{equation}
+\end{negg}
+
+\begin{negg}
+    Consider a circle of radius $a$ centred at the origin parametrised by
+    \begin{equation}
+        \gamma(t) = \paren*{a \cos t, a \sin t}.
+    \end{equation}
+    We note that its arc-length function is $s = \int_0^t \abs*{\dot{\gamma}} du = \int_0^t a du = at$.
+
+    As a result,
+    \begin{equation}
+        \tan\varphi(s) = \frac{dy/dt}{dx/dt} = -\frac{\cos(t)}{\sin(t)} = -\cot(t) = -\cot\paren*{\frac{s}{a}}.
+    \end{equation}
+    Equivalently, $\varphi(s) = \atan{ \paren*{-\cot\paren*{s/a}} }$. Therefore,
+    \begin{align}
+        \kappa_s
+        = \frac{d\varphi}{ds}
+        = \frac{1}{1+\cot^2\paren*{ \frac{s}{a} }} \cdot \cosec^2\paren*{ \frac{s}{a} } \cdot \frac{1}{a}
+        = \frac{1}{\cosec^2\paren*{ \frac{s}{a} }} \cdot \cosec^2\paren*{ \frac{s}{a} } \cdot \frac{1}{a}
+        = \frac{1}{a}
+    \end{align}
+    Therefore, the signed curvature of for this parametrisation of the circle is $\kappa_s = 1/a$.
+\end{negg}
+
+\begin{remark}
+    A simple calculation show that
+    \begin{equation}
+        \kappa_s = \frac{d\varphi}{ds} = \frac{\dot{x}\ddot{y} - \ddot{x}\dot{y}}{\paren*{\dot{x}^2+\dot{y}^2}^{3/2}}.
+    \end{equation}
+
+    This follows from differentiating $\tan\varphi(s) = f(t)$ with respect to $s$ using the chain rule, and noting that $f(t) = \frac{dy/dt}{dx/dt}$.
+\end{remark}
+
+An interesting quantity derived from $\kappa_s$ is the total signed curvature
+\begin{equation}
+    \int_0^\ell \kappa_s (s) ds
+\end{equation}
+where $\ell$ is the total length of the curve. It can be shown that the total signed curvature for a closed planar curve is always a multiple of $2\pi$. Its value gives information about how many times a curve winds around before returning to its initial point.
+
+\begin{nprop}
+    Let $\gamma : [0, \ell] \to \R^2$ be a regular closed plane curve. Then,
+    \begin{equation}
+        \int_0^\ell \kappa_s (s) ds = 2\pi n,
+    \end{equation}
+    for some integer $n$.
+\end{nprop}
+\begin{proof}
+    We start by noting that
+    \begin{equation}
+        \int_0^\ell \kappa_s (s) \,ds
+        = \int_0^\ell \frac{d\phi}{ds} \,ds
+        = \phi(\ell) - \phi(0).
+    \end{equation}
+
+    Now, since $\gamma$ is a closed curve with length $\ell$, $\gamma(t + \ell) = \gamma(t)$ for all $0 \leq t \leq \ell$. As a result, $\dot{\gamma}(t + \ell) = \dot{\gamma}(t)$ for all $0 \leq t \leq \ell$. In particular, $\dot{\gamma}(\ell) = \dot{\gamma}(0)$.
+
+    From the definition of the turning angle, $\phi(t)$, we have $\dot{\gamma}(t) = \paren*{ \cos\phi(t), \sin\phi(t) }$. Consequently,
+    \begin{align}
+        \dot{\gamma}(\ell) = \dot{\gamma}(0)
+        &\implies \paren*{ \cos\phi(\ell), \sin\phi(\ell) } = \paren*{ \cos\phi(0), \sin\phi(0) }\\
+        &\implies \phi(\ell) = \phi(0) + 2\pi n, \quad\text{for } x \in \Z.
+    \end{align}
+
+    As a result, $\int_0^\ell \kappa_s (s) ds = \phi(\ell) - \phi(0) = 2\pi n$ for $n \in \Z$.
+\end{proof}
+
+Analogously, we can define the total curvature for a regular closed curve $\gamma = \gamma(t)$. In this case, we don't need to restrict $\gamma$ to be a plane curve since curvature $\kappa$ is defined for all regular curves. After several lines of algebraic manipulations we find that
+\begin{equation}
+    \int_0^\ell \kappa(t) \,dt
+    = \int_{0}^{\ell} \paren*{ \frac{ \paren*{\dot{\gamma}\cdot\dot{\gamma}}\paren*{\ddot{\gamma}\cdot\ddot{\gamma}} - \paren*{\dot{\gamma}\cdot\ddot{\gamma}}^2 }{ \dot{\gamma}\cdot\dot{\gamma} } }^{1/2} \,dt.
+\end{equation}
+
+\begin{negg}
+    Consider $\gamma(t) = \paren*{ \frac{4}{5} \cos t, 1 - \sin t, -\frac{3}{5} \cos t }$. This is a regular closed space curve with period $2\pi$. So, we take $0 \leq t \leq 2\pi$.
+
+    We find that $\dot{\gamma}\cdot\dot{\gamma} = 1$, $\ddot{\gamma}\cdot\ddot{\gamma} = 1$ and $\dot{\gamma}\cdot\ddot{\gamma} = 0$ for all $t$. As a result,
+    \begin{equation}
+        \int_0^{2\pi} \kappa(t) \,dt
+        = \int_{0}^{2\pi} \paren*{ \frac{ \paren*{1}\paren*{1} - \paren*{0}^2 }{ 1 } }^{1/2} \,dt
+        = 2\pi.
+    \end{equation}
+\end{negg}
+
+\section{Osculating Circle for Planar Curves}
+WHAT IS IT?
+
+\begin{negg}
+    Consider a parametrisation of the parabola $\gamma(t) = (t, t^2)$. We compute its osculating circle at an arbitrary value of the parameter $t$.
+
+    We start by calculating the curvature at $\gamma(t)$. Firstly, $\dot{\gamma} = (1, 2t)$. So,
+    \begin{equation}
+        \vec{T} = \frac{d\gamma/dt}{\abs*{ d\gamma/dt }} = \paren*{ \frac{1}{\sqrt{1 + 4t^2}}, \frac{2t}{\sqrt{1 + 4t^2}} }
+    \end{equation}
+    and
+    \begin{equation}
+        \frac{d\vec{T}}{dt} = \paren*{ \frac{-4t}{\paren*{1+4t^2}^{3/2}}, \frac{2}{\paren*{1+4t^2}^{3/2}} }
+    \end{equation}
+    Therefore,
+    \begin{equation}
+        \kappa
+        = \frac{\abs*{ d\vec{T}/dt }}{\abs*{ d\gamma/dt }}
+        = \frac{2}{1+4t^2} \cdot \frac{1}{\sqrt{1 + 4t^2}}
+        = \frac{2}{ \paren*{1+4t^2}^{3/2} }
+    \end{equation}
+
+    So, the radius of the osculating circle is $r = \frac{1}{\kappa} = \frac{1}{2}\paren*{1+4t^2}^{3/2}$.
+
+    The unit normal vector at $\gamma(t)$ is
+    \begin{equation}
+        \vec{n}
+        = \frac{ d\vec{T}/dt }{\abs*{ d\gamma/dt }}
+        = \paren*{ \frac{-4t}{\paren*{1+4t^2}^2}, \frac{2}{\paren*{1+4t^2}^2} }.
+    \end{equation}
+    So, the centre of the osculating circle is at $\vec{a} = \gamma(t) + r\vec{n}$. That is
+    \begin{equation}
+        \vec{a}
+        = \paren*{ \frac{t\paren*{1+4t^2}^{1/2}-2t}{\paren*{1+4t^2}^{1/2}}, \frac{1 + t^2 \paren*{1+4t^2}^{1/2}}{\paren*{1+4t^2}^{1/2}} }
+    \end{equation}
+
+    In the particular case $t=0$, we have $r = 1/2$ and $\vec{a} = (0, 1/2)$.
+\end{negg}
+
+
+\end{document}
