@@ -3,6 +3,8 @@
 \usepackage{mathsphystools}
 \usepackage{thmstyles}
 
+\newcommand{\missing}[1]{{\color{red}#1}}
+
 \title{MATH 382: Differential Geometry}
 \subtitle{Brief lecture notes}
 \author{Rashid M. Talha}
@@ -50,9 +52,10 @@ As $\gamma(t)$ is the position vector to a point on the curve, its derivative $\
 \end{ndfn}
 
 \begin{nprop}
-    Let $\vec{a}(t)$ be a unit vector that depends smoothly on $t$. Then, for all $t$
+    Let $\vec{a}(t)$ be a unit vector that depends smoothly on $t$. Then,
     \begin{equation}
-        \vec{a}(t) \cdot \dot{\vec{a}}(t) = 0.
+        \vec{a}(t) \cdot \dot{\vec{a}}(t) = 0
+        \quad\forall t.
     \end{equation}
     (i.e. $\dot{\vec{a}}(t)$ is either zero or perpendicular to $\vec{a}(t)$ for all $t$.)
 \end{nprop}
@@ -133,7 +136,7 @@ The second order term gives the deviation from the tangent line, and its strengt
     By calculating $\abs{\ddot{\gamma}(t)}$, we find that $\kappa = \frac{a}{a^2 + b^2}$.
 \end{egg}
 
-For a general parametrised curve (not necessarily unit speed), we have the following result.
+For a general regular curve (not necessarily unit speed), we have the following result.
 \begin{nprop}
     Let $\gamma(t)$ be a regular curve in $\R^3$, then its curvature is
     \begin{equation}
@@ -183,9 +186,27 @@ For a general parametrised curve (not necessarily unit speed), we have the follo
         \kappa
         = \abs*{ \dfrac{ \paren*{\dot{\gamma} \cdot \dot{\gamma}} \ddot{\gamma} - \paren*{\dot{\gamma} \cdot \ddot{\gamma}} \dot{\gamma} }{ \paren*{\dot{\gamma} \cdot \dot{\gamma}}^2 } }
         = \frac{\abs*{ \dot{\gamma} } \abs*{ \ddot{\gamma} \times \dot{\gamma} }}{\abs*{\dot{\gamma}}^4}
-        = \frac{\abs*{ \ddot{\gamma} \times \dot{\gamma} }}{\abs*{\dot{\gamma}}^3}.
+        = \frac{\abs*{ \ddot{\gamma} \times \dot{\gamma} }}{\abs*{\dot{\gamma}}^3}.\qedhere
     \end{equation}
 \end{proof}
+
+By expanding $\gamma(t)$ as $\paren*{x(t), y(t), z(t)}$, the expression for $\kappa$ can be written as
+\begin{equation}
+    \kappa
+    = \sqrt{ \frac{ \paren*{\dot{z}\ddot{y}-\dot{y}\ddot{z}}^2 + \paren*{\dot{x}\ddot{z}-\dot{z}\ddot{x}}^2 + \paren*{\dot{y}\ddot{x}-\dot{x}\ddot{y}}^2 }{\paren*{\dot{x}^2 + \dot{y}^2 + \dot{z}^2}^3} }
+\end{equation}
+Consequently, the curvature of a regular plane curve with the parametrisation $x = x(t)$, $y = y(t)$ can be expressed in a more practical form
+\begin{equation}
+    \kappa = \frac{\abs*{\dot{x}\ddot{y} - \ddot{x}\dot{y}}}{\phantom{1}\paren*{\dot{x}^2+\dot{y}^2}^{3/2}}.
+\end{equation}
+If, instead, the plane curve is given in the Cartesian form $y = y(x)$, then we get the expression
+\begin{equation}
+    \kappa = \frac{\abs*{y''}}{\paren*{1+y'^2}^{3/2}}
+\end{equation}
+by introducing the parametrisation $x = t$, $y =y(t)$. Furthermore, if the plane curve is given in the polar form $r = r(\theta)$, then a tedious calculation shows that
+\begin{equation}
+    \kappa = \frac{r^2 + 2 r_{\theta}^{2} - r r_{\theta\theta}}{\phantom{1}\paren*{r^{2}+r_{\theta}^{2}}^{3/2}}.
+\end{equation}
 
 \section{Curvature of Planar Curves}
 
@@ -216,11 +237,11 @@ The factor $\kappa_s$ is called the signed curvature of $\gamma$.
 
 We observe that
 \begin{equation}
-    \kappa = \abs*{\ddot{\gamma}} = \abs*{\kappa_s \vec{n}_s} = \abs{\kappa_s \vec{n}_s}
+    \kappa = \abs*{\ddot{\gamma}} = \abs*{\kappa_s \vec{n}_s} = \abs{\kappa_s}
 \end{equation}
 because $\abs*{\vec{n}_s} = 1$.
 
-This relation can be better understood through the following figure. THE FOUR-CURVE DIAGRAM.
+This relation can be better understood through the following figure. \missing{THE FOUR-CURVE DIAGRAM.}
 
 
 Before proceeding further, we generalise these objects for a general regular curve, $\gamma(t)$, by considering its arc-length reparametrisation. That means
@@ -372,7 +393,7 @@ Analogously, we can define the total curvature for a regular closed curve $\gamm
 \end{negg}
 
 \section{Osculating Circle for Planar Curves}
-WHAT IS IT?
+\missing{WHAT IS IT?}
 
 \begin{negg}
     Consider a parametrisation of the parabola $\gamma(t) = (t, t^2)$. We compute its osculating circle at an arbitrary value of the parameter $t$.
