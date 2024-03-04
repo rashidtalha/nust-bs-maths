@@ -393,7 +393,14 @@ Analogously, we can define the total curvature for a regular closed curve $\gamm
 \end{negg}
 
 \section{Osculating Circle for Planar Curves}
-\missing{WHAT IS IT?}
+Let $\gamma = \gamma(t)$ be a plane curve, and consider the point $\gamma(a)$ on this curve where the curvature $\kappa \neq 0$. Near this point, the curve can be approximated as (an arc of) a circle with radius $1/\kappa$; the curvature of a circle with radius $\rho$ is $1/\rho$. We can extend this arc to form a full circle, $C$. This is known as the osculating circle of $\gamma$ at $\gamma(a)$.
+
+The osculating circle $C$ at $\gamma(a)$ has the following defining properties:
+\begin{itemize}
+    \item It is tangent to $\gamma$ at $\gamma(a)$.
+    \item Its curvature is the same as that of $\gamma$ at $\gamma(a)$; equivalently, its radius is $1/\kappa$.
+    \item Its center is on the concave side of the curve. In other words, the center is located at $\gamma(a) + \rho\vec{n}$, where $\rho = 1/\kappa$ is the radius, and $\vec{n}$ is the unit normal vector at $\gamma(a)$.
+\end{itemize}
 
 \begin{negg}
     Consider a parametrisation of the parabola $\gamma(t) = (t, t^2)$. We compute its osculating circle at an arbitrary value of the parameter $t$.
