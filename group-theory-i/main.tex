@@ -31,9 +31,9 @@ By definition, a binary operation ensure that $a * b \in X$ for all $a, b \in X$
 \begin{ndfn}
     Let $G$ be a non-empty set, and $* : G \times G \to G$ be a binary operation. The pair $(G, *)$ is called a group if it satisfies all of the following
     \begin{enumerate}
-        \item (Associativity) $\forall a, b, c \in G$, $(a * b) * c = a * (b * c)$
-        \item (Identity) $\exists e \in G$ such that $\forall a \in G$, $a * e = e * a = a$
-        \item (Inverse) $\forall a \in G$, $\exists a^{-1} \in G$ such that $a * a^{-1} = a^{-1} * a = e$
+        \item $\forall a, b, c \in G$, $(a * b) * c = a * (b * c)$ \hfill(Associativity)
+        \item $\exists e \in G$ such that $\forall a \in G$, $a * e = e * a = a$ \hfill(Identity)
+        \item $\forall a \in G$, $\exists a^{-1} \in G$ such that $a * a^{-1} = a^{-1} * a = e$ \hfill(Inverse)
     \end{enumerate}
 \end{ndfn}
 
@@ -260,6 +260,10 @@ Similarly, we often refer to $G$ as the group and don't explicitly mention the p
     By the subgroup criteria, this shows that $H \subgroup G$.
 \end{proof}
 
+\begin{ndfn}
+    The order of an element $a \in G$ is the least positive integer $k$ such that $a^k = e$. We denote this as $O(a)$ or $\abs{a}$.
+\end{ndfn}
+
 \begin{nthm}
     $H_1, H_2 \subgroup G$. Then, $H_1 \cup H_2$ is a subgroup of $G$ if and only if $H_1 \subseteq H_2$ or $H_2 \subseteq H_1$.
 \end{nthm}
@@ -272,7 +276,7 @@ Similarly, we often refer to $G$ as the group and don't explicitly mention the p
 \section{Modular Addition}
 
 \begin{ndfn}
-    Let $a, b, n$ be positive integers. We say that $a$ is congruent to $b$ modulo $n$ if $n$ divide $a-b$. That is $n | (a-b)$. This is denoted as $a \equiv b \mod n$.
+    Let $a, b$ be integers and fix a positive integer $n$. We say that $a$ is congruent to $b$ modulo $n$ if $n$ divide $a-b$. That is $n | (a-b)$. This is denoted as $a \equiv b \mod n$.
 \end{ndfn}
 
 \begin{ndfn}
@@ -282,25 +286,23 @@ Similarly, we often refer to $G$ as the group and don't explicitly mention the p
     \end{equation}
 \end{ndfn}
 
-REMARK: $[a]_n$ and  $[b]_n$ are either equal of disjoint. (This was skipped.)
+\begin{remark}
+    $[a]_n$ and $[b]_n$ are either equal of disjoint. (This was skipped.)
+\end{remark}
 
-\section{$\Z_n$}
+\section{\texorpdfstring{$\Z_3$}{Z3}}
 \begin{ndfn}
-    Fix some integer $n \geq 2$. The set of all the residue classes modulo $n$ in $\Z$ is defined to be
+    Fix some integer $n \geq 2$. The set of all the residue classes modulo $n$ in $\Z$ is denoted as
     \begin{equation}
-        \Z_n = \set{[a]_n \st a \in \Z}.
+        \Z_n = \set*{[a]_n \st a \in \Z}.
     \end{equation}
 \end{ndfn}
 
-We can define a binary operation $+_n$ on this set with
+We can define a binary operation $+_n$, called modular addition (mod $n$) on this set,
 \begin{equation}
     [a]_n +_n [b]_n \coloneq [a + b]_n.
 \end{equation}
-It needs to be shown that this is well-defined; that is
-\begin{equation}
-    [a]_n +_n [b]_n = [c]_n +_n [d]_n
-\end{equation}
-if $[a]_n = [c]_n$ and $[b]_n = [d]_n$. (This was skipped.)
+It needs to be shown that this is well-defined; that is if $[a]_n = [c]_n$ and $[b]_n = [d]_n$, then, $[a]_n +_n [b]_n = [c]_n +_n [d]_n$. (This was skipped.)
 
 \begin{nthm}
     The set $\Z_n$ forms a group with respect to $+_n$.
@@ -309,15 +311,62 @@ if $[a]_n = [c]_n$ and $[b]_n = [d]_n$. (This was skipped.)
     TBC.
 \end{proof}
 
-Usually we write $[a]_n$ simply as $a$ and drop the the subscript from $+_n$ when it is clear from context.
+When it is clear from the context, we drop the subscript and simply write $[a]_n$ as $a$ and $+_n$ as $+$.
 
-\section{Klein $4$-Group}
-Consider a set $G = \set{e, a, b, c}$ with a binary operation that satisfies WAGHERA.
+\section{\texorpdfstring{Klein $4$-Group}{Klein 4 Group}}
+Consider a set $G = \set{e, a, b, c}$ with a binary operation that satisfies $a^2 = b^2 = c^2 = e$, $xy = yx$ for all $x, y \in G$. It can easily be checked that this forms a group. We also find that some of the conditions imposed on the binary operation are redundant, and instead this group can be expressed more compactly. The following theorem states this observation.
+
+\begin{nthm}
+    The set $K_4 = \set{1, a, b, ab}$, where the order of each non-identity element is $2$ forms a group.
+\end{nthm}
+\begin{proof}
+    TBC.
+\end{proof}
+
+This group $K_4$ is called the Klein $4$-group. It is a group of order $4$. Its multiplication rule can be represented as table, called a Cayley table.
+\begin{equation}
+    TABLE
+\end{equation}
+Here, the entry in the the $(i,j)$-th entry is the result of multiplying the element in the $j$th column with the element in the $i$th row in the `column-on-the-left' order.
+\begin{equation*}
+    (\text{col}_j) * (\text{row}_i) = (i,j)\text{-th entry}
+\end{equation*}
+
+There are precisely three non-trivial subgroups of $K_4$: $\set{1, a}$, $\set{1, b}$ and $\set{1, ab}$.
+
+Consider the set
+\begin{equation}
+    G = \set*{
+    \begin{bmatrix}1 & 0 \\ 0 & 1\end{bmatrix},
+    \begin{bmatrix}1 & 0 \\ 0 & 1\end{bmatrix},
+    \begin{bmatrix}1 & 0 \\ 0 & 1\end{bmatrix},
+    \begin{bmatrix}1 & 0 \\ 0 & 1\end{bmatrix}}
+\end{equation}
+of matrices with the usual matrix multiplication. We find that it forms a group. Clearly, this is a group of order $4$. Moreover, each non-identity element in this group has order $2$. This coincides exactly with the group structure of $K_4$. We say that this group is the same as $K_4$ (this notion will be made precise when we define isomorphisms later), and that it is simply a matrix representation of $K_4$.
+
+Another group of order $4$ that we have already seen in $\Z_4$. This group has an element of order $4$, namely $[1]_4$. Therefore, it cannot be the `same' as $K_4$. (Again, this observation will be made precise through the use of isomorphisms.) This shows that not all groups of order $4$ are the same as $k_4$.
 
 \section{Group of Quaternions}
-AS A MATRIX SUBGROUP.
+Consider the group $\GL_2(\C)$ of $2 \times 2$ invertible matrices with complex entries. Consider its subset
+\begin{equation}
+    H = \set*{
+    \pm\begin{bmatrix*}[r]1 & 0\\ 0 & 1\end{bmatrix*},
+    \pm\begin{bmatrix*}[r]1 & 0\\ 0 &-1\end{bmatrix*},
+    \pm\begin{bmatrix*}[r]0 & 1\\-1 & 0\end{bmatrix*},
+    \pm\begin{bmatrix*}[r]0 & i\\ i & 0\end{bmatrix*} }.
+\end{equation}
+It is easy to check that this is a subgroup of $\GL_2(\C)$, and therefore a group. We note that this is a group of order $8$.
 
-THEN CONVERT TO ABSTRACT REPRESENTATION.
+Using the multiplication of $H$ as a template, we can define an abstract group of order $8$ as follows.
+\begin{nthm}
+    The set $Q = \set{\pm 1, \pm i, \pm j, \pm k}$ forms a group with the multiplication rule
+    \begin{gather}
+        i^2 = j^2 = k^2 = 1\\
+        ij = k, jk = i, ki = j\\
+        ji = -k, kj = -i, ik = -j.
+    \end{gather}
+\end{nthm}
 
+This group is called the group of quaternions.
 
 \end{document}
