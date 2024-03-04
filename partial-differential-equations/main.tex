@@ -366,4 +366,52 @@ Substituting such an ansatz into the given PDE, we try to move all the $x$ and $
     Therefore, $u(x,y) = \frac{1}{2} \lambda^2 \paren*{ \asin\paren*{\frac{x}{\lambda}} + \frac{x}{\lambda}\sqrt{1 - \frac{x^2}{\lambda^2}} -2y }  + C$.
 \end{negg}
 
+\section{Classification of Second Order Linear Equations}
+In this section we shall focus on classifying second order linear PDEs with two independent variables $x$ and $y$. The most general such equation is
+\begin{equation}
+    A u_{xx} + B u_{xy} + C u_{yy} + D u_x + E u_y + F u = G
+\end{equation}
+where the coefficients $A, \dots, G$ are all functions of $x$ and $y$ only. We require the dependent variable $u = u(x,y)$ and these coefficient functions $A, \dots, G$ to be twice continuously differentiable in some domain $D \subseteq \R^2$.
+
+The above equation is reminiscent of the general quadratic equation for conic sections from analytic geometry. A conic section is classified as either elliptic, parabolic or hyperbolic based on the value of its determinant $B^2 - 4AC$. We shall use this similarity, to classify the second order linear PDEs into three similarly named classes: elliptic, parabolic or hyperbolic at a given point $(x_0, y_0)$ determined by the sign of
+\begin{equation}
+    B^2(x_0, y_0) - 4 A(x_0, y_0) B(x_0, y_0).
+\end{equation}
+
+We say that a second order linear PDE is elliptic, parabolic or hyperbolic at $(x_0, y_0)$ if
+\begin{equation}
+    B^2(x_0, y_0) - 4 A(x_0, y_0) B(x_0, y_0).
+\end{equation}
+is negative, zero or positive, respectively.
+
+If this condition is true at all points in $D$, then the equation is said to be elliptic, parabolic or hyperbolic in the entire domain.
+
+In the case of two variables, we can always find a transformation that reduces given second order linear PDE into its corresponding canonical form. (This is not in general possible for the case of more than two independent variables.)
+
+To obtain a canonical form for the given PDE in some domain $D$, we make a change of variables $\xi = \xi(x, y)$ and $\eta = \eta(x, y)$ with a non-vanishing Jacobian in $D$.
+\begin{equation}
+    J = \begin{vmatrix} \xi_x & \xi_y \\ \eta_x & \eta_y \end{vmatrix}.
+\end{equation}
+Under this transformation, we obtain
+\begin{align*}
+    u_x    &= u_\xi \xi_x + u_\eta \eta_x\\
+    u_y    &= u_\xi \xi_y + u_\eta \eta_y\\
+    u_{xx} &= u_{\xi\xi} \xi_x^2 + 2u_{\xi\eta} \xi_x \eta_x + u_{\eta\eta} \eta_x^2 + u_\xi \xi_{xx} + u_\eta \eta_{xx}\\
+    u_{xy} &= u_{\xi\xi} \xi_x \xi_y + u_{\xi\eta} \paren*{\xi_x \eta_y + \xi_y \eta_x} + u_{\eta\eta} \eta_x \eta_y + u_\xi \xi_{xy} + u_\eta \eta_{xy}\\
+    u_{yy} &= u_{\xi\xi} \xi_y^2 + 2u_{\xi\eta} \xi_y \eta_y + u_{\eta\eta} \eta_x^2 + u_\xi \xi_{yy} + u_\eta \eta_{yy}.
+\end{align*}
+This allows us to rewrite the original PDE as
+\begin{equation}
+    A^{*} u_{xx} + B^{*} u_{xy} + C^{*} u_{yy} + D^{*} u_x + E^{*} u_y + F u = G
+\end{equation}
+where
+\begin{align*}
+    A^{*} &= A \xi_x^2 + B \xi_x \xi_y + C \xi_y^2\\
+    B^{*} &= 2A\xi_x \eta_x + B \paren*{\xi_x \eta_y + \xi_y \eta_x} + 2C \xi_y \eta_y\\
+    C^{*} &= A \eta_x^2 + B \eta_x \eta_y + C \eta_y^2\\
+    D^{*} &= A \xi_{xx} + B \xi_{xy} + C \xi_{yy} + D \xi_{x} + E \xi_{y}\\
+    E^{*} &= A \eta_{xx} + B \eta_{xy} + C \eta_{yy} + D \eta_{x} + E \eta_{y}.
+\end{align*}
+
+
 \end{document}
