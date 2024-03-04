@@ -308,7 +308,60 @@ Likewise, if both end points are variable, then the resulting set of equations i
     \end{equation}
 \end{negg}
 
-% \section{Invariance of the Euler-Lagrange Equation}
+\section{Invariance of the Euler-Lagrange Equation}
+So far we have studied the variation of functional
+\begin{equation}
+    J[y] = \int_a^b F(x, y, y') \,dx
+\end{equation}
+using the Cartesian variables $y = y(x)$, leading to the Euler-Lagrange equation
+\begin{equation}
+    \frac{\pd F}{\pd y} - \frac{d}{dx}\paren*{\frac{\pd F}{\pd y'}} = 0.
+\end{equation}
+
+Now we consider a change of variables $x = x(u, v)$, $y = y(u, v)$ with a non-vanishing Jacobian, and the assumption that the required solution curves have the form $v = v(u)$. Simple algebra shows that this transform the function $J$ into another functional
+\begin{equation}
+    J_1 [v]
+    = \int_\alpha^\beta F\paren*{x\paren*{u, v}, y(u,v), \frac{y_u + y_v v'}{x_u + x_v v'}} \paren*{x_u + x_v v'} \,du
+    = \int_\alpha^\beta F_1 (u, v, v') \,du
+\end{equation}
+with
+\begin{equation}
+    F_1 (u, v, v')
+    = F\paren*{x(u, v), y(u,v), \frac{y_u + y_v v'}{x_u + x_v v'}} \paren*{x_u + x_v v'}.
+\end{equation}
+
+It can be shown that if $y = y(x)$ satisfies the Euler-Lagrange equation
+\begin{equation}
+    \frac{\pd F}{\pd y} - \frac{d}{dx}\paren*{\frac{\pd F}{\pd y'}} = 0,
+\end{equation}
+then $v = v(u)$ satisfies the Euler-Lagrange equation
+\begin{equation}
+    \frac{\pd F_1}{\pd v} - \frac{d}{du}\paren*{\frac{\pd F_1}{\pd v'}} = 0,
+\end{equation}
+corresponding to $J_1$. We note that the form of the Euler-Lagrange equation remains unchanged even when we transform to new variables; the form of the functional and the integrand does not (in general) remain the same. In other words, whether or not a curve is an extremal is a property that is independent of the choice of coordinates.
+
+This result is known as the invariance of the Euler-Lagrange equation.
+
+One way to prove this result is through the use of the variational derivative.
+
+\begin{negg}
+    Consider the functional
+    \begin{equation}
+        J[r] = \int_{\theta_0}^{\theta_1} \sqrt{r^2 + r'^2} \,d\theta
+    \end{equation}
+    where $r = r(\theta)$. Its associated Euler-Lagrange equation is
+    \begin{equation}
+        \frac{r}{\sqrt{r^2 + r'^2}} - \frac{d}{d\theta}\paren*{ \frac{r'}{\sqrt{r^2 + r'^2}} } = 0.
+    \end{equation}
+    On the other hand, if we transform to new variables $x = r \cos\theta$ and $y = r \sin\theta$ and seek a solution of the form $y = y(x)$, then the functional becomes
+    \begin{equation}
+        \int_\alpha^\beta \sqrt{1 + y'^2} \,dx,
+    \end{equation}
+    leading to the Euler-Lagrange equation $y'' = 0$. This is significantly easier to solve. The general solution is $y = a x + b$. Or in the original coordinates
+    \begin{equation}
+        r \sin\theta = a r \cos\theta + b.
+    \end{equation}
+\end{negg}
 
 \section{Other topics}
 \subsection{Variational Derivative}
