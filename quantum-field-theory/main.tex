@@ -143,6 +143,53 @@ preserving the conservation of the total angular momentum $\vec{J}$ for particle
 % + Solutions of Dirac Equation, using the plane wave ansatz (get the momentum space equation for the 4-spinor u)
 % + Expansion of alpha .p, beta mc^2, sigma . p (Dirac Pauli representation), the full Hd as a 4x4 matrix
 
+Using the plane wave ansatz $\psi(\vec{x}, t) = u(E, \vec{p}) \exp\paren*{-ip_{\mu} x^{\mu}}$ we can reduce the Dirac equation into an equation for $u(E, \vec{p})$,
+\begin{align}
+    \MoveEqLeft i \gamma^\mu \pd_\mu \psi - m \psi = 0\\
+    &\implies i \gamma^\mu \pd_\mu u(E, \vec{p}) \exp\paren*{-ip_{\mu} x^{\mu}} - m u(E, \vec{p}) \exp\paren*{-ip_{\mu} x^{\mu}} = 0\\
+    &\implies i \gamma^\mu u(E, \vec{p}) \paren*{-i p_\mu} \exp\paren*{-ip_{\mu} x^{\mu}} - m u(E, \vec{p}) \exp\paren*{-ip_{\mu} x^{\mu}} = 0\\
+    &\implies \gamma^\mu p_\mu u(E, \vec{p}) \exp\paren*{-ip_{\mu} x^{\mu}} - m u(E, \vec{p}) \exp\paren*{-ip_{\mu} x^{\mu}} = 0\\
+    &\implies \paren*{\gamma^\mu p_\mu - m} u(E, \vec{p}) \exp\paren*{-ip_{\mu} x^{\mu}} = 0\\
+    &\implies \paren*{\gamma^\mu p_\mu - m} u(E, \vec{p}) = 0.
+\end{align}
+
+\subsection{Free Particle Solutions with \texorpdfstring{$\vec{p}=0$}{p=0}}
+We start by considering the case where $\vec{p} = 0$. Then, we have
+\begin{equation}
+    \paren*{\gamma^0 E - m} u(E, 0) = 0,
+\end{equation}
+or equivalently,
+\begin{equation}
+    \gamma^0 u(E, 0) = \frac{m}{E} u(E, 0),
+\end{equation}
+which is an eigenvalue equation; $m/E$ correspond to the eigenvalues of $\gamma^0$ and $u(E, 0)$ are the associated eigenvectors. Since, $\gamma^0 = \diag\paren*{1,1,-1,-1}$ in the Pauli-Dirac representation, we immediately note that the possible eigenvalues are $\pm 1$ (repeated twice). In other words, there are two solutions with $E = +m$ and two solutions with $E = -m$.
+
+For the eigenvalue $+1$, that is for $E = +m$, the corresponding eigenvectors are
+\begin{equation}
+    u_1 = \begin{pmatrix}1 \\ 0 \\ 0 \\ 0\end{pmatrix}
+    \quad\text{and}\quad
+    u_2 = \begin{pmatrix}0 \\ 1 \\ 0 \\ 0\end{pmatrix}.
+\end{equation}
+Likewise, for $E = -m$, we obtain the eigenvectors
+\begin{equation}
+    u_3 = \begin{pmatrix}0 \\ 0 \\ 1 \\ 0\end{pmatrix}
+    \quad\text{and}\quad
+    u_4 = \begin{pmatrix}0 \\ 0 \\ 0 \\ 1\end{pmatrix}.
+\end{equation}
+
+Consequently, the full plane wave solutions for a stationary massive Dirac particle are
+\begin{gather}
+    \psi_1 = N \begin{pmatrix}1 \\ 0 \\ 0 \\ 0\end{pmatrix} e^{-imt}, \qquad
+    \psi_2 = N \begin{pmatrix}0 \\ 1 \\ 0 \\ 0\end{pmatrix} e^{-imt},\\
+    \psi_3 = N \begin{pmatrix}0 \\ 0 \\ 1 \\ 0\end{pmatrix} e^{+imt}, \qquad
+    \psi_4 = N \begin{pmatrix}0 \\ 0 \\ 0 \\ 1\end{pmatrix} e^{+imt},
+\end{gather}
+with $N$ as a normalisation factor.
+
+\subsection{General Free Particle Solutions}
+
+
+
 \appendix
 \section{Commutation Relations of the Dirac Hamiltonian and Angular Momentum Operators}
 % + What is the operator for L? Lx? Ly? Lz? (Lx = y pz - z py)
