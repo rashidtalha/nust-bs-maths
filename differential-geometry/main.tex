@@ -507,6 +507,46 @@ For an arc-length parametrised space curve $\gamma = \gamma(s)$ with $\kappa(s) 
 
 These quantities can also be generalised to other regular parametrisations of the curve in a well-defined manner. (We have also seen the corresponding formulae for $\vT(t)$ and $\kappa(t)$.)
 
+\begin{negg}
+    Consider the arc-length parametrised helix
+    \begin{equation}
+        \gamma(s) = \paren*{ a \cos\frac{s}{c}, a\sin\frac{s}{c}, b\frac{s}{c} }
+    \end{equation}
+    where $c = \sqrt{a^2 + b^2}$ and $a > 0$.
+
+    Then,
+    \begin{equation}
+        \dot{\gamma} = \paren*{ -\frac{a}{c} \sin\frac{s}{c}, \frac{a}{c} \cos\frac{s}{c}, \frac{b}{c} }
+        \quad\text{and}\quad
+        \ddot{\gamma} = \paren*{ -\frac{a}{c^2} \cos\frac{s}{c}, -\frac{a}{c^2} \sin\frac{s}{c}, 0 }.
+    \end{equation}
+    (We easily verify that indeed $\abs*{\dot{\gamma}} = 1$.)
+
+    Next,
+    \begin{equation}
+        \vT = \dot{\gamma} = \paren*{ -\frac{a}{c} \sin\frac{s}{c}, \frac{a}{c} \cos\frac{s}{c}, \frac{b}{c} }
+    \end{equation}
+    So,
+    \begin{equation}
+        \kappa = \abs*{\ddot{\gamma}} = \frac{a}{c^2} = \frac{a}{a^2 + b^2}.
+    \end{equation}
+    Leading to
+    \begin{equation}
+        \vN = \frac{\dot{\vT}}{\kappa} = \frac{\ddot{\gamma}}{\kappa} = \paren*{ -\cos\frac{s}{c}, -\sin\frac{s}{c}, 0 }.
+    \end{equation}
+    Also then,
+    \begin{equation}
+        \vB = \vT \times \vN = EQQ.
+        % = \paren*{ab \sin \frac{s}{c}, -ab \cos \frac{s}{c}, a^2}. INCOMPLETE
+    \end{equation}
+    And,
+    \begin{equation}
+        \tau = \abs*{\dot{\vB}} = \frac{b}{a^2 + b^2}.
+    \end{equation}
+    
+    (Again, it is easy to check that $\abs*{\vT} = \abs*{\vN} = \abs*{\vB} = 1$.)
+\end{negg}
+
 \section{Torsion}
 
 \begin{nthm}
