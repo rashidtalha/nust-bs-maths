@@ -524,7 +524,7 @@ These quantities can also be generalised to other regular parametrisations of th
 
     Next,
     \begin{equation}
-        \vT = \dot{\gamma} = \paren*{ -\frac{a}{c} \sin\frac{s}{c}, \frac{a}{c} \cos\frac{s}{c}, \frac{b}{c} }
+        \vT = \dot{\gamma} = \paren*{ -\frac{a}{c} \sin\frac{s}{c}, \frac{a}{c} \cos\frac{s}{c}, \frac{b}{c} }.
     \end{equation}
     So,
     \begin{equation}
@@ -535,10 +535,11 @@ These quantities can also be generalised to other regular parametrisations of th
         \vN = \frac{\dot{\vT}}{\kappa} = \frac{\ddot{\gamma}}{\kappa} = \paren*{ -\cos\frac{s}{c}, -\sin\frac{s}{c}, 0 }.
     \end{equation}
     Also then,
+    \missing{
     \begin{equation}
         \vB = \vT \times \vN = EQQ.
-        % = \paren*{ab \sin \frac{s}{c}, -ab \cos \frac{s}{c}, a^2}. INCOMPLETE
     \end{equation}
+    }
     And,
     \begin{equation}
         \tau = \abs*{\dot{\vB}} = \frac{b}{a^2 + b^2}.
@@ -549,21 +550,100 @@ These quantities can also be generalised to other regular parametrisations of th
 
 \section{Torsion}
 
+\begin{nlemma}
+    If $\alpha$ is a regular space curve with speed $v \equiv \abs*{\alpha'}$, then the velocity and the acceleration of $\alpha$ is given by
+    \begin{gather}
+        \alpha' = \frac{ds}{dt} \vT \equiv v \vT\\
+        \alpha'' = \frac{d^2 s}{dt^2} \vT + \kappa \paren*{\frac{ds}{dt}}^2 \vN \equiv v' \vT + \kappa v^2 \vN
+    \end{gather}
+    where $\vT$ and $\vN$ are the unit tangent and normal vectors, respectively, and $\kappa$ is the curvature of $\alpha$.
+\end{nlemma}
+\missing{
+\begin{proof}
+    Exercise.
+\end{proof}
+}
+
 \begin{nthm}
     Let $\gamma = \gamma(t)$ be a regular curve with nowhere-vanishing curvature. Then, its torsion is given by
     \begin{equation}
         \tau
         = \frac{\paren*{\dot{\gamma} \times \ddot{\gamma}} \cdot \dddot{\gamma}}{\abs*{\dot{\gamma} \times \ddot{\gamma}}^2}
+        \label{eq:torsion-formula}
     \end{equation}
 \end{nthm}
 \begin{proof}
-    TBC.
+    Since, $\gamma' = v \vT$ and $\gamma'' = v' \vT + \kappa v^2 \vN$ we have that $\gamma' \times \gamma'' = \kappa v^3 \vB$. Moreover,
+    \begin{align}
+        \gamma'''
+        &= v'' \vT + v' \vT' + \kappa' v^2 \vN + 2 \kappa v v' \vN + k v^2 \vN'\\
+        &= v'' \vT + v' \paren*{\kappa v \vN} + \kappa' v^2 \vN + 2 \kappa v v' \vN + k v^2 \paren*{-\kappa v \vT + \tau v \vB}.
+    \end{align}
+    Now, since $\vB \cdot \vT = 0$, $\vB \cdot \vN = 0$ and $\vB \cdot \vB = 1$, we get
+    \begin{equation}
+        \paren*{\dot{\gamma} \times \ddot{\gamma}} \cdot \dddot{\gamma}
+        = \tau k v^3 \vB \cdot \kappa v^3 \vB
+        = \paren*{\kappa v^3}^2 \tau
+    \end{equation}
+
+    Noting that $\kappa v^3 = \abs*{\dot{\gamma} \times \ddot{\gamma}}$ we obtain,
+    \begin{equation}
+        \frac{\paren*{\dot{\gamma} \times \ddot{\gamma}} \cdot \dddot{\gamma}}{\abs*{\dot{\gamma} \times \ddot{\gamma}}^2}
+        = \frac{\paren*{\kappa v^3}^2 \tau}{\paren*{\kappa v^3}^2}
+        = \tau.\qedhere
+    \end{equation}
 \end{proof}
+
+\begin{negg}
+    We calculate the torsion of the curve
+    \begin{equation}
+        \alpha(t)
+        = \paren*{ t, 1 + \frac{1}{t}, \frac{1 - t^2}{t} }
+    \end{equation}
+    using the formula~\eqref{eq:torsion-formula}.
+
+    Firstly,
+    \begin{gather}
+        \alpha'(t) = \paren*{0, -\frac{1}{t^2}, -\frac{t^2 + 1}{t^2}},\\
+        \alpha''(t) = \paren*{0, \frac{2}{t^3}, \frac{2}{t^3}},\\
+        \alpha'''(t) = \paren*{0, -\frac{6}{t^4}, -\frac{6}{t^4}}.
+    \end{gather}
+    So, $\alpha' \times \alpha'' = \paren*{\frac{2}{t^3}, 0, 0}$ and $\paren*{\alpha' \times \alpha''} \cdot \alpha''' = 0$. Therefore, $\tau(s) = 0$ for all $s$. (This shows that $\alpha(s)$ is a planar curve.)
+\end{negg}
+
+
+\section{Frenet-Serret Equations}
 
 \missing{\begin{nthm}
     A SPACE CURVE IS UNIQUELY DETERMINED BY ITS CURVATUER AND TORSION, UPTO ISOMETRIES. (NO PROOF)
 \end{nthm}}
 
-\section{Frenet-Serret Equations}
+\begin{negg}
+    Find a space curve $\alpha(s)$ whose curvature function is $\kappa(s) = 1/s$ and torsion is $\tau(s) = 0$.
+
+    Using the Frenet-Serret equations, we get $\dot{\vT} = \kappa \vN$, $\dot{\vN} = - \kappa \vT$, and $\dot{\vB} = 0$. This leads to the second-order Cauchy-Euler equation
+    \begin{equation}
+        \dot{\vT} = \kappa \vN
+        \implies
+        s^2 \ddot{\vT} + s \dot{\vT} + \vT = 0,
+    \end{equation}
+    with the solution $\vT(s) = \vec{c_1} \cos\paren*{\ln s} + \vec{c_2} \sin\paren*{\ln s}$, where $\vec{c_1}$ and $\vec{c_2}$ are arbitrary constant vectors.
+
+    Finally, since $\alpha'(s) = \vT(s)$, we integrate $\vT(s)$ to obtain
+    \begin{equation}
+        \alpha(s) = \vec{c_0} + \vec{c_1} \int \cos\paren*{\ln s} \,ds + \vec{c_2} \int \sin\paren*{\ln s} \,ds,
+    \end{equation}
+    where $\vec{c_0}$, $\vec{c_1}$ and $\vec{c_2}$ are arbitrary constant vectors. These integrals don't have a closed form solution in terms of elementary functions.
+\end{negg}
+
+\missing{
+\begin{nex}
+    Show that $\alpha''' = EQQ$.
+\end{nex}
+
+\begin{nex}
+    Show that $\alpha'' \cdot \alpha''' \times \alpha^{(4)} = EQQ$, and that if $\alpha$ is a helix then $\alpha'' \cdot \alpha''' \times \alpha^{(4)} = 0$. Is the coverse also true?
+\end{nex}
+}
 
 \end{document}
