@@ -3,6 +3,8 @@
 \usepackage{mathsphystools}
 \usepackage{thmstyles}
 
+\newcommand{\missing}[1]{{\color{red}#1}}
+
 \title{MATH 354: Calculus of Variations}
 \subtitle{Brief lecture notes}
 \author{Rashid M. Talha}
@@ -22,12 +24,15 @@
     \end{equation}
     defined on the set of functions $y \in C^{1}[a,b]$, with $y(a) = A$ and $y(b) = B$. Then, a necessary condition for $J[y]$ to have an extreme is that $y$ satisfies the Euler-Lagrange equation
     \begin{equation}
-        \frac{\pd F}{\pd y} - \frac{d}{dx} \paren*{\frac{\pd F}{\pd y'}} = 0
+        \frac{\pd F}{\pd y} - \frac{d}{dx} \paren*{\frac{\pd F}{\pd y'}} = 0.
+        \label{eq:el-basic}
     \end{equation}
 \end{nthm}
+\missing{
 \begin{proof}
     TBC.
 \end{proof}
+}
 
 This is a second order ODE in $y$
 \begin{equation}
@@ -35,16 +40,17 @@ This is a second order ODE in $y$
 \end{equation}
 We shall later see that if the highest order derivative contained in the integrand is $y^{(k)}$, then the resulting Euler-Lagrange equation is a $2k$ order ODE. Similarly, if the integrand contains multiple independent variables then we obtain a PDE instead.
 
-The integral curves of this equation are called extremals.
+The integral curves of equation~\eqref{eq:el-basic} are called extremals (or critical points) of $J$.
 
 \section{First Integrals and Special Cases}
-For some integrands $F(x,y,y')$ the Euler-Lagrange equation can be reduced into a first order ODE, called the first integral. In some other cases, the Euler-Lagrange equation can be rearranged into a more practically useful form.
+For some integrands $F(x,y,y')$ the Euler-Lagrange equation~\eqref{eq:el-basic} can be reduced into a first order ODE, called the first integral. In some other cases, it can be rearranged into a more practically useful form.
 
 \begin{enumerate}
     \item $F = F(x,y')$\\
     Here, $\frac{\pd F}{\pd y} = 0$. As a result, $\frac{d}{dx} \paren*{\frac{\pd F}{\pd y'}} = 0$, if $y$ satisfies the Euler-Lagrange equation. Therefore, $y$ satisfies the Euler-Lagrange equation if and only if
     \begin{equation}
         \frac{\pd F}{\pd y'} = c
+        \label{eq:first-integral-y}
     \end{equation}
     for some constant $c \in \R$.
 
@@ -52,6 +58,7 @@ For some integrands $F(x,y,y')$ the Euler-Lagrange equation can be reduced into 
     It is easy to show that, in this case, $y$ satisfies the Euler-Lagrange equation if and only if
     \begin{equation}
         F - y' \frac{\pd F}{\pd y'} = c,
+        \label{eq:first-integral-x}
     \end{equation}
     for some constant $c \in \R$. This is because
     \begin{align}
@@ -59,37 +66,30 @@ For some integrands $F(x,y,y')$ the Euler-Lagrange equation can be reduced into 
         &= \frac{\pd F}{\pd x} + y' \frac{\pd F}{\pd y} + y'' \frac{\pd F}{\pd y'} - y'' \frac{\pd F}{\pd y'} - y' \frac{d}{dx} \paren*{\frac{\pd F}{\pd y'}}\\
         &= y' \paren*{ \frac{\pd F}{\pd y} - \frac{d}{dx} \paren*{\frac{\pd F}{\pd y'}} }.
     \end{align}
-    So, if the Euler-Lagrange equation is satisfied then the LHS is zero. Conversely, if the LHS is zero, then the Euler-Lagrange equation is satisfied. (The case that $y' = 0$, when the LHS vanishes leads to $F = \text{constant}$, which again implies that the Euler-Lagrange equation is satisfied.)
+    So, if the Euler-Lagrange equation~\eqref{eq:el-basic} is satisfied then the LHS is zero. Conversely, if the LHS is zero, then the Euler-Lagrange equation~\eqref{eq:el-basic} is satisfied. (The case $y' = 0$, when the LHS vanishes, leads to $F = \text{constant}$, which again implies that the Euler-Lagrange equation is satisfied.)
 
     \item $F = F(x,y)$\\
     In this case, the Euler-Lagrange equation reduces to $\frac{\pd F}{\pd y} (x,y) = 0$. This is an algebraic equation; not an ODE.
 \end{enumerate}
 
-Another important class of functionals that is often encountered is
+An important class of functionals that is often encountered is
 \begin{equation}
     J[y] = \int_{a}^{b} g(x,y) \sqrt{1 + y'^2} dx.
 \end{equation}
-Using the Euler-Lagrange equation we obtain (after several lines of careful differentiation and algebraic manipulations)
+Using the Euler-Lagrange equation~\eqref{eq:el-basic} we obtain (after several lines of careful differentiation and algebraic manipulations)
 \begin{equation}
     g_y - y g_x - \frac{y''}{1 + y'^2} g = 0.
 \end{equation}
 
-For example, if $g(x, y) \equiv 1$, then we immediately obtain $y'' = 0$, which leads to $y = ax + b$ for $a, b \in \R$. This is the solution to the length functional variational problem.
+For example, if $g(x, y) \equiv 1$, then we immediately obtain $y'' = 0$, which leads to $y = ax + b$ for $a, b \in \R$. This is the solution to the length functional variational problem on $\R^2$.
 
 \begin{nex}
-    Find the extremum of $J[y] = \int_{1}^{2} \frac{1}{x} \sqrt{1 + y'^2} \,dx$ such that $y(1) = 0$ and $y(2) = 1$.
-
-    (This leads to $y = c \pm \frac{1}{k}\sqrt{1 - (xk)^2}$.)
-\end{nex}
-
-\begin{nex}
-    Find the extremum of $J[y] = \int_{x_1}^{x_2} 2\pi y \sqrt{1 + y'^2} \,dx$ subject to $y(x_1) = y_1$ and $y(x_2) = y_2$.
-
-    (This leads to $y \sim \cosh x$.)
-\end{nex}
-
-\begin{nex}
-    Find the extremum of $J[y] = \int_{x_1}^{x_2} (x-y)^2 dx$.
+\phantom{.}
+    \begin{enumerate}[label=(\roman*)]
+        \item Find the extremum of $J[y] = \int_{1}^{2} \frac{1}{x} \sqrt{1 + y'^2} \,dx$ such that $y(1) = 0$ and $y(2) = 1$.
+        \item Find the extremum of $J[y] = \int_{x_1}^{x_2} 2\pi y \sqrt{1 + y'^2} \,dx$ subject to $y(x_1) = y_1$ and $y(x_2) = y_2$.
+        \item Find the extremum of $J[y] = \int_{x_1}^{x_2} (x-y)^2 dx$.
+    \end{enumerate}
 \end{nex}
 
 \section{Existence and Uniqueness of Solutions to Variational Problems}
@@ -176,7 +176,7 @@ Suppose we need to find the function $y = y(x)$ that extremises the functional
 \end{equation}
 subject to the the condition $y(x_1) = y_1$, but whose second endpoint $y(x_2)$ is not fixed.
 
-In this case the variation $\delta J$ with $y \to y+h$ require $h(x_1) = 0$ but $h(x_2)$ is not fixed. From the usual procedure of Taylor expansion we obtain
+In this case the variation $\delta J$ with $y \to y+h$ requires $h(x_1) = 0$ but $h(x_2)$ is not fixed. From the usual procedure of Taylor expansion we obtain
 \begin{align}
     \delta J
     &= \int_{x_1}^{x_2} h(x) \paren*{ \frac{\pd F}{\pd y} - \frac{d}{dx}\paren*{\frac{\pd F}{\pd y'}} } \,dx
@@ -361,6 +361,86 @@ One way to prove this result is through the use of the variational derivative.
     \begin{equation}
         r \sin\theta = a r \cos\theta + b.
     \end{equation}
+\end{negg}
+
+\section{Generalisation to Many Dependent Variables}
+Suppose we are given a functional of the form
+\begin{equation}
+    J[y_1, \dots, y_n] = \int_a^b F\paren*{x, y_1, \dots, y_n, y'_1, \dots, y'_n} \,dx
+\end{equation}
+where $y_i \in C^2 [a,b]$ for all $i=1, \dots, n$. Previously we only had a single dependent variable $y = y(x)$ and obtained a single second-order ODE as the Euler-Lagrange equation corresponding to $\delta J / \delta y = 0$. In the current generalisation, this necessary conditions for the extremal will become $\delta J / \delta y_i = 0$ for each $i$, and we will obtain a system of $n$ second-order Euler-Lagrange equations
+\begin{equation}
+    \frac{\pd F}{\pd y_i} - \frac{d}{dx} \paren*{\frac{\pd F}{\pd y'_i}} = 0,
+    \quad i = 1, \dots, n.
+\end{equation}
+
+This conclusion follows from varying the functional $J[y_1, \dots, y_n]$ as follows. Consider $n$ independent arbitrary functions $h_i \in C^2[a,b]$ such that $h_i(a) = h_i(b) = 0$ for all $i = 1, \dots, n$. Let $y_i$ denote the extremal of $J$. Then, varying it as $y_i \to y_i + h_i$ gives
+\begin{align}
+    \delta J
+    &= \int_a^b F\paren*{x, y_1 + h_1, \dots, y_n + h_n, y'_1 + h'_1, \dots, y'_n + h'_n} \,dx\\
+    &\qquad - \int_a^b F\paren*{x, y_1, \dots, y_n, y'_1, \dots, y'_n} \,dx\\
+    &= \int_a^b \sum_{i=1}^{n} \paren*{h_i \frac{\pd F}{\pd y_i} + h'_i \frac{\pd F}{\pd y'_i}} \,dx\\
+    &= \bigg. h_i(x) F(x, y_i, y'_i) \bigg|_{a}^{b}
+    + \int_a^b \sum_{i=1}^{n} h_i \paren*{ \frac{\pd F}{\pd y_i} - \frac{d}{dx} \paren*{\frac{\pd F}{\pd y'_i}}} \,dx\\
+    &= \int_a^b \sum_{i=1}^{n} h_i \paren*{ \frac{\pd F}{\pd y_i} - \frac{d}{dx} \paren*{\frac{\pd F}{\pd y'_i}}} \,dx.
+\end{align}
+
+Now, since $h_i$ are arbitrary (except the regularity and boundary conditions), we can consider the case where all $h_i$ are zero except $h_k$. This reduces the variation of $J$ to
+\begin{equation}
+    \delta J = \int_a^b h_k \paren*{ \frac{\pd F}{\pd y_k} - \frac{d}{dx} \paren*{\frac{\pd F}{\pd y'_k}}} \,dx.
+\end{equation}
+Requiring $\delta J = 0$ and using the fundamental theorem of calculus of variations then gives
+\begin{equation}
+    \frac{\pd F}{\pd y_k} - \frac{d}{dx} \paren*{\frac{\pd F}{\pd y'_k}}.
+\end{equation}
+The same process can be repeated for each $h_i$ to get one Euler-Lagrange equation for each dependent variable.
+
+\section{Geodesics}
+Functionals with multiple dependent variables are particularly suitable for stating the problem of finding geodesics on a surface. A geodesic between two points $P$ and $Q$ on a surface $\vec{r} = \vec{r}(u,v)$ is a curve of shortest length connecting these two points. In finding a geodesic we, therefore, minimise the length functional
+\begin{equation}
+    L = \int_\alpha^\beta ds,
+\end{equation}
+where $ds$ is the length element for the given surface. From differential geometry, we know that
+\begin{equation}
+    ds^2 = E(u,v) \,du^2 + 2 F(u,v) \,du dv + G(u,v) \,dv^2
+    \label{eq:1st-fund-form}
+\end{equation}
+with $E = \vec{r}_u \cdot \vec{r}_u$, $F = \vec{r}_u \cdot \vec{r}_v$ and $G = \vec{r}_v \cdot \vec{r}_v$. Equation \eqref{eq:1st-fund-form} is also called the first fundamental form for the surface $\vec{r} = \vec{r}(u,v)$. Consequently, finding geodesics on the given surface is equivalent to finding the extremals $u = u(t), v = v(t)$ of
+\begin{equation}
+    J[u, v] = \int_\alpha^\beta \sqrt{E(u,v) u'^2 + 2 F(u,v) u' v' + G(u,v) v'^2} \,dt.
+\end{equation}
+The resulting Euler-Lagrange equations are
+\begin{gather}
+    \frac{E_u u'^2 + 2F_u u' v' + G_u v'^2}{2Q} - \frac{d}{dt}\paren*{ \frac{E u' + F v'}{Q} } = 0,\\
+    \frac{E_v u'^2 + 2F_v u' v' + G_v v'^2}{2Q} - \frac{d}{dt}\paren*{ \frac{F u' + G v'}{Q} } = 0,
+\end{gather}
+where $Q = \sqrt{E(u,v) u'^2 + 2 F(u,v) u' v' + G(u,v) v'^2}$.
+
+\begin{negg}
+    To find the equation of a general geodesic on a circular cylinder of radius $a$ and centred on the $z$-axis, we start by parametrising the surface as
+    \begin{equation}
+        \vec{r}(\varphi, z) = \paren*{a\cos\varphi, a\sin\varphi, z}.
+    \end{equation}
+    Then, $E = \vec{r}_\varphi \cdot \vec{r}_\varphi = a^2$, $F = \vec{r}_\varphi \cdot \vec{r}_z = 0$ and $G = \vec{r}_z \cdot \vec{r}_z = 1$. So, the length functional becomes
+    \begin{equation}
+        J[\varphi, z] = \int_\alpha^\beta \sqrt{a^2 \dot{\varphi}^2 + \dot{z}^2} \,dt,
+    \end{equation}
+    leading to a system of two Euler-Lagrange equations (first integrals)
+    \begin{equation}
+        \frac{d\varphi}{dt} = k_1 \sqrt{a^2 \dot{\varphi}^2 + \dot{z}^2},
+        \qquad
+        \frac{dz}{dt} = k_2 \sqrt{a^2 \dot{\varphi}^2 + \dot{z}^2}.
+    \end{equation}
+    Here, $k_1, k_2$ are arbitrary constants. We can solve these by eliminating the parameter $t$ and giving $z$ as a function of $\varphi$,
+    \begin{equation}
+        \frac{dz/dt}{d\varphi/dt}
+        = \frac{k_2 \sqrt{a^2 \dot{\varphi}^2 + \dot{z}^2}}{k_1 \sqrt{a^2 \dot{\varphi}^2 + \dot{z}^2}}
+        \implies
+        \frac{dz}{d\varphi} = c_1
+        \implies
+        z = c_1 \varphi + c_2.
+    \end{equation}
+    The arbitrary constant $c_1$, $c_2$ are determined by the points $P$ and $Q$.
 \end{negg}
 
 \section{Other topics}
