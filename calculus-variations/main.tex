@@ -22,17 +22,29 @@
     \begin{equation}
         J[y] = \int_{a}^{b} F(x, y, y') \,dx,
     \end{equation}
-    defined on the set of functions $y \in C^{1}[a,b]$, with $y(a) = A$ and $y(b) = B$. Then, a necessary condition for $J[y]$ to have an extreme is that $y$ satisfies the Euler-Lagrange equation
+    defined on the set of functions $y \in C^{1}[a,b]$, with $y(a) = A$ and $y(b) = B$. Then, a necessary condition for $J[y]$ to have an extremal is that $y$ satisfies the Euler-Lagrange equation
     \begin{equation}
         \frac{\pd F}{\pd y} - \frac{d}{dx} \paren*{\frac{\pd F}{\pd y'}} = 0.
         \label{eq:el-basic}
     \end{equation}
 \end{nthm}
-\missing{
 \begin{proof}
-    TBC.
+    Let $y$ be an extremal of $J[y]$. Let $h \in C^1 [a,b]$ be an arbitrary function with $h(a)=h(b)=0$, and consider the variation $y \to y+h$. If we assume this variation to be small then we can use Taylor expansion to obtain
+    \begin{align}
+        \delta J
+        &= \int_{a}^{b} F(x, y+h, y'+h') \,dx - \int_{a}^{b} F(x, y, y') \,dx\\
+        &= \int_{a}^{b} h {\pd F}{\pd y}(x, y, y') + h' {\pd F}{\pd y'}(x, y, y') \,dx\\
+        &= \int_{a}^{b} h \paren*{ \frac{\pd F}{\pd y}(x, y, y') + \frac{\pd F}{\pd y'}(x, y, y') } \,dx - \bigg. h(x) F(x, y, y') \bigg|_a^b\\
+        &= \int_{a}^{b} h \paren*{ \frac{\pd F}{\pd y}(x, y, y') + \frac{d}{dx} \paren*{ \frac{\pd F}{\pd y'}(x, y, y')} } \,dx.
+    \end{align}
+    Here, the boundary term vanishes due to $h(a)=h(b)=0$.
+
+    Now, requiring $\delta J = 0$ (the condition for $y$ being an extremal of $J[y]$) and using the fundamental theorem of calculus of variations, we get
+    \begin{equation}
+        \frac{\pd F}{\pd y}(x, y, y') + \frac{d}{dx} \paren*{ \frac{\pd F}{\pd y'}(x, y, y')} = 0
+    \end{equation}
+    as required.
 \end{proof}
-}
 
 This is a second order ODE in $y$
 \begin{equation}
@@ -402,7 +414,7 @@ Functionals with multiple dependent variables are particularly suitable for stat
 \end{equation}
 where $ds$ is the length element for the given surface. From differential geometry, we know that
 \begin{equation}
-    ds^2 = E(u,v) \,du^2 + 2 F(u,v) \,du dv + G(u,v) \,dv^2
+    ds^2 = E(u,v) \,du^2 + 2 F(u,v) \,du dv + G(u,v) \,dv^2,
     \label{eq:1st-fund-form}
 \end{equation}
 with $E = \vec{r}_u \cdot \vec{r}_u$, $F = \vec{r}_u \cdot \vec{r}_v$ and $G = \vec{r}_v \cdot \vec{r}_v$. Equation \eqref{eq:1st-fund-form} is also called the first fundamental form for the surface $\vec{r} = \vec{r}(u,v)$. Consequently, finding geodesics on the given surface is equivalent to finding the extremals $u = u(t), v = v(t)$ of
