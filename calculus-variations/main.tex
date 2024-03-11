@@ -403,7 +403,7 @@ Now, since $h_i$ are arbitrary (except the regularity and boundary conditions), 
 \end{equation}
 Requiring $\delta J = 0$ and using the fundamental theorem of calculus of variations then gives
 \begin{equation}
-    \frac{\pd F}{\pd y_k} - \frac{d}{dx} \paren*{\frac{\pd F}{\pd y'_k}}.
+    \frac{\pd F}{\pd y_k} - \frac{d}{dx} \paren*{\frac{\pd F}{\pd y'_k}} = 0.
 \end{equation}
 The same process can be repeated for each $h_i$ to get one Euler-Lagrange equation for each dependent variable.
 
@@ -454,6 +454,60 @@ where $Q = \sqrt{E(u,v) u'^2 + 2 F(u,v) u' v' + G(u,v) v'^2}$.
     \end{equation}
     The arbitrary constant $c_1$, $c_2$ are determined by the points $P$ and $Q$.
 \end{negg}
+
+\begin{negg}
+    Suppose that the $3$-dimensional space is filled with an optically inhomogeneous medium, such that the velocity of propagation of light at each point is some function $v(x, y, z)$ of the coordinates of the points.
+
+    According to Fermat's principle, light travels from point $A$ to point $B$ along the trajectory which takes the least time. Suppose the curve joining $A$ and $B$ is given by the equations $y = y(x)$ and $z = z(x)$. Then, the corresponding time functional is
+    \begin{equation}
+        T[y, z] = \int_a^b \frac{\sqrt{1 + y'^2 + z'^2}}{v(x, y, z)} \,dx.
+    \end{equation}
+    The associated Euler-Lagrange equations are
+    \begin{gather}
+        \frac{\sqrt{1 + y'^2 + z'^2}}{v^2} v_y
+        + \frac{d}{dx}\paren*{\frac{y'}{\sqrt{1 + y'^2 + z'^2}}} = 0,\\
+        \frac{\sqrt{1 + y'^2 + z'^2}}{v^2} v_z
+        + \frac{d}{dx}\paren*{\frac{z'}{\sqrt{1 + y'^2 + z'^2}}} = 0.
+    \end{gather}
+\end{negg}
+
+\section{Equivalent Functionals}
+    Let $\varphi = \varphi(x, y_1, \dots, y_n)$ be a twice continuously differentiable function and consider the function
+    \begin{equation}
+        \psi(x, y_1, \dots, y_n, y'_1, \dots, y'_n)
+        = \frac{d\varphi}{dx}
+        \equiv \frac{\pd \varphi}{\pd x} + \sum_{i=1}^{n} y'_i \frac{\pd \varphi}{\pd y_i}.
+    \end{equation}
+    It is straightforward to check by direct calculation that
+    \begin{equation}
+        \frac{\pd \psi}{\pd y_k} - \frac{d}{dx} \paren*{\frac{\pd \psi}{\pd y'_k}} \equiv 0
+    \end{equation}
+    identically. Consequently, the Euler-Lagrange equations obtained from
+    \begin{equation}
+        J = \int_a^b F\paren*{x, y_1, \dots, y_n, y'_1, \dots, y'_n} \,dx
+    \end{equation}
+    and
+    \begin{equation}
+        J_1 = \int_a^b \paren*{F\paren*{x, y_1, \dots, y_n, y'_1, \dots, y'_n} + \psi(x, y_1, \dots, y_n, y'_1, \dots, y'_n)} \,dx
+    \end{equation}
+    are the same;
+    \begin{equation}
+        \frac{\pd F}{\pd y_k} - \frac{d}{dx} \paren*{\frac{\pd F}{\pd y'_k}} = 0.
+    \end{equation}
+    This can also be seen by noting that $J$ and $J_1$ differ only by a constant, since $\psi$ is a total derivative of $\varphi(x, y_1, \dots, y_n)$ and integrates out
+    \begin{equation}
+        J_1 = \int_a^b \paren*{F + \psi} \,dx
+        = \int_a^b F \,dx + \int_a^b \frac{d\phi}{dx} \,dx
+        = J + \paren*{\big. \varphi \big|_a^b}
+        = J + \text{constant}.
+    \end{equation}
+
+    Therefore, different integrands (or likewise, different functionals) can lead to the same Euler-Lagrange equations.
+
+    Two functionals are said to be equivalent if they lead to the same Euler-Lagrange equations.
+
+    In particular, we note that the functionals $J = \int_a^b F \,dx$ and $J = \int_a^b \paren*{F + \frac{d\phi}{dx}} \,dx$ are equivalent. Similarly, $J = \int_a^b F \,dx$ and $J = \int_a^b cF \,dx$ are equivalent for $c \in \R$.
+
 
 \section{Other topics}
 \subsection{Variational Derivative}
