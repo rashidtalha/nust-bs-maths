@@ -623,7 +623,9 @@ These quantities can also be generalised to other regular parametrisations of th
 
     Using the Frenet-Serret equations, we get $\dot{\vT} = \kappa \vN$, $\dot{\vN} = - \kappa \vT$, and $\dot{\vB} = 0$. This leads to the second-order Cauchy-Euler equation
     \begin{equation}
-        \dot{\vT} = \kappa \vN
+        \dot{\vT} = \frac{1}{s} \vN
+        \implies
+        \ddot{\vT} = -\frac{1}{s^2} \vN + \frac{1}{s} \dot{\vN}
         \implies
         s^2 \ddot{\vT} + s \dot{\vT} + \vT = 0,
     \end{equation}
@@ -631,19 +633,52 @@ These quantities can also be generalised to other regular parametrisations of th
 
     Finally, since $\alpha'(s) = \vT(s)$, we integrate $\vT(s)$ to obtain
     \begin{equation}
-        \alpha(s) = \vec{c_0} + \vec{c_1} \int \cos\paren*{\ln s} \,ds + \vec{c_2} \int \sin\paren*{\ln s} \,ds,
+        \alpha(s) = \vec{c_0}
+        + \frac{s}{2} \paren*{\sin\paren*{\ln s} + \cos\paren*{\ln s}} \vec{c_1}
+        + \frac{s}{2} \paren*{\sin\paren*{\ln s} - \cos\paren*{\ln s}} \vec{c_2}.
     \end{equation}
-    where $\vec{c_0}$, $\vec{c_1}$ and $\vec{c_2}$ are arbitrary constant vectors. These integrals don't have a closed form solution in terms of elementary functions.
+    where $\vec{c_0}$, $\vec{c_1}$ and $\vec{c_2}$ are arbitrary constant vectors.
 \end{negg}
 
 \missing{
 \begin{nex}
     Show that $\alpha''' = EQQ$.
 \end{nex}
+}
 
 \begin{nex}
-    Show that $\alpha'' \cdot \alpha''' \times \alpha^{(4)} = EQQ$, and that if $\alpha$ is a helix then $\alpha'' \cdot \alpha''' \times \alpha^{(4)} = 0$. Is the coverse also true?
+    For a unit speed space curve $\alpha = \alpha(s)$, show that
+    \begin{equation}
+        \alpha'' \cdot \alpha''' \times \alpha^{(4)} = \kappa^5 \frac{d}{ds}\paren*{\frac{\tau}{\kappa}},
+    \end{equation}
+    and that if $\alpha$ is a helix then $\alpha'' \cdot \alpha''' \times \alpha^{(4)} = 0$. Is the coverse also true?
 \end{nex}
-}
+
+\begin{nthm}
+    If $\alpha = \alpha(s)$ is a unit speed curve that lies on a sphere of radius $a$ and has $\tau \neq 0$ for all $s$, then its curvature is $\kappa > 1/a$.
+
+    (A curve that lies on a sphere is also called a spherical curve.)
+\end{nthm}
+\begin{proof}
+    TBC. (Differentiate the defining equation and then use the Schwarz inequality.)
+\end{proof}
+
+\begin{nthm}
+    Let $\alpha = \alpha(s)$ be a unit speed curve with $\kappa > 0$ and $\tau \neq 0$ for all $s$. If $\alpha$ is a spherical curve then
+    \begin{equation}
+        \frac{\tau}{\kappa} = \frac{d}{ds}\paren*{\frac{\dot{\kappa}}{\tau \kappa^2}}.
+    \end{equation}
+\end{nthm}
+\begin{proof}
+    TBC. (Differentiate the defining equation four times.)
+\end{proof}
+
+\begin{nthm}
+    If $\alpha = \alpha(s)$ is a unit speed curve with constant positive curvature $\kappa$ and $\tau = 0$ for all $s$, then $\alpha$ is a part of the circle.
+\end{nthm}
+\begin{equation}
+    TBC. (Construct the center as a curve, alpha + 1/k N, show that it is constant. Show that alpha lies a distance 1/k from this centre.)
+\end{equation}
+
 
 \end{document}
