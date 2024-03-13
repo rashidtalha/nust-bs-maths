@@ -3,7 +3,7 @@
 \usepackage{mathsphystools}
 \usepackage{thmstyles}
 
-\usepackage{lipsum}
+\newcommand{\missing}[1]{{\color{red}#1}}
 
 \title{MATH 353: Partial Differential Equations}
 \subtitle{Brief lecture notes}
@@ -402,7 +402,8 @@ Under this transformation, we obtain
 \end{align*}
 This allows us to rewrite the original PDE as
 \begin{equation}
-    A^{*} u_{xx} + B^{*} u_{xy} + C^{*} u_{yy} + D^{*} u_x + E^{*} u_y + F u = G
+    A^{*} u_{\xi\xi} + B^{*} u_{\xi\eta} + C^{*} u_{\eta\eta} + D^{*} u_\xi + E^{*} u_\eta + F u = G
+    \label{eq:2nd-transformed-xi-eta-full}
 \end{equation}
 where
 \begin{align*}
@@ -412,6 +413,130 @@ where
     D^{*} &= A \xi_{xx} + B \xi_{xy} + C \xi_{yy} + D \xi_{x} + E \xi_{y}\\
     E^{*} &= A \eta_{xx} + B \eta_{xy} + C \eta_{yy} + D \eta_{x} + E \eta_{y}.
 \end{align*}
+We can also write this more compactly as
+\begin{equation}
+    A^{*} u_{\xi\xi} + B^{*} u_{\xi\eta} + C^{*} u_{\eta\eta} = H^{*}\paren*{\xi, \eta, u, u_\xi, u_\eta}
+    \label{eq:2nd-transformed-xi-eta}
+\end{equation}
+
+Next, we restrict ourselves to only those $\xi(x,y)$ and $\eta(x,y)$ which leads to $A^* = 0$. That is
+\begin{equation}
+    A \xi_x^2 + B \xi_x \xi_y + C \xi_y^2 = 0.
+\end{equation}
+However, we note that $C^* = 0$ has the same form. So, if we can find two independent solutions of $A^* = 0$, then one of them can be labelled as $\eta$, leading to $C^* = 0$. Therefore, we consider the more general PDE of this form
+\begin{equation}
+    A \zeta_x^2 + B \zeta_x \zeta_y + C \zeta_y^2
+\end{equation}
+We seek its solution as characteristic curves of the form $\zeta(x,y) = c$. This gives
+\begin{equation}
+    d\zeta = \zeta_x \,dx + \zeta_y \,dy = 0
+    \implies
+    \frac{\zeta_x}{\zeta_y} = - \frac{dy}{dx}.
+\end{equation}
+Consequently,
+\begin{align}
+    A \zeta_x^2 + B \zeta_x \zeta_y + C \zeta_y^2 = 0
+    &\implies
+    A \paren*{\frac{\zeta_x}{\zeta_y}}^2 + B \paren*{\frac{\zeta_x}{\zeta_y}} + C = 0\\
+    &\implies
+    A \paren*{\frac{dy}{dx}}^2 - B \paren*{\frac{dy}{dx}} + C = 0.
+\end{align}
+This is a quadratic equation in $dy/dx$, so the quadratic formula gives
+\begin{equation}
+    \frac{dy}{dx} = \frac{B \pm \sqrt{B^2 - 4AC}}{2A}.
+    \label{eq:2nd-char}
+\end{equation}
+Recall that $A, B$ and $C$ are in general functions of $x$ and $y$ and therefore, we cannot reduce this equation further at this stage.
+
+The solution $y(x)$ or equivalently $\zeta(x,y) = c$ will now depend on the nature of the discriminant $B^2 - 4AC$. This will form the basis of our classification of the second order linear PDEs.
+
+\subsection{Hyperbolic PDEs \texorpdfstring{($B^2 - 4AC > 0$)}{B2 - 4AC > 0}}
+When $B^2 - 4AC > 0$ the PDE is called hyperbolic and equation~\eqref{eq:2nd-char} has two distinct solutions $dy/dx = T_{1,2}(x,y)$. Solving this first order ODE then gives two distinct solutions, which we label as $\xi(x,y) = c_1$ and $\eta(x,y) = c_2$.
+
+Tracing our steps back, we conclude that if $dy/dx$ solves equation~\eqref{eq:2nd-char}, then the resulting characteristics $\zeta(x,y) = c$ satisfy a PDE of the form $A \zeta_x^2 + B \zeta_x \zeta_y + C \zeta_y^2 = 0$. Consequently, the $\xi(x,y) = c_1$ and $\eta(x,y) = c_2$ found here should satisfy
+\begin{equation}
+    A \xi_x^2 + B \xi_x \xi_y + C \xi_y^2 = 0
+    \quad\text{and}\quad
+    A \eta_x^2 + B \eta_x \eta_y + C \eta_y^2 = 0.
+\end{equation}
+In other words, when $B^2 - 4AC > 0$ then we can find suitable $\xi$ and $\eta$ which simultaneously give $A^* = C^* = 0$, reducing equation~\eqref{eq:2nd-transformed-xi-eta} to
+\begin{equation}
+    u_{\xi\eta} = H_{h}^{*}\paren*{\xi, \eta, u, u_\xi, u_\eta}
+    \label{eq:canonical-hyperbolic}
+\end{equation}
+where $H_{h}^{*} \equiv H^{*} / B^{*}$. Equation~\eqref{eq:canonical-hyperbolic} is the canonical form of a hyperbolic PDE.
+
+\subsection{Parabolic PDEs \texorpdfstring{($B^2 - 4AC = 0$)}{B2 - 4AC = 0}}
+When $B^2 - 4AC = 0$ the PDE is called parabolic and equation~\eqref{eq:2nd-char} has only one solution $dy/dx = T(x,y)$. Solving this first order ODE then gives a single solution, which we label as $\xi(x,y) = c_1$. No restriction has been obtained for $\eta = \eta(x,y)$. So, we obtain that $A^{*} = 0$; and $C^{*} \neq 0$.
+
+Now, since $B^2 = 4AC$, we can write
+\begin{equation}
+    A^{*}
+    = A \xi_x^2 + B \xi_x \xi_y + C \xi_y^2
+    = \paren*{ \sqrt{A} \xi_x + \sqrt{C} \xi_y }^2,
+\end{equation}
+which gives $\sqrt{A} \xi_x + \sqrt{C} \xi_y = 0$ because $A^{*} = 0$. Therefore,
+\begin{align}
+    B^{*}
+    &= 2A\xi_x \eta_x + B \paren*{\xi_x \eta_y + \xi_y \eta_x} + 2C \xi_y \eta_y\\
+    &= 2 \paren*{ \sqrt{A} \xi_x + \sqrt{C} \xi_y } \paren*{ \sqrt{A} \eta_x + \sqrt{C} \eta_y }
+    = 0
+\end{align}
+for all arbitrary $\eta(x,y)$. Consequently, both $A^*$ and $B^*$ vanish for parabolic PDES.
+
+Overall, when $B^2 - 4AC = 0$ then we can find $\xi = \xi(x,y)$ by solving~\eqref{eq:2nd-char} (and a suitable, simple $\eta$ is chosen arbitrarily) which leads to $A^* = B^* = 0$, reducing equation~\eqref{eq:2nd-transformed-xi-eta} to
+\begin{equation}
+    u_{\eta\eta} = H_{p}^{*}\paren*{\xi, \eta, u, u_\xi, u_\eta}
+    \label{eq:canonical-parabolic}
+\end{equation}
+where $H_{p}^{*} \equiv H^{*} / C^{*}$. Equation~\eqref{eq:canonical-parabolic} is the canonical form of a parabolic PDE.
+
+\subsection{Elliptic PDEs \texorpdfstring{($B^2 - 4AC < 0$)}{B2 - 4AC < 0}}
+In this case, the PDE is known as an elliptic PDE. Here, the characteristic equation~\eqref{eq:2nd-char} gives rise to two complex conjugate solutions. We can, therefore, decompose the resulting $\xi$ and $\eta$ in terms of real valued variables $\alpha$ and $\beta$ as $\xi = \alpha + i\beta, \quad \eta = \alpha - i \beta$. Equivalently,
+\begin{equation}
+    \alpha = \frac{1}{2} \paren*{\xi + \eta},
+    \quad
+    \beta = \frac{1}{2i} \paren*{\xi - \eta}.
+\end{equation}
+This can be viewed as a further change of variables on the PDE~\eqref{eq:2nd-transformed-xi-eta} leading to
+\begin{equation}
+    A^{**} u_{\alpha\alpha} + B^{**} u_{\alpha\beta} + C^{**} u_{\beta\beta} = H^{**}\paren*{\alpha, \beta, u, u_\alpha, u_\beta}
+    \label{eq:2nd-transformed-alpha-beta}
+\end{equation}
+where the coefficients $A^{**}, \dots, H^{**}$ have the same form as $A^{*}, \dots, H^{*}$.
+
+Now, writing $A^{*}\paren*{\xi} = 0$ in terms of $\alpha$ and $\beta$ gives
+\begin{equation}
+    EQQ
+\end{equation}
+or equivalently, $\paren*{A^{**} - C^{**}} + i B^{**} = 0$. Similarly, $C^{*} = 0$ gives $\paren*{A^{**} - C^{**}} - i B^{**} = 0$. For these equations to hold, we must have $A^{**} = C^{**}$ and $B^{**} = 0$.
+
+Consequently, equation~\eqref{eq:2nd-transformed-alpha-beta} becomes
+\begin{equation}
+    u_{\alpha\alpha} + u_{\beta\beta} = H_{e}^{**} \paren*{\alpha, \beta, u, u_\alpha, u_\beta}
+    \label{eq:canonical-elliptic}
+\end{equation}
+with $H_{e}^{**} = H^{**} / A^{**}$.
+
+Overall, when $B^2 - 4AC < 0$ we first find $\xi(x,y)$ and $\eta(x,y)$ through the characteristic equation~\eqref{eq:2nd-char}. Then we set $\alpha(x,y) = \Re \xi$ and $\beta(x,y) = \Im \xi$ (using $\eta$ gives the same final result). Using $\alpha$ and $\beta$ are the change of variables on the original equation then leads to~\eqref{eq:canonical-elliptic}. This is the canonical form of the Elliptic PDEs.
+
+\begin{negg}
+    EXAMPLES. HYP.
+\end{negg}
+
+\begin{negg}
+    EXAMPLES. PARA.
+\end{negg}
+
+\begin{negg}
+    EXAMPLES. ELLIP.
+\end{negg}
+
+\begin{negg}
+    EXAMPLES. CONST.
+\end{negg}
+
+\section{Cauchy Problem and the Wave Equation}
 
 
 \end{document}
