@@ -320,6 +320,39 @@ Likewise, if both end points are variable, then the resulting set of equations i
     \end{equation}
 \end{negg}
 
+\section{Variational Derivative}
+Let $f$ be a real-valued function of $n$ variables. We study its differential and partial derivatives in real analysis. Analogous concepts also exist for real-valued functional. Among these, the concept of partial derivatives is generalised to the concept of a variational derivative. The procedure is carried out as follows:
+
+We approximate the continuous function $y = y(x)$ as a polygonal line
+\begin{equation}
+    (x_0, y_0), \dots, (x_{n+1}, y_{n+1}).
+\end{equation}
+This discretises the functional $J[y] = \int_a^b F(x, y, y') \,dx$ subject to $y(a) = A$ and $y(b) = B$ into a function of $n$ variables
+\begin{equation}
+    J(y_1, \dots, y_n)
+    = \sum_{i=0}^{n} F \paren*{x_i, y_i, \frac{y_{i+1} - y_i}{\Delta x}} \Delta x.
+\end{equation}
+(This is not a function of $n+2$ variables because $y_0 = A$ and $y_{n+1} = B$ are fixed.)
+
+We can now calculate $\pd J / \pd y_k$ as the usual partial derivative to obtain
+\begin{align*}
+    \frac{\pd J}{\pd y_k} (y_1, \dots, y_n)
+    = {} & \frac{\pd F}{\pd y} \paren*{x_k, y_k, \frac{y_{k+1} - y_k}{\Delta x}} \Delta x\\
+    &+ \frac{\pd F}{\pd y'} \paren*{x_{k-1}, y_{k-1}, \frac{y_k - y_{k-1}}{\Delta x}} \Delta x
+    - \frac{\pd F}{\pd y'} \paren*{x_k, y_k, \frac{y_{k+1} - y_k}{\Delta x}} \Delta x.
+\end{align*}
+Dividing by $\Delta x$ and taking the limit $\Delta x \to 0$ reduces this expression to
+\begin{equation}
+    \frac{\pd J}{\pd y_k \Delta x}
+    = \frac{\pd F}{\pd y} (x, y, y')
+    - \frac{d}{dx} \paren*{ \frac{\pd F}{\pd y'} (x, y, y') },
+\end{equation}
+where
+\begin{equation}
+    \frac{\delta J}{\delta y} \equiv \lim_{\Delta x \to 0} \frac{\pd J}{\pd y_k \Delta x}
+\end{equation}
+is called the variational derivative of the functional $J[y]$. We note that the variational derivative is precisely the LHS of the Euler-Lagrange equation.
+
 \section{Invariance of the Euler-Lagrange Equation}
 So far we have studied the variation of functional
 \begin{equation}
@@ -472,76 +505,77 @@ where $Q = \sqrt{E(u,v) u'^2 + 2 F(u,v) u' v' + G(u,v) v'^2}$.
 \end{negg}
 
 \section{Equivalent Functionals}
-    Let $\varphi = \varphi(x, y_1, \dots, y_n)$ be a twice continuously differentiable function and consider the function
-    \begin{equation}
-        \psi(x, y_1, \dots, y_n, y'_1, \dots, y'_n)
-        = \frac{d\varphi}{dx}
-        \equiv \frac{\pd \varphi}{\pd x} + \sum_{i=1}^{n} y'_i \frac{\pd \varphi}{\pd y_i}.
-    \end{equation}
-    It is straightforward to check by direct calculation that
-    \begin{equation}
-        \frac{\pd \psi}{\pd y_k} - \frac{d}{dx} \paren*{\frac{\pd \psi}{\pd y'_k}} \equiv 0
-    \end{equation}
-    identically. Consequently, the Euler-Lagrange equations obtained from
-    \begin{equation}
-        J = \int_a^b F\paren*{x, y_1, \dots, y_n, y'_1, \dots, y'_n} \,dx
-    \end{equation}
-    and
-    \begin{equation}
-        J_1 = \int_a^b \paren*{F\paren*{x, y_1, \dots, y_n, y'_1, \dots, y'_n} + \psi(x, y_1, \dots, y_n, y'_1, \dots, y'_n)} \,dx
-    \end{equation}
-    are the same;
-    \begin{equation}
-        \frac{\pd F}{\pd y_k} - \frac{d}{dx} \paren*{\frac{\pd F}{\pd y'_k}} = 0.
-    \end{equation}
-    This can also be seen by noting that $J$ and $J_1$ differ only by a constant, since $\psi$ is a total derivative of $\varphi(x, y_1, \dots, y_n)$ and integrates out
-    \begin{equation}
-        J_1 = \int_a^b \paren*{F + \psi} \,dx
-        = \int_a^b F \,dx + \int_a^b \frac{d\phi}{dx} \,dx
-        = J + \paren*{\big. \varphi \big|_a^b}
-        = J + \text{constant}.
-    \end{equation}
-
-    Therefore, different integrands (or likewise, different functionals) can lead to the same Euler-Lagrange equations.
-
-    Two functionals are said to be equivalent if they lead to the same Euler-Lagrange equations.
-
-    In particular, we note that the functionals $J = \int_a^b F \,dx$ and $J = \int_a^b \paren*{F + \frac{d\phi}{dx}} \,dx$ are equivalent. Similarly, $J = \int_a^b F \,dx$ and $J = \int_a^b cF \,dx$ are equivalent for $c \in \R$.
-
-
-\section{Other topics}
-\subsection{Variational Derivative}
-Let $f$ be a real-valued function of $n$ variables. We study its differential and partial derivatives in real analysis. Analogous concepts also exist for real-valued functional. Among these, the concept of partial derivatives is generalised to the concept of a variational derivative. The procedure is carried out as follows:
-
-We approximate the continuous function $y = y(x)$ as a polygonal line
+Let $\varphi = \varphi(x, y_1, \dots, y_n)$ be a twice continuously differentiable function and consider the function
 \begin{equation}
-    (x_0, y_0), \dots, (x_{n+1}, y_{n+1}).
+    \psi(x, y_1, \dots, y_n, y'_1, \dots, y'_n)
+    = \frac{d\varphi}{dx}
+    \equiv \frac{\pd \varphi}{\pd x} + \sum_{i=1}^{n} y'_i \frac{\pd \varphi}{\pd y_i}.
 \end{equation}
-This discretises the functional $J[y] = \int_a^b F(x, y, y') \,dx$ subject to $y(a) = A$ and $y(b) = B$ into a function of $n$ variables
+It is straightforward to check by direct calculation that
 \begin{equation}
-    J(y_1, \dots, y_n)
-    = \sum_{i=0}^{n} F \paren*{x_i, y_i, \frac{y_{i+1} - y_i}{\Delta x}} \Delta x.
+    \frac{\pd \psi}{\pd y_k} - \frac{d}{dx} \paren*{\frac{\pd \psi}{\pd y'_k}} \equiv 0
 \end{equation}
-(This is not a function of $n+2$ variables because $y_0 = A$ and $y_{n+1} = B$ are fixed.)
+identically. Consequently, the Euler-Lagrange equations obtained from
+\begin{equation}
+    J = \int_a^b F\paren*{x, y_1, \dots, y_n, y'_1, \dots, y'_n} \,dx
+\end{equation}
+and
+\begin{equation}
+    J_1 = \int_a^b \paren*{F\paren*{x, y_1, \dots, y_n, y'_1, \dots, y'_n} + \psi(x, y_1, \dots, y_n, y'_1, \dots, y'_n)} \,dx
+\end{equation}
+are the same; namely
+\begin{equation}
+    \frac{\pd F}{\pd y_k} - \frac{d}{dx} \paren*{\frac{\pd F}{\pd y'_k}} = 0.
+\end{equation}
+This can also be seen by noting that $J$ and $J_1$ differ only by a constant, since $\psi$ is a total derivative of $\varphi(x, y_1, \dots, y_n)$ and integrates out
+\begin{equation}
+    J_1 = \int_a^b \paren*{F + \psi} \,dx
+    = \int_a^b F \,dx + \int_a^b \frac{d\phi}{dx} \,dx
+    = J + \paren*{\big. \varphi \big|_a^b}
+    = J + \text{constant}.
+\end{equation}
 
-We can now calculate $\pd J / \pd y_k$ as the usual partial derivative to obtain
-\begin{align*}
-    \frac{\pd J}{\pd y_k} (y_1, \dots, y_n)
-    = {} & \frac{\pd F}{\pd y} \paren*{x_k, y_k, \frac{y_{k+1} - y_k}{\Delta x}} \Delta x\\
-    &+ \frac{\pd F}{\pd y'} \paren*{x_{k-1}, y_{k-1}, \frac{y_k - y_{k-1}}{\Delta x}} \Delta x
-    - \frac{\pd F}{\pd y'} \paren*{x_k, y_k, \frac{y_{k+1} - y_k}{\Delta x}} \Delta x.
-\end{align*}
-Dividing by $\Delta x$ and taking the limit $\Delta x \to 0$ reduces this expression to
-\begin{equation}
-    \frac{\pd J}{\pd y_k \Delta x}
-    = \frac{\pd F}{\pd y} (x, y, y')
-    - \frac{d}{dx} \paren*{ \frac{\pd F}{\pd y'} (x, y, y') },
-\end{equation}
-where
-\begin{equation}
-    \frac{\delta J}{\delta y} \equiv \lim_{\Delta x \to 0} \frac{\pd J}{\pd y_k \Delta x}
-\end{equation}
-is called the variational derivative of the functional $J[y]$. We note that the variational derivative is precisely the LHS of the Euler-Lagrange equation.
+Therefore, different integrands (or likewise, different functionals) can lead to the same Euler-Lagrange equations.
 
+Two functionals are said to be equivalent if they lead to the same Euler-Lagrange equations.
+
+In particular, we note that the functionals $J = \int_a^b F \,dx$ and $J = \int_a^b \paren*{F + \frac{d\phi}{dx}} \,dx$ are equivalent. Similarly, $J = \int_a^b F \,dx$ and $J = \int_a^b cF \,dx$ are equivalent for $c \in \R$.
+
+\section{Functionals Depending on Higher-Order Derivatives}
+Now we consider the generalisation to functionals of the form
+\begin{equation}
+    J[y] = \int_a^b F(x, y, y', \dots, y^{(n)}) \,dx
+\end{equation}
+with $y(a) = A$, $y(b) = B$ and $y^{(i)}(a) = A_i$, $y^{(i)}(b) = B_i$ for $i=1, \dots, n$.
+
+As usual we suppose that $y$ extremises this functional and consider its variation $y \to y + h$ where $h(a) = h(b) = 0$ and $h^{(i)}(a) = h^{(i)}(b) = 0$ for $i=1, \dots, n$. Then, using Taylor expansion we obtain
+\begin{align}
+    \delta J
+    &= \int_a^b F\paren*{x, y+h, y'+h', \dots, y^{(n)}+h^{(n)}} \,dx
+    - \int_a^b F\paren*{x, y, y', \dots, y^{(n)}} \,dx\\
+    &= \int_a^b \paren*{h \frac{\pd F}{\pd y} + h' \frac{\pd F}{\pd y'} + \dots + h^{(n)} \frac{\pd F}{\pd y^{(n)}}} \,dx\\
+    &= \int_a^b h(x) \paren*{ \frac{\pd F}{\pd y} - \frac{d}{dx} \frac{\pd F}{\pd y'} + \frac{d^2}{dx^2} \frac{\pd F}{\pd y''} + \dots + (-1)^n \frac{d^n}{dx^n} \frac{\pd F}{\pd y^{(n)}} } \,dx.
+\end{align}
+Here, we have used integration by parts repeatedly in the last step and the boundary terms vanish due to the conditions on $h$ and its derivatives. This last expression is true for all arbitrary functions $h$ (subject to suitable boundary conditions), therefore, the fundamental theorem of calculus of variations gives
+\begin{equation}
+    \frac{\pd F}{\pd y} - \frac{d}{dx} \frac{\pd F}{\pd y'} + \frac{d^2}{dx^2} \frac{\pd F}{\pd y''} + \dots + (-1)^n \frac{d^n}{dx^n} \frac{\pd F}{\pd y^{(n)}} = 0
+\end{equation}
+when $\delta J = 0$. In other words, we have proved the following theorem.
+
+\begin{nthm}
+    A necessary condition for $y \in C^{2n}[a,b]$ to be an extremal of
+    \begin{equation}
+        J[y] = \int_a^b F\paren*{x, y, y^{(1)}, \dots, y^{(n)}} \,dx
+    \end{equation}
+    subject to $y(a) = A$, $y(b) = B$, $y^{(i)}(a) = A_i$ and $y^{(i)}(b) = B_i$, for $i=1, \dots, n$, is given by the (generalised) Euler-Lagrange equation
+    \begin{equation}
+        \frac{\pd F}{\pd y} + \sum_{k=1}^{n} (-1)^k \frac{d^k}{dx^k} \paren*{\frac{\pd F}{\pd y^{(k)}}} = 0.
+        \label{eq:el-higher-deriv}
+    \end{equation}
+\end{nthm}
+
+Equation~\eqref{eq:el-higher-deriv} is in general an ODE of order $2n$. The regularity conditions on $y$ can be reduced to $y \in C^n$ because it can be shown that under suitable conditions such a function is $y \in C^{(2n)}$.
+
+% \section{Variational Problems in Parametric Form}
 
 \end{document}
