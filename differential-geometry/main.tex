@@ -7,6 +7,9 @@
 \newcommand{\vN}{\vec{N}}
 \newcommand{\vB}{\vec{B}}
 
+\renewcommand{\interior}[1]{\mathrm{int}(#1)}
+\newcommand{\exterior}[1]{\mathrm{ext}(#1)}
+
 \newcommand{\missing}[1]{{\color{red}#1}}
 
 \title{MATH 382: Differential Geometry}
@@ -640,11 +643,11 @@ These quantities can also be generalised to other regular parametrisations of th
     where $\vec{c_0}$, $\vec{c_1}$ and $\vec{c_2}$ are arbitrary constant vectors.
 \end{negg}
 
-\missing{
+% \missing{
 \begin{nex}
-    Show that $\alpha''' = EQQ$.
+    Show that $\alpha''' = -\kappa^2 \vT + \kappa' \vN + \tau\kappa \vB$.
 \end{nex}
-}
+% }
 
 \begin{nex}
     For a unit speed space curve $\alpha = \alpha(s)$, show that
@@ -654,8 +657,24 @@ These quantities can also be generalised to other regular parametrisations of th
     and that if $\alpha$ is a helix then $\alpha'' \cdot \alpha''' \times \alpha^{(4)} = 0$. Is the coverse also true?
 \end{nex}
 
+% APPROXIMATING ALPHA(S) NEAR ALPHA(0) USING FRENET-SERRET
+
 \begin{nthm}
-    If $\alpha = \alpha(s)$ is a unit speed curve that lies on a sphere of radius $a$ and has $\tau \neq 0$ for all $s$, then its curvature is $\kappa > 1/a$.
+    Let $\alpha = \alpha(s)$ be a unit speed curve in with $\kappa > 0$. This is a plane curve if and only if $\tau = 0$ for all $s$.
+\end{nthm}
+\begin{proof}
+    If $\tau = 0$, then the Frenet-Serret equations reduce to
+    \begin{equation}
+        \dot{\vT} = \kappa \vN,
+        \quad
+        \dot{\vN} = -\kappa \vT,
+        \quad
+        \dot{\vB} = 0.
+    \end{equation}
+\end{proof}
+
+\begin{nthm}
+    If $\alpha = \alpha(s)$ is a unit speed curve that lies on a sphere of radius $a$ and has $\tau \neq 0$ for all $s$, then its curvature is $\kappa \geq 1/a$.
 
     (A curve that lies on a sphere is also called a spherical curve.)
 \end{nthm}
@@ -666,7 +685,7 @@ These quantities can also be generalised to other regular parametrisations of th
 \begin{nthm}
     Let $\alpha = \alpha(s)$ be a unit speed curve with $\kappa > 0$ and $\tau \neq 0$ for all $s$. If $\alpha$ is a spherical curve then
     \begin{equation}
-        \frac{\tau}{\kappa} = \frac{d}{ds}\paren*{\frac{\dot{\kappa}}{\tau \kappa^2}}.
+        \frac{\tau}{\kappa} = \frac{d}{ds}\paren*{\frac{\kappa'}{\tau \kappa^2}}.
     \end{equation}
 \end{nthm}
 \begin{proof}
@@ -676,9 +695,41 @@ These quantities can also be generalised to other regular parametrisations of th
 \begin{nthm}
     If $\alpha = \alpha(s)$ is a unit speed curve with constant positive curvature $\kappa$ and $\tau = 0$ for all $s$, then $\alpha$ is a part of the circle.
 \end{nthm}
-\begin{equation}
+\begin{proof}
     TBC. (Construct the center as a curve, alpha + 1/k N, show that it is constant. Show that alpha lies a distance 1/k from this centre.)
+\end{proof}
+
+\section{Global Properties of Curves}
+\subsection{Jordan Curve Theorem}
+
+\begin{ndfn}
+    A simple closed planar curve is called a Jordan curve.
+\end{ndfn}
+
+\begin{nthm}
+    Let $C$ be a Jordan curve in $\R^2$. Then its complement $\R^2 - C$ consists of exactly two connected components. On the of the components is bounded, denoted as $\interior{C}$, and the other is unbounded, denoted as $\exterior{C}$.
+
+    $C$ is the boundary curve of both $\interior{C}$ and $\exterior{C}$.
+\end{nthm}
+
+\begin{ndfn}
+    A curve $\gamma$ is said to be positivvely oriented if the signed unit normal $\vN_s$ of $\gamma$ into $\interior{C}$.
+\end{ndfn}
+
+\subsection{Area Enclosed by a Jordan Curve}
+The area of the region enclosed by a Jordan curve $\gamma$ in the $\R^2$ plane is
+\begin{equation}
+    A(\gamma) = \int_{\interior{\gamma}} dxdy
 \end{equation}
 
+\begin{nthm}
+    Let $\gamma(t) = (x(t), y(t))$ be a Jordan curve in the $xy$-plane, with $a \leq t \leq b$. The area enclosed by this curve is
+    \begin{equation}
+        A = \frac{1}{2} \int_a^b \paren*{x\dot{y} + y\dot{x}} \,dt
+    \end{equation}
+\end{nthm}
+\begin{proof}
+    Exercise. Use the Green's theorem to show that this is equal to $A(\gamma)$ from before.
+\end{proof}
 
 \end{document}
