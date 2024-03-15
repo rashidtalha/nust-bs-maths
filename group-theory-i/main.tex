@@ -5,6 +5,7 @@
 \usepackage{thmstyles}
 
 \newcommand{\cyclic}[1]{\mean{#1}}
+\newcommand{\missing}[1]{{\color{red}#1}}
 
 \title{MATH 325: Group Theory I}
 \subtitle{Brief lecture notes}
@@ -400,8 +401,12 @@ This group is called the group of quaternions.
     {Multiplication table for $Q_4$.}
 \end{center}
 
-\section{Dihedral Group}
+\section{Dihedral Group (of Order 3)}
+Consider the set $D_3  =\set{1, a, a^2, b, ba, ba^2}$ with the conditions $a^3 = 1$, $b^2 = 1$ and $ab = ba^2$. We can check that this forms a non-abelian group. This is called the dihedral group of order $6$
 
+\missing{
+THE CAYLEY TABLE
+}
 
 \section{Cyclic Group}
 \begin{ndfn}
@@ -415,10 +420,6 @@ Generators are not unique. Indeed if $a \in G$ is a generator then so is $\inv{a
 \begin{notation}
     For $m > 0$, $a^m$ means $a * \dots * a$, where $m$ factors of $a$ are multiplied together. Similarly, $a^0 \equiv 1$, the identity element. And, $a^{-m}$ means $\paren*{\inv{a}}^m$.
 \end{notation}
-
-\begin{nthm}
-    Let $G$ be a group, and take $a \in G$ such that $a^n = 1$. Then, the cyclic group $\cyclic{a}$ has the form $\set{1, a, a^2, \dots, a^{n-1}}$.
-\end{nthm}
 
 \begin{nthm}
     Let $G = \cyclic{a}$ be a cyclic group. Then, $O(G) = O(a)$.
@@ -440,6 +441,10 @@ Generators are not unique. Indeed if $a \in G$ is a generator then so is $\inv{a
 
     Otherwise $O(a) = n \geq 2$. SOMETHING SOMETHING.
 \end{proof}
+
+\begin{nthm}
+    Let $G$ be a group, and take $a \in G$ such that $a^n = 1$. Then, the cyclic group $\cyclic{a}$ has the form $\set{1, a, a^2, \dots, a^{n-1}}$.
+\end{nthm}
 
 \begin{nthm}
     Let $G$ be a group and $a \in G$ with $O(a) = n$. If $a^m = 1$ then $n \mid m$.
@@ -528,6 +533,30 @@ Generators are not unique. Indeed if $a \in G$ is a generator then so is $\inv{a
     \end{enumerate}
     An equivalence relation is typically denoted by the symbol $\sim$ instead of $R$.
 \end{ndfn}
+
+\begin{negg}
+    $a \sim b$ if $n \mid (a-b)$. This is an equivalence relation.
+\end{negg}
+
+\begin{negg}
+    $a \sim b$ if $a \leq b$ is not an equivalence relation because it is not symmetric.
+\end{negg}
+
+\begin{ndfn}
+    Let $\sim$ be an equivalence relation on $S$. The equivalence class of $a \in S$ is the set
+    \begin{equation}
+        [a] = \set{b \in S \st b \sim a}.
+    \end{equation}
+    Some authors use the notation $\bar{a}$ or $cl(a)$ to denote the equivalence class of $a$.
+\end{ndfn}
+
+
+\begin{nthm}
+    Let $\sim$ be an equivalence relation on $S$. Then, the collection of equivalence classes $\set{[a] \st a \in S}$ partitions $S$. More precisely, each $[a]$ is non-empty, and $S = \cup_{a \in S} [a]$, and if $[a] \neq [b]$ then $[a] \cap [b] = \emptyset$.
+\end{nthm}
+\begin{proof}
+    Exercise.
+\end{proof}
 
 
 \end{document}

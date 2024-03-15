@@ -576,6 +576,48 @@ when $\delta J = 0$. In other words, we have proved the following theorem.
 
 Equation~\eqref{eq:el-higher-deriv} is in general an ODE of order $2n$. The regularity conditions on $y$ can be reduced to $y \in C^n$ because it can be shown that under suitable conditions such a function is $y \in C^{(2n)}$.
 
+Here again we can obtain some first integrals when the integrand $F\paren*{x, y, y^{(1)}, \dots, y^{(n)}}$ takes a specific form.
+\begin{enumerate}
+    \item $F = F\paren*{x, y^{(1)}, \dots, y^{(n)}}$ leads to
+    \begin{equation}
+        \frac{\pd F}{\pd y'} + \sum_{k=2}^{n} (-1)^{k-1} \frac{d^{k-1}}{dx^{k-1}} \paren*{\frac{\pd F}{\pd y^{(k)}}}
+        = \text{constant},
+    \end{equation}
+    which can also be written as
+    \begin{equation}
+        \frac{\pd F}{\pd y'} + \sum_{k=1}^{n-1} (-1)^{k} \frac{d^{k}}{dx^{k}} \paren*{\frac{\pd F}{\pd y^{(k+1)}}}
+        = \text{constant}.
+    \end{equation}
+
+    \item If $F = F\paren*{x, y^{(s)}, \dots, y^{(n)}}$, i.e. $y$ and its first $s-1$ derivatives don't appear explicitly in the integrand, then the previous result can be extended to obtain
+    \begin{equation}
+        \frac{\pd F}{\pd y^{(s)}}
+        + \sum_{k=1}^{n-s} (-1)^{k} \frac{d^{k}}{dx^{k}} \paren*{\frac{\pd F}{\pd y^{(k+s)}}}
+        = \text{constant}.
+    \end{equation}
+
+    \item If $F = F\paren*{y, y', y''}$ then we find that
+    \begin{equation}
+        F - y' \paren*{\frac{\pd F}{\pd y'} - \frac{d}{dx}\paren*{\frac{\pd F}{\pd y''}}} - y'' \frac{\pd F}{\pd y''}
+        = \text{constant}.
+    \end{equation}
+    (This is the generalisation of the Hamiltonian, $H$.) For integrands with higher order derivatives, this expression becomes more complicated. In general, when $F = F\paren*{y, y^{(1)}, \dots, y^{(n)}}$, we get
+    \begin{equation}
+        F - \sum_{k=1}^{n} y^{(k)} p_{k} = \text{constant},
+    \end{equation}
+    where
+    \begin{equation}
+        p_k = \frac{\pd F}{\pd y^{(k)}}
+        + \sum_{j=k}^{n} (-1)^{j} \frac{d^{j}}{dx^{j}} \paren*{ \frac{\pd F}{\pd y^{(j+1)}} }
+    \end{equation}
+\end{enumerate}
+
+\begin{negg}
+    Find the extremals of $J[y] = \int_a^b \frac{\paren*{1 + y'^2}^2}{y''}$.
+
+    USE BOTH FIRST INTEGRALS.
+\end{negg}
+
 % \section{Variational Problems in Parametric Form}
 
 \end{document}
