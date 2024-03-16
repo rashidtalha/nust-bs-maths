@@ -521,22 +521,108 @@ with $H_{e}^{**} = H^{**} / A^{**}$.
 Overall, when $B^2 - 4AC < 0$ we first find $\xi(x,y)$ and $\eta(x,y)$ through the characteristic equation~\eqref{eq:2nd-char}. Then we set $\alpha(x,y) = \Re \xi$ and $\beta(x,y) = \Im \xi$ (using $\eta$ gives the same final result). Using $\alpha$ and $\beta$ are the change of variables on the original equation then leads to~\eqref{eq:canonical-elliptic}. This is the canonical form of the Elliptic PDEs.
 
 \begin{negg}
-    EXAMPLES. HYP.
+    Consider the equation
+    \begin{equation}
+        y^2 u_{xx} - x^2 u_{yy} = 0.
+        \label{eq:example-hyp}
+    \end{equation}
+    Here, $A = y^2$, $B = 0$ and $C = -x^2$. This is a hyperbolic equation in the region $xy \neq 0$ because $B^2 - 4AC = 4x^2 y^2 > 0$. The associated characteristic equation is
+    \begin{equation}
+        \frac{dy}{dx} = \frac{B \pm \sqrt{B^2 - 4AC}}{2A} = \pm\frac{x}{y}
+    \end{equation}
+    leading to the integral curves $y^2 + x^2 = c_1$ and $y^2 - x^2 = c_2$. We set $\xi = y^2 + x^2$ and $\eta = y^2 - x^2$. Then,
+    \begin{gather}
+        u_{xx}
+        = 4 x^2 u_{\xi\xi} - 8 x^2 u_{\xi\eta} + 4 x^2 u_{\eta\eta} + 2 u_\xi - 2 u_\eta\\
+        u_{yy}
+        = 4 y^2 u_{\xi\xi} + 8 y^2 u_{\xi\eta} + 4 y^2 u_{\eta\eta} + 2 u_\xi + 2 u_\eta.
+    \end{gather}
+    As a result, equation~\eqref{eq:example-hyp} transforms into $-16 x^2 y^2 u_{\xi\eta} + 2 (y^2 - x^2) u_{\xi} - 2 (y^2 - x^2) u_{\xi} = 0$, where we eliminate $\xi$ and $\eta$ to obtain the canonical form of equation~\eqref{eq:example-hyp}
+    \begin{equation}
+        u_{\xi\eta} = \frac{\eta}{2 \paren*{\xi^2 - \eta^2}} u_{\xi} - \frac{\xi}{2 \paren*{\xi^2 - \eta^2}} u_{\xi}.
+    \end{equation}
+
+    \textbf{Alternative:} Instead of computing $u_{xx}$ and $u_{yy}$ we could have computed the non-vanishing coefficients $B^{*}, D^{*}, E^{*}$ appearing in \eqref{eq:2nd-transformed-xi-eta-full}. This leads to
+    \begin{gather*}
+        B^{*}
+        = 2A\xi_x \eta_x + B \paren*{\xi_x \eta_y + \xi_y \eta_x} + 2C \xi_y \eta_y
+        = - 8 x^2 y^2 - 8 x^2 y^2
+        = - 16 x^2 y^2
+        = 4 \paren*{\xi^2 - \eta^2}\\
+        D^{*}
+        = A \xi_{xx} + B \xi_{xy} + C \xi_{yy} + D \xi_{x} + E \xi_{y}
+        = 2 y^2 - 2 x^2
+        = 2 \eta\\
+        E^{*}
+        = A \eta_{xx} + B \eta_{xy} + C \eta_{yy} + D \eta_{x} + E \eta_{y}
+        = - 2 \xi.
+    \end{gather*}
+    which results in the same transformed equation.
 \end{negg}
 
 \begin{negg}
-    EXAMPLES. PARA.
+    The second order linear partial differential equation
+    \begin{equation}
+        x^2 u_{xx} + 2xy u_{xy} + y^2 u_{yy} = 0
+    \end{equation}
+    is parabolic for all values of $x$ and $y$ because it satisfies $B^2 - 4AC = 4x^2 y^2 - 4 x^2 y^2 = 0$. Its associated characteristic equation is $dy/dx = y/x$, which integrates to $y/x = c$. We set $\xi = y/x$ and arbitrarily take $\eta = y$.
+
+    The coefficients of the transformed PDE are then
+    \begin{equation}
+        C^{*} = y^2,
+        \quad
+        D^{*} = \frac{2y}{x} - \frac{2y}{x} = 0,
+        \quad
+        E^{*} = 0,
+    \end{equation}
+    resulting in $y^2 u_{\eta\eta} = 0$, or simply $u_{\eta\eta} = 0$ for $y \neq 0$.
 \end{negg}
 
 \begin{negg}
-    EXAMPLES. ELLIP.
-\end{negg}
+    The PDE
+    \begin{equation}
+        u_{xx} + x^2 u_{yy} = 0
+    \end{equation}
+    is elliptic for $x \neq 0$. The characteristic equations $dy/dx = \pm i x$ integrate to $2y \pm ix^2 = c_{\pm}$. We set $\xi = 2y + ix^2$ and $\eta = 2y - ix^2$. This corresponds to $\alpha = \Re\xi = 2y$ and $\beta = \Im\xi = x^2$.
 
-\begin{negg}
-    EXAMPLES. CONST.
+    As a result, the coefficients of the transformed PDE are
+    \begin{equation}
+        A^{*} = \alpha_x^2 + x^2 \alpha_y^2 = 4 x^2,
+        \quad
+        D^{*} = \alpha_{xx} + x^2 \alpha_{yy} = 0,
+        \quad
+        E^{*} = \beta_{xx} + x^2 \beta_{yy} = 2.
+    \end{equation}
+    The transformed equation is therefore, $4 x^2 u_{\alpha\alpha} + 4 x^2 u_{\beta\beta} + 2 u_{\beta} = 0$. After expressing $x$ and $y$ in terms of $\alpha$ and $\beta$ this takes the canonical form
+    \begin{equation}
+        u_{\alpha\alpha} + u_{\beta\beta} = -\frac{1}{2\beta} u_{\beta}.
+    \end{equation}
 \end{negg}
 
 \section{Cauchy Problem and the Wave Equation}
+In order to obtain a particular solution on a given PDE we need to prescribe some additional conditions on the solution $u = u(x,t)$. In the case of ODEs, the initial-value problems provide one way of specifying this data. For example, for a second order ODE we specify the value of the unknown function and its first derivative at the same point in the domain. This notion can be generalise to PDEs as follows.
 
+Consider a PDE in two independent variables where we are solving for the unknown function $u = (x,t)$ with $x \in \R$ and $t \geq t_0$. If we specify the conditions
+\begin{equation}
+    u(x, t_0) = u_0 (x)
+    \quad\text{and}\quad
+    u_t (x, t_0) = v_0 (x)
+\end{equation}
+then the resulting system of equations is called a Cauchy problem. These initial conditions don't have to be given along the axis $t = t_0$; instead they can also be specified along a suitable curve $C$ in the domain.
+
+\subsection{Wave Equation}
+Let $u = u(x,t)$ be a function satisfying
+\begin{equation}
+    u_tt - c^2 u_{xx} = 0
+\end{equation}
+for a constant $c \in \R$, over the domain $x \in \R$ and $t \geq 0$. This is called the wave equation (in one spatial dimension) over the full real line.
+
+The associated Cauchy problem requires that the $u$ must satisfy the initial conditions
+\begin{equation}
+    u(x, 0) = f(x)
+    \quad\text{and}\quad
+    u_t (x, 0) = g(x)
+\end{equation}
+for suitably chosen functions $f$ and $g$.
 
 \end{document}
