@@ -552,10 +552,19 @@ Generators are not unique. Indeed if $a \in G$ is a generator then so is $\inv{a
 
 
 \begin{nthm}
-    Let $\sim$ be an equivalence relation on $S$. Then, the collection of equivalence classes $\set{[a] \st a \in S}$ partitions $S$. More precisely, each $[a]$ is non-empty, and $S = \cup_{a \in S} [a]$, and if $[a] \neq [b]$ then $[a] \cap [b] = \emptyset$.
+    Let $\sim$ be an equivalence relation on $S$. Then, the collection of equivalence classes $\set{[a] \st a \in S}$ partitions $S$. More precisely, each $[a]$ is non-empty, and $S = \bigcup_{a \in S} [a]$, and if $[a] \neq [b]$ then $[a] \cap [b] = \emptyset$.
 \end{nthm}
 \begin{proof}
-    Exercise.
+    \phantom{}
+    \begin{enumerate}
+        \item By reflexivity, $a \sim a$ we have $a \in [a]$. Therefore, $[a] \neq \emptyset$.
+
+        \item By definition $[a] \subseteq S$, so $\bigcup_{a \in S} [a] \subseteq S$.
+
+        Take any $b \in S$. Then, $b \in [b] \subseteq \bigcup_{a \in S} [a]$. So, $S = \bigcup_{a \in S} [a]$.
+
+        \item Suppose $[a] \neq [b]$. Since $[a]$ and $[b]$ are non-empty $\exists x \in [a]$. SOMETHING.
+    \end{enumerate}
 \end{proof}
 
 

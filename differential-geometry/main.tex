@@ -660,17 +660,31 @@ These quantities can also be generalised to other regular parametrisations of th
 % APPROXIMATING ALPHA(S) NEAR ALPHA(0) USING FRENET-SERRET
 
 \begin{nthm}
-    Let $\alpha = \alpha(s)$ be a unit speed curve in with $\kappa > 0$. This is a plane curve if and only if $\tau = 0$ for all $s$.
+    Let $\gamma = \gamma(s)$, $a \leq s \leq b$ be a unit speed curve with $\kappa > 0$. This is a plane curve if and only if $\tau = 0$ for all $s$.
 \end{nthm}
 \begin{proof}
-    If $\tau = 0$, then the Frenet-Serret equations reduce to
+    Suppose $\gamma(s)$ is a plane curve. This means there are constant vectors $\vec{p}, \vec{q}$ such that $\paren*{\gamma(s) - \vec{p}} \cdot \vec{q}$ is identically zero. Differentiating this with respect to the parameter $s$ gives
     \begin{equation}
-        \dot{\vT} = \kappa \vN,
-        \quad
-        \dot{\vN} = -\kappa \vT,
-        \quad
-        \dot{\vB} = 0.
+        \paren*{\gamma(s) - \vec{p}} \cdot \vec{q} = 0
+        \implies
+        \dot{\gamma}(s) \cdot \vec{q} = 0
+        \implies
+        \ddot{\gamma}(s) \cdot \vec{q} = 0.
     \end{equation}
+    That is both $\vT \equiv \dot{\gamma}$ and $\vN \equiv \ddot{\gamma}$ are perpendicular to a constant vector $\vec{q}$. So,
+    \begin{equation}
+         \vec{q} \times \vB
+        = \vec{q} \times \paren*{\vT \times \vN}
+        = \paren*{\vec{q} \cdot \vN} \vT - \paren*{\vec{q} \cdot \vT} \vN
+        = 0
+    \end{equation}
+    Therefore, the unit vector $\vB$ is always parallel to $\vec{q}$. So, $\dot{\vB} = 0$ and $\tau = \abs{\dot{\vB}} = 0$.
+
+    Conversely, if $\tau = 0$, then the Frenet-Serret equations give $\dot{\vB} = 0$. That is $\vB$ is a constant unit vector. Let $\vec{A} = \gamma(c)$ for any $a \leq c \leq b$ and consider the function
+    \begin{equation}
+        f(s) = \paren*{\gamma(s) - \vec{A}} \cdot \vB.
+    \end{equation}
+    We note that $f'(s) = \dot{\gamma} \cdot \vB = \vT \cdot \vB = 0$, so $f$ is a constant function. Also, $f(a) = 0$, so $f(s) = 0$ for all $s$. That is $\paren*{\gamma(s) - \vec{A}} \cdot \vB$ vanishes identically. This means that $\gamma(s)$ lies in a plane perpendicular to $\vB$ and passing through the point $\vec{A}$. Therefore, $\gamma$ is a plane curve.
 \end{proof}
 
 \begin{nthm}
@@ -725,11 +739,23 @@ The area of the region enclosed by a Jordan curve $\gamma$ in the $\R^2$ plane i
 \begin{nthm}
     Let $\gamma(t) = (x(t), y(t))$ be a Jordan curve in the $xy$-plane, with $a \leq t \leq b$. The area enclosed by this curve is
     \begin{equation}
-        A = \frac{1}{2} \int_a^b \paren*{x\dot{y} + y\dot{x}} \,dt
+        A(\gamma) = \frac{1}{2} \int_a^b \paren*{x\dot{y} - y\dot{x}} \,dt
     \end{equation}
 \end{nthm}
 \begin{proof}
-    Exercise. Use the Green's theorem to show that this is equal to $A(\gamma)$ from before.
+    Let $f(x,y) = -y/2$ and $g(x,y) = x/2$. Then,
+    \begin{align}
+        \frac{1}{2} \int_a^b \paren*{x\dot{y} - y\dot{x}} \,dt
+        &= \frac{1}{2} \int_a^b  -y \,dx + x \,dy\\
+        &= \int_a^b  f(x,y) \,dx + g(x,y) \,dy\\
+        &= \int_{\interior{\gamma}} \paren*{ \frac{\pd g}{\pd x} - \frac{\pd f}{\pd y} } \,dxdy\\
+        &= \int_{\interior{\gamma}} dxdy
+    \end{align}
+    Here we used the Green's theorem to convert the line integral into an area integral. Overall,
+    \begin{equation}
+        \frac{1}{2} \int_a^b \paren*{x\dot{y} - y\dot{x}} \,dt = \int_{\interior{\gamma}} dxdy = A(\gamma)
+        \qedhere
+    \end{equation}
 \end{proof}
 
 \end{document}

@@ -613,9 +613,30 @@ Here again we can obtain some first integrals when the integrand $F\paren*{x, y,
 \end{enumerate}
 
 \begin{negg}
-    Find the extremals of $J[y] = \int_a^b \frac{\paren*{1 + y'^2}^2}{y''}$.
+    Find the extremals of
+    \begin{equation}
+        J[y] = \int_a^b \frac{\paren*{1 + y'^2}^2}{y''}.
+    \end{equation}
 
-    USE BOTH FIRST INTEGRALS.
+    This integrand is independent of both $x$ and $y$, and only goes up to the second order derivative term. Therefore, we have two first integrals
+    \begin{equation}
+        \frac{\pd F}{\pd y'} - \frac{d}{dx} \paren*{\frac{\pd F}{\pd y''}} = c_1
+        \quad\text{and}\quad
+        F - y' \paren*{\frac{\pd F}{\pd y'} - \frac{d}{dx}\paren*{\frac{\pd F}{\pd y''}}} - y'' \frac{\pd F}{\pd y''} = c_2.
+    \end{equation}
+    where $c_1$ and $c_2$ are arbitrary constants. Collectively, these reduce to
+    \begin{equation}
+        \frac{\paren*{1 + y'^2}^2}{y''} + 2 \paren*{1 + y'^2}^2 = c_1 y' + c_2.
+    \end{equation}
+    after a few lines of algebraic manipulations. To solve this ODE we make the substitution $u = y'$ leading to a first order non-linear separable ODE
+    \begin{equation}
+        EQQ
+    \end{equation}
+    whose solution is
+    \begin{equation}
+        EQQ.
+    \end{equation}
+
 \end{negg}
 
 % \section{Variational Problems in Parametric Form}
