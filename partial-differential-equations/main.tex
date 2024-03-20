@@ -610,19 +610,107 @@ Consider a PDE in two independent variables where we are solving for the unknown
 \end{equation}
 then the resulting system of equations is called a Cauchy problem. These initial conditions don't have to be given along the axis $t = t_0$; instead they can also be specified along a suitable curve $C$ in the domain.
 
-\subsection{Wave Equation}
+\subsection{Homogenous Wave Equation}
 Let $u = u(x,t)$ be a function satisfying
 \begin{equation}
-    u_tt - c^2 u_{xx} = 0
+    u_{tt} - c^2 u_{xx} = 0
+    \label{eq:wave-eqn}
 \end{equation}
-for a constant $c \in \R$, over the domain $x \in \R$ and $t \geq 0$. This is called the wave equation (in one spatial dimension) over the full real line.
+for a constant $c \in \R$, over the domain $x \in \R$ and $t \geq 0$. This is called the homogenous wave equation (in one spatial dimension) over the full real line.
 
+\subsection{Homogenous Wave Equation on an Infinite Spatial Domain}
 The associated Cauchy problem requires that the $u$ must satisfy the initial conditions
 \begin{equation}
     u(x, 0) = f(x)
     \quad\text{and}\quad
     u_t (x, 0) = g(x)
+    \label{eq:wave-initial-infinite}
 \end{equation}
 for suitably chosen functions $f$ and $g$.
+
+To solve this problem, we start by transforming the wave equation~\eqref{eq:wave-eqn} into its canonical form. Here, $A = 1$, $B = 0$ and $C = -c^2$. So, $B^2 - 4AC = 4c^2 > 0$ for all $x$ and $t$. Therefore, this is a hyperbolic PDE with the characteristics
+\begin{equation}
+    \frac{dx}{dt} = \pm c
+    \implies
+    x \pm ct = \text{constant}.
+\end{equation}
+Set $\xi = x + ct$ and $\eta = x - ct$. Then, $B^{*} = 2 + 2c^4$ and the transformed PDE is $u_{\xi\eta} = 0$. This can easily be integrated to obtain a general solution
+\begin{equation}
+    u(\xi, \eta) = \varphi(\xi) + \psi(\eta),
+\end{equation}
+with $\xi, \eta \in \R$, or equivalently,
+\begin{equation}
+    u(x, t) = \varphi(x + ct) + \psi(x - ct).
+    \label{eq:wave-gen-soln}
+\end{equation}
+
+Next, we impose the initial conditions: $u(x, 0) = f(x)$ gives $\varphi(x) + \psi(x) = f(x)$ and $u_t (x, 0) = g(x)$ gives $c\varphi'(x) - c\psi'(x) = g(x)$. Integrating the last equation with respect to $x$ leads to
+ \begin{equation}
+    \varphi(x) - \psi(x) = \frac{1}{c} \int_{x_0}^{x} g(x) \,dx + K.
+\end{equation}
+where $x_0$ and $K$ are arbitrary constants. Therefore,
+\begin{gather}
+    \varphi(x) = \frac{1}{2} f(x) + \frac{1}{2c} \int_{x_0}^{x} g(x) \,dx + \frac{K}{2}, \label{eq:wave-phi}\\
+    \psi(x) = \frac{1}{2} f(x) - \frac{1}{2c} \int_{x_0}^{x} g(x) \,dx - \frac{K}{2} \label{eq:wave-psi}.
+\end{gather}
+Overall, the general solution~\eqref{eq:wave-gen-soln} becomes
+\begin{equation}
+    u(x, t)
+    = \frac{1}{2} \paren*{f\paren*{x + ct} + f\paren*{x - ct}}
+    + \frac{1}{2c} \int_{x + ct}^{x - ct} g(x) \,dx.
+    \label{eq:wave-soln-infinite}
+\end{equation}
+for the initial conditions~\eqref{eq:wave-initial-infinite}. This is also called the d'Alembert's solution.
+
+\subsection{Homogenous Wave Equation on a Semi-Infinite Spatial Domain}
+Now we consdier the same wave equation~\eqref{eq:wave-eqn} over a semi infinite spatial domain $x \in [0, \infty)$. In this case we also have a boundary condition at $x=0$. For example, suppose we require $u(x,t)$ to be fixed at $x=0$. This situtaion can be described as
+\begin{equation}
+    u(x, 0) = f(x)
+    \quad\text{and}\quad
+    u_t (x, 0) = g(x)
+    \quad\text{and}\quad
+    u(0, t) = 0
+    \label{eq:wave-initial-semiinfinite}
+\end{equation}
+for all $x \in [0, \infty)$ and $t \geq 0$.
+
+To analyse this problem, we identify two cases: either $x - ct \geq 0$, in that case $x \geq 0$ and we simply obtain the d'Alembert's solution~\eqref{eq:wave-soln-infinite}. Or, $x - ct < 0$. Then $x < 0$ and the boundary condition at $x = 0$ becomes important and we can no longer directly use d'Alembert's solution.
+
+For $x - ct < 0$, we start by using the boundary condition $u(0, t) = 0$ in equation~\eqref{eq:wave-gen-soln} to obtain $\varphi(ct) + \psi(-ct) = 0$, or equivalently, $\psi(\theta) = - \varphi(-\theta)$. Therefore, equation~\eqref{eq:wave-gen-soln} gives
+\begin{equation}
+    u(x, t) = \varphi\paren*{x + ct} - \varphi\paren*{-\paren*{x - ct}}.
+\end{equation}
+We obtained equations~\eqref{eq:wave-phi}-\eqref{eq:wave-psi} using the initial conditions, so they still remain valid. Using these expressions in the previous equation then gives
+\begin{equation}
+    u(x, t)
+    = \frac{1}{2} \paren[\bigg]{f\paren*{x + ct} - f\paren*{-\paren*{x - ct}}}
+    + \frac{1}{2c} \int_{-\paren*{x - ct}}^{x + ct} g(x) \,dx.
+    \label{eq:wave-soln-semiinfinite}
+\end{equation}
+
+Alternatively, we can require $u(x,t)$ to be free at $x=0$. This corresponds to $u_x(0,t) = 0$ for all $t \geq 0$. Collectively, the initial-boundary conditions become
+\begin{equation}
+    u(x, 0) = f(x)
+    \quad\text{and}\quad
+    u_t (x, 0) = g(x)
+    \quad\text{and}\quad
+    u_x (0, t) = 0
+\end{equation}
+for all $x \in [0, \infty)$ and $t \geq 0$. A similar analysis shows that now the solution is
+
+SOMETHING SOMETHING.
+
+\subsection{Homogenous Wave Equation on a Finite Spatial Domain}
+Suppose now restrict the spatial coordinate to $x \in [0, \ell]$. The corresponding initial-boundary conditions where both ends are fixed are
+\begin{equation}
+    u(x, 0) = f(x)
+    \quad\text{and}\quad
+    u_t (x, 0) = g(x)
+    \quad\text{and}\quad
+    u(0, t) = u(\ell, t) = 0.
+    \label{eq:wave-initial-finite}
+\end{equation}
+
+SOMETHING SOMETHING.
 
 \end{document}
