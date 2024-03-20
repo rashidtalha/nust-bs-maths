@@ -754,8 +754,58 @@ The area of the region enclosed by a Jordan curve $\gamma$ in the $\R^2$ plane i
     Here we used the Green's theorem to convert the line integral into an area integral. Overall,
     \begin{equation}
         \frac{1}{2} \int_a^b \paren*{x\dot{y} - y\dot{x}} \,dt = \int_{\interior{\gamma}} dxdy = A(\gamma)
-        \qedhere
+        \qedhere 
     \end{equation}
+\end{proof}
+
+\subsection{Isoperimetric Inequality}
+
+\begin{nthm}[Wirtinger's Inequality]
+    Let $F : [0, \pi] \to \R$ be a smooth function with $F(0) = F(\pi) = 0$. Then,
+    \begin{equation}
+        \int_{0}^{\pi} \paren*{\frac{dF}{dt}}^2 \,dt \geq \int_{0}^{\pi} F^2 \,dt
+    \end{equation}
+    and the equality holds if and only if $F(t) = K \sin t$ for all $t \in [0, \pi]$ and $K$ is a constant.
+\end{nthm}
+\begin{proof}
+    Let $G(t) = F(t) / \sin(t)$. This is well-defined because $\sin(t)$ is non-zero for $t \in (0, \pi)$, and smooth because it is a quotient of two smooth functions. Writing $F(t) = G(t) \sin(t)$ we get,
+    \begin{align}
+        \int_{0}^{\pi} \paren*{\frac{dF}{dt}}^2 \,dt
+        &= \int_{0}^{\pi} \paren*{ G' \sin t + G \cos t }^2 \,dt\\
+        &= \int_{0}^{\pi} \cparen*{G'^2 \sin^2 t + G^2 \cos^2 t + 2 G G' \sin t \cos t} \,dt.
+    \end{align}
+    Writing $2 G G' = (G^2)'$, $\sin t \cos t = \frac{1}{2} \sin 2t$ and integrating the last term by parts gives
+    \begin{align}
+        \frac{1}{2} \int_{0}^{\pi} \cparen*{(G^2)' \sin 2t} \,dt
+        &= \bigg. \frac{1}{2} \sin (2t) G(t)^2 \bigg|_{0}^{\pi} - \int_{0}^{\pi} \cos 2t G^2 \,dt\\
+        &= \int_{0}^{\pi} \paren*{\cos 2t - \sin 2t} G^2 \,dt.
+    \end{align}
+    Consequently,
+    \begin{align}
+        \int_{0}^{\pi} \paren*{\frac{dF}{dt}}^2 \,dt
+        &= \int_{0}^{\pi} \cparen*{G'^2 \sin^2 t + G^2 \cos^2 t - G^2 \paren*{\cos^2 t - \sin^2 t}} \,dt\\
+        &= \int_{0}^{\pi} \cparen*{G'^2 \sin^2 t + G^2 \sin^2 t} \,dt\\
+        &= \int_{0}^{\pi} \paren*{G' \sin t}^2 \,dt + \int_{0}^{\pi} F^2 \,dt.
+    \end{align}
+
+    Therefore,
+    \begin{equation}
+        \int_{0}^{\pi} \paren*{\frac{dF}{dt}}^2 \,dt
+        - \int_{0}^{\pi} F^2 \,dt
+        = \int_{0}^{\pi} \paren*{G' \sin t}^2 \,dt \geq 0
+    \end{equation}
+    since $\paren*{G' \sin t}^2 \geq 0$. We find that the equality holds if and only if $G' \equiv 0$ (because $\sin^2 t > 0$ for $t \in (0, \pi)$). That is, the equality holds if and only if $G(t) = K$ for some constant $K$ and $F(t) = K \sin t$.
+\end{proof}
+
+\begin{nthm}[Isoperimetric inequality]
+    Let $\gamma$ be a simple closed curve. Let $\ell(\gamma)$ denote its length and $A(\gamma)$ be the area enclosed by $\gamma$. Then,
+    \begin{equation}
+        A(\gamma) \leq \frac{1}{4\pi} \ell(\gamma)^2
+    \end{equation}
+    and the equality holds if and only if $\gamma$ is a circle.
+\end{nthm}
+\begin{proof}
+    SOMETHING
 \end{proof}
 
 \end{document}
