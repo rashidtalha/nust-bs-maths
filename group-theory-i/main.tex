@@ -563,9 +563,52 @@ Generators are not unique. Indeed if $a \in G$ is a generator then so is $\inv{a
 
         Take any $b \in S$. Then, $b \in [b] \subseteq \bigcup_{a \in S} [a]$. So, $S = \bigcup_{a \in S} [a]$.
 
-        \item Suppose $[a] \neq [b]$. Since $[a]$ and $[b]$ are non-empty $\exists x \in [a]$. SOMETHING.
+        \item We prove the contra positive statement.
+
+        Suppose $[a] \cap [b] \neq \emptyset$. So, there is some $c \in [a] \cap [b]$. By definition, this means $c \sim a$ and $c \sim b$. Then, by the symmetry property of $\sim$, $a \sim c$. Now, the transitivity property of $\sim$ gives
+        \begin{equation}
+            a \sim c \quad\text{and}\quad c \sim b \implies a \sim b.
+        \end{equation}
+        Also, by symmetry, $b \sim a$.
+
+        Now, if $x \in [a]$, then $x \sim a$. By transitivity, $x \sim a$ and $a \sim b$ implies $x \sim b$. That is, $x \in [b]$. So, $[a] \subseteq [b]$.
+
+        Similarly, if $y \in [b]$, then $y \sim b$. Again, by transitivity, $y \sim b$ and $b \sim a$ implies $y \sim a$. That is, $y \in [a]$. So, $[b] \subseteq [a]$. Overall, $[a] = [b]$.
     \end{enumerate}
 \end{proof}
 
+\begin{nthm}
+    Let $H \subgroup G$ and $\sim$ be a relation on $G$ such that $a \sim b \coloneq \inv{a} b \in H$. Then, $\sim$ is an equivalence relation.
+\end{nthm}
+\begin{proof}
+    We check that $\sim$ satisfies the three conditions of being an equivalence relation.
+    \begin{enumerate}
+        \item Take $a \in G$. Then, $\inv{a} a = e$ and $e \in H$ because $H \subgroup G$. So, $a \sim a$.
+
+        \item Suppose $a \sim b$. That means $\inv{a} b \in H$. As $H \subgroup G$, the element $\inv{\paren*{\inv{a} b}} \in H$. That is, $\inv{b} a \in H$. So, $b \sim a$.
+
+        \item Suppose $a \sim b$ and $b \sim c$. That is $\inv{a} b \in H$ and $\inv{b} c \in H$. As $H$ is a subgroup, closure and associativity gives $\paren*{\inv{a} b} \paren*{\inv{b} c} = \inv{a} c \in H$. So, $a \sim c$. \qedhere
+    \end{enumerate}
+\end{proof}
+
+\begin{nthm}
+    Let $H \subgroup G$ and $\sim$ be a relation on $G$ such that $a \sim b \coloneq a \inv{b} \in H$. Then, $\sim$ is an equivalence relation.
+\end{nthm}
+\begin{proof}
+    Exercise.
+\end{proof}
+
+\section{Cosets}
+\begin{ndfn}
+    Let $H \subgroup G$. Take some $a \in G$. The subsets
+    \begin{equation}
+        aH = \set{ah \st h \in H}
+        \quad\text{and}\quad
+        Ha = \set{ha \st h \in H}
+    \end{equation}
+    are called the left and right cosets of $H$ containing $a \in G$, respectively.
+\end{ndfn}
+
+For the coset $aH$, the element $a$ is called a representative of the coset. We find that any element of $aH$ can act as its representative.
 
 \end{document}
