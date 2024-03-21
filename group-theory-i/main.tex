@@ -6,6 +6,7 @@
 
 \newcommand{\cyclic}[1]{\mean{#1}}
 \newcommand{\missing}[1]{{\color{red}#1}}
+\newcommand{\keyword}[1]{\textsf{#1}}
 
 \title{MATH 325: Group Theory I}
 \subtitle{Brief lecture notes}
@@ -16,41 +17,40 @@
 
 \maketitle
 
-\textbf{Textbook:} Contemporary Abstract Algebra, Joseph Gallian
+\textbf{Textbook:} Contemporary Abstract Algebra, Joseph Gallian.
+
+\textbf{Disclaimer:} This document most likely contains some errors --- use with caution. I have rephrased or paraphrased the content in most of the sections. Some examples may be missing. The numbering that I have used for sections, definitions, theorems, etc will not match the numbering given in the lectures.
 
 \section{Introduction}
 \begin{ndfn}
-    A binary operation is a map $* : X \times X \to X$, $(a,b) \mapsto a * b$.
+    A \keyword{binary operation} is a map $* : X \times X \to X$, $(a,b) \mapsto a * b$.
 \end{ndfn}
 
-By definition, a binary operation ensure that $a * b \in X$ for all $a, b \in X$. This property is called closure.
+By definition of $*$, $a * b \in X$ for all $a, b \in X$. This property is called \keyword{closure}.
 
 \begin{ndfn}
-    A binary operation $* : X \times X \to X$ is called commutative if
+    A binary operation $* : X \times X \to X$ is called \keyword{commutative} if
     \begin{equation*}
         \forall a, b \in X, \quad a * b = b * a
     \end{equation*}
 \end{ndfn}
 
 \begin{ndfn}
-    Let $G$ be a non-empty set, and $* : G \times G \to G$ be a binary operation. The pair $(G, *)$ is called a group if it satisfies all of the following
-    \begin{enumerate}
-        \item $\forall a, b, c \in G$, $(a * b) * c = a * (b * c)$ \hfill(Associativity)
-        \item $\exists e \in G$ such that $\forall a \in G$, $a * e = e * a = a$ \hfill(Identity)
-        \item $\forall a \in G$, $\exists a^{-1} \in G$ such that $a * a^{-1} = a^{-1} * a = e$ \hfill(Inverse)
+    Let $G$ be a non-empty set, and $* : G \times G \to G$ be a binary operation. The pair $(G, *)$ is called a \keyword{group} if it satisfies all of the following
+    \begin{enumerate}[label=(\roman*)]
+        \item $\forall a, b, c \in G$, $(a * b) * c = a * (b * c)$ \hfill(\keyword{Associativity})
+        \item $\exists e \in G$ such that $\forall a \in G$, $a * e = e * a = a$ \hfill(\keyword{Identity})
+        \item $\forall a \in G$, $\exists a^{-1} \in G$ such that $a * a^{-1} = a^{-1} * a = e$ \hfill(\keyword{Inverse})
     \end{enumerate}
 \end{ndfn}
 
 \begin{ndfn}
-    A group $(G, *)$ is called Abelian if the binary operation $*$ is commutative. That is
-    \begin{equation*}
-        \forall a, b \in G, \quad a * b = b * a
-    \end{equation*}
+    A group $(G, *)$ is called \keyword{Abelian} if the binary operation $*$ is commutative. That is, for all $a, b \in G$, $a * b = b * a$ .
 \end{ndfn}
 
-Typically we write $a * b$ simply as $ab$ and call the binary operation a multiplication. In the case where the binary operation is the usual addition, we write $a + b$ instead.
-
-Similarly, we often refer to $G$ as the group and don't explicitly mention the pair $(G, *)$.
+\begin{remark}
+Typically we write $a * b$ simply as $ab$ and call the binary operation multiplication. In the case where the binary operation is the usual addition, we write $a + b$ instead. Similarly, we often refer to $G$ as the group and don't explicitly mention the pair $(G, *)$. Moreover, we sometimes denote the identity element by $1$ for multiplicative binary operations, and by $0$ for additive binary operations.
+\end{remark}
 
 \begin{nthm}
     Each group has a unique identity element.
@@ -117,7 +117,7 @@ Similarly, we often refer to $G$ as the group and don't explicitly mention the p
         = e.
     \end{equation*}
 
-    So, $b^{-1} a^{-1}$ is also an inverse of $ab$. By uniqueness of inverse, $b^{-1} a^{-1} = (ab)^{-1}$.
+    So, $b^{-1} a^{-1}$ is also an inverse of $ab$. By the uniqueness of inverse, $b^{-1} a^{-1} = (ab)^{-1}$.
 \end{proof}
 
 \begin{nthm}
@@ -147,18 +147,20 @@ Similarly, we often refer to $G$ as the group and don't explicitly mention the p
 \end{proof}
 
 \begin{nthm}
-    Let $G$ be a group. Take $a, b \in G$. Then, the equation $a x = b$ has a unique solution. Likewise, the equation $y a = b$ has a unique solution.
+    Let $G$ be a group, and $a, b \in G$. The equation $a x = b$ has a unique solution. Likewise, the equation $y a = b$ has a unique solution.
 \end{nthm}
 \begin{proof}
-    (Existence.) Since $a \in G$, we have $a^{-1} \in G$ such that $a^{-1} a = e$. So,
+    Consider the equation $a x = b$.
+
+    (Existence.) Since $a \in G$, we have $\inv{a} \in G$ such that $\inv{a} a = e$. So,
     \begin{equation*}
         ax = b
-        \implies a^{-1} (a x) = a^{-1} b
-        \implies (a^{-1} a) x = a^{-1} b
-        \implies e x = a^{-1} b
-        \implies x = a^{-1} b.
+        \implies \inv{a} (a x) = \inv{a} b
+        \implies (\inv{a} a) x = \inv{a} b
+        \implies e x = \inv{a} b
+        \implies x = \inv{a} b.
     \end{equation*}
-    And $a b^{-1} \in H$ due to the closure property. So, $x = ab^{-1} \in H$.
+    And $\inv{a} b \in H$ due to the closure property. So, $x = \inv{a} b \in H$.
 
     (Uniqueness.) Suppose there are $x_1, x_2 \in H$ that satisfy $a x = b$. Then, $a x_1 = b$ and $a x_2 = b$. So, by the cancellation property
     \begin{equation*}
@@ -170,30 +172,30 @@ Similarly, we often refer to $G$ as the group and don't explicitly mention the p
 \end{proof}
 
 \begin{ndfn}
-    The order of a group $G$, denoted $\abs{G}$ or $O(G)$, is the number of elements in $G$. If $G$ has infinitely many elements then $\abs{G} = \infty$.
+    The \keyword{order} of a group $G$, denoted $\abs{G}$ or $O(G)$, is the number of elements in $G$. If $G$ has infinitely many elements then $\abs{G} = \infty$.
 \end{ndfn}
 
 \begin{egg}
     Some examples of groups are
     \begin{enumerate}
         \item $(\R,+)$, $(\C,+)$, $(\Z,+)$, $(\Q,+)$, $(\R^{*},\cdot)$, $(\C^{*},\cdot)$, $(\Q^{*},\cdot)$, $(\R^{+},\cdot)$. Here $\R^{*} = \R - \set{0}$, and $\R^{+} = \set{r \in \R \st r > 0}$.
-        \item The set of $n$th roots of unity $U_n = \set{\exp(\frac{2\pi i}{n}) \in C | n = 0, 1, \dots, n-1}$ forms a group under the multiplication of complex numbers.
-        \item The set of $n \times n$ matrices with entries in $\R$ is denoted as $M_{n}(\R)$. This forms a group under the usual additional of matrices.
-        \item $\GL_{n}(\R) = \set{A \in M_{n}(\R) \st \det A \neq 0}$ with the usual matrix multiplication is called the general linear group of order $n$.
-        \item The usual matrix multiplication makes $\SL_{n}(\R) = \set{A \in M_{n}(\R) \st \det A = 1}$ into a group, called the the special linear group of order $n$.
+        \item The set of $n$th roots of unity $U_n = \set{\exp(\frac{2\pi i}{n}) \in C \st n = 0, 1, \dots, n-1}$ forms a group under the multiplication of complex numbers.
+        \item The set of $n \times n$ matrices with entries in $\R$ is denoted by $M_{n}(\R)$. This forms a group under the usual additional of matrices.
+        \item $\GL_{n}(\R) = \set{A \in M_{n}(\R) \st \det A \neq 0}$ with the usual matrix multiplication is called the \keyword{general linear group} of order $n$.
+        \item The usual matrix multiplication makes $\SL_{n}(\R) = \set{A \in M_{n}(\R) \st \det A = 1}$ into a group, called the the \keyword{special linear group} of order $n$.
     \end{enumerate}
 \end{egg}
 
 \begin{negg}
-    Consider the set with a single element $G = \set{e}$ and the binary operation $e * e = e$. This forms a group, called the trivial group. Note that for the trivial group $\abs{G} = 1$.
+    Consider the set with a single element $G = \set{e}$ and the binary operation $e * e = e$. This forms a group, called the \keyword{trivial group}. Note that for the trivial group $\abs{G} = 1$.
 \end{negg}
 
 \begin{ndfn}
-    A non-empty subset $H \subseteq G$ is called a subgroup of $G$ if it is a group under the same binary operation. We denote this as $H \subgroup G$.
+    A non-empty subset $H \subseteq G$ is called a \keyword{subgroup} of $G$ if it is a group under the same binary operation. We denote this as $H \subgroup G$.
 \end{ndfn}
 
 \begin{ndfn}
-    $H \subgroup G$ is called a proper subgroup if $H \neq G$. This is sometimes emphasised by writing $H < G$. A proper subgroup is called non-trivial if $H \neq \set{e}$.
+    $H \subgroup G$ is called a \keyword{proper subgroup} if $H \neq G$. This is sometimes emphasised by writing $H < G$. A proper subgroup is called non-trivial if $H \neq \set{e}$.
 \end{ndfn}
 
 \begin{egg}
@@ -285,27 +287,26 @@ Similarly, we often refer to $G$ as the group and don't explicitly mention the p
 
 \begin{ndfn}
     Take $a \in \Z$, and fix some integer $n \geq 2$. The set of all the integers that are equivalent to $a$ modulo $n$ is called the residue class of $a$ modulo $n$. We write this as
-    \begin{equation}
+    \begin{equation*}
         [a]_n = \set{b \in \Z \st a \equiv b \mod n}.
-    \end{equation}
+    \end{equation*}
 \end{ndfn}
 
 \begin{remark}
     $[a]_n$ and $[b]_n$ are either equal of disjoint. (This was skipped.)
 \end{remark}
 
-\section{\texorpdfstring{$\Z_3$}{Z3}}
 \begin{ndfn}
     Fix some integer $n \geq 2$. The set of all the residue classes modulo $n$ in $\Z$ is denoted as
-    \begin{equation}
+    \begin{equation*}
         \Z_n = \set*{[a]_n \st a \in \Z}.
-    \end{equation}
+    \end{equation*}
 \end{ndfn}
 
 We can define a binary operation $+_n$, called modular addition (mod $n$) on this set,
-\begin{equation}
+\begin{equation*}
     [a]_n +_n [b]_n \coloneq [a + b]_n.
-\end{equation}
+\end{equation*}
 It needs to be shown that this is well-defined; that is if $[a]_n = [c]_n$ and $[b]_n = [d]_n$, then, $[a]_n +_n [b]_n = [c]_n +_n [d]_n$. (This was skipped.)
 
 \begin{nthm}
@@ -327,12 +328,12 @@ Consider a set $G = \set{e, a, b, c}$ with a binary operation that satisfies $a^
     TBC.
 \end{proof}
 
-This group $K_4$ is called the Klein $4$-group. It is a group of order $4$. Its multiplication rule can be represented as table, called a Cayley table.
+This group $K_4$ is called the \keyword{Klein $4$-group}. It is a group of order $4$. Its multiplication rule can be represented as table, called a Cayley table.
 \begin{center}
     \ra{1.2}
-    \begin{tabularx}{0.3\textwidth}{|R|R|R|R|R|}
+    \begin{tabularx}{0.3\textwidth}{|R||R|R|R|R|}
         \hline
-             & $ 1$ & $ a$ & $ b$ & $ab$ \\ \hline
+             & $ 1$ & $ a$ & $ b$ & $ab$ \\ \hline\hline
         $ 1$ & $ 1$ & $ a$ & $ b$ & $ab$ \\ \hline
         $ a$ & $ a$ & $ 1$ & $ab$ & $ b$ \\ \hline
         $ b$ & $ b$ & $ab$ & $ 1$ & $ a$ \\ \hline
@@ -350,26 +351,26 @@ Here, the entry in the the $(i,j)$-th entry is the result of multiplying the ele
 There are precisely three non-trivial subgroups of $K_4$: $\set{1, a}$, $\set{1, b}$ and $\set{1, ab}$.
 
 Consider the set
-\begin{equation}
+\begin{equation*}
     G = \set*{
     \begin{bmatrix}1 & 0 \\ 0 & 1\end{bmatrix},
     \begin{bmatrix}1 & 0 \\ 0 & 1\end{bmatrix},
     \begin{bmatrix}1 & 0 \\ 0 & 1\end{bmatrix},
     \begin{bmatrix}1 & 0 \\ 0 & 1\end{bmatrix}}
-\end{equation}
+\end{equation*}
 of matrices with the usual matrix multiplication. We find that it forms a group. Clearly, this is a group of order $4$. Moreover, each non-identity element in this group has order $2$. This coincides exactly with the group structure of $K_4$. We say that this group is the same as $K_4$ (this notion will be made precise when we define isomorphisms later), and that it is simply a matrix representation of $K_4$.
 
 Another group of order $4$ that we have already seen in $\Z_4$. This group has an element of order $4$, namely $[1]_4$. Therefore, it cannot be the `same' as $K_4$. (Again, this observation will be made precise through the use of isomorphisms.) This shows that not all groups of order $4$ are the same as $k_4$.
 
 \section{Group of Quaternions}
 Consider the group $\GL_2(\C)$ of $2 \times 2$ invertible matrices with complex entries. Consider its subset
-\begin{equation}
+\begin{equation*}
     H = \set*{
     \pm\begin{bmatrix*}[r]1 & 0\\ 0 & 1\end{bmatrix*},
     \pm\begin{bmatrix*}[r]1 & 0\\ 0 &-1\end{bmatrix*},
     \pm\begin{bmatrix*}[r]0 & 1\\-1 & 0\end{bmatrix*},
     \pm\begin{bmatrix*}[r]0 & i\\ i & 0\end{bmatrix*} }.
-\end{equation}
+\end{equation*}
 It is easy to check that this is a subgroup of $\GL_2(\C)$, and therefore a group. We note that this is a group of order $8$.
 
 Using the multiplication of $H$ as a template, we can define an abstract group of order $8$ as follows.
@@ -384,29 +385,41 @@ Using the multiplication of $H$ as a template, we can define an abstract group o
 
 This group is called the group of quaternions.
 \begin{center}
-    \ra{1.2}
-    \begin{tabularx}{0.62\textwidth}{|R|R|R|R|R|R|R|R|R|}
-        \hline
-             & $ 1$ & $ i$ & $ j$ & $ k$ & $-1$ & $-i$ & $-j$ & $-k$ \\ \hline
-        $ 1$ & $ 1$ & $ i$ & $ j$ & $ k$ & $-1$ & $-i$ & $-j$ & $-k$ \\ \hline
-        $ i$ & $ i$ & $ 1$ & $-k$ & $ j$ & $-i$ & $-1$ & $ k$ & $-j$ \\ \hline
-        $ j$ & $ j$ & $ k$ & $ 1$ & $ -$ & $ -$ & $ -$ & $ -$ & $ -$ \\ \hline
-        $ k$ & $ k$ & $-j$ & $ -$ & $ 1$ & $ -$ & $ -$ & $ -$ & $ -$ \\ \hline
-        $-1$ & $-1$ & $-i$ & $ -$ & $ -$ & $ 1$ & $ -$ & $ -$ & $ -$ \\ \hline
-        $-i$ & $-i$ & $-1$ & $ -$ & $ -$ & $ -$ & $ 1$ & $ -$ & $ -$ \\ \hline
-        $-j$ & $-j$ & $-k$ & $ -$ & $ -$ & $ -$ & $ -$ & $ 1$ & $ -$ \\ \hline
-        $-k$ & $-k$ & $ j$ & $ -$ & $ -$ & $ -$ & $ -$ & $ -$ & $ 1$ \\ \hline
-    \end{tabularx}
+\ra{1.2}
+\begin{tabularx}{0.62\textwidth}{|R||R|R|R|R|R|R|R|R|}
+    \hline
+         & $ 1$ & $ i$ & $ j$ & $ k$ & $-1$ & $-i$ & $-j$ & $-k$ \\ \hline\hline
+    $ 1$ & $ 1$ & $ i$ & $ j$ & $ k$ & $-1$ & $-i$ & $-j$ & $-k$ \\ \hline
+    $ i$ & $ i$ & $ 1$ & $-k$ & $ j$ & $-i$ & $-1$ & $ k$ & $-j$ \\ \hline
+    $ j$ & $ j$ & $ k$ & $ 1$ & $ -$ & $ -$ & $ -$ & $ -$ & $ -$ \\ \hline
+    $ k$ & $ k$ & $-j$ & $ -$ & $ 1$ & $ -$ & $ -$ & $ -$ & $ -$ \\ \hline
+    $-1$ & $-1$ & $-i$ & $ -$ & $ -$ & $ 1$ & $ -$ & $ -$ & $ -$ \\ \hline
+    $-i$ & $-i$ & $-1$ & $ -$ & $ -$ & $ -$ & $ 1$ & $ -$ & $ -$ \\ \hline
+    $-j$ & $-j$ & $-k$ & $ -$ & $ -$ & $ -$ & $ -$ & $ 1$ & $ -$ \\ \hline
+    $-k$ & $-k$ & $ j$ & $ -$ & $ -$ & $ -$ & $ -$ & $ -$ & $ 1$ \\ \hline
+\end{tabularx}
 
-    {Multiplication table for $Q_4$.}
+{Multiplication table for $Q_4$.}
 \end{center}
 
-\section{Dihedral Group (of Order 3)}
+\section{Dihedral Group (of Order 6)}
 Consider the set $D_3  =\set{1, a, a^2, b, ba, ba^2}$ with the conditions $a^3 = 1$, $b^2 = 1$ and $ab = ba^2$. We can check that this forms a non-abelian group. This is called the dihedral group of order $6$
 
-\missing{
-THE CAYLEY TABLE
-}
+\begin{center}
+\ra{1.2}
+\begin{tabularx}{0.62\textwidth}{|R||R|R|R|R|R|R|}
+    \hline
+           & $   1$ & $   a$ & $ a^2$ & $   b$ & $  ba$ & $ba^2$ \\ \hline\hline
+    $   1$ & $   1$ & $   a$ & $ a^2$ & $   b$ & $  ba$ & $ba^2$ \\ \hline
+    $   a$ & $   a$ & $ a^2$ & $   1$ & $  ba$ & $ba^2$ & $   b$ \\ \hline
+    $ a^2$ & $ a^2$ & $   -$ & $   -$ & $   -$ & $   -$ & $   -$ \\ \hline
+    $   b$ & $   b$ & $   -$ & $   -$ & $   -$ & $   -$ & $   -$ \\ \hline
+    $  ba$ & $  ba$ & $   -$ & $   -$ & $   -$ & $   -$ & $   -$ \\ \hline
+    $ba^2$ & $ba^2$ & $   -$ & $   -$ & $   -$ & $   -$ & $   -$ \\ \hline
+\end{tabularx}
+
+{Multiplication table for $D_3$.}
+\end{center}
 
 \section{Cyclic Group}
 \begin{ndfn}
@@ -422,22 +435,22 @@ Generators are not unique. Indeed if $a \in G$ is a generator then so is $\inv{a
 \end{notation}
 
 \begin{nthm}
-    Let $G = \cyclic{a}$ be a cyclic group. Then, $O(G) = O(a)$.
+    Let $G = \cyclic{a}$ be a cyclic group. Then, $|G| = O(a)$.
 \end{nthm}
 \begin{proof}
     If $O(a)$ is infinite then $a^n$ and $a^m$ are distinct for all $n \neq m$; because otherwise,
-    \begin{equation}
+    \begin{equation*}
         a^n = a^m \implies a^{n - m} = 1 \implies O(a) \leq \abs{n-m}
-    \end{equation}
+    \end{equation*}
     which is a contradiction. Now, since each $a^n$ is different from $a^{n+1}$, we have infinitely many elements in the set
-    \begin{equation}
+    \begin{equation*}
         \cyclic{a} = \set{a^n \st n \in \Z}.
-    \end{equation}
-    Consequently, $G = \cyclic{a}$ has infinitely many elements; i.e. $O(G)$ is also infinite.
+    \end{equation*}
+    Consequently, $G = \cyclic{a}$ has infinitely many elements; i.e. $|G|$ is also infinite.
 
     Next, consider the case when $O(a) = n$ is finite.
 
-    If $O(a) = 1$, then $G = \cyclic{a} = \set{a^n \st n \in \Z} = \set{1}$ and $O(G) = 1$.
+    If $O(a) = 1$, then $G = \cyclic{a} = \set{a^n \st n \in \Z} = \set{1}$ and $|G| = 1$.
 
     Otherwise $O(a) = n \geq 2$. SOMETHING SOMETHING.
 \end{proof}
@@ -451,9 +464,9 @@ Generators are not unique. Indeed if $a \in G$ is a generator then so is $\inv{a
 \end{nthm}
 \begin{proof}
     By the division algorithm, we have $m = qn + r$ for $q, r \in \Z$ and $0 \leq r < n$. So,
-    \begin{equation}
+    \begin{equation*}
         a^m = a^{nq + r} = \paren*{{a^n}^q} \paren*{a^r} = \paren*{1^q} \paren*{a^r} = \paren*{1} \paren*{a^r} = a^r.
-    \end{equation}
+    \end{equation*}
 
     Now, $a^m = 1 \implies a^r = 1$. However, $r < n$ and $n$ is the least positive integer for which $a^n = 1$. Therefore, $r$ must be zero (if it was positive then it would contradict the minimality of $n$). Therefore, $m = qn$, or $n \mid m$
 \end{proof}
@@ -474,33 +487,33 @@ Generators are not unique. Indeed if $a \in G$ is a generator then so is $\inv{a
 \end{nthm}
 \begin{proof}
     Suppose $a^k$ is a generator of $G$. Then, we can write $a$ as a power of $a^k$, say
-    \begin{equation}
-        a = \paren*{a^k}^m = a^{km}
-    \end{equation}
+    \begin{equation*}
+        a = \paren{a^k}^m = a^{km}
+    \end{equation*}
     for some $m \in \Z$. Then,
-    \begin{equation}
-        a = \paren*{a^k}^m
+    \begin{equation*}
+        a = \paren{a^k}^m
         \implies
         a a^{-km} = e
         \implies
         a^{1-km} = e.
-    \end{equation}
+    \end{equation*}
     So, $n \mid 1 - km$. That is $\exists q \in \Z$ such that $1 - km = qn$. We can re-arrange this to get $qn + km = 1$. From number theory (Bezout's lemma) we know that this implies $\gcd(n,k)=1$.
 
     Conversely, suppose $\gcd(n,k)=1$. Then, there exist integers $x, y$ such that $xk + yn = 1$. So,
-    \begin{equation}
+    \begin{equation*}
         a = a^{xk + yn}
         \implies
-        a = \paren*{a^{k}}^{x} \paren*{a^{n}}^{y}
+        a = \paren{a^{k}}^{x} \paren{a^{n}}^{y}
         \implies
-        a = \paren*{a^{k}}^{x} e^{y}
+        a = \paren{a^{k}}^{x} e^{y}
         \implies
-        a = \paren*{a^{k}}^{x}.
-    \end{equation}
+        a = \paren{a^{k}}^{x}.
+    \end{equation*}
     Now for all $b \in \cyclic{a}$, we have $b = a^r$ for some $r \in Z$. Therefore, we can write it as a power of $a^k$ as
-    \begin{equation}
-        b = a^r = \paren*{\paren*{a^{k}}^{x}}^{r} = \paren*{a^{k}}^{xr}.
-    \end{equation}
+    \begin{equation*}
+        b = a^r = \paren{\paren{a^{k}}^{x}}^{r} = \paren{a^{k}}^{xr}.
+    \end{equation*}
     So, $a^k$ also generates $\cyclic{a}$.
 \end{proof}
 
@@ -517,19 +530,19 @@ Generators are not unique. Indeed if $a \in G$ is a generator then so is $\inv{a
 
 \section{Equivalence Relations}
 \begin{ndfn}
-    A partition of a non-empty set $S$ is a collection of non-empty disjoint subsets $S_i \subseteq S$ such that $\cup_{i \in I} S_i = S$.
+    A \keyword{partition} of a non-empty set $S$ is a collection of non-empty disjoint subsets $S_i \subseteq S$ such that $\cup_{i \in I} S_i = S$.
 \end{ndfn}
 
 \begin{ndfn}
-    A relation $R$ on a set $S$ is a subset of $S \times S$. We say that $x$ is related to $y$ if $(x,y) \in R$. This is denoted as $xRy$.
+    A \keyword{relation} $R$ on a set $S$ is a subset of $S \times S$. We say that $x$ is related to $y$ if $(x,y) \in R$. This is denoted as $xRy$.
 \end{ndfn}
 
 \begin{ndfn}
-    A relation $R$ on $S$ is called an equivalence relation if it satisfies
+    A relation $R$ on $S$ is called an \keyword{equivalence relation} if it satisfies
     \begin{enumerate}[label=(\roman*)]
-        \item For all $x \in S$, $xRx$. \hfill(reflexive)
-        \item For all $x, y \in S$, $xRy \implies yRx$. \hfill(symmetric)
-        \item For all $x, y, z \in S$, if $xRy$ and $yRz$ then $xRz$. \hfill(transitive)
+        \item For all $x \in S$, $xRx$. \hfill(\keyword{reflexive})
+        \item For all $x, y \in S$, $xRy \implies yRx$. \hfill(\keyword{symmetric})
+        \item For all $x, y, z \in S$, if $xRy$ and $yRz$ then $xRz$. \hfill(\keyword{transitive})
     \end{enumerate}
     An equivalence relation is typically denoted by the symbol $\sim$ instead of $R$.
 \end{ndfn}
@@ -544,15 +557,15 @@ Generators are not unique. Indeed if $a \in G$ is a generator then so is $\inv{a
 
 \begin{ndfn}
     Let $\sim$ be an equivalence relation on $S$. The equivalence class of $a \in S$ is the set
-    \begin{equation}
+    \begin{equation*}
         [a] = \set{b \in S \st b \sim a}.
-    \end{equation}
+    \end{equation*}
     Some authors use the notation $\bar{a}$ or $cl(a)$ to denote the equivalence class of $a$.
 \end{ndfn}
 
 
 \begin{nthm}
-    Let $\sim$ be an equivalence relation on $S$. Then, the collection of equivalence classes $\set{[a] \st a \in S}$ partitions $S$. More precisely, each $[a]$ is non-empty, and $S = \bigcup_{a \in S} [a]$, and if $[a] \neq [b]$ then $[a] \cap [b] = \emptyset$.
+    Let $\sim$ be an equivalence relation on $S$. The collection of equivalence classes $\set{[a] \st a \in S}$ partitions $S$. More precisely, each $[a]$ is non-empty, and $S = \bigcup_{a \in S} [a]$, and if $[a] \neq [b]$ then $[a] \cap [b] = \emptyset$.
 \end{nthm}
 \begin{proof}
     \phantom{}
@@ -561,19 +574,19 @@ Generators are not unique. Indeed if $a \in G$ is a generator then so is $\inv{a
 
         \item By definition $[a] \subseteq S$, so $\bigcup_{a \in S} [a] \subseteq S$.
 
-        Take any $b \in S$. Then, $b \in [b] \subseteq \bigcup_{a \in S} [a]$. So, $S = \bigcup_{a \in S} [a]$.
+        Take any $a \in S$. Then, $a \in [a] \subseteq \bigcup_{a \in S} [a]$. So, $S = \bigcup_{a \in S} [a]$.
 
-        \item We prove the contra positive statement.
+        \item We prove the contrapositive statement.
 
-        Suppose $[a] \cap [b] \neq \emptyset$. So, there is some $c \in [a] \cap [b]$. By definition, this means $c \sim a$ and $c \sim b$. Then, by the symmetry property of $\sim$, $a \sim c$. Now, the transitivity property of $\sim$ gives
-        \begin{equation}
+        Suppose $[a] \cap [b] \neq \emptyset$. So, there is some $c \in [a] \cap [b]$. By definition, this means $c \sim a$ and $c \sim b$. Then, by symmetry, $a \sim c$. So, the transitivity of $\sim$ gives
+        \begin{equation*}
             a \sim c \quad\text{and}\quad c \sim b \implies a \sim b.
-        \end{equation}
+        \end{equation*}
         Also, by symmetry, $b \sim a$.
 
         Now, if $x \in [a]$, then $x \sim a$. By transitivity, $x \sim a$ and $a \sim b$ implies $x \sim b$. That is, $x \in [b]$. So, $[a] \subseteq [b]$.
 
-        Similarly, if $y \in [b]$, then $y \sim b$. Again, by transitivity, $y \sim b$ and $b \sim a$ implies $y \sim a$. That is, $y \in [a]$. So, $[b] \subseteq [a]$. Overall, $[a] = [b]$.
+        Similarly, if $y \in [b]$, then $y \sim b$. Again, by transitivity, $y \sim b$ and $b \sim a$ implies $y \sim a$. That is, $y \in [a]$. So, $[b] \subseteq [a]$. Overall, $[a] = [b]$.\qedhere
     \end{enumerate}
 \end{proof}
 
@@ -582,13 +595,12 @@ Generators are not unique. Indeed if $a \in G$ is a generator then so is $\inv{a
 \end{nthm}
 \begin{proof}
     We check that $\sim$ satisfies the three conditions of being an equivalence relation.
-    \begin{enumerate}
-        \item Take $a \in G$. Then, $\inv{a} a = e$ and $e \in H$ because $H \subgroup G$. So, $a \sim a$.
+    
+    (Reflexive.) Take $a \in G$. Then, $\inv{a} a = e$ and $e \in H$ because $H \subgroup G$. So, $a \sim a$.
 
-        \item Suppose $a \sim b$. That means $\inv{a} b \in H$. As $H \subgroup G$, the element $\inv{\paren*{\inv{a} b}} \in H$. That is, $\inv{b} a \in H$. So, $b \sim a$.
+    (Symmetric.) Suppose $a \sim b$. That means $\inv{a} b \in H$. As $H \subgroup G$, the element $\inv{\paren*{\inv{a} b}} \in H$. And $\inv{\paren*{\inv{a} b}} = \inv{b} a$. That is, $\inv{b} a \in H$. So, $b \sim a$.
 
-        \item Suppose $a \sim b$ and $b \sim c$. That is $\inv{a} b \in H$ and $\inv{b} c \in H$. As $H$ is a subgroup, closure and associativity gives $\paren*{\inv{a} b} \paren*{\inv{b} c} = \inv{a} c \in H$. So, $a \sim c$. \qedhere
-    \end{enumerate}
+    (Transitive.) Suppose $a \sim b$ and $b \sim c$. That is $\inv{a} b \in H$ and $\inv{b} c \in H$. As $H$ is a subgroup, closure and associativity gives $\paren*{\inv{a} b} \paren*{\inv{b} c} = \inv{a} c \in H$. So, $a \sim c$. \qedhere
 \end{proof}
 
 \begin{nthm}
@@ -601,14 +613,70 @@ Generators are not unique. Indeed if $a \in G$ is a generator then so is $\inv{a
 \section{Cosets}
 \begin{ndfn}
     Let $H \subgroup G$. Take some $a \in G$. The subsets
-    \begin{equation}
+    \begin{equation*}
         aH = \set{ah \st h \in H}
         \quad\text{and}\quad
         Ha = \set{ha \st h \in H}
-    \end{equation}
-    are called the left and right cosets of $H$ containing $a \in G$, respectively.
+    \end{equation*}
+    are called the left and right \keyword{cosets} of $H$ containing $a \in G$, respectively.
 \end{ndfn}
 
-For the coset $aH$, the element $a$ is called a representative of the coset. We find that any element of $aH$ can act as its representative.
+For the coset $aH$, the element $a$ is called a \keyword{representative} of the coset. We note that any element of $aH$ can act as its representative. A coset always contains its representative element; because $a = a e = e a$ and $e \in H$ for every subgroup.
+
+\begin{nthm}
+    Let $H \subgroup G$ and $\sim$ be an equivalence relation on $G$ such that $a \sim b$ if $\inv{a} b \in H$. Then, $[a] = aH$.
+\end{nthm}
+\begin{proof}
+    We know that
+    \begin{equation*}
+        [a]
+        = \set{b \in G \st b \sim a}
+        = \set{b \in G \st a \sim b}
+        = \set{b \in G \st \inv{a} b \in H}.
+    \end{equation*}
+
+    Take any $x \in aH$. Then, $x = ah$ for some $h \in H$. So, $\inv{a} x = h \in H$. Therefore, $x \in [a]$. So, $aH \subseteq [a]$.
+
+    Likewise, take any $x \in [a]$. Then, $\inv{a} x \in H$. So, there is some $h \in H$ such that $\inv{a} x = h$. Therefore, $x = ah \in aH$. So, $[a] \subseteq aH$. Overall, $[a] = aH$.
+\end{proof}
+
+\begin{nthm}
+    Let $H \subgroup G$ and $\sim$ be an equivalence relation on $G$ such that $a \sim b$ if $a \inv{b} \in H$. Then, $[a] = Ha$.
+\end{nthm}
+\begin{proof}
+    Exercise.
+\end{proof}
+
+\begin{nthm}
+    Let $H \subgroup G$ and $a \in G$.
+    \begin{enumerate}
+        \item $a \in aH$
+        \item $aH = bH$ iff $a \in bH$
+        \item $aH = bH$ or $aH \cap bH = \emptyset$
+    \end{enumerate}
+\end{nthm}
+\begin{proof}
+    Exercise.
+\end{proof}
+
+\begin{nthm}
+    Let $H$ be a subgroup of $G$ and let $a, b \in G$. Then,
+    \begin{enumerate}
+        \item $aH = H$ if and only if $a \in H$.
+        \item $|aH| = |bH|$
+        \item $aH = bH$ if and only if $\inv{a} b \in H$.
+    \end{enumerate}
+\end{nthm}
+\begin{proof}
+    Exercise.
+\end{proof}
+
+\begin{remark}
+    Since $|aH| = |bH|$ for all $a, b \in G$, we have that $|aH| = |eH| = |H|$ for all $a \in G$. Therefore, the cardinality of each coset of $H$ is the same as the order of $H$.
+\end{remark}
+
+\begin{nthm}
+    Let $G$ be a finite group and $H$ be its subgroup. Then $|H|$ divides $|G|$. Moreover, the number of distinct left (right) cosets of $H$ in $G$ is $|G|/|H|$; this is denoted as $|G:H|$.
+\end{nthm}
 
 \end{document}
