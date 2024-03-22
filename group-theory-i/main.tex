@@ -603,22 +603,22 @@ We have an analogous result for the right cosets.
         \item Suppose $aH = bH$. By part (i) $a \in aH$. So, $a \in aH = bH$. Therefore, $a \in bH$.
 
         For the converse, suppose $a \in bH$. Then, $a = bh_0$ for some $h_0 \in H$. So,
-        \begin{equation}
+        \begin{equation*}
             aH
             = \set{ah \st h \in H}
             = \set{(bh_0)h \st h \in H}
             = \set{b(h_0 h) \st h \in H}
             = \set{bk \st k \in H}
             = bH
-        \end{equation}
+        \end{equation*}
 
         \item Suppose $aH \cap bH \neq \emptyset$. Then, $\exists c \in G$ such that $c \in aH \cap bH$. So, $c = ah_1$ and $c = bh_2$ for some $h_1, h_2 \in H$. Thus,
-        \begin{equation}
+        \begin{equation*}
             ah_1 = bh_2
             \implies a = bh_2 \inv{h_1}
             \implies a = bh
             \implies a \in bH,
-        \end{equation}
+        \end{equation*}
         with $h = h_2 \inv{h_1} \in H$. By part (ii) $a \in bH$ implies $aH = bH$.
 
         Therefore, either $aH \cap bH = \emptyset$ of $aH = bH$.\qedhere
@@ -638,12 +638,12 @@ We have an analogous result for the right cosets.
         \item This is a special case of part (ii) from theorem~(\ref{thm:coset-properties-a}) with $b = e$.
 
         \item Consider the map $\varphi : aH \to bH$ with $\varphi(ah) = bh$. This is injective because
-        \begin{equation}
+        \begin{equation*}
             \varphi(ah_1) = \varphi(ah_2)
             \implies bh_1 = bh_2
             \implies h_1 = h_2
             \implies ah_1 = ah_2.
-        \end{equation}
+        \end{equation*}
         It is also surjective by construction. Therefore, $\varphi$ is a bijection between the sets $aH$ and $bH$. So, $|aH| = |bH|$.
 
         \item By theorem~(\ref{thm:coset-properties-a}) part(ii),
@@ -672,9 +672,9 @@ Again, we have an analogous version of the previous two theorems for right coset
     Moreover, $|aH| = |bH|$, for all $a, b \in G$. In particular, $|a_j H| = |e H| = |H|$ for all $j$.
 
     Now, since $G$ is written as a union of distinct sets, we have
-    \begin{equation}
+    \begin{equation*}
         |G| = |a_1 H| \cup \dots \cup |a_k H| = |H| \cup \dots \cup |H| = k |H|.
-    \end{equation}
+    \end{equation*}
     So, $|H|$ divides $|G|$ and the number of distinct left (right) cosets is $k = |G|/|H|$.
 \end{proof}
 
