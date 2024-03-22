@@ -441,11 +441,7 @@ Requiring $\delta J = 0$ and using the fundamental theorem of calculus of variat
 The same process can be repeated for each $h_i$ to get one Euler-Lagrange equation for each dependent variable.
 
 \section{Geodesics}
-Functionals with multiple dependent variables are particularly suitable for stating the problem of finding geodesics on a surface. A geodesic between two points $P$ and $Q$ on a surface $\vec{r} = \vec{r}(u,v)$ is a curve of shortest length connecting these two points. In finding a geodesic we, therefore, minimise the length functional
-\begin{equation}
-    L = \int_\alpha^\beta ds,
-\end{equation}
-where $ds$ is the length element for the given surface. From differential geometry, we know that
+Functionals with multiple dependent variables are particularly suitable for stating the problem of finding geodesics on a surface. A geodesic between two points $P$ and $Q$ on a surface $\vec{r} = \vec{r}(u,v)$ is a curve of shortest length connecting these two points. In finding a geodesic we, therefore, minimise the length functional $L = \int_\alpha^\beta ds$ where $ds$ is the length element for the given surface. From differential geometry, we know that
 \begin{equation}
     ds^2 = E(u,v) \,du^2 + 2 F(u,v) \,du dv + G(u,v) \,dv^2,
     \label{eq:1st-fund-form}
@@ -521,9 +517,9 @@ identically. Consequently, the Euler-Lagrange equations obtained from
 \end{equation}
 and
 \begin{equation}
-    J_1 = \int_a^b \paren*{F\paren*{x, y_1, \dots, y_n, y'_1, \dots, y'_n} + \psi(x, y_1, \dots, y_n, y'_1, \dots, y'_n)} \,dx
+    J_1 = \int_a^b \cparen[\bigg]{F\paren*{x, y_1, \dots, y_n, y'_1, \dots, y'_n} + \psi(x, y_1, \dots, y_n, y'_1, \dots, y'_n)} \,dx
 \end{equation}
-are the same; namely
+are the same, namely
 \begin{equation}
     \frac{\pd F}{\pd y_k} - \frac{d}{dx} \paren*{\frac{\pd F}{\pd y'_k}} = 0.
 \end{equation}
@@ -612,32 +608,31 @@ Here again we can obtain some first integrals when the integrand $F\paren*{x, y,
     \end{equation}
 \end{enumerate}
 
-\begin{negg}
-    Find the extremals of
-    \begin{equation}
-        J[y] = \int_a^b \frac{\paren*{1 + y'^2}^2}{y''}.
-    \end{equation}
+% \begin{negg}
+%     Find the extremals of
+%     \begin{equation}
+%         J[y] = \int_a^b \frac{\paren*{1 + y'^2}^2}{y''}.
+%     \end{equation}
 
-    This integrand is independent of both $x$ and $y$, and only goes up to the second order derivative term. Therefore, we have two first integrals
-    \begin{equation}
-        \frac{\pd F}{\pd y'} - \frac{d}{dx} \paren*{\frac{\pd F}{\pd y''}} = c_1
-        \quad\text{and}\quad
-        F - y' \paren*{\frac{\pd F}{\pd y'} - \frac{d}{dx}\paren*{\frac{\pd F}{\pd y''}}} - y'' \frac{\pd F}{\pd y''} = c_2.
-    \end{equation}
-    where $c_1$ and $c_2$ are arbitrary constants. Collectively, these reduce to
-    \begin{equation}
-        \frac{\paren*{1 + y'^2}^2}{y''} + 2 \paren*{1 + y'^2}^2 = c_1 y' + c_2.
-    \end{equation}
-    after a few lines of algebraic manipulations. To solve this ODE we make the substitution $u = y'$ leading to a first order non-linear separable ODE
-    \begin{equation}
-        EQQ
-    \end{equation}
-    whose solution is
-    \begin{equation}
-        EQQ.
-    \end{equation}
-
-\end{negg}
+%     This integrand is independent of both $x$ and $y$, and only goes up to the second order derivative term. Therefore, we have two first integrals
+%     \begin{equation}
+%         \frac{\pd F}{\pd y'} - \frac{d}{dx} \paren*{\frac{\pd F}{\pd y''}} = c_1
+%         \quad\text{and}\quad
+%         F - y' \paren*{\frac{\pd F}{\pd y'} - \frac{d}{dx}\paren*{\frac{\pd F}{\pd y''}}} - y'' \frac{\pd F}{\pd y''} = c_2.
+%     \end{equation}
+%     where $c_1$ and $c_2$ are arbitrary constants. Collectively, these reduce to
+%     \begin{equation}
+%         \frac{\paren*{1 + y'^2}^2}{y''} + 2 \paren*{1 + y'^2}^2 = c_1 y' + c_2.
+%     \end{equation}
+%     after a few lines of algebraic manipulations. To solve this ODE we make the substitution $u = y'$ leading to a first order non-linear separable ODE
+%     \begin{equation}
+%         EQQ
+%     \end{equation}
+%     whose solution is
+%     \begin{equation}
+%         EQQ.
+%     \end{equation}
+% \end{negg}
 
 \section{Variational Problems with Constraints}
 
@@ -693,9 +688,9 @@ Constraints that are given as an integral equation are called isoperimetric or i
     \begin{equation}
         x^2 + \paren*{y-k}^2 = k^2 + a^2.
     \end{equation}
-    To eliminate $k$ from this equation, we need to use the constraint $\int_a^b \sqrt{1 + y'^2} \,dx = \ell$, which leads to a very complicated expression
+    To eliminate $k$ from this equation, we need to use the constraint $\int_a^b \sqrt{1 + y'^2} \,dx = \ell$, which leads to a complicated expression,
     \begin{equation}
-        \ell = EQQ
+        k = a \cot\paren*{\frac{\ell}{2 \sqrt{a^2 + k^2}}},
     \end{equation}
     with no closed form solution.
 
