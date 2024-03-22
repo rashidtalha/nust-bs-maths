@@ -27,7 +27,7 @@
 \textbf{Disclaimer:} This document most likely contains some errors --- use with caution. I have rephrased or paraphrased the content in most of the sections. Some examples may be missing. The numbering that I have used for sections, definitions, theorems, etc will not match the numbering given in the lectures.
 
 \section{Introduction}
-A curve in $\R^n$ is most precisely defined as a one dimensional smooth submanifold. In this course, we take a more relaxed approach and instead identify a curve as the image of a suitable map.
+A \keyword{curve} in $\R^n$ is most precisely defined as a one dimensional smooth submanifold. In this course, we take a more relaxed approach and instead identify a curve as the image of a suitable map.
 
 \begin{ndfn}
     A \keyword{parametrised curve} in $\R^n$ is a map $\gamma : (\alpha, \beta) \to \R^n$. We allow the case where $\alpha = -\infty$ or $\beta = \infty$. A parametrised curve whose image is $C$ is called a \keyword{parametrisation} of $C$.
@@ -70,7 +70,7 @@ Since $\gamma(t)$ is the \keyword{position} vector to a point on the curve, its 
     We say that $\gamma = \gamma(t)$ is a \keyword{unit-speed curve} if $\abs{\dot{\gamma}(t)} \equiv 1$.
 \end{ndfn}
 
-\begin{nprop}
+\begin{nprop}\label{prop:unit-vector-perp}
     Let $\vec{a}(t)$ be a unit vector that depends smoothly on $t$. Then,
     \begin{equation}
         \vec{a}(t) \cdot \dot{\vec{a}}(t) = 0
@@ -107,14 +107,29 @@ Notice that the condition that a given point $\gamma(t)$ is a regular is equival
     Any reparametrisation of a regular curve is regular.
 \end{nthm}
 \begin{proof}
-    TBC.
+    Let $\gamma_1 : (\alpha, \beta) \to \R^n$ be the reparametrisation of a regular curve $\gamma_2 : (a,b) \to \R^n$ through the map $\varphi : (\alpha, \beta) \to (a, b)$. So, $\gamma_1 (t) = \gamma_2 (\varphi(t))$. Then, by chain rule,
+    \begin{equation}
+        \gamma'_1 (t) = \gamma'_2 (\varphi(t)) \varphi'(t).
+    \end{equation}
+
+    Now, $\gamma'_2 (\varphi(t)) \neq 0$ for all $t$ because it is a regular curve. Also, differentiating both sides of $\varphi (\varphi^{-1} (t)) = t$ with respect to $t$ leads to
+    \begin{equation}
+        \varphi' (\varphi^{-1} (t)) \cdot \paren*{\varphi^{-1} (t)}' = 1, \quad\forall t.
+    \end{equation}
+    Consequently, $\varphi' (u) \neq 0$ for all $u$.
+
+    Therefore, $\gamma'_1 (t) \neq 0$ for all $t$, because both $\gamma'_2 (\varphi(t))$ and $\varphi'(t)$ are always non-zero. So, $\gamma_1$ is a regular curve.
 \end{proof}
 
 \begin{nthm}
     If $\gamma = \gamma(t)$ is a regular curve, then its arc-length function $s = s(t)$ is smooth.
 \end{nthm}
 \begin{proof}
-    TBC.
+    The arc-length function for $\gamma$ is $s(t) = \int_{t_0}^{t} \abs*{\dot{\gamma}(u)} \,du$. By the fundamental theorem of calculus, $ds/dt = \abs*{\dot{\gamma}}$. So, $s = s(t)$ is differentiable. Now,
+    \begin{equation}
+        \abs*{\dot{\gamma}} = \sqrt{\dot{\gamma}_1^2 + \dots + \dot{\gamma}_n^2}.
+    \end{equation}
+    And $x \mapsto \sqrt{x}$ is smooth for all $x > 0$. So, if $\gamma$ is regular then for all $t$, $\dot{\gamma}(t) \neq 0$. Therefore, $\dot{\gamma}_1^2 + \dots + \dot{\gamma}_n^2 > 0$. As a result, $ds/dt \equiv \abs*{\dot{\gamma}}$ is a smooth function. In other words, $s = s(t)$ is smooth.
 \end{proof}
 
 \begin{nthm}
@@ -152,9 +167,7 @@ Let $\gamma = \gamma(t)$ be a regular parametrised curve. Intuitively we know th
 
 Taylor expansion gives
 \begin{equation}
-    \gamma(t + \Delta t)
-    = \gamma(t) + \dot{\gamma}(t) \Delta t + \frac{1}{2} \ddot{\gamma}(t) \paren*{\Delta t}^2
-    + O(\paren*{\Delta t}^3)
+    \gamma(t + \Delta t) = \gamma(t) + \dot{\gamma}(t) \Delta t + \frac{1}{2} \ddot{\gamma}(t) \paren*{\Delta t}^2 + O(\paren*{\Delta t}^3)
 \end{equation}
 The second order term gives the deviation from the tangent line, and its strength is determined by the value of $\abs*{\ddot{\gamma}(t)}$. Therefore, we introduce the following definition.
 
@@ -283,17 +296,13 @@ There are now two choices for the \keyword{normal} vector: $\pi/2$ radians in th
 
 We define a unit vector, $\vN_s$ at $\gamma(s)$ by rotating $\vT(s)$ counter clockwise by $\pi/2$ radians. This is called the \keyword{signed unit normal}; it is a unit vector because it has the same magnitude as $\vT$, and it is a normal vector because by construction it is orthogonal to the tangent vector.
 
-Since $\abs{\vT} = 1$, we have $\vT \cdot \dot{\vT} = 0$ by theorem REF. That is, $\dot{\gamma} \cdot \ddot{\gamma} = 0$. So, $\ddot{\gamma}$ is perpendicular to $\vT$, and therefore, parallel (or anti-parallel) to $\vN_s$. This can be written as
+Since $\abs{\vT} = 1$, we have $\vT \cdot \dot{\vT} = 0$ by proposition~(\ref{prop:unit-vector-perp}). That is, $\dot{\gamma} \cdot \ddot{\gamma} = 0$. So, $\ddot{\gamma}$ is perpendicular to $\vT$, and therefore, parallel (or anti-parallel) to $\vN_s$. This can be written as
 \begin{equation}
     \frac{d\vT}{ds} \equiv \ddot{\gamma} = \kappa_s \vN_s.
 \end{equation}
 The factor $\kappa_s$ is called the \keyword{signed curvature} of $\gamma$. It is important to note that this is only defined for regular plane curves.
 
-We observe that
-\begin{equation}
-    \kappa = \abs*{\ddot{\gamma}} = \abs*{\kappa_s \vN_s} = \abs{\kappa_s}
-\end{equation}
-because $\abs*{\vN_s} = 1$.
+We observe that $\kappa = \abs*{\ddot{\gamma}} = \abs*{\kappa_s \vN_s} = \abs{\kappa_s}$ because $\abs*{\vN_s} = 1$.
 
 % Geometrically, the the curvature $\kappa$ always points ... THE FOUR-CURVE DIAGRAM.
 
@@ -607,7 +616,7 @@ These quantities can also be generalised to other regular parametrisations of th
     where $\vT$ and $\vN$ are the unit tangent and normal vectors, respectively, and $\kappa$ is the curvature of $\alpha$.
 \end{nlemma}
 \begin{proof}
-    Exercise.
+    TBC.
 \end{proof}
 
 \begin{nthm}
@@ -713,7 +722,7 @@ The Frenet-Serret equations are a system of ODEs. Results on initial-value probl
     Let $\gamma = \gamma(s)$, $a \leq s \leq b$ be a unit speed curve with $\kappa > 0$. This is a plane curve if and only if $\tau = 0$ for all $s$.
 \end{nthm}
 \begin{proof}
-    Suppose $\gamma(s)$ is a plane curve. This means there are constant vectors $\vec{p}, \vec{q}$ such that $\paren*{\gamma(s) - \vec{p}} \cdot \vec{q}$ is identically zero. Differentiating this with respect to the parameter $s$ gives
+    Suppose $\gamma(s)$ is a plane curve. This means there are constant vectors $\vec{p}, \vec{q}$ such that $\paren*{\gamma(s) - \vec{p}} \cdot \vec{q} = 0$ for all $s$. Differentiating this with respect to the parameter $s$ gives
     \begin{equation}
         \paren*{\gamma(s) - \vec{p}} \cdot \vec{q} = 0
         \implies
@@ -721,16 +730,16 @@ The Frenet-Serret equations are a system of ODEs. Results on initial-value probl
         \implies
         \ddot{\gamma}(s) \cdot \vec{q} = 0.
     \end{equation}
-    Thus, both $\vT \equiv \dot{\gamma}$ and $\vN \equiv \ddot{\gamma}$ are perpendicular to a constant vector $\vec{q}$. So,
+    Thus, both $\dot{\gamma} \equiv \vT$ and $\ddot{\gamma} \equiv \vN$ are perpendicular to a constant vector $\vec{q}$. So,
     \begin{equation}
          \vec{q} \times \vB
         = \vec{q} \times \paren*{\vT \times \vN}
         = \paren*{\vec{q} \cdot \vN} \vT - \paren*{\vec{q} \cdot \vT} \vN
         = 0
     \end{equation}
-    Therefore, the unit vector $\vB$ is always parallel to $\vec{q}$. So, $\dot{\vB} = 0$ and $\tau = \abs{\dot{\vB}} = 0$.
+    Therefore, the unit vector $\vB$ is always parallel to $\vec{q}$. So, $\vB$ is a constant vector and $\dot{\vB} = 0$. Thus, $\tau = \abs{\dot{\vB}} = 0$.
 
-    Conversely, if $\tau = 0$, then the Frenet-Serret equations give $\dot{\vB} = 0$. That is $\vB$ is a constant unit vector. Let $\vec{A} = \gamma(c)$ for any $a \leq c \leq b$ and consider the function
+    Conversely, if $\tau = 0$, then the Frenet-Serret equations give $\dot{\vB} = 0$. That is $\vB$ is a constant unit vector. Let $\vec{A} = \gamma(c)$ for any $c \in [a, b]$ and consider the function
     \begin{equation}
         f(s) = \paren*{\gamma(s) - \vec{A}} \cdot \vB.
     \end{equation}
@@ -857,5 +866,18 @@ The area of the region enclosed by a Jordan curve $\gamma$ in the $\R^2$ plane i
 \begin{proof}
     TBC
 \end{proof}
+
+\section{Surfaces}
+A \keyword{surface} in $\R^3$ is a two dimensional smooth submanifold. In this course, we will take a more relaxed approach and not use the concept of a manifold.
+
+We say that the set of points $S = \set{(x,y,z) \in \R^3 \st f(x,y,z) = 0}$ defines a surface in $\R^3$ if $f(x,y,z) = 0$ is a smooth function with $\grad f \neq 0$ for all $(x,y,z) \in S$.
+
+We will primarily deal with parametrised surfaces. Let $x = x(u,v)$, $y = y(u,v)$ and $z = z(u,v)$ with a \keyword{Jacobian}
+\begin{equation}
+    J = \begin{vmatrix} x_u & y_u & z_u\\ x_v & y_v & z_v \end{vmatrix}
+\end{equation}
+of rank $2$ everywhere. The (parametrised) surface $S$ is the set $\set{(x,y,z) \in \R^3 \st (u,v) \in D} \subseteq \R^3$ where the parameters $u$ and $v$ take values in some suitable domain. Here $x = x(u,v)$, $y = y(u,v)$ and $z = z(u,v)$ is called a parametrisation of the surface.
+
+A point where the rank of the Jacobian, $J$ is less than $2$ is called a \keyword{singular point}.
 
 \end{document}
