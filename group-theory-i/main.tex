@@ -100,22 +100,9 @@ Typically we write $a * b$ simply as $ab$ and call the binary operation multipli
 \begin{proof}
     Note that $(ab)^{-1} (ab) = (ab) (ab)^{-1} = e$ by definition of the inverse of $ab$.
 
-    Now,
-    \begin{equation*}
-        (b^{-1} a^{-1}) (a b)
-        = b^{-1} ((a^{-1} a) b)
-        = b^{-1} (e b)
-        = b^{-1} b
-        = e.
-    \end{equation*}
-    And,
-    \begin{equation*}
-        (a b) (b^{-1} a^{-1})
-        = a ((b b^{-1}) a^{-1})
-        = a (e a^{-1})
-        = a a^{-1}
-        = e.
-    \end{equation*}
+    Now, $(b^{-1} a^{-1}) (a b) = b^{-1} ((a^{-1} a) b) = b^{-1} (e b) = b^{-1} b = e$.
+
+    And, $(a b) (b^{-1} a^{-1}) = a ((b b^{-1}) a^{-1}) = a (e a^{-1}) = a a^{-1} = e$.
 
     So, $b^{-1} a^{-1}$ is also an inverse of $ab$. By the uniqueness of inverse, $b^{-1} a^{-1} = (ab)^{-1}$.
 \end{proof}
@@ -143,6 +130,7 @@ Typically we write $a * b$ simply as $ab$ and call the binary operation multipli
         \implies b (a a^{-1}) = c (a a^{-1})
         \implies be = ce
         \implies b = c
+        \qedhere
     \end{equation*}
 \end{proof}
 
@@ -162,11 +150,7 @@ Typically we write $a * b$ simply as $ab$ and call the binary operation multipli
     \end{equation*}
     And $\inv{a} b \in H$ due to the closure property. So, $x = \inv{a} b \in H$.
 
-    (Uniqueness.) Suppose there are $x_1, x_2 \in H$ that satisfy $a x = b$. Then, $a x_1 = b$ and $a x_2 = b$. So, by the cancellation property
-    \begin{equation*}
-        a x_1 = a x_2
-        \implies x_1 = x_2
-    \end{equation*}
+    (Uniqueness.) Suppose there are $x_1, x_2 \in H$ that satisfy $a x = b$. Then, $a x_1 = b$ and $a x_2 = b$. So, by the cancellation property $a x_1 = a x_2 \implies x_1 = x_2$.
     
     The proof for $y a = b$ is analogous, with multiplications on the right hand side.
 \end{proof}
@@ -229,13 +213,7 @@ Typically we write $a * b$ simply as $ab$ and call the binary operation multipli
 
     For the converse, we check that $H$ satisfies all the group axioms.
 
-    Firstly, $H$ has the same binary operation as $G$, so associativity is inherited from $G$.
-
-    Next, since $H$ is non-empty, take any $a \in H$. Then, $a a^{-1} \in H$ implies $e \in H$. So, $H$ contains the identity element.
-
-    Similarly, take $e, a \in H$. Then, $e a^{-1} \in H$ implies $a^{-1} \in H$. Therefore, each element of $H$ has an inverse within $H$.
-
-    Lastly, take $a, b \in H$. Then, $b^{-1} \in H$. So, $a \left(b^{-1}\right)^{-1} \in H$ implies $ab \in H$, since $\left(b^{-1}\right)^{-1} = b$.
+    Firstly, $H$ has the same binary operation as $G$, so associativity is inherited from $G$. Next, since $H$ is non-empty, take any $a \in H$. Then, $a a^{-1} \in H$ implies $e \in H$. So, $H$ contains the identity element. Similarly, take $e, a \in H$. Then, $e a^{-1} \in H$ implies $a^{-1} \in H$. Therefore, each element of $H$ has an inverse within $H$. Lastly, take $a, b \in H$. Then, $b^{-1} \in H$. So, $a \left(b^{-1}\right)^{-1} \in H$ implies $ab \in H$, since $\left(b^{-1}\right)^{-1} = b$.
 
     Therefore, $H$ is a group under the same binary operation as $G$. So, $H \subgroup G$.
 \end{proof}
@@ -255,13 +233,7 @@ Typically we write $a * b$ simply as $ab$ and call the binary operation multipli
 \begin{proof}
     Firstly, $H$ is non-empty because $a^0 = e \in H$.
 
-    Next, take any $a^{n}, a^{m} \in H$. Then, $(a^{m})^{-1} = a^{-m}$. So,
-    \begin{equation*}
-        a^{n} (a^{m})^{-1}
-        = a^{n} a^{-m}
-        = a^{n - m} \in H,
-    \end{equation*}
-    since $n - m \in \Z$.
+    Next, take any $a^{n}, a^{m} \in H$.. So, $a^{n} (a^{m})^{-1} = a^{n} a^{-m} = a^{n - m} \in H$ since $n - m \in \Z$ and $\inv{(a^{m})} = a^{-m}$.
 
     By the subgroup criteria, this shows that $H \subgroup G$.
 \end{proof}
@@ -271,12 +243,14 @@ Typically we write $a * b$ simply as $ab$ and call the binary operation multipli
 \end{ndfn}
 
 \begin{nthm}
-    $H_1, H_2 \subgroup G$. Then, $H_1 \cup H_2$ is a subgroup of $G$ if and only if $H_1 \subseteq H_2$ or $H_2 \subseteq H_1$.
+    Let $H, K \subgroup G$. Then, $H \cup K$ is a subgroup of $G$ if and only if $H \subseteq K$ or $K \subseteq H$.
 \end{nthm}
 \begin{proof}
-    Suppose (WLOG) $H_1 \subseteq H_2$. Then, $H_1 \cup H_2 = H_2$. And $H_2 \subgroup G$. Therefore, $H_1 \cup H_2 \subgroup G$.
+    If $H \subseteq K$ then, $H \cup K = H \subgroup G$. Instead, if $K \subseteq H$ then, $H \cup K = K \subgroup G$. In either case, $H \cup K \subgroup G$.
 
-    Conversely, suppose $H_1 \subsetneq H_2$ and $H_2 \subsetneq H_1$ but $H_1 \cup H_2$ is a subgroup of $G$. Then, \dots
+    Conversely, suppose $H \cup K \subgroup G$. For a contradiction assume $H \nsubseteq K$ and $K \nsubseteq H$. Then we can pick $h \in H - K$ and $k \in K - H$. So, $h, k \in H \cup K$. Since $H \cup K$ is a group of $G$, we have $hk \in H \cup K$. So, either $hk \in H$ or $hk \in K$ (or both).
+
+    If $hk \in H$, then $k \in H$ because $h \in H$ (and so, $\inv{h} \in H$). Alternatively, if $hk \in K$, then $h \in K$ because $k \in K$ (and so, $\inv{k} \in K$). Both of these are contradictions. Therefore the assumption $H \nsubseteq K$ and $K \nsubseteq H$ is wrong, and either $H \subseteq K$ or $K \subseteq H$.
 \end{proof}
 
 \section{Modular Addition}
@@ -286,7 +260,7 @@ Typically we write $a * b$ simply as $ab$ and call the binary operation multipli
 \end{ndfn}
 
 \begin{ndfn}
-    Take $a \in \Z$, and fix some integer $n \geq 2$. The set of all the integers that are equivalent to $a$ modulo $n$ is called the residue class of $a$ modulo $n$. We write this as
+    Take $a \in \Z$, and fix some integer $n \geq 2$. The set of all the integers that are equivalent to $a$ modulo $n$ is called the \keyword{residue class} of $a$ modulo $n$. We write this as
     \begin{equation*}
         [a]_n = \set{b \in \Z \st a \equiv b \mod n}.
     \end{equation*}
@@ -303,7 +277,7 @@ Typically we write $a * b$ simply as $ab$ and call the binary operation multipli
     \end{equation*}
 \end{ndfn}
 
-We can define a binary operation $+_n$, called modular addition (mod $n$) on this set,
+We can define a binary operation $+_n$, called \keyword{modular addition} ($\mod n$) on this set,
 \begin{equation*}
     [a]_n +_n [b]_n \coloneq [a + b]_n.
 \end{equation*}
@@ -312,21 +286,15 @@ It needs to be shown that this is well-defined; that is if $[a]_n = [c]_n$ and $
 \begin{nthm}
     The set $\Z_n$ forms a group with respect to $+_n$.
 \end{nthm}
-\begin{proof}
-    TBC.
-\end{proof}
 
-When it is clear from the context, we drop the subscript and simply write $[a]_n$ as $a$ and $+_n$ as $+$.
+We sometimes drop the subscript and simply write $[a]_n$ as $a$ and $+_n$ as $+$.
 
 \section{\texorpdfstring{Klein $4$-Group}{Klein 4 Group}}
 Consider a set $G = \set{e, a, b, c}$ with a binary operation that satisfies $a^2 = b^2 = c^2 = e$, $xy = yx$ for all $x, y \in G$. It can easily be checked that this forms a group. We also find that some of the conditions imposed on the binary operation are redundant, and instead this group can be expressed more compactly. The following theorem states this observation.
 
 \begin{nthm}
-    The set $K_4 = \set{1, a, b, ab}$, where the order of each non-identity element is $2$ forms a group.
+    The set $K_4 = \set{1, a, b, ab}$ where the order of each non-identity element is $2$ forms a group.
 \end{nthm}
-\begin{proof}
-    TBC.
-\end{proof}
 
 This group $K_4$ is called the \keyword{Klein $4$-group}. It is a group of order $4$. Its multiplication rule can be represented as table, called a Cayley table.
 \begin{center}
@@ -358,52 +326,47 @@ Consider the set
     \begin{bmatrix}1 & 0 \\ 0 & 1\end{bmatrix},
     \begin{bmatrix}1 & 0 \\ 0 & 1\end{bmatrix}}
 \end{equation*}
-of matrices with the usual matrix multiplication. We find that it forms a group. Clearly, this is a group of order $4$. Moreover, each non-identity element in this group has order $2$. This coincides exactly with the group structure of $K_4$. We say that this group is the same as $K_4$ (this notion will be made precise when we define isomorphisms later), and that it is simply a matrix representation of $K_4$.
+of matrices with the usual matrix multiplication. We find that it forms a group. Clearly, this is a group of order $4$. Moreover, each non-identity element in this group has order $2$. This coincides exactly with the group structure of $K_4$. We say that this group is the same as $K_4$ (this notion will be made precise when we define \keyword{isomorphisms} later), and that it is simply a matrix \keyword{representation} of $K_4$.
 
-Another group of order $4$ that we have already seen in $\Z_4$. This group has an element of order $4$, namely $[1]_4$. Therefore, it cannot be the `same' as $K_4$. (Again, this observation will be made precise through the use of isomorphisms.) This shows that not all groups of order $4$ are the same as $k_4$.
+Another group of order $4$ that we have already seen is $\Z_4$. This group has an element of order $4$, namely $[1]_4$. Therefore, it cannot be the `same' as $K_4$. (Again, this observation will be made precise through the use of isomorphisms.) This shows that not all groups of order $4$ are the same as $K_4$.
 
 \section{Group of Quaternions}
-Consider the group $\GL_2(\C)$ of $2 \times 2$ invertible matrices with complex entries. Consider its subset
+Consider the subset
 \begin{equation*}
     H = \set*{
     \pm\begin{bmatrix*}[r]1 & 0\\ 0 & 1\end{bmatrix*},
     \pm\begin{bmatrix*}[r]1 & 0\\ 0 &-1\end{bmatrix*},
     \pm\begin{bmatrix*}[r]0 & 1\\-1 & 0\end{bmatrix*},
-    \pm\begin{bmatrix*}[r]0 & i\\ i & 0\end{bmatrix*} }.
+    \pm\begin{bmatrix*}[r]0 & i\\ i & 0\end{bmatrix*} }
 \end{equation*}
-It is easy to check that this is a subgroup of $\GL_2(\C)$, and therefore a group. We note that this is a group of order $8$.
+of the group $\GL_2(\C)$ of $2 \times 2$ invertible matrices with complex entries. It is easy to check that this is a subgroup of $\GL_2(\C)$ and therefore a group in its own right. We note that this is a group of order $8$.
 
-Using the multiplication of $H$ as a template, we can define an abstract group of order $8$ as follows.
+Using this as a template, we can define an abstract group of order $8$ as follows.
 \begin{nthm}
-    The set $Q_8 = \set{\pm 1, \pm i, \pm j, \pm k}$ forms a group with the multiplication rule
-    \begin{gather}
-        i^2 = j^2 = k^2 = 1\\
-        ij = k, jk = i, ki = j\\
-        ji = -k, kj = -i, ik = -j.
-    \end{gather}
+    The set $Q_8 = \set{\pm 1, \pm i, \pm j, \pm k}$ forms a group with the multiplication rule $i^2 = j^2 = k^2 = ijk = -1, (-1)^2 = 1$.
 \end{nthm}
 
-This group is called the group of quaternions.
+This is called the group of \keyword{quaternions}. Its full multiplication table is given below.
 \begin{center}
 \ra{1.2}
 \begin{tabularx}{0.62\textwidth}{|R||R|R|R|R|R|R|R|R|}
     \hline
          & $ 1$ & $ i$ & $ j$ & $ k$ & $-1$ & $-i$ & $-j$ & $-k$ \\ \hline\hline
     $ 1$ & $ 1$ & $ i$ & $ j$ & $ k$ & $-1$ & $-i$ & $-j$ & $-k$ \\ \hline
-    $ i$ & $ i$ & $ 1$ & $-k$ & $ j$ & $-i$ & $-1$ & $ k$ & $-j$ \\ \hline
-    $ j$ & $ j$ & $ k$ & $ 1$ & $ -$ & $ -$ & $ -$ & $ -$ & $ -$ \\ \hline
-    $ k$ & $ k$ & $-j$ & $ -$ & $ 1$ & $ -$ & $ -$ & $ -$ & $ -$ \\ \hline
-    $-1$ & $-1$ & $-i$ & $ -$ & $ -$ & $ 1$ & $ -$ & $ -$ & $ -$ \\ \hline
-    $-i$ & $-i$ & $-1$ & $ -$ & $ -$ & $ -$ & $ 1$ & $ -$ & $ -$ \\ \hline
-    $-j$ & $-j$ & $-k$ & $ -$ & $ -$ & $ -$ & $ -$ & $ 1$ & $ -$ \\ \hline
-    $-k$ & $-k$ & $ j$ & $ -$ & $ -$ & $ -$ & $ -$ & $ -$ & $ 1$ \\ \hline
+    $ i$ & $ i$ & $-1$ & $-k$ & $ j$ & $-i$ & $ 1$ & $ k$ & $-j$ \\ \hline
+    $ j$ & $ j$ & $ k$ & $-1$ & $-i$ & $-j$ & $-k$ & $ 1$ & $ i$ \\ \hline
+    $ k$ & $ k$ & $-j$ & $ i$ & $-1$ & $-k$ & $ j$ & $-i$ & $ 1$ \\ \hline
+    $-1$ & $-1$ & $-i$ & $-j$ & $-k$ & $ 1$ & $ i$ & $ j$ & $ k$ \\ \hline
+    $-i$ & $-i$ & $ 1$ & $ k$ & $-j$ & $ i$ & $-1$ & $-k$ & $ j$ \\ \hline
+    $-j$ & $-j$ & $-k$ & $ 1$ & $ i$ & $ j$ & $ k$ & $-1$ & $-i$ \\ \hline
+    $-k$ & $-k$ & $ j$ & $-i$ & $ 1$ & $ k$ & $-j$ & $ i$ & $-1$ \\ \hline
 \end{tabularx}
 
-{Multiplication table for $Q_4$.}
+{Multiplication table for $Q_8$.}
 \end{center}
 
 \section{Dihedral Group (of Order 6)}
-Consider the set $D_3  =\set{1, a, a^2, b, ba, ba^2}$ with the conditions $a^3 = 1$, $b^2 = 1$ and $ab = ba^2$. We can check that this forms a non-abelian group. This is called the dihedral group of order $6$
+Consider the set $D_3  =\set{1, a, a^2, b, ba, ba^2}$ with the conditions $a^3 = 1$, $b^2 = 1$ and $ab = ba^2$. We can check that this forms a non-abelian group. This is called the \keyword{dihedral group} of order $6$.
 
 \begin{center}
 \ra{1.2}
@@ -412,10 +375,10 @@ Consider the set $D_3  =\set{1, a, a^2, b, ba, ba^2}$ with the conditions $a^3 =
            & $   1$ & $   a$ & $ a^2$ & $   b$ & $  ba$ & $ba^2$ \\ \hline\hline
     $   1$ & $   1$ & $   a$ & $ a^2$ & $   b$ & $  ba$ & $ba^2$ \\ \hline
     $   a$ & $   a$ & $ a^2$ & $   1$ & $  ba$ & $ba^2$ & $   b$ \\ \hline
-    $ a^2$ & $ a^2$ & $   -$ & $   -$ & $   -$ & $   -$ & $   -$ \\ \hline
-    $   b$ & $   b$ & $   -$ & $   -$ & $   -$ & $   -$ & $   -$ \\ \hline
-    $  ba$ & $  ba$ & $   -$ & $   -$ & $   -$ & $   -$ & $   -$ \\ \hline
-    $ba^2$ & $ba^2$ & $   -$ & $   -$ & $   -$ & $   -$ & $   -$ \\ \hline
+    $ a^2$ & $ a^2$ & $   1$ & $   a$ & $ba^2$ & $   b$ & $  ba$ \\ \hline
+    $   b$ & $   b$ & $ba^2$ & $  ba$ & $   1$ & $ a^2$ & $ a^2$ \\ \hline
+    $  ba$ & $  ba$ & $   b$ & $ba^2$ & $   a$ & $   1$ & $   a$ \\ \hline
+    $ba^2$ & $ba^2$ & $  ba$ & $   b$ & $ a^2$ & $   a$ & $   1$ \\ \hline
 \end{tabularx}
 
 {Multiplication table for $D_3$.}
@@ -423,52 +386,49 @@ Consider the set $D_3  =\set{1, a, a^2, b, ba, ba^2}$ with the conditions $a^3 =
 
 \section{Cyclic Group}
 \begin{ndfn}
-    A group $G$ is called cyclic if there is an element $a \in G$ such that all elements of $G$ can be written as powers of $a$. More precisely, $\forall g \in G$, $\exists m \in \Z$ such that $g = a^m$.
+    A group $G$ is called \keyword{cyclic} if there is an element $a \in G$ such that all elements of $G$ can be written as powers of $a$. More precisely, $\forall g \in G$, $\exists m \in \Z$ such that $g = a^m$.
 
-    Such as element $a$ is called a generator of $G$, and we say that $G$ is the group generated by $a$ and denote this as $G = \cyclic{a}$. Cyclic group of order $n$ is sometimes denoted as $C_n$.
+    Such as element $a$ is called a \keyword{generator} of $G$, and we say that $G$ is the group generated by $a$ and denote this as $G = \cyclic{a}$. Cyclic group of order $n$ is sometimes denoted as $C_n$.
 \end{ndfn}
 
 Generators are not unique. Indeed if $a \in G$ is a generator then so is $\inv{a}$.
 
 \begin{notation}
-    For $m > 0$, $a^m$ means $a * \dots * a$, where $m$ factors of $a$ are multiplied together. Similarly, $a^0 \equiv 1$, the identity element. And, $a^{-m}$ means $\paren*{\inv{a}}^m$.
+    For $m > 0$, $a^m$ means $a * \dots * a$, where $m$ factors of $a$ are multiplied together. Similarly, $a^0 \equiv e$, the identity element. And, $a^{-m}$ means $\paren*{\inv{a}}^m$.
 \end{notation}
 
-\begin{nthm}
+\begin{nthm}\label{thm:cyclic-finite-form}
+    Let $G$ be a group, and take $a \in G$ such that $a^n = e$. Then, the cyclic group $\cyclic{a}$ has the form $\set{e, a, a^2, \dots, a^{n-1}}$.
+\end{nthm}
+\begin{proof}
+    By definition $\cyclic{a} = \set{a^k \st k \in \Z}$. We can write $k = qn + r$ for $q, r \in \Z$ and $0 \leq r < n$. So, for all $k \in \Z$, $a^k = a^{qn+r} = a^{qn} a^r = (a^{n})^{q} = e a^r = a^r$.
+
+    Therefore, $\cyclic{a} = \set{a^r \st 0 \leq r < n} = \set{e, a, a^2, \dots, a^{n-1}}$.
+\end{proof}
+
+\begin{nthm}\label{thm:cyclic-group-order}
     Let $G = \cyclic{a}$ be a cyclic group. Then, $|G| = O(a)$.
 \end{nthm}
 \begin{proof}
-    If $O(a)$ is infinite then $a^n$ and $a^m$ are distinct for all $n \neq m$; because otherwise,
+    If $O(a)$ is infinite then $a^n$ and $a^m$ are distinct for all $n \neq m$, because otherwise,
     \begin{equation*}
         a^n = a^m \implies a^{n - m} = 1 \implies O(a) \leq \abs{n-m}
     \end{equation*}
-    which is a contradiction. Now, since each $a^n$ is different from $a^{n+1}$, we have infinitely many elements in the set
-    \begin{equation*}
-        \cyclic{a} = \set{a^n \st n \in \Z}.
-    \end{equation*}
-    Consequently, $G = \cyclic{a}$ has infinitely many elements; i.e. $|G|$ is also infinite.
+    which is a contradiction. Now, since each $a^n$ is different from $a^{n+1}$, we have infinitely many elements in the set $\cyclic{a} = \set{a^n \st n \in \Z}$. Consequently, $G = \cyclic{a}$ has infinitely many elements; i.e. $|G|$ is also infinite.
 
-    Next, consider the case when $O(a) = n$ is finite.
-
-    If $O(a) = 1$, then $G = \cyclic{a} = \set{a^n \st n \in \Z} = \set{1}$ and $|G| = 1$.
-
-    Otherwise $O(a) = n \geq 2$. SOMETHING SOMETHING.
+    Next, consider the case when $O(a) = n$ is finite. Then, $G = \cyclic{a} = \set{e, a, a^2, \dots, a^{n-1}}$ by theorem~(\ref{thm:cyclic-finite-form}). So, $|G| = n$ also.
 \end{proof}
 
 \begin{nthm}
-    Let $G$ be a group, and take $a \in G$ such that $a^n = 1$. Then, the cyclic group $\cyclic{a}$ has the form $\set{1, a, a^2, \dots, a^{n-1}}$.
-\end{nthm}
-
-\begin{nthm}
-    Let $G$ be a group and $a \in G$ with $O(a) = n$. If $a^m = 1$ then $n \mid m$.
+    Let $G$ be a group and $a \in G$ with $O(a) = n$. If $a^m = e$ then $n \mid m$.
 \end{nthm}
 \begin{proof}
     By the division algorithm, we have $m = qn + r$ for $q, r \in \Z$ and $0 \leq r < n$. So,
     \begin{equation*}
-        a^m = a^{nq + r} = \paren*{{a^n}^q} \paren*{a^r} = \paren*{1^q} \paren*{a^r} = \paren*{1} \paren*{a^r} = a^r.
+        a^m = a^{nq + r} = \paren*{{a^n}^q} \paren*{a^r} = \paren*{e^q} \paren*{a^r} = e \paren*{a^r} = a^r.
     \end{equation*}
 
-    Now, $a^m = 1 \implies a^r = 1$. However, $r < n$ and $n$ is the least positive integer for which $a^n = 1$. Therefore, $r$ must be zero (if it was positive then it would contradict the minimality of $n$). Therefore, $m = qn$, or $n \mid m$
+    Now, $a^m = e \implies a^r = e$. However, $r < n$ and $n$ is the least positive integer for which $a^n = e$. Therefore, $r$ must be zero (if it was positive then it would contradict the minimality of $n$). Therefore, $m = qn$, or $n \mid m$
 \end{proof}
 
 \begin{nthm}
@@ -481,40 +441,29 @@ Generators are not unique. Indeed if $a \in G$ is a generator then so is $\inv{a
 \begin{nthm}
     Every subgroup of a cyclic group is cyclic.
 \end{nthm}
+\begin{proof}
+    Consider the cyclic group $G = \cyclic{a}$. Let $H$ be a subgroup of $G$. If $H = \set{e}$ then it is generated by $e$. So, suppose $H$ is not the trivial subgroup. Then, every element in $H$ can be written as $a^k$ for some $k \in \Z$. Let $m$ be the least positive integer such that $a^m \in H$. Therefore, $a^{-m} \in H$ also.
+
+    Take any $a^t \in H$. Then, we can write $t = mq + r$ for some $q, r \in \Z$ with $0 \leq r < m$. Equivalently, $r = t - mq$. So,
+    \begin{equation*}
+        a^r = a^{t - mq} = a^{t} a^{-mq} = a^{t} (a^{-m})^{q} \in H
+    \end{equation*}
+    by closure. If $r \neq 0$, then this contradicts the requirement that $m$ is the least positive integer with $a^m \in H$. Therefore, $r = 0$. So, $t = mq$, and every arbitrary element of $H$ has the form $a^t = a^{mq} = (a^{m})^{q}$. Therefore, $H = \cyclic{a^m}$.
+\end{proof}
 
 \begin{nthm}
     Let $G = \cyclic{a}$ be a finite cyclic group of order $n$. Then an element $a^k$ is a generator of $G$ if and only if $\gcd(k,n) = 1$.
 \end{nthm}
 \begin{proof}
-    Suppose $a^k$ is a generator of $G$. Then, we can write $a$ as a power of $a^k$, say
-    \begin{equation*}
-        a = \paren{a^k}^m = a^{km}
-    \end{equation*}
-    for some $m \in \Z$. Then,
-    \begin{equation*}
-        a = \paren{a^k}^m
-        \implies
-        a a^{-km} = e
-        \implies
-        a^{1-km} = e.
-    \end{equation*}
+    Suppose $a^k$ is a generator of $G$. Then, we can write $a$ as a power of $a^k$, say $a = \paren{a^k}^m = a^{km}$ for some $m \in \Z$.
+
+    Then, $a = \paren{a^k}^m \implies a a^{-km} = e \implies a^{1-km} = e$.
+
     So, $n \mid 1 - km$. That is $\exists q \in \Z$ such that $1 - km = qn$. We can re-arrange this to get $qn + km = 1$. From number theory (Bezout's lemma) we know that this implies $\gcd(n,k)=1$.
 
-    Conversely, suppose $\gcd(n,k)=1$. Then, there exist integers $x, y$ such that $xk + yn = 1$. So,
-    \begin{equation*}
-        a = a^{xk + yn}
-        \implies
-        a = \paren{a^{k}}^{x} \paren{a^{n}}^{y}
-        \implies
-        a = \paren{a^{k}}^{x} e^{y}
-        \implies
-        a = \paren{a^{k}}^{x}.
-    \end{equation*}
-    Now for all $b \in \cyclic{a}$, we have $b = a^r$ for some $r \in Z$. Therefore, we can write it as a power of $a^k$ as
-    \begin{equation*}
-        b = a^r = \paren{\paren{a^{k}}^{x}}^{r} = \paren{a^{k}}^{xr}.
-    \end{equation*}
-    So, $a^k$ also generates $\cyclic{a}$.
+    Conversely, suppose $\gcd(n,k)=1$. Then, there exist integers $x, y$ such that $xk + yn = 1$. So, $a = a^{xk + yn} \implies a = \paren{a^{k}}^{x} \paren{a^{n}}^{y} \implies a = \paren{a^{k}}^{x} e^{y} \implies a = \paren{a^{k}}^{x}$.
+
+    Now for all $b \in \cyclic{a}$, we have $b = a^r$ for some $r \in Z$. Therefore, we can write it as a power of $a^k$ as $b = a^r = \paren{\paren{a^{k}}^{x}}^{r} = \paren{a^{k}}^{xr}$. So, $a^k$ also generates $\cyclic{a}$.
 \end{proof}
 
 \begin{remark}
@@ -525,7 +474,11 @@ Generators are not unique. Indeed if $a \in G$ is a generator then so is $\inv{a
     An infinite cyclic group $G = \cyclic{a}$ has exactly two generators.
 \end{nthm}
 \begin{proof}
-    Let $b \in G$ be another generator of $G$. Firstly, we have $b = a^n$ for some $n \in \Z$. SOMETHING.
+    Firstly, since $|\cyclic{a}| = \infty$, the order of $a$ is infinite. And $a^n = e$ is only possible when $n = 0$.
+
+    Let $b \in G$ be another generator of $G$. Then, we can write $b = a^s$ and $a = b^t$ for some $s, t \in \Z$. Therefore, $a = \paren*{a^{s}}^{t} = a^{st} \implies a^{st-1} = e \implies st-1 = 0$.
+    
+    The only solutions to this diophantine equation are $s=t=1$ and $s=t=-1$. So, $b = a$ or $b = \inv{a}$.
 \end{proof}
 
 \section{Equivalence Relations}
@@ -567,8 +520,7 @@ Generators are not unique. Indeed if $a \in G$ is a generator then so is $\inv{a
 \begin{nthm}
     Let $\sim$ be an equivalence relation on $S$. The collection of equivalence classes $\set{[a] \st a \in S}$ partitions $S$. More precisely, each $[a]$ is non-empty, and $S = \bigcup_{a \in S} [a]$, and if $[a] \neq [b]$ then $[a] \cap [b] = \emptyset$.
 \end{nthm}
-\begin{proof}
-    \phantom{}
+\begin{proof}\phantom{}
     \begin{enumerate}
         \item By reflexivity, $a \sim a$ we have $a \in [a]$. Therefore, $[a] \neq \emptyset$.
 
@@ -606,9 +558,6 @@ Generators are not unique. Indeed if $a \in G$ is a generator then so is $\inv{a
 \begin{nthm}
     Let $H \subgroup G$ and $\sim$ be a relation on $G$ such that $a \sim b \coloneq a \inv{b} \in H$. Then, $\sim$ is an equivalence relation.
 \end{nthm}
-\begin{proof}
-    Exercise.
-\end{proof}
 
 \section{Cosets}
 \begin{ndfn}
@@ -627,56 +576,137 @@ For the coset $aH$, the element $a$ is called a \keyword{representative} of the 
     Let $H \subgroup G$ and $\sim$ be an equivalence relation on $G$ such that $a \sim b$ if $\inv{a} b \in H$. Then, $[a] = aH$.
 \end{nthm}
 \begin{proof}
-    We know that
-    \begin{equation*}
-        [a]
-        = \set{b \in G \st b \sim a}
-        = \set{b \in G \st a \sim b}
-        = \set{b \in G \st \inv{a} b \in H}.
-    \end{equation*}
+    We know that $[a] = \set{b \in G \st b \sim a} = \set{b \in G \st a \sim b} = \set{b \in G \st \inv{a} b \in H}$.
 
     Take any $x \in aH$. Then, $x = ah$ for some $h \in H$. So, $\inv{a} x = h \in H$. Therefore, $x \in [a]$. So, $aH \subseteq [a]$.
 
     Likewise, take any $x \in [a]$. Then, $\inv{a} x \in H$. So, there is some $h \in H$ such that $\inv{a} x = h$. Therefore, $x = ah \in aH$. So, $[a] \subseteq aH$. Overall, $[a] = aH$.
 \end{proof}
 
+We have an analogous result for the right cosets.
 \begin{nthm}
     Let $H \subgroup G$ and $\sim$ be an equivalence relation on $G$ such that $a \sim b$ if $a \inv{b} \in H$. Then, $[a] = Ha$.
 \end{nthm}
-\begin{proof}
-    Exercise.
-\end{proof}
 
-\begin{nthm}
+\begin{nthm}\label{thm:coset-properties-a}
     Let $H \subgroup G$ and $a \in G$.
-    \begin{enumerate}
+    \begin{enumerate}[label=(\roman*)]
         \item $a \in aH$
         \item $aH = bH$ iff $a \in bH$
         \item $aH = bH$ or $aH \cap bH = \emptyset$
     \end{enumerate}
 \end{nthm}
 \begin{proof}
-    Exercise.
+    \begin{enumerate}[label=(\roman*)]
+        \item Since $H \subgroup G$, $e \in H$. So, $a = ae \in H$.
+
+        \item Suppose $aH = bH$. By part (i) $a \in aH$. So, $a \in aH = bH$. Therefore, $a \in bH$.
+
+        For the converse, suppose $a \in bH$. Then, $a = bh_0$ for some $h_0 \in H$. So,
+        \begin{equation}
+            aH
+            = \set{ah \st h \in H}
+            = \set{(bh_0)h \st h \in H}
+            = \set{b(h_0 h) \st h \in H}
+            = \set{bk \st k \in H}
+            = bH
+        \end{equation}
+
+        \item Suppose $aH \cap bH \neq \emptyset$. Then, $\exists c \in G$ such that $c \in aH \cap bH$. So, $c = ah_1$ and $c = bh_2$ for some $h_1, h_2 \in H$. Thus,
+        \begin{equation}
+            ah_1 = bh_2
+            \implies a = bh_2 \inv{h_1}
+            \implies a = bh
+            \implies a \in bH,
+        \end{equation}
+        with $h = h_2 \inv{h_1} \in H$. By part (ii) $a \in bH$ implies $aH = bH$.
+
+        Therefore, either $aH \cap bH = \emptyset$ of $aH = bH$.\qedhere
+    \end{enumerate}
 \end{proof}
 
 \begin{nthm}
     Let $H$ be a subgroup of $G$ and let $a, b \in G$. Then,
-    \begin{enumerate}
+    \begin{enumerate}[label=(\roman*)]
         \item $aH = H$ if and only if $a \in H$.
         \item $|aH| = |bH|$
         \item $aH = bH$ if and only if $\inv{a} b \in H$.
     \end{enumerate}
 \end{nthm}
 \begin{proof}
-    Exercise.
+    \begin{enumerate}[label=(\roman*)]
+        \item This is a special case of part (ii) from theorem~(\ref{thm:coset-properties-a}) with $b = e$.
+
+        \item Consider the map $\varphi : aH \to bH$ with $\varphi(ah) = bh$. This is injective because
+        \begin{equation}
+            \varphi(ah_1) = \varphi(ah_2)
+            \implies bh_1 = bh_2
+            \implies h_1 = h_2
+            \implies ah_1 = ah_2.
+        \end{equation}
+        It is also surjective by construction. Therefore, $\varphi$ is a bijection between the sets $aH$ and $bH$. So, $|aH| = |bH|$.
+
+        \item By theorem~(\ref{thm:coset-properties-a}) part(ii),
+        \begin{equation*}
+            aH = bH
+            \iff b \in aH
+            \iff b = ah \text{ for some } h \in H
+            \iff \inv{a} b = h \in H.
+            \qedhere
+        \end{equation*}
+    \end{enumerate}
 \end{proof}
 
+Again, we have an analogous version of the previous two theorems for right cosets.
+
 \begin{remark}
-    Since $|aH| = |bH|$ for all $a, b \in G$, we have that $|aH| = |eH| = |H|$ for all $a \in G$. Therefore, the cardinality of each coset of $H$ is the same as the order of $H$.
+    Since $|aH| = |bH|$ for all $a, b \in G$, we have that $|aH| = |H|$ for all $a \in G$. Therefore, the cardinality of each coset of $H$ is the same as the order of $H$.
 \end{remark}
 
-\begin{nthm}
-    Let $G$ be a finite group and $H$ be its subgroup. Then $|H|$ divides $|G|$. Moreover, the number of distinct left (right) cosets of $H$ in $G$ is $|G|/|H|$; this is denoted as $|G:H|$.
+\begin{nthm}[Lagrange]
+    Let $G$ be a finite group and $H$ be its subgroup. Then $|H|$ divides $|G|$. Moreover, the number of distinct left (right) cosets of $H$ in $G$ is $|G|/|H|$.
 \end{nthm}
+\begin{proof}
+    Let $a_1 H, \dots, a_k H$ be all the distinct cosets of $H$ in $G$. Then, $G = \bigcup_{j=1}^{k} a_j H$ because for all $g \in G$, $g \in a_j H$ for some $j$.
+
+    Moreover, $|aH| = |bH|$, for all $a, b \in G$. In particular, $|a_j H| = |e H| = |H|$ for all $j$.
+
+    Now, since $G$ is written as a union of distinct sets, we have
+    \begin{equation}
+        |G| = |a_1 H| \cup \dots \cup |a_k H| = |H| \cup \dots \cup |H| = k |H|.
+    \end{equation}
+    So, $|H|$ divides $|G|$ and the number of distinct left (right) cosets is $k = |G|/|H|$.
+\end{proof}
+
+This proof shows that number of distinct left cosets is the same as the number of distinct right cosets. Therefore, the following statement is well-defined.
+
+\begin{ndfn}
+    Let $H \subgroup G$. The number of distinct left (right) cosets of $H$ in $G$ is called the index of $H$ in $G$. It is denoted as $[G:H]$.
+\end{ndfn}
+
+When $G$ is a finite group, Lagrange's theorem states that $[G:H] = |G|/|H|$.
+
+\begin{ncor}\label{cor:lagrange-element-order}
+    Let $G$ be a finite group and $a \in G$. Then $O(a)$ divides the order of $G$.
+\end{ncor}
+\begin{proof}
+    Consider the subgroup $\cyclic{a}$ generated by $a \in G$. By theorem~(\ref{thm:cyclic-group-order}) we know that $|\cyclic{a}| = O(a)$. By Lagrange's theorem, $|\cyclic{a}|$ divides $|G|$. Therefore, $O(a)$ divides the order of $|G|$.
+\end{proof}
+
+\begin{ncor}
+    If $G$ is a finite group and $a \in G$, then $a^{|G|} = e$.
+\end{ncor}
+\begin{proof}
+    Suppose $|G| = n$ and $O(a) = m$. By corollary~(\ref{cor:lagrange-element-order}), $m \mid n$. Therefore, $n = mk$ for some $k \in \Z$. So, $a^{|G|} = a^n = a^{mk} = \paren*{a^{m}}^{k} = e^k = e$.
+\end{proof}
+
+\begin{ncor}
+    Every group of prime order is cyclic.
+\end{ncor}
+\begin{proof}
+    Let $|G| = p$, where $p$ is prime. Take $a \in G-\set{e}$, with $O(a) = m$. Since, $O(a) \mid p$, we have either $O(a) = 1$ or $O(a) = p$. Since, $a \neq e$, we have $O(a) \neq 1$. Therefore, $O(a) = p$.
+
+    Let $H = \cyclic{a}$. Then $|H| = O(a) = p$. Now, $H \subseteq G$ and $|H| = |G|$ (finite). Therefore, $G = H = \cyclic{a}$.
+\end{proof}
 
 \end{document}
