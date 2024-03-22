@@ -413,7 +413,7 @@ Suppose we are given a functional of the form
 \begin{equation}
     J[y_1, \dots, y_n] = \int_a^b F\paren*{x, y_1, \dots, y_n, y'_1, \dots, y'_n} \,dx
 \end{equation}
-where $y_i \in C^2 [a,b]$ for all $i=1, \dots, n$. Previously we only had a single dependent variable $y = y(x)$ and obtained a single second-order ODE as the Euler-Lagrange equation corresponding to $\delta J / \delta y = 0$. In the current generalisation, this necessary conditions for the extremal will become $\delta J / \delta y_i = 0$ for each $i$, and we will obtain a system of $n$ second-order Euler-Lagrange equations
+where $y_i \in C^2 [a,b]$ for all $i=1, \dots, n$ and $y_i(a) = A_i$ and $y_i(b) = B_i$. Previously we only had a single dependent variable $y = y(x)$ and obtained a single second-order ODE as the Euler-Lagrange equation corresponding to $\delta J / \delta y = 0$. In the current generalisation, this necessary conditions for the extremal will become $\delta J / \delta y_i = 0$ for each $i$, and we will obtain a system of $n$ second-order Euler-Lagrange equations
 \begin{equation}
     \frac{\pd F}{\pd y_i} - \frac{d}{dx} \paren*{\frac{\pd F}{\pd y'_i}} = 0,
     \quad i = 1, \dots, n.
@@ -641,7 +641,10 @@ Here again we can obtain some first integrals when the integrand $F\paren*{x, y,
 
 \section{Variational Problems with Constraints}
 
-\begin{nthm}
+\subsection{Isoperimetric Constraints}
+Constraints that are given as an integral equation are called isoperimetric or integral constraints. These take the form $K[y] = \int_a^b G(x,y,y') = \ell$. The terminology follows from a famous problem where we find a suitable curve of fixed perimeter, enclosing the largest area.
+
+\begin{nthm}\label{thm:constraint-iso-simple}
     Let $y = y(x)$ be an extremal of $J[y] = \int_a^b F(x, y, y') \,dx$ subject to the boundary conditions $y(a) = A$ and $y(b) = B$, and the constraint
     \begin{equation}
         K[y] = \int_a^b G(x,y,y') = \ell \,dx.
@@ -690,9 +693,70 @@ Here again we can obtain some first integrals when the integrand $F\paren*{x, y,
     \begin{equation}
         x^2 + \paren*{y-k}^2 = k^2 + a^2.
     \end{equation}
-    To eliminate $k$ from this equation, we need to use the constraint $\int_a^b \sqrt{1 + y'^2} \,dx = \ell$, which leads to a very complicated expression with no closed form solution.
+    To eliminate $k$ from this equation, we need to use the constraint $\int_a^b \sqrt{1 + y'^2} \,dx = \ell$, which leads to a very complicated expression
+    \begin{equation}
+        \ell = EQQ
+    \end{equation}
+    with no closed form solution.
 
-    In the special case, $\ell = \pi a$, we have $k = 0$.
+    In the special case, $\ell = \pi a$, we have $k = 0$ (geometrically).
 \end{negg}
+
+We can generalise theorem~(\ref{thm:constraint-iso-simple}) to cover the case of several dependent variables and several integral constraints.
+
+\begin{nthm}
+    Let $y_1, \dots, y_n$ be the extremals of
+    \begin{equation}
+        J[y_1, \dots, y_n] = \int_a^b F\paren*{x, y_1, \dots, y_n, y'_1, \dots, y'_n} \,dx
+    \end{equation}
+    subject to the boundary conditions $y_i(a) = A_i$ and $y_i(b) = B_i$ with $i=1, \dots, n$ and integral constrains
+    \begin{equation}
+        K_j[y_1, \dots, y_n]
+        = \int_a^b G_j\paren*{x, y_1, \dots, y_n, y'_1, \dots, y'_n} \,dx
+        = \ell_j,
+        \quad j = 1, \dots, k.
+    \end{equation}
+    If $y_1, \dots, y_n$ are not extremals of $K_j[y_1, \dots, y_n]$ for all $j$, then there are constants $\lambda_j$ such that $y_1, \dots, y_n$ are the extremals of
+    \begin{equation}
+        I[y_1, \dots, y_n] = \int_a^b \Phi\paren*{x, y_1, \dots, y_n, y'_1, \dots, y'_n} \,dx
+    \end{equation}
+    with $\Phi = F + \sum_{j=1}^{k} \lambda_j G_j$.
+\end{nthm}
+
+In other words, $y_1, \dots, y_n$ satisfy the system of Euler-Lagrange equations
+\begin{equation}
+    \frac{\pd \Phi}{\pd y_k} - \frac{d}{dx} \paren*{\frac{\pd \Phi}{\pd y'_k}} = 0
+\end{equation}
+along with the boundary conditions and the constraint equations.
+
+\subsection{Holonomic Constraints}
+The constraints of the form $g(x, y_1, \dots, y_n) = 0$ are called holonomic.
+
+\begin{nthm}
+    Let $y_1, \dots, y_n$ be the extremals of
+    \begin{equation}
+        J[y_1, \dots, y_n] = \int_a^b F\paren*{x, y_1, \dots, y_n, y'_1, \dots, y'_n} \,dx
+    \end{equation}
+    subject to the boundary conditions $y_i(a) = A_i$ and $y_i(b) = B_i$ with $i=1, \dots, n$ and holonomic constrains
+    \begin{equation}
+        g_j(x, y_1, \dots, y_n) = 0,
+        \quad j = 1, \dots, k.
+    \end{equation}
+    If $\pd g_j / \pd y_i$ do not vanish simultaneously for all $i$ for points satisfying $g_j(x, y_1, \dots, y_n) = 0$, for all $j$, then there exist functions $\lambda_j(x)$ such that $y_1, \dots, y_n$ are the extremals of
+    \begin{equation}
+        I[y_1, \dots, y_n] = \int_a^b \Phi\paren*{x, y_1, \dots, y_n, y'_1, \dots, y'_n} \,dx
+    \end{equation}
+    with $\Phi = F + \sum_{j=1}^{n} \lambda_j(x) g_j$.
+\end{nthm}
+
+For the special case $k = 1$ (a single constraint) and $n = 2$ (two dependent variables), we get the following expression for the new functional,
+\begin{equation}
+    I[y_1, y_2] = \int_a^b \cparen[\bigg]{F\paren*{x, y_1, y_2, y'_1, y'_2} + \lambda(x) g\paren*{x, y_1, y_2, y'_1, y'_2}} \,dx.
+\end{equation}
+The associated Euler-Lagrange equations are then
+\begin{gather}
+    \frac{\pd F}{\pd y_1} + \lambda(x)\frac{\pd g}{\pd y_1} - \frac{d}{dx} \paren*{\frac{\pd F}{\pd y'_1}} = 0\\
+    \frac{\pd F}{\pd y_2} + \lambda(x)\frac{\pd g}{\pd y_2} - \frac{d}{dx} \paren*{\frac{\pd F}{\pd y'_2}} = 0
+\end{gather}
 
 \end{document}
