@@ -136,7 +136,34 @@ Notice that the condition that a given point $\gamma(t)$ is a regular is equival
     A parametrised curve has a unit-speed reparametrisation if and only if it is regular.
 \end{nthm}
 \begin{proof}
-    TBC.
+    Suppose $\gamma_1 : (\alpha, \beta) \to \R^n$ is a unit-speed reparametrisation of $\gamma_2 : (a,b) \to \R^n$ through the map $\varphi : (\alpha, \beta) \to (a, b)$ such that $\gamma_1 (t) = \gamma_2 (\varphi(t))$. We will show that $\gamma_2$ is regular. By chain rule, $\gamma_1 (t) = \gamma_2 (\varphi(t)) \implies \gamma'_1 (t) = \gamma'_2 (\varphi(t)) \varphi'(t)$.
+
+    Since $\gamma_1$ is unit-speed, $\abs{\gamma'_1} \equiv 1$. In particular $\gamma'_1$ is non-zero. Therefore, $\gamma'_2$ must also be non-zero. So, $\gamma_2$ is a regular curve.
+
+    Conversely, suppose $\gamma_2 : (a,b) \to \R^n$ is a regular curve. We will show that it admits a unit-speed reparametrisation. The arc-length function of $\gamma_2$ is
+    \begin{equation}
+        s : (a,b) \to I \subseteq \R,
+        \qquad\text{with}\qquad
+        s(t) = \int_a^t \abs{\gamma'_2 (u)} \,du.
+    \end{equation}
+    This is a smooth monotonic function, therefore, it has a smooth inverse $t = t(s)$. Also note that $ds/dt = \abs{\gamma'_2 (t)}$ by the fundamental theorem of calculus. Define,
+    \begin{equation}
+        \gamma_3 : I \to \R^n,
+        \qquad\text{with}\qquad
+        \gamma_3 (s) = \gamma_2 (t(s)).
+    \end{equation}
+    Then,
+    \begin{equation}
+        \gamma'_3 (s) = \gamma'_2 (t(s)) \frac{dt}{ds}.
+    \end{equation}
+    And,
+    \begin{equation}
+        \abs*{\gamma'_3 (s)}
+        = \abs*{\gamma'_2 (t(s))} \abs*{\frac{dt}{ds}}
+        = \frac{ds}{dt} \frac{dt}{ds}
+        = 1.
+    \end{equation}
+    So, $\gamma_3$ is a unit-speed reparametrisation of $\gamma_2$.
 \end{proof}
 
 \section{Closed Curves}
@@ -400,13 +427,13 @@ where $t$ is any regular parameter. However, since $\varphi = \varphi(s)$, the r
     Therefore, the signed curvature for this parametrisation of the circle is $\kappa_s = 1/a$.
 \end{negg}
 
-% \begin{remark}
-%     A simple calculation show that
-%     \begin{equation}
-%         \kappa_s = \frac{d\varphi}{ds} = \frac{\dot{x}\ddot{y} - \ddot{x}\dot{y}}{\paren*{\dot{x}^2+\dot{y}^2}^{3/2}}.
-%     \end{equation}
-%     This follows from differentiating $\tan\varphi(s) = f(t)$ with respect to $s$ using the chain rule, and setting $f(t) = \frac{dy/dt}{dx/dt}$.
-% \end{remark}
+\begin{remark}
+    A simple calculation show that
+    \begin{equation}
+        \kappa_s = \frac{d\varphi}{ds} = \frac{\dot{x}\ddot{y} - \ddot{x}\dot{y}}{\paren*{\dot{x}^2+\dot{y}^2}^{3/2}}.
+    \end{equation}
+    This follows from differentiating $\tan\varphi(s) = f(t)$ with respect to $s$ using the chain rule, and setting $f(t) = \frac{dy/dt}{dx/dt}$.
+\end{remark}
 
 An interesting quantity derived from $\kappa_s(s)$ is the \keyword{total signed curvature}
 \begin{equation}
@@ -608,7 +635,7 @@ These quantities can also be generalised to other regular parametrisations of th
 \section{Torsion}
 
 \begin{nlemma}
-    If $\alpha$ is a regular space curve with speed $v \equiv \abs*{\alpha'}$, then the velocity and the acceleration of $\alpha$ is given by
+    If $\alpha$ is a regular space curve with speed $v$, then the velocity and the acceleration of $\alpha$ is given by
     \begin{gather}
         \alpha' = \frac{ds}{dt} \vT \equiv v \vT\\
         \alpha'' = \frac{d^2 s}{dt^2} \vT + \kappa \paren*{\frac{ds}{dt}}^2 \vN \equiv v' \vT + \kappa v^2 \vN
@@ -616,7 +643,22 @@ These quantities can also be generalised to other regular parametrisations of th
     where $\vT$ and $\vN$ are the unit tangent and normal vectors, respectively, and $\kappa$ is the curvature of $\alpha$.
 \end{nlemma}
 \begin{proof}
-    TBC.
+    Let $\alpha = \alpha(t)$ be a regular curve and denote its speed $ds/dt$ by $v$. Then,
+    \begin{equation}
+        \alpha'
+        = \frac{d\alpha}{dt}
+        = \frac{ds}{dt} \frac{d\alpha}{ds}
+        = v \vT.
+    \end{equation}
+    (Alternatively, $\vT = \frac{d\alpha/dt}{\abs{d\alpha/dt}} \implies v \vT = d\alpha/dt = \alpha'$.)
+
+    Differentiating this expression with respect to $t$ gives
+    \begin{equation}
+        \alpha''
+        = \frac{d^2 s}{dt^2} \vT + \frac{ds}{dt} \frac{d\vT}{dt}
+        = \frac{d^2 s}{dt^2} \vT + \frac{ds}{dt} \frac{ds}{dt} \frac{d\vT}{ds}
+        = \frac{d^2 s}{dt^2} \vT + \paren*{\frac{ds}{dt}} \kappa \vN.
+    \end{equation}
 \end{proof}
 
 \begin{nthm}
@@ -702,21 +744,59 @@ The Frenet-Serret equations are a system of ODEs. Results on initial-value probl
     where $\vec{c_0}$, $\vec{c_1}$ and $\vec{c_2}$ are arbitrary constant vectors.
 \end{negg}
 
-% \missing{
-\begin{nex}
-    Show that $\alpha''' = -\kappa^2 \vT + \kappa' \vN + \tau\kappa \vB$.
-\end{nex}
-% }
+\begin{nthm}
+    For a unit-speed curve $\alpha = \alpha(s)$, $\alpha''' = -\kappa^2 \vT + \kappa' \vN + \tau\kappa \vB$.
+\end{nthm}
+\begin{proof}
+    If $\alpha$ is unit-speed then $ds/dt = 1$. So, $d^2 s / dt^2 = 0$. Then,
+    \begin{equation}
+        \alpha''
+        = \frac{d^2 s}{dt^2} \vT + \kappa \paren*{\frac{ds}{dt}}^2 \vN
+        = \kappa\vN
+        \implies 
+        \alpha'''
+        = \kappa \dot{\vN} + \kappa' \vN
+        = -\kappa^2 \vT + \kappa' \vN + \tau\kappa \vB.
+    \end{equation}
+    Here, we used the Frenet-Serret equations to replace $\dot{\vN}$.
+\end{proof}
 
-\begin{nex}
+\begin{nthm}
     For a unit speed space curve $\alpha = \alpha(s)$, show that
     \begin{equation}
         \alpha'' \cdot \alpha''' \times \alpha^{(4)} = \kappa^5 \frac{d}{ds}\paren*{\frac{\tau}{\kappa}},
     \end{equation}
-    and that if $\alpha$ is a helix then $\alpha'' \cdot \alpha''' \times \alpha^{(4)} = 0$. Is the coverse also true?
-\end{nex}
-
-% APPROXIMATING ALPHA(S) NEAR ALPHA(0) USING FRENET-SERRET
+    and that if $\alpha$ is a helix then $\alpha'' \cdot \alpha''' \times \alpha^{(4)} = 0$. Is the converse also true?
+\end{nthm}
+\begin{proof}
+    For a unit speed curve $\alpha''' = -\kappa^2 \vT + \kappa' \vN + \tau\kappa \vB$. So,
+    \begin{equation}
+        \alpha^{(4)}
+        = -3\kappa\dot{\kappa} \vT
+        + \paren*{\dot{\tau}\kappa + 2\tau\dot{\kappa}} \vB
+        + \paren*{\ddot{\kappa} - \kappa^3 - \tau^2 \kappa} \vN.
+    \end{equation}
+    Frenet-Serret equations were used to simplify the previous expression. Now, by the cyclic property of the triple scalar product, $\alpha'' \cdot \alpha''' \times \alpha^{(4)} = \alpha^{(4)} \cdot \alpha'' \times \alpha'''$. And
+    \begin{equation}
+        \alpha'' \times \alpha'''
+        = \kappa\vN \times \paren*{-\kappa^2 \vT + \kappa' \vN + \tau\kappa \vB}
+        = \tau \kappa^2 \vT + \kappa^3 \vB
+    \end{equation}
+    where we used $\vN \times \vT = - \vB$ and $\vN \times \vB = \vT$. Consequently,
+    \begin{equation}
+        \alpha^{(4)} \cdot \alpha'' \times \alpha'''
+        = -3 \kappa^3 \tau \dot{\kappa} + \kappa^4 \dot{\tau} + 2 \kappa^3 \tau \dot{\kappa}
+        = \kappa^4 \dot{\tau} - \kappa^3 \tau \dot{\kappa}.
+    \end{equation}
+    We can re-write this as
+    \begin{equation}
+        \alpha'' \cdot \alpha''' \times \alpha^{(4)}
+        = \alpha^{(4)} \cdot \alpha'' \times \alpha'''
+        = \kappa^5 \paren*{ \frac{\dot{\tau} \kappa}{\kappa^2} - \frac{\tau \dot{\kappa}}{\kappa^2} }
+        = \kappa^5 \frac{d}{ds}\paren*{\frac{\tau}{\kappa}}.
+        \qedhere
+    \end{equation}
+\end{proof}
 
 \begin{nthm}
     Let $\gamma = \gamma(s)$, $a \leq s \leq b$ be a unit speed curve with $\kappa > 0$. This is a plane curve if and only if $\tau = 0$ for all $s$.
@@ -747,12 +827,34 @@ The Frenet-Serret equations are a system of ODEs. Results on initial-value probl
 \end{proof}
 
 \begin{nthm}
-    If $\alpha = \alpha(s)$ is a unit speed curve that lies on a sphere of radius $a$ and has $\tau \neq 0$ for all $s$, then its curvature is $\kappa \geq 1/a$.
-
-    (A curve that lies on a sphere is also called a spherical curve.)
+    If $\alpha = \alpha(s)$ is a unit speed curve that lies on a sphere of radius $R$ and has $\tau \neq 0$ for all $s$, then its curvature is $\kappa \geq 1/R$.
 \end{nthm}
+(A curve that lies on a sphere is also called a \keyword{spherical curve}.)
 \begin{proof}
-    TBC. (Differentiate the defining equation and then use the Schwarz inequality.)
+    Suppose $\alpha$ lies on a circle of radius $R$ centred at $\vec{c}$. So, $\abs*{\alpha(s) - \vec{c}} = R$. And,
+    \begin{equation}
+        \paren*{\alpha(s) - \vec{c}} \cdot \paren*{\alpha(s) - \vec{c}} = R^2.
+    \end{equation}
+    Differentiating this twice with respect to $s$ gives
+    \begin{equation}
+        2 \dot{\alpha} \cdot \paren*{\alpha(s) - \vec{c}} = 0
+        \implies
+        \ddot{\alpha} \cdot \paren*{\alpha(s) - \vec{c}} + \dot{\alpha} \cdot \dot{\alpha} = 0.
+    \end{equation}
+    As $\alpha$ is unit-speed, $\dot{\alpha} \cdot \dot{\alpha} = 1$ and we have $\ddot{\alpha} \cdot \paren*{\alpha(s) - \vec{c}} = -1$.
+
+    By Cauchy-Schwartz inequality, we obtain
+    \begin{equation}
+        \abs*{\ddot{\alpha}} \abs*{\alpha(s) - \vec{c}}
+        \geq \paren*{ \ddot{\alpha} \cdot \paren*{\alpha(s) - \vec{c}} }^2
+        = 1
+        \implies
+        \abs*{\ddot{\alpha}} R
+        \geq 1
+        \implies
+        \abs*{\ddot{\alpha}} \geq \frac{1}{R}.
+    \end{equation}
+    Therefore, $\kappa = \abs*{\ddot{\alpha}} \geq \frac{1}{R}$.
 \end{proof}
 
 \begin{nthm}
@@ -761,15 +863,53 @@ The Frenet-Serret equations are a system of ODEs. Results on initial-value probl
         \frac{\tau}{\kappa} = \frac{d}{ds}\paren*{\frac{\kappa'}{\tau \kappa^2}}.
     \end{equation}
 \end{nthm}
-\begin{proof}
-    TBC. (Differentiate the defining equation four times.)
-\end{proof}
+% \begin{proof}
+%     TBC. (Differentiate the defining equation four times.)
+
+%     Suppose $\alpha$ lies on a sphere of radius $R$, centred at $\vec{a}$. Then,
+%     \begin{equation}
+%         \paren*{\alpha(s) - \vec{a}} \cdot \paren*{\alpha(s) - \vec{a}} = R^2.
+%     \end{equation}
+%     Differentiating this with respect to $s$ gives
+%     \begin{equation}
+%         2 \dot{\alpha} \cdot \paren*{\alpha(s) -\vec{a}} = 0
+%         \implies
+%         \ddot{\alpha} \cdot \paren*{\alpha(s) -\vec{a}} + \dot{\alpha} \cdot \dot{\alpha} = 0.
+%     \end{equation}
+%     Noting that $\alpha$ is unit speed, $\dot{\alpha} \cdot \dot{\alpha} = 1$ and $\ddot{\alpha} \cdot \dot{\alpha} = 0$. By differentiating this further, we obtain
+%     \begin{equation}
+%         \dddot{\alpha} \cdot \paren*{\alpha(s) -\vec{a}} + \ddot{\alpha} \cdot \dot{\alpha} = 0.
+%         \implies
+%         \ddddot{\alpha} \cdot \paren*{\alpha(s) -\vec{a}} + \dddot{\alpha} \cdot \dot{\alpha} = 0.
+%     \end{equation}
+% \end{proof}
 
 \begin{nthm}
     If $\alpha = \alpha(s)$ is a unit speed curve with constant positive curvature $\kappa$ and $\tau = 0$ for all $s$, then $\alpha$ is a part of the circle.
 \end{nthm}
 \begin{proof}
-    TBC. (Construct the center as a curve, $\alpha + \vN/\kappa$, show that it is constant. Show that $\alpha$ lies a distance $1/\kappa$ from this centre.)
+    Firstly note that $\tau = 0$ implies that $\alpha$ is a plane curve.
+
+    Next, consider the function $\vec{F}(s) = \alpha + \frac{1}{\kappa} \vN(s)$,
+    where $\vN(s)$ is the principle normal vector to $\alpha$ at $\alpha(s)$. Differentiating $\vec{F}(s)$ with respect to $s$ gives
+    \begin{equation}
+        \vec{F}'(s)
+        = \alpha' + \frac{1}{\kappa} \vN'(s)
+        = \vT + \frac{1}{\kappa} \paren*{-\kappa \vT + \tau \vB}
+        = \vT - \vT
+        = 0.
+    \end{equation}
+    So, $\vec{F}$ is a constant vector.
+
+    We will show that the distance between the curve $\alpha(s)$ and the constant vector $\vec{F}$ always remains the same. To this end, note that
+    \begin{equation}
+        \alpha(s) - \vec{F}
+        = \alpha(s) - \alpha(s) - \frac{1}{\kappa} \vN(s)
+        = -\frac{1}{\kappa} \vN(s).
+    \end{equation}
+    Therefore, $\abs*{\alpha(s) - \vec{F}} = \frac{1}{\kappa} \abs*{\vN} = \frac{1}{\kappa}$.
+
+    This shows that $\alpha$ is a part of a circular arc with centre $\vec{F}$ and radius $1/\kappa$.
 \end{proof}
 
 \section{Global Properties of Curves}
@@ -786,7 +926,7 @@ The Frenet-Serret equations are a system of ODEs. Results on initial-value probl
 $C$ is the boundary curve of both $\interior{C}$ and $\exterior{C}$.
 
 \begin{ndfn}
-    A curve $\gamma$ is said to be positivvely oriented if the signed unit normal $\vN_s$ of $\gamma$ always points into $\interior{C}$.
+    A curve $\gamma$ is said to be positively oriented if the signed unit normal $\vN_s$ of $\gamma$ always points into $\interior{C}$.
 \end{ndfn}
 
 \subsection{Area Enclosed by a Jordan Curve}
@@ -857,14 +997,38 @@ The area of the region enclosed by a Jordan curve $\gamma$ in the $\R^2$ plane i
 \end{proof}
 
 \begin{nthm}[Isoperimetric inequality]
-    Let $\gamma$ be a simple closed curve. Let $\ell(\gamma)$ be its length and $A(\gamma)$ be the area enclosed by $\gamma$. Then,
+    Let $\gamma$ be a simple closed curve in the plane. Let $\ell(\gamma)$ be its length and $A(\gamma)$ be the area enclosed by $\gamma$. Then,
     \begin{equation}
         A(\gamma) \leq \frac{1}{4\pi} \ell(\gamma)^2
     \end{equation}
     and the equality holds if and only if $\gamma$ is a circle.
 \end{nthm}
 \begin{proof}
-    TBC
+    Without loss of generality, we assume that the curve is parametrised by arc-length, so $\gamma : [0, \ell] \to \R^2$ with $\gamma = \gamma(s)$. Also, we also translate the curve so that $\gamma(0) = 0$; this doesn't effect the value of $\ell(\gamma)$ and $A(\gamma)$. Also note that $\gamma(\ell) = \gamma(0)$ because it is a closed curve.
+
+    We reparametrize the curve using the parameter $t = \pi s / \ell$. Then, $t \in [0, \pi]$ and $ds/dt = \ell/\pi$. We can then write the curve in coordinates as $\gamma(t) = \paren*{x(t), y(t)}$. Switching to polar coordinates $x = r \cos\theta$ and $y = r \sin\theta$ we find $\dot{x}^2 + \dot{y}^2 = \dot{r}^2 + r^2 \dot{\theta}^2$ and $x\dot{y} - y\dot{x} = r^2 \dot{\theta}$. Therefore,
+    \begin{equation}
+        \dot{r}^2 + r^2 \dot{\theta}^2
+        = \paren*{ \paren*{\frac{dx}{dt}}^2 + \paren*{\frac{dy}{dt}}^2 }
+        = \paren*{ \paren*{\frac{dx}{ds}}^2 + \paren*{\frac{dy}{ds}}^2 } \paren*{\frac{ds}{dt}}^2
+        = \frac{\ell^2}{\pi^2}
+    \end{equation}
+    as $(dx/ds)^2 + (dy/ds)^2 = 1$. This allows us to write
+    \begin{equation}
+        \frac{\ell^2}{4\pi} = \frac{1}{4} \int_0^\pi \paren*{\dot{r}^2 + r^2 \dot{\theta}^2} \,dt.
+    \end{equation}
+    Also, $A = \frac{1}{2} \int_0^\pi \paren*{x\dot{y} - y\dot{x}} \,dt = \frac{1}{2} \int_0^\pi r^2 \dot{\theta} \,dt$. Consequently,
+    \begin{align}
+        \frac{\ell^2}{4\pi} - A
+        &= \frac{1}{4} \int_0^\pi \paren*{\dot{r}^2 + r^2 \dot{\theta} - 2r^2\dot{\theta}} \,dt\\
+        &= \frac{1}{4} \int_0^\pi r^2 \paren{\dot{\theta}-1}^2 \,dt + \frac{1}{4}\int_0^\pi \paren*{\dot{r}^2 - r^2} \,dt.
+        \label{eq:isoperi-proof-a}
+    \end{align}
+    In equation~\eqref{eq:isoperi-proof-a}, the first term is non-negative because the integrand is non-negative, and the second is non-negative by Wirtinger's inequality. Consequently, $\frac{\ell^2}{4\pi} - A \geq 0$. Or equivalently,
+    \begin{equation}
+        A \leq \frac{1}{4\pi} \ell^2.
+    \end{equation}
+    Also, the first term in equation~\eqref{eq:isoperi-proof-a} is zero precisely when $\dot{\theta} = 1$ (i.e. $\theta = t + \theta_0$ with $\theta_0$ constant), while the second term becomes zero when $r = K \sin\theta$ for some constant $K$. Collectively, both of these terms vanish when $r = K \sin(t + \theta_0)$. This is the equation of a circle with diameter $K$ and passing through the origin. Therefore, $A = \ell^2 / 4\pi$ if and only if the curve is a circle.
 \end{proof}
 
 \section{Surfaces}
