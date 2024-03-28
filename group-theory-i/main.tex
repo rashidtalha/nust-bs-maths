@@ -148,9 +148,9 @@ Typically we write $a * b$ simply as $ab$ and call the binary operation multipli
         \implies e x = \inv{a} b
         \implies x = \inv{a} b.
     \end{equation*}
-    And $\inv{a} b \in H$ due to the closure property. So, $x = \inv{a} b \in H$.
+    And $\inv{a} b \in G$ due to the closure property. So, $x = \inv{a} b \in G$.
 
-    (Uniqueness.) Suppose there are $x_1, x_2 \in H$ that satisfy $a x = b$. Then, $a x_1 = b$ and $a x_2 = b$. So, by the cancellation property $a x_1 = a x_2 \implies x_1 = x_2$.
+    (Uniqueness.) Suppose there are $x_1, x_2 \in G$ that satisfy $a x = b$. Then, $a x_1 = b$ and $a x_2 = b$. So, by the cancellation property $a x_1 = a x_2 \implies x_1 = x_2$.
     
     The proof for $y a = b$ is analogous, with multiplications on the right hand side.
 \end{proof}
@@ -321,10 +321,10 @@ There are precisely three non-trivial subgroups of $K_4$: $\set{1, a}$, $\set{1,
 Consider the set
 \begin{equation*}
     G = \set*{
-    \begin{bmatrix}1 & 0 \\ 0 & 1\end{bmatrix},
-    \begin{bmatrix}1 & 0 \\ 0 & 1\end{bmatrix},
-    \begin{bmatrix}1 & 0 \\ 0 & 1\end{bmatrix},
-    \begin{bmatrix}1 & 0 \\ 0 & 1\end{bmatrix}}
+    \begin{bmatrix*}[r]1 & 0\\ 0 & 1\end{bmatrix*},
+    \begin{bmatrix*}[r]-1 & 0\\ 0 &-1\end{bmatrix*},
+    \begin{bmatrix*}[r]-1 & 0\\0 & 1\end{bmatrix*},
+    \begin{bmatrix*}[r]1 & 0\\0 & -1\end{bmatrix*} }
 \end{equation*}
 of matrices with the usual matrix multiplication. We find that it forms a group. Clearly, this is a group of order $4$. Moreover, each non-identity element in this group has order $2$. This coincides exactly with the group structure of $K_4$. We say that this group is the same as $K_4$ (this notion will be made precise when we define \keyword{isomorphisms} later), and that it is simply a matrix \keyword{representation} of $K_4$.
 
