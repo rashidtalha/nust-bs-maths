@@ -35,7 +35,8 @@
     \begin{align}
         \delta J
         &= \int_{a}^{b} F(x, y+h, y'+h') \,dx - \int_{a}^{b} F(x, y, y') \,dx\\
-        &= \int_{a}^{b} h {\pd F}{\pd y}(x, y, y') + h' {\pd F}{\pd y'}(x, y, y') \,dx\\
+        &= \int_{a}^{b} \cparen*{F(x, y, y') + h \frac{\pd F}{\pd y}(x, y, y') + h' \frac{\pd F}{\pd y'}(x, y, y') - F(x, y, y')} \,dx\\
+        &= \int_{a}^{b} h \frac{\pd F}{\pd y}(x, y, y') + h' \frac{\pd F}{\pd y'}(x, y, y') \,dx\\
         &= \int_{a}^{b} h \paren*{ \frac{\pd F}{\pd y}(x, y, y') + \frac{\pd F}{\pd y'}(x, y, y') } \,dx - \bigg. h(x) F(x, y, y') \bigg|_a^b\\
         &= \int_{a}^{b} h \paren*{ \frac{\pd F}{\pd y}(x, y, y') + \frac{d}{dx} \paren*{ \frac{\pd F}{\pd y'}(x, y, y')} } \,dx.
     \end{align}
@@ -92,7 +93,7 @@ An important class of functionals that is often encountered is
 \end{equation}
 Using the Euler-Lagrange equation~\eqref{eq:el-basic} we obtain (after several lines of careful differentiation and algebraic manipulations)
 \begin{equation}
-    g_y - y g_x - \frac{y''}{1 + y'^2} g = 0.
+    g_y - y' g_x - \frac{y''}{1 + y'^2} g = 0.
 \end{equation}
 
 For example, if $g(x, y) \equiv 1$, then we immediately obtain $y'' = 0$, which leads to $y = ax + b$ for $a, b \in \R$. This is the solution to the length functional variational problem on $\R^2$.
@@ -111,7 +112,7 @@ The variational problems are usually posed as boundary value problems, where the
 
 A certain class of variational (boundary value) problems, however, does have an associated existence and uniqueness theorem.
 \begin{nthm}[Bernstein]
-    Consider the ODE $y'' = G(x, y, y')$. If the functions $F$, $F_y$ and $F_{y'}$ are continuous at every finite point $(x,y)$ for any finite $y'$, and if a constant $k > 0$ and function
+    Consider the ODE $y'' = G(x, y, y')$. If the functions $G$, $G_y$ and $G_{y'}$ are continuous at every finite point $(x,y)$ for any finite $y'$, and if a constant $k > 0$ and function
     \begin{equation*}
         \alpha = \alpha(x,y) \geq 0,
         \qquad
@@ -119,9 +120,9 @@ A certain class of variational (boundary value) problems, however, does have an 
     \end{equation*}
     (which are bounder in every finite region of the plane) can be found such that
     \begin{equation*}
-        F_y (x,y,y') > k,
+        G_y (x,y,y') > k,
         \qquad
-        \abs*{F(x,y,y')} \leq \alpha y'^2 + \beta
+        \abs*{G(x,y,y')} \leq \alpha y'^2 + \beta
     \end{equation*}
     then one and only one integral curve of the stated ODE passes through any two point $(a, A)$ and $(b, B)$ where $a \neq b$.
 \end{nthm}
@@ -606,7 +607,7 @@ Here again we can obtain some first integrals when the integrand $F\paren*{x, y,
     where
     \begin{equation}
         p_k = \frac{\pd F}{\pd y^{(k)}}
-        + \sum_{j=k}^{n} (-1)^{j} \frac{d^{j}}{dx^{j}} \paren*{ \frac{\pd F}{\pd y^{(j+1)}} }
+        + \sum_{j=1}^{n-k} (-1)^{j} \frac{d^{j}}{dx^{j}} \paren*{ \frac{\pd F}{\pd y^{(j+k)}} }
     \end{equation}
 \end{enumerate}
 
@@ -739,16 +740,16 @@ The constraints of the form $g(x, y_1, \dots, y_n) = 0$ are called holonomic.
         g_j(x, y_1, \dots, y_n) = 0,
         \quad j = 1, \dots, k.
     \end{equation}
-    If $\pd g_j / \pd y_i$ do not vanish simultaneously for all $i$ for points satisfying $g_j(x, y_1, \dots, y_n) = 0$, for all $j$, then there exist functions $\lambda_j(x)$ such that $y_1, \dots, y_n$ are the extremals of
+    If $\pd g_j / \pd y_i$ does not vanish simultaneously for all $i$ for points satisfying $g_j(x, y_1, \dots, y_n) = 0$, for all $j$, then there exist functions $\lambda_j(x)$ such that $y_1, \dots, y_n$ are the extremals of
     \begin{equation}
         I[y_1, \dots, y_n] = \int_a^b \Phi\paren*{x, y_1, \dots, y_n, y'_1, \dots, y'_n} \,dx
     \end{equation}
-    with $\Phi = F + \sum_{j=1}^{n} \lambda_j(x) g_j$.
+    with $\Phi = F\paren*{x, y_1, \dots, y_n, y'_1, \dots, y'_n} + \sum_{j=1}^{n} \lambda_j(x) g_j \paren*{x, y_1, \dots, y_n}$.
 \end{nthm}
 
 For the special case $k = 1$ (a single constraint) and $n = 2$ (two dependent variables), we get the following expression for the new functional,
 \begin{equation}
-    I[y_1, y_2] = \int_a^b \cparen[\bigg]{F\paren*{x, y_1, y_2, y'_1, y'_2} + \lambda(x) g\paren*{x, y_1, y_2, y'_1, y'_2}} \,dx.
+    I[y_1, y_2] = \int_a^b \cparen[\bigg]{F\paren*{x, y_1, y_2, y'_1, y'_2} + \lambda(x) g\paren*{x, y_1, y_2}} \,dx.
 \end{equation}
 The associated Euler-Lagrange equations are then
 \begin{gather}
@@ -757,3 +758,5 @@ The associated Euler-Lagrange equations are then
 \end{gather}
 
 \end{document}
+
+0101109853

@@ -3,6 +3,12 @@
 \usepackage{mathsphystools}
 \usepackage{thmstyles}
 
+\newcommand{\utt}{u_{tt}}
+\newcommand{\uxt}{u_{xt}}
+\newcommand{\uxx}{u_{xx}}
+\newcommand{\uyy}{u_{yy}}
+\newcommand{\uxy}{u_{xy}}
+
 \newcommand{\missing}[1]{{\color{red}#1}}
 
 \title{MATH 353: Partial Differential Equations}
@@ -16,12 +22,14 @@
 
 \textbf{Textbook:} Linear Partial Differential Equations for Scientists and Engineers, Tyn Myint-U and Lokenath Debnath
 
+\textbf{Disclaimer:} This document most likely contains some errors --- use with caution. I have rephrased or paraphrased the content in most of the sections. Some examples may be missing. The numbering that I have used for sections, definitions, theorems, etc will not match the numbering given in the lectures.
+
 \section{Introduction}
 A general partial differential equation (PDE) can be expressed as
 \begin{equation}
     F(x,y,\dots, u, u_x, u_y, \dots, u_{xx}, u_{xy}, \dots) = 0
 \end{equation}
-where $x, y, \dots$ are the independent variables and $u = u(x,y,\dots)$ is an unknown function. The terms $u_x, u_y, u_{xy}, \dots$ represent derivatives of $u$. For example,
+where $x, y, \dots$ are independent variables and $u = u(x,y,\dots)$ is an unknown function. The terms $u_x, u_y, u_{xy}, \dots$ represent derivatives of $u$. For example,
 \begin{equation*}
     u_{xy} = \frac{\pd^2 u}{\pd y \pd x}.
 \end{equation*}
@@ -33,7 +41,7 @@ The unknown function $u$ is defined over some domain $D \subseteq \R^{n}$.
     (x, y, \dots) \mapsto u(x, y, \dots)
 \end{equation}
 
-The goal is to find a suitable $u$ (either explicitly or implicitly) that satisfies the given PDE.
+The goal is to find a suitable function $u$ (either explicitly or implicitly) that satisfies the given PDE and any additional initial-boundary data.
 
 \begin{ndfn}
     A PDE is said to be well-posed if
@@ -46,22 +54,16 @@ The goal is to find a suitable $u$ (either explicitly or implicitly) that satisf
 
 \section{General Classification}
 
-The order of the PDE is the order of the highest derivative term.
+The order of the PDE is the order of the highest order derivative term.
 
-A PDE where each term containing the unknown function or its derivatives appears linearly, is called a linear PDE. A general $k$th order linear PDE of $n$ variables can be written as
-\begin{equation*}
-    EQQ
-\end{equation*}
-In particular, a general 2nd order PDE takes the form
-\begin{equation*}
+A PDE where each term containing the unknown function or its derivatives appears linearly, is called a linear PDE. In particular, a general 2nd order PDE in $n$ variables takes the form
+\begin{equation}
     \sum_{i,j=1}^{n} a_{i,j} u_{x_i x_j} + \sum_{i=1}^{n} b_i u_{x_i} + c u = d.
-\end{equation*}
-where, $a_{i,j}$, $b_{i}$, $c$ and $d$ are all functions of $x_1, \dots, x_n$.
-
-Similarly, a general 1st order PDE can be expressed as
-\begin{equation*}
+\end{equation}
+where, $a_{i,j}$, $b_{i}$, $c$ and $d$ are all functions of $x_1, \dots, x_n$. Similarly, a general 1st order PDE in $n$ variables can be expressed as
+\begin{equation}
     \sum_{i=1}^{n} \alpha_i (x_1, \dots, x_n) u_{x_i} + \beta (x_1, \dots, x_n) u = \gamma (x_1, \dots, x_n).
-\end{equation*}
+\end{equation}
 
 A PDE that is not linear is called non-linear.
 
@@ -70,7 +72,7 @@ A PDE is called quasi-linear if it is linear in the highest order derivatives. F
     a(x,y,u) u_x + b(x,y,u) u_y = c(x,y,u).
 \end{equation}
 
-A PDE is called semi-linear if the coefficients of the highest order derivatives only contains independent variables. For example, a first order semi-linear PDE in two independent variables has the general form
+A PDE is called semi-linear if the coefficients of the highest order derivatives only contain independent variables. For example, the general form of a first order semi-linear PDE in two independent variables is
 \begin{equation}
     a(x,y) u_x + b(x,y) u_y = c(x,y,u).
 \end{equation}
@@ -135,7 +137,7 @@ A PDE is called semi-linear if the coefficients of the highest order derivatives
         \frac{dx}{a(x,y,u)} = \frac{dy}{b(x,y,u)} = \frac{du}{c(x,y,u)}.
     \end{equation}
 
-    (The solution curves $\phi = c_1$ and $\psi = c_2$ are called the characteristic curves of the given PDE.)
+    % (The solution curves $\phi = c_1$ and $\psi = c_2$ are called the characteristic curves of the given PDE.)
 \end{nthm}
 \begin{proof}
     The ratios in the characteristic equations can all be equated to a common parameter
@@ -230,7 +232,7 @@ Overall, if we can find a suitable $\xi = \xi(x,y)$ then we have transformed the
     \quad\to\quad B u_\eta + cu = d
     \quad\to\quad u_\eta + \alpha(\xi, \eta) u = \beta(\xi, \eta).
 \end{equation}
-Here, $\alpha = c/B$ and $\beta = d/b$.
+Here, $\alpha = c/B$ and $\beta = d/B$.
 
 % \subsection*{Worked Examples}
 \begin{negg}
@@ -244,9 +246,9 @@ Here, $\alpha = c/B$ and $\beta = d/b$.
     \end{equation*}
     For these, $d\xi = 0$ immediately gives $\xi = c_1$ as one characteristic curve. For the second characteristic curve, we solve the first two ratios to obtain $y = -x + c_2$, or $x + y = c_2$. So, a particular solution for $\xi$ is, $\xi = x+y$.
 
-    (Here, the general solution would have been $f(\phi, x+y) = 0$. We, firstly, we write this as $\xi = g(x+y)$, and then pick the simplest non-trivial case $g(x+y) = x+y$ as a particular choice of the change of variables for $\xi$.)
+    (Here, the general solution would have been $f(\phi, x+y) = 0$. We, firstly, re-write this as $\xi = g(x+y)$, and then pick the simplest non-trivial case $g(x+y) = x+y$ as a particular choice of the change of variables for $\xi$.)
 
-    We pick a simple (but independent) expression $\eta = y$
+    We pick a simple (but independent) expression $\eta = y$.
 
     Using $\xi = x+y$ and $\eta = y$, we find that $u_x = u_\xi$ and $u_y = u_\xi + u_\eta$. So,
     \begin{equation}
@@ -289,7 +291,7 @@ Equivalently,
 \end{equation}
 These are called the characteristic equations, and their solutions are called characteristic curves.
 
-We find that these lead to two families surfaces of solutions
+We find that these lead to two families of surfaces
 \begin{equation}
     \phi(x,y,u) = c_1
     \qquad\text{and}\qquad
@@ -688,29 +690,103 @@ We obtained equations~\eqref{eq:wave-phi}-\eqref{eq:wave-psi} using the initial 
     \label{eq:wave-soln-semiinfinite}
 \end{equation}
 
-Alternatively, we can require $u(x,t)$ to be free at $x=0$. This corresponds to $u_x(0,t) = 0$ for all $t \geq 0$. Collectively, the initial-boundary conditions become
+% Alternatively, we can require $u(x,t)$ to be free at $x=0$. This corresponds to $u_x(0,t) = 0$ for all $t \geq 0$. Collectively, the initial-boundary conditions become
+% \begin{equation}
+%     u(x, 0) = f(x)
+%     \quad\text{and}\quad
+%     u_t (x, 0) = g(x)
+%     \quad\text{and}\quad
+%     u_x (0, t) = 0
+% \end{equation}
+% for all $x \in [0, \infty)$ and $t \geq 0$. A similar analysis shows that now the solution is
+
+% SOMETHING SOMETHING.
+
+% \subsection{Homogenous Wave Equation on a Finite Spatial Domain}
+% Suppose now restrict the spatial coordinate to $x \in [0, \ell]$. The corresponding initial-boundary conditions where both ends are fixed are
+% \begin{equation}
+%     u(x, 0) = f(x)
+%     \quad\text{and}\quad
+%     u_t (x, 0) = g(x)
+%     \quad\text{and}\quad
+%     u(0, t) = u(\ell, t) = 0.
+%     \label{eq:wave-initial-finite}
+% \end{equation}
+
+% SOMETHING SOMETHING.
+
+\section{Method of Separation of Variables}
+\subsection{The Vibrating String Problem}
+Consider the initial-boundary value problem
+\begin{gather}
+    \utt - c^2 \uxx = 0, \quad x \in [0, \ell], \quad t \geq 0\\
+    u(x,0) = f(x), \quad x \in [0, \ell]\\
+    u_t(x,0) = g(x), \quad x \in [0, \ell]\\
+    u(0,t) = u(\ell,t) = 0, \quad t \geq 0.
+\end{gather}
+
+Using the method of separation of variables\footnote{Applicable only when the PDE is homogenous, the boundary conditions are homogenous and the spatial domain is bounded.}, we look for a non-trivial solution $u(x,t)$ of the form $u(x,t) = X(x) T(t)$. Since $u$ is assumed to be non-trivial, we must \emph{not} have $X(x) \equiv 0$ or $T(t) \equiv 0$.
+
+In terms of this ansatz, the problem becomes
+\begin{gather}
+    X(x) \ddot{T}(t) - c^2 X''(x) T(t) = 0, \quad x \in [0, \ell], \quad t \geq 0\\
+    X(x) = \frac{f(x)}{T(0)} \quad\text{when}\quad t = 0, \quad x \in [0, \ell]\\
+    X(x) = \frac{g(x)}{\dot{T}(0)} \quad\text{when}\quad t = 0, \quad x \in [0, \ell]\\
+    X(0) = X(\ell) = 0, \quad t \geq 0.
+\end{gather}
+
+This gives
 \begin{equation}
-    u(x, 0) = f(x)
-    \quad\text{and}\quad
-    u_t (x, 0) = g(x)
-    \quad\text{and}\quad
-    u_x (0, t) = 0
+    X(x) \ddot{T}(t) - c^2 X''(x) T(t) = 0
+    \implies
+    \frac{X''(x)}{X(x)} = \frac{1}{c^2} \frac{\ddot{T}(t)}{T(t)} = \lambda.
 \end{equation}
-for all $x \in [0, \infty)$ and $t \geq 0$. A similar analysis shows that now the solution is
+In the last step we used the fact that the LHS is a function of $x$ while the RHS is only a function of $y$, so, they are equal to some common constant $\lambda$.
 
-SOMETHING SOMETHING.
-
-\subsection{Homogenous Wave Equation on a Finite Spatial Domain}
-Suppose now restrict the spatial coordinate to $x \in [0, \ell]$. The corresponding initial-boundary conditions where both ends are fixed are
+Equivalently,
 \begin{equation}
-    u(x, 0) = f(x)
+    X'' - \lambda X = 0
     \quad\text{and}\quad
-    u_t (x, 0) = g(x)
-    \quad\text{and}\quad
-    u(0, t) = u(\ell, t) = 0.
-    \label{eq:wave-initial-finite}
+    \ddot{T} - c^2 \lambda T = 0.
+\end{equation}
+These ODEs lead to different solutions based on the values of $\lambda$.
+
+For $\lambda = 0$, we have $X'' = 0$ which gives $X(x) = c_1 x + c_2$ for some constants $c_1, c_2$. Now, $X(0)=X(\ell)=0$ implies $c_1 = c_2 = 0$. As a result, $X(x) \equiv 0$.
+
+Consequently, the case $\lambda = 0$ is not valid because it gives the trivial solution $u(x,t) = 0$ for all $x \in [0, \ell]$ and $t \geq 0$, while we are only seeking non-trivial solutions.
+
+If $\lambda > 0$, then $X'' - \lambda X = 0$ implies $X(x) = c_1 e^{\sqrt{\lambda}x} + c_2 e^{-\sqrt{\lambda}x}$, which along with the boundary conditions $X(0) = X(\ell) = 0$ leads to the system of linear equations
+\begin{align}
+    c_1 + c_2 &= 0 \\
+    c_1 e^{\sqrt{\lambda}\ell} + c_2 e^{-\sqrt{\lambda}\ell} &= 0.
+\end{align}
+Here, the coefficient matrix is non-singular, so we must have $c_1 = c_2 = 0$. As a result, $X(x) \equiv 0$ and we get the trivial solution for $u(x,t)$. Therefore, we also ignore $\lambda > 0$.
+
+Lastly, if $\lambda < 0$, then we can write it in a more expressive manner as $\lambda = - k^2$. Now $X'' - \lambda X = 0$ becomes $X'' + k^2 X = 0$ and leads to the solution
+\begin{equation}
+    X(x) = c_1 \cos\paren*{kx} + c_2 \sin\paren*{kx}.
+\end{equation}
+Now, $X(0) = 0 \implies c_1 = 0$, reducing it to $X(x) = c_2 \sin\paren*{kx}$.
+
+The other boundary condition $X(\ell) = 0$ corresponds to $c_2 \sin\paren{k\ell} = 0$. If we take $c_2 = 0$ then again we obtain the trivial solution $X(x) \equiv 0$. So, we require $\sin\paren{k\ell} = 0$ instead. This is equivalent to $k\ell = \pi$, or $k = \pi / \ell$.
+
+Solving $\ddot{T} - c^2 \lambda T = 0$ with $\lambda = -k^2 = -\pi^2 / \ell^2$ gives
+\begin{equation}
+    T(t) = c_3 \cos\paren*{\frac{c \pi t}{\ell}} + c_4 \sin\paren*{\frac{c \pi t}{\ell}}.
+\end{equation}
+Overall,
+\begin{equation}
+    u(x,t) = \paren*{q_1 \cos\paren*{\frac{c \pi t}{\ell}} + q_2 \sin\paren*{\frac{c \pi t}{\ell}}} \sin\paren*{\frac{\pi x}{\ell}}
+\end{equation}
+where $q_1, q_2$ are constants.
+
+Next we apply the initial conditions,
+\begin{equation}
+    u(x,0) = f(x)
+    \implies
+    q_1 \sin\paren*{\frac{\pi x}{\ell}} = f(x).
 \end{equation}
 
-SOMETHING SOMETHING.
+FOURIER ETC.
 
 \end{document}
