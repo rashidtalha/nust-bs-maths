@@ -1,0 +1,160 @@
+\documentclass[11pt]{penrose}
+
+\usepackage{mathsphystools}
+
+\title{Past Paper: Calculus of Variations}
+\subtitle{Midterm Exam, 2024}
+\author{Rashid M. Talha}
+\begin{document}
+
+\newenvironment{problem}[2][Question]{\textbf{#1 #2.}\par}{}
+\newcommand{\solution}{\textit{Solution.}\hspace{2mm}}
+
+\maketitle
+
+\textbf{Disclaimer:} Use at your own risk. Errors possible.
+
+\begin{problem}{1 (a)}
+    If $\alpha(x)$ is continuous in $[a,b]$ and if $\int_a^b \alpha(x) h(x) \,dx = 0$ for every $h \in D_{1}(a,b)$ such that $h(a) = h(b) = 0$, then $\alpha(x) = 0$, for all $x \in [a,b]$.
+
+    ($D_{1}(a,b)$ consists of all the continuous functions defined on the interval $[a,b]$ whose first order derivative is also continuous.)
+
+    \solution For a contradiction, suppose $\alpha(x_0) \neq 0$ for some $x_0 \in (a,b)$.
+
+    Without loss of generality, assume that $\alpha(x_0) > 0$. By the continuity of $\alpha$, there exists an interval $I = (x_a, x_b) \subseteq (a,b)$ with $x_0 \in I$ such that $\alpha(x) > 0$ for all $x \in I$.
+
+    Construct the function $h:[a,b] \to \R$ with
+    \begin{equation*}
+        h(x) =
+        \begin{cases}
+            (x - x_a)^2 (x - x_b)^2, & x \in (x_a, x_b) \\
+            0, & \text{otherwise}
+        \end{cases}
+    \end{equation*}
+    This $h(x)$ is continuous, and its first derivative is also continuous everywhere including $x = x_a$ and $x = x_b$. Moreover, $h(a) = h(b) = 0$. Now,
+    \begin{align*}
+        \int_a^b \alpha(x) h(x) \,dx
+        &= \int_a^{x_a} \alpha(x) h(x) \,dx
+        + \int_{x_a}^{x_b} \alpha(x) h(x) \,dx
+        + \int_{x_b}^b \alpha(x) h(x) \,dx\\
+        &= \int_a^{x_a} \alpha(x) 0 \,dx
+        + \int_{x_a}^{x_b} \alpha(x) (x - x_a)^2 (x - x_b)^2 \,dx
+        + \int_{x_b}^b \alpha(x) 0 \,dx\\
+        &= \int_{x_a}^{x_b} \alpha(x) (x - x_a)^2 (x - x_b)^2 \,dx
+        > 0
+    \end{align*}
+    because each term in the integrand is strictly positive. This contradicts the hypothesis that $\int_a^b \alpha(x) h(x) \,dx = 0$. Therefore, our assumption $\alpha(x_0) \neq 0$ is wrong, and indeed $\alpha(x) = 0$ for all $x \in [a,b]$.
+
+    (Note: Taking $\alpha(x_0) < 0$ leads to the same conclusion due to $\int_a^b \alpha(x) h(x) \,dx < 0$.)
+\end{problem}
+
+\begin{problem}{1 (b)}
+    Find the extremal of the functional $J[y(x)] = \int_0^1 \paren*{xy' + y'^2} \,dx$, $y(0) = 0$, $y(1) = 1$.
+
+    \solution The Euler-Lagrange equation for this functional is
+    \begin{equation*}
+        F_{y} - \frac{d}{dx}F_{y'}= 0
+    \end{equation*}
+    with $F = xy' + y'^2$. As $F_{y} = 0$ and $F_{y'} = x + 2y'$, the Euler-Lagrange reduces to
+    \begin{equation*}
+        0 - \frac{d}{dx}\paren*{x + 2y'}= 0
+        \implies
+        \frac{d}{dx}\paren*{x + 2y'}= 0
+        \implies
+        x + 2y' = c
+    \end{equation*}
+    where $c$ is a constant. Re-arranging and integrating this equation gives
+    \begin{equation*}
+        x + 2y' = c
+        \implies
+        y' = \frac{c}{2} - x
+        \implies
+        y = k + \frac{c}{2}x - \frac{1}{4}x^2
+    \end{equation*}
+    where $k$ is another constant.
+
+    Now, $y(0) = 0$ implies $k = 0$ and $y(1) = 1$ gives $c = 5/2$. As a result, the required extremal is
+    \begin{equation*}
+        y = \frac{5}{4}x - \frac{1}{4}x^2
+    \end{equation*}
+\end{problem}
+
+\begin{problem}{2 (a)}
+    Show that the Euler equation of the functional $J[y(x)] = \int_a^b F(x,y,y') \,dx$ has the first integral/conserved quantity $F - y' F_{y'} = \text{const.}$, if the integrand does not depend on $x$.
+
+    \solution Firstly note that the Euler-Lagrange equation for this functional is
+    \begin{equation*}
+        F_{y} - \frac{d}{dx}F_{y'} = 0.
+    \end{equation*}
+    If $F$ is independent of $x$ then $F_x = 0$. Therefore,
+    \begin{align*}
+        \frac{d}{dx} \paren*{F - y' F_{y'}}
+        &= \frac{dF}{dx} - y'' F_{y'} - y' \frac{d}{dx}F_{y'}\\
+        &= F_x + y' F_{y} + y'' F_{y'} - y'' F_{y'} - y' \frac{d}{dx}F_{y'}\\
+        &= y' F_{y} - y' \frac{d}{dx}F_{y'}\\
+        &= y' \paren*{F_{y} - \frac{d}{dx}F_{y'}}\\
+        &= 0
+    \end{align*}
+    In the last step we used the Euler equation. Consequently, $F - y' F_{y'} = \text{constant}$.
+\end{problem}
+
+\begin{problem}{2 (b)}
+    Find the extremal of the functional $J[y(x)] = \int_0^{\pi/2} \paren*{y'' - y'^2 + x^2} \,dx$, subject to $y(0) = 1$, $y'(0) = 0$, $y(\pi/2) = 0$, $y'(\pi/2) = -1$.
+
+    \solution
+    The Euler-Lagrange equation for this functional is
+    \begin{equation*}
+        F_{y} - \frac{d}{dx}F_{y'} + \frac{d^2}{dx^2}F_{y''} = 0
+    \end{equation*}
+    with $F = y'' - y'^2 + x^2$. Since, $F_{y} = 0$, $F_{y'} = -2y'$ and $F_{y''} = 1$, the Euler-Lagrange reduces to
+    \begin{equation*}
+        0 + 2\frac{d}{dx}(y') + \frac{d^2}{dx^2}(1) = 0
+        \implies
+        \frac{d}{dx}(y') = 0
+        \implies
+        y' = c_1,
+        \implies
+        y = c_0 + c_1 x,
+    \end{equation*}
+    where $c_0, c_1$ are constants.
+
+    This is not compatible with the boundary conditions, because $y'(0)=0$ implies $c_1 = 0$, while $y'(\pi/2) = -1$ requires $c_1 = -1$; we cannot have $c_1 = 0$ and $c_1 = -1$ simultaneously.
+
+    Therefore, this variational problem has no solution.
+\end{problem}
+
+\begin{problem}{3}
+    Find the geodesics on the plane $r(x,y) = (x,y,0)$.
+
+    \solution A geodesic between two points $(a, A)$ and $(b, B)$ is a curve of shortest length passing through the given two points. The plane $r(x,y) = (x,y,0)$ corresponds to the $xy$-plane. Therefore, the complete variation problem is to find the curve of shortest length $y = y(x)$ passing through $(a, A)$ and $(b, B)$. The length of such a curve is
+    \begin{equation*}
+        L[y] = \int_a^b \,ds
+        = \int_a^b \sqrt{1 + y'^2} \,dx.
+    \end{equation*}
+
+    The Euler-Lagrange equation for this functional is
+    \begin{equation*}
+        F_{y} - \frac{d}{dx}F_{y'} = 0
+    \end{equation*}
+    with $F = \sqrt{1 + y'^2}$. Using $F_{y} = 0$ and $F_{y'} = y' (1 + y'^2)^{-1/2}$, the Euler-Lagrange reduces to
+    \begin{equation*}
+        \frac{d}{dx}\paren*{\frac{y'}{\sqrt{1 + y'^2}}} = 0
+        \implies
+        \frac{y'}{\sqrt{1 + y'^2}} = k
+        \implies
+        y' = \frac{k}{\sqrt{1 - k^2}} = m,
+        \implies
+        y = m x + c,
+    \end{equation*}
+    where $m, c, k$ are constants. Thus, the required extremals are straight line segments.
+
+    Imposing the condition $y(a) = A$ and $y(b) = B$ leads to
+    \begin{equation*}
+        m = \frac{B - A}{b - a}
+        \quad\text{and}\quad
+        c = A - \paren*{\frac{B - A}{b - a}}a.
+    \end{equation*}
+    If $a = b$, then we get the straight line segment $x = a$, $A \leq y \leq B$.
+\end{problem}
+
+\end{document}
