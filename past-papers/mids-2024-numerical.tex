@@ -1,0 +1,123 @@
+\documentclass[11pt]{penrose}
+
+\usepackage{mathsphystools}
+
+\title{Past Paper: Numerical Analysis-I}
+\subtitle{Midterm Exam, 2024}
+\author{Rashid M. Talha}
+\begin{document}
+
+\newenvironment{problem}[2][Question]{\textbf{#1 #2.}\par}{}
+\newcommand{\solution}{\textit{Solution.}\hspace{2mm}}
+
+\maketitle
+
+\textbf{Disclaimer:} Use at your own risk. Errors possible.
+
+\begin{problem}{1}
+    Convert the following numbers to base $10$.
+    \begin{enumerate}[label=(\alph*)]
+        \item $x = (10 010 110)_2$
+        \item $x = (1 011)_2$
+        \item $x = (777)_8$
+    \end{enumerate}
+
+    \solution \phantom{}
+    \begin{enumerate}[label=(\alph*)]
+        \item $x = (10 010 110)_2 = 0(1) + 1(2) + 1(4) + 0(8) + 1(16) + 0(32) + 0(64) + 1(128) = 999$.
+        \item $x = (1 011)_2 = 1(1) + 1(2) + 0(4) + 1(8) = 11$.
+        \item $x = (777)_8 = 7(1) + 7(8) + 7(64) = 999$.
+    \end{enumerate}
+\end{problem}
+
+\begin{problem}{2}
+    Determine the LU factorization of the given matrix using Crout's method
+    \begin{equation*}
+        \begin{bmatrix*} 2 & 1 & 4 \\ 8 & -3 & 2 \\ 4 & 11 & -1 \end{bmatrix*}
+    \end{equation*}
+
+    \solution We take
+    \begin{equation*}
+        L = \begin{bmatrix*} \ell_{11} & 0 & 0 \\ \ell_{21} & \ell_{22} & 0 \\ \ell_{31} & \ell_{32} & \ell_{33} \end{bmatrix*}
+        \quad\text{and}\quad
+        U = \begin{bmatrix*} 1 & u_{12} & u_{13} \\ 0 & 1 & u_{23} \\ 0 & 0 & 1 \end{bmatrix*}
+    \end{equation*}
+    Then, $A = LU$ gives
+    \begin{gather*}
+        \ell_{11} = 2, \quad \ell_{21} = 8, \quad \ell_{31} = 4,\\
+        \ell_{11} u_{12} = 1 \implies u_{12} = 0.5, \quad \ell_{11} u_{13} = 4 \implies u_{13} = 2\\
+        \ell_{21} u_{12} + \ell_{22} = -3 \implies \ell_{22} = -7, \quad \ell_{31} u_{12} + \ell_{32} = 11 \implies \ell_{32} = 9\\
+        \ell_{21} u_{13} + \ell_{22} u_{23} = 2 \implies u_{23} = 2, \quad \ell_{31} u_{13} + \ell_{32} u_{23} + \ell_{33} = -1 \implies \ell_{33} = -27.
+    \end{gather*}
+    Overall,
+    \begin{equation*}
+        \begin{bmatrix*} 2 & 1 & 4 \\ 8 & -3 & 2 \\ 4 & 11 & -1 \end{bmatrix*}
+        = \begin{bmatrix*} 2 & 0 & 0 \\ 8 & -7 & 0 \\ 4 & 9 & -27 \end{bmatrix*}
+        \begin{bmatrix*} 1 & 0.5 & 2 \\ 0 & 1 & 2 \\ 0 & 0 & 1 \end{bmatrix*}
+    \end{equation*}
+\end{problem}
+
+\begin{problem}{3}
+    Apply the Gauss-Seidel method to solve the following system of equations.
+    \begin{equation*}
+        4x - y + z = 12,
+        \quad
+        x - 2y + 4z = 5
+        \quad
+        -x + 4y - 2z = -1.
+    \end{equation*}
+    Perform two iterations with $5$ decimal place digit calculations.
+
+    \solution Solution
+\end{problem}
+
+\begin{problem}{4 (a)}
+    Derive the formula for the false-position method.
+
+    \solution Solution
+\end{problem}
+
+\begin{problem}{4 (b)}
+    Apply the method of false position to find a real root of the equation $x^4 - 11x + 8 = 0$ within the interval $[1,2]$. Perform five decimal place digit calculations. Apply two iterations.
+
+    \solution Solution
+\end{problem}
+
+\begin{problem}{5 (a)}
+    Derive Newton-Raphson method.
+
+    \solution Solution
+\end{problem}
+
+\begin{problem}{5 (b)}
+    Evaluate $\sqrt{29}$ by Newton-Raphson method. Carry out five decimal place digit calculations. Stop the calculations when five decimal digits match with each other. Take an initial guess as $x_0 = 3.3$.
+
+    \solution Take $f(x) = x^2 - 29$. Then, $f(x) = 0 \implies x = \pm \sqrt{29}$. So, we apply the Newton-Raphson method to estimate $f(x) = 0$. The corresponding formula is
+    \begin{equation*}
+        x_{n+1} = x_{n} - \frac{f(x_n)}{f'(x_n)}.
+    \end{equation*}
+    with $f'(x) = 2x$. As a result, we have
+    \begin{align*}
+        x_0 &= 3.3\\
+        x_1 &= SOMETHING\\
+        x_2 &= SOMETHING\\
+        x_3 &= SOMETHING\\
+        x_4 &= SOMETHING\\
+        x_5 &= SOMETHING.
+    \end{align*}
+    Therefore, $\sqrt{29} = 5.ABCDE$ to 5 decimal digits.
+\end{problem}
+
+\begin{problem}{6}
+    Convert the system into an iterative form suitable for Newton-Raphson method then solve the following
+    \begin{equation*}
+        x - y^3 - 1 = 0,
+        \quad
+        \sin(x) + y - 1 = 0.
+    \end{equation*}
+    Use the initial guess as $(x_0, y_0) = (0,0)$. Apply one iteration only.
+
+    \solution Solution
+\end{problem}
+
+\end{document}

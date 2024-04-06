@@ -1,0 +1,127 @@
+\documentclass[11pt]{penrose}
+
+\usepackage{mathsphystools}
+
+\title{Past Paper: Partial Differential Equations}
+\subtitle{Midterm Exam, 2024}
+\author{Rashid M. Talha}
+\begin{document}
+
+\newenvironment{problem}[2][Question]{\textbf{#1 #2.}\par}{}
+\newcommand{\solution}{\textit{Solution.}\hspace{2mm}}
+
+\maketitle
+
+\textbf{Disclaimer:} Use at your own risk. Errors possible.
+
+\begin{problem}{1}
+    Classify the following equation and reduce it to the canonical form
+    \begin{equation*}
+        u_{xy} + y u_{yy} + \sin(x+y) = 0.
+    \end{equation*}
+
+    \solution We start by making a change of variables $x \leftrightarrow y$ to get the transformed PDE
+    \begin{equation*}
+        x u_{xx} + u_{xy} + \sin(x+y) = 0. \tag{\textasteriskcentered}
+    \end{equation*}
+    Now, $A = x$, $B = 1$, $C = D = E = 0$. Since, $B^2 - 4AC = 1 > 0$, this is a hyperbolic PDE. So, the corresponding characteristic equation
+    \begin{equation*}
+        \frac{dy}{dx} = \frac{B \pm \sqrt{B^2 - 4AC}}{2A} = \frac{1 \pm 1}{2x}
+    \end{equation*}
+    gives
+    \begin{equation*}
+        \frac{dy}{dx} = \frac{1}{x} \implies k + y = \ln x \implies x e^{-y} = c_1, \quad
+        \frac{dy}{dx} = 0 \implies y = c_2.
+    \end{equation*}
+    These lead to $\xi = x e^{-y} = c_1$ and $\eta = y = c_2$. As a result
+    \begin{align*}
+        B^{*} &= EQQ = EQQ\\
+        D^{*} &= EQQ = EQQ\\
+        E^{*} &= EQQ = EQQ.
+    \end{align*}
+    (The coefficients $A^{*} = C^{*} = 0$ because the PDE is hyperbolic.)
+
+    As a result, equation (\textasteriskcentered) implies
+    \begin{equation*}
+        e^{y} u_{\xi\eta} - e^{y} u_{\xi\xi} = \sin(x + y)
+        \implies u_{\xi\eta} - u_{\xi\xi} = e^{-\eta}\sin\paren*{\eta + \xi e^\eta}.
+    \end{equation*}
+    Here, we used $y = \eta$ and $x = \xi e^y = \xi e^\eta$.
+
+    Overall, the canonical form of the given PDE is
+    \begin{equation*}
+        u_{\xi\eta} = u_{\xi\xi} + e^{-\eta}\sin\paren*{\eta + \xi e^\eta}
+    \end{equation*}
+    with $\xi = y e^{-x}$ and $\eta = x$ (in the original variables).
+\end{problem}
+
+\begin{problem}{2}
+    Apply a linear transformation $\xi = x+by$ and $\eta = x+dy$ to transform the Euler equation
+    \begin{equation*}
+        A u_{xx} + 2B u_{xy} + C u_{yy} = 0
+    \end{equation*}
+    into canonical form, where $b$, $d$ $A$, $B$ and $C$ are constants.
+
+    \solution Solution
+\end{problem}
+
+\begin{problem}{3}
+    Determine the solution of the equation
+    \begin{equation*}
+        x \paren{y^2 + u} u_x - y \paren{x^2 + u} u_y = \paren{x^2 - y^2} u
+    \end{equation*}
+    with the data $x + y = 0$ and $u = 1$.
+
+    \solution Solution
+\end{problem}
+
+\begin{problem}{4}
+    Show that the general solution of a first-order quasilinear partial differential equation
+    \begin{equation*}
+        a(x,y,u) u_x + b(x,y,u) u_y = c(x,y,u)
+    \end{equation*}
+    is $f(\varphi, \psi) = 0$, where $f$ is an arbitrary function of $\varphi(x,y,u)$ and $\psi(x,y,u)$, and $\varphi(x,y,u) = c_1$ and $\psi(x,y,u) = c_2$ are solution curves of the characteristic equations
+    \begin{equation*}
+        \frac{dx}{a} = \frac{dy}{b} = \frac{du}{c}.
+    \end{equation*}
+
+    \solution Solution.
+\end{problem}
+
+\begin{problem}{5}
+    Verify that the function
+    \begin{equation*}
+        u = \varphi(xy) + x \psi\paren*{\frac{y}{x}}
+    \end{equation*}
+    is the general solution of the equation
+    \begin{equation*}
+        x^2 u_{xx} - y^2 u_{yy} = 0.
+    \end{equation*}
+
+    \solution We have
+    \begin{align*}
+        u_{x} &= y \varphi'(xy) + \psi\paren*{\frac{y}{x}} - x \paren*{\frac{y}{x^2}} \psi'\paren*{\frac{y}{x}} = y \varphi'(xy) + \psi\paren*{\frac{y}{x}} - \frac{y}{x} \psi'\paren*{\frac{y}{x}}\\
+        u_{y} &= x \varphi'(xy) + x \paren*{\frac{1}{x}} \psi'\paren*{\frac{y}{x}} = x \varphi'(xy) + \psi'\paren*{\frac{y}{x}}\\
+        u_{xx} &= y^2 \varphi''(xy) - \frac{y}{x^2} \psi'\paren*{\frac{y}{x}} + \frac{y}{x^2} \psi'\paren*{\frac{y}{x}} + \frac{y^2}{x^3} \psi''\paren*{\frac{y}{x}}
+        = y^2 \varphi''(xy) + \frac{y^2}{x^3} \psi''\paren*{\frac{y}{x}}\\
+        u_{yy} &= x^2 \varphi''(xy) + \frac{1}{x} \psi''\paren*{\frac{y}{x}}
+    \end{align*}
+    Therefore,
+    \begin{equation*}
+        x^2 u_{xx} - y^2 u_{yy} = x^2 y^2 \varphi''(xy) + \frac{y^2}{x} \psi''\paren*{\frac{y}{x}} - x^2 y^2 \varphi''(xy) + \frac{y^2}{x} \psi''\paren*{\frac{y}{x}} = 0
+    \end{equation*}
+\end{problem}
+
+\begin{problem}{6}
+    Determine the solution of the initial boundary value problem
+    \begin{gather*}
+        u_{tt} = 4u_{xx}, \quad 0 < x < 1, \quad t > 0,\\
+        u(x,0) = 0, \quad 0 \leq x \leq 1,\\
+        u_t(x,0) = x(1-x), \quad 0 \leq x \leq 1,\\
+        u(0,t) = 0, \quad u(1,t) = 0, \quad t \geq 0.
+    \end{gather*}
+    
+    \solution Solution
+\end{problem}
+
+\end{document}
