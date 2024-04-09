@@ -68,29 +68,13 @@
 \begin{problem}{2 (ii)}
     Let $G$ be a group and $H$ be a subgroup of $G$. If $a, b \in G$, then prove that $aH = bH$ if and only if $a^{-1} b \in H$.
 
-    TBC
-    % \solution Suppose $a^{-1} b = h \in H$. Then, $b = ah$ for some $h \in H$. And, $a = bk$ with $k = h^{-1} \in H$. Therefore, $b \in aH$ and $a \in bH$.
+    \solution Suppose $aH = bH$. As $H \subgroup G$, we have $e \in H$. So, $b = be \in bH = aH$. Thus, we can write $b = ah$ for some $h \in H$. Consequently, $a^{-1} b = h \in H$.
 
-
-    % Using ``$aH = bH \iff a \in bH$'' gives,
-    % \begin{equation*}
-    %     aH = bH
-    %     \iff b \in aH
-    %     \iff b = ah \text{ for some } h \in H
-    %     \iff a^{-1} b = h \in H.
-    % \end{equation*}
-
-    % And EQQ is proved by noting that, Suppose $aH = bH$. By part (i) $a \in aH$. So, $a \in aH = bH$. Therefore, $a \in bH$.
-
-    % For the converse, suppose $a \in bH$. Then, $a = bh_0$ for some $h_0 \in H$. So,
-    % \begin{equation*}
-    %     aH
-    %     = \set{ah \st h \in H}
-    %     = \set{(bh_0)h \st h \in H}
-    %     = \set{b(h_0 h) \st h \in H}
-    %     = \set{bk \st k \in H}
-    %     = bH
-    % \end{equation*}
+    Conversely, let $a^{-1} b \in H$. This means $a^{-1} b = h$ for some $h \in H$. As a result, $b = ah$. Therefore,
+    \begin{equation*}
+        bH = \set{bk \st k \in H} = \set{(ah)k \st k \in H} = \set{ah' \st h' \in H} = aH.
+    \end{equation*}
+    Here we used the associativity and closure property because $H \subgroup G$.
 \end{problem}
 
 \begin{problem}{2 (iii)}
