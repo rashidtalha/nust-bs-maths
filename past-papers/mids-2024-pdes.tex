@@ -1,18 +1,13 @@
 \documentclass[11pt]{penrose}
 
-\usepackage{mathsphystools}
+\input{header}
 
 \title{Past Paper: Partial Differential Equations}
 \subtitle{Midterm Exam, 2024}
-\author{Rashid M. Talha}
 \begin{document}
 
-\newenvironment{problem}[2][Question]{\textbf{#1 #2.}\par}{}
-\newcommand{\solution}{\textit{Solution.}\hspace{2mm}}
-
 \maketitle
-
-\textbf{Disclaimer:} Use at your own risk. Errors possible.
+\warningtext
 
 \begin{problem}{1}
     Classify the following equation and reduce it to the canonical form
@@ -22,7 +17,7 @@
 
     \solution We start by making a change of variables $x \leftrightarrow y$ to get the transformed PDE
     \begin{equation*}
-        x u_{xx} + u_{xy} + \sin(x+y) = 0. \tag{\textasteriskcentered}
+        x u_{xx} + u_{xy} + \sin(x+y) = 0. \tag{\textasteriskcentered}\label{eq:pde-swap}
     \end{equation*}
     Now, $A = x$, $B = 1$, $C = D = E = 0$. Since, $B^2 - 4AC = 1 > 0$, this is a hyperbolic PDE. So, the corresponding characteristic equation
     \begin{equation*}
@@ -41,7 +36,7 @@
     \end{align*}
     (The coefficients $A^{*} = C^{*} = 0$ because the PDE is hyperbolic.)
 
-    As a result, equation (\textasteriskcentered) implies
+    As a result, equation~\eqref{eq:pde-swap} implies
     \begin{equation*}
         e^{y} u_{\xi\eta} - e^{y} u_{\xi\xi} = \sin(x + y)
         \implies u_{\xi\eta} - u_{\xi\xi} = e^{-\eta}\sin\paren*{\eta + \xi e^\eta}.
@@ -138,11 +133,11 @@
 
     The boundary conditions give
     \begin{gather*}
-        u(0,t) = 0 \implies \psi(-2t) = -\varphi(2t) \implies \psi(\eta) = -\varphi(-\eta), \tag{\textasteriskcentered}\\
-        u(1,t) = 0 \implies \phi(1+2t) = -\varphi(1-2t) \implies \psi(\eta) = -\varphi(2-\eta). \tag{\textasteriskcentered\textasteriskcentered}
+        u(0,t) = 0 \implies \psi(-2t) = -\varphi(2t) \implies \psi(\eta) = -\varphi(-\eta), \tag{\textasteriskcentered} \label{eq:bc-1}\\
+        u(1,t) = 0 \implies \phi(1+2t) = -\varphi(1-2t) \implies \psi(\eta) = -\varphi(2-\eta). \tag{\textasteriskcentered\textasteriskcentered} \label{eq:bc-2}
     \end{gather*}
 
-    Now, using (\textasteriskcentered) in \eqref{eq:1-phi} gives,
+    Now, using \eqref{eq:bc-1} in \eqref{eq:1-phi} gives,
     \begin{equation}
         \psi(\eta)
         = -\varphi(-\eta)
@@ -150,7 +145,7 @@
     \end{equation}
     This is valid for $0 \leq -\eta \leq 1 \implies -1 \leq \eta \leq 0$. So, the domain of $\psi$ has been extended.
 
-    Similarly, using (\textasteriskcentered\textasteriskcentered) in \eqref{eq:1-psi} gives,
+    Similarly, using \eqref{eq:bc-2} in \eqref{eq:1-psi} gives,
     \begin{equation}
         \varphi(\eta)
         = -\psi(2-\eta)
@@ -158,7 +153,7 @@
     \end{equation}
     This is valid for $0 \leq 2-\eta \leq 1 \implies 1 \leq \eta \leq 2$. So, the domain of $\varphi$ has been extended.
 
-    We repeat this process to extend the domain further: using (\textasteriskcentered) in \eqref{eq:2-psi} and (\textasteriskcentered\textasteriskcentered) in \eqref{eq:2-phi}.
+    We repeat this process to extend the domain further: using \eqref{eq:bc-1} in \eqref{eq:2-psi} and \eqref{eq:bc-2} in \eqref{eq:2-phi}.
 \end{problem}
 
 \end{document}
