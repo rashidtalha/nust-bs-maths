@@ -17,19 +17,125 @@
 \begin{problem}{1}
     Let $\alpha(t) = (t, t^2, t^3)$ be a curve in the Euclidean space. Calculate the following parameters for the given curve: unit tangent vector, unit normal vector, unit binormal vector, curvature, and torsion.
 
-    \solution Solution
+    \solution Firstly, note that
+    \begin{equation*}
+        \kappa = \frac{\abs{\alpha' \times \alpha''}}{\abs{\alpha'}^3},\quad
+        \tau = \frac{\alpha' \times \alpha'' \cdot \alpha'''}{\abs{\alpha' \times \alpha''}^2},\quad
+        \vec{T} = \frac{\alpha'}{\abs{\alpha'}},\quad
+        \vec{B} = \frac{\alpha' \times \alpha''}{\abs{\alpha' \times \alpha''}},\quad
+        \vec{N} = \vec{B} \times \vec{T}.
+    \end{equation*}
+
+    Now, $\alpha'(t) = (1, 2t, 3t^2)$, $\alpha''(t) = (0, 2, 6t)$ and $\alpha'''(t) = (0, 0, 6)$. Therefore,
+    \begin{equation*}
+        \alpha' \times \alpha'' = (6t^2, -6t, 2),\quad
+        \abs{\alpha' \times \alpha''} = \sqrt{4 + 36t^2 + 36t^4} = 2\sqrt{1 + 9t^2 + 9t^4},
+    \end{equation*}
+    and $\abs{\alpha'} = \sqrt{1 + 4t^2 + 9t^4}$. As a result,
+    \begin{align*}
+        \kappa &= \frac{2\sqrt{1 + 9t^2 + 9t^4}}{\paren*{\sqrt{1 + 4t^2 + 9t^4}}^3} = 2 \paren*{\frac{1 + 9t^2 + 9t^4}{\paren*{1 + 4t^2 + 9t^4}^3}}^{1/2}\\
+        \tau &= \frac{(6t^2, -6t, 2) \cdot (0,0,6)}{\paren*{\sqrt{4 + 36t^2 + 36t^4}}^2} = \frac{12}{4 + 36t^2 + 36t^4} = \frac{3}{1 + 9t^2 + 9t^4}\\
+        \vec{T} &= \frac{(1, 2t, 3t^2)}{\sqrt{1 + 4t^2 + 9t^4}}\\
+        \vec{B} &= \frac{(6t^2, -6t, 2)}{2\sqrt{1 + 9t^2 + 9t^4}} = \frac{(3t^2, -3t, 1)}{\sqrt{1 + 9t^2 + 9t^4}}.
+    \end{align*}
+    Lastly, $(3t^2, -3t, 1) \times (1, 2t, 3t^2) = ()$ gives
+    \begin{equation*}
+        \vec{N} = \frac{()}{\sqrt{(1 + 9t^2 + 9t^4) (1 + 4t^2 + 9t^4)}}.
+    \end{equation*}
 \end{problem}
 
 \begin{problem}{2 (i)}
     State and prove the Wirtinger's inequality.
 
-    \solution Solution
+    \solution\\
+    \textbf{Statement:} Let $F : [0, \pi] \to \R$ be a smooth function with $F(0) = F(\pi) = 0$. Then,
+        \begin{equation*}
+            \int_{0}^{\pi} \paren*{\frac{dF}{dt}}^2 \,dt \geq \int_{0}^{\pi} F^2 \,dt
+        \end{equation*}
+        and the equality holds if and only if $F(t) = K \sin t$ for all $t \in [0, \pi]$ and $K$ is a constant.
+    
+    \textbf{Proof:} Let $G(t) = F(t) / \sin(t)$. This is well-defined because $\sin(t)$ is non-zero for $t \in (0, \pi)$, and smooth because it is a quotient of two smooth functions. Writing $F(t) = G(t) \sin(t)$ we get,
+    \begin{align*}
+        \int_{0}^{\pi} \paren*{\frac{dF}{dt}}^2 \,dt
+        &= \int_{0}^{\pi} \paren*{ G' \sin t + G \cos t }^2 \,dt\\
+        &= \int_{0}^{\pi} \cparen*{G'^2 \sin^2 t + G^2 \cos^2 t + 2 G G' \sin t \cos t} \,dt\\
+        &= \int_{0}^{\pi} \cparen*{G'^2 \sin^2 t + G^2 \cos^2 t} + \int_{0}^{\pi} \cparen*{2 G G' \sin t \cos t} \,dt.
+    \end{align*}
+
+    Writing $2 G G' = (G^2)'$ and $\sin t \cos t = \frac{1}{2} \sin 2t$ gives
+    \begin{equation*}
+        \int_{0}^{\pi} \cparen*{2 G G' \sin t \cos t} \,dt
+        = \int_{0}^{\pi} \cparen*{(G^2)' \times \frac{1}{2} \sin 2t} \,dt.
+        = \frac{1}{2} \int_{0}^{\pi} \cparen*{(G^2)' \sin 2t} \,dt.
+    \end{equation*}
+    Integrating this by parts, leads to
+    \begin{equation*}
+        \frac{1}{2} \int_{0}^{\pi} \cparen*{(G^2)' \sin 2t} \,dt
+        = \bigg. \frac{1}{2} G(t)^2  \sin (2t) \bigg|_{0}^{\pi} - \int_{0}^{\pi} G^2(t) \cos 2t \,dt
+        = - \int_{0}^{\pi} G^2(t) \cos 2t \,dt.
+    \end{equation*}
+    By using $\cos(2t) = \cos^2 t - \sin^2 t$, we obtain
+    \begin{equation*}
+        \frac{1}{2} \int_{0}^{\pi} \cparen*{(G^2)' \sin 2t} \,dt
+        = -\int_{0}^{\pi} G^2(t) \paren*{\cos^2 t - \sin^2 t} \,dt.
+    \end{equation*}
+    Consequently,
+    \begin{align*}
+        \int_{0}^{\pi} \paren*{\frac{dF}{dt}}^2 \,dt
+        &= \int_{0}^{\pi} \cparen*{G'^2 \sin^2 t + G^2 \cos^2 t} + \int_{0}^{\pi} \cparen*{2 G G' \sin t \cos t} \,dt\\
+        &= \int_{0}^{\pi} \cparen*{G'^2 \sin^2 t + G^2 \cos^2 t} - \int_{0}^{\pi} G^2(t) \paren*{\cos^2 t - \sin^2 t} \,dt\\
+        &= \int_{0}^{\pi} \cparen*{G'^2 \sin^2 t + G^2 \sin^2 t} \,dt\\
+        &= \int_{0}^{\pi} \paren*{G' \sin t}^2 \,dt + \int_{0}^{\pi} F^2 \,dt.
+    \end{align*}
+
+    Therefore,
+    \begin{equation*}
+        \int_{0}^{\pi} \paren*{\frac{dF}{dt}}^2 \,dt
+        - \int_{0}^{\pi} F^2 \,dt
+        = \int_{0}^{\pi} \paren*{G' \sin t}^2 \,dt \geq 0
+    \end{equation*}
+    since $\paren*{G' \sin t}^2 \geq 0$. We find that the equality holds if and only if $G' \equiv 0$ (because $\sin^2 t > 0$ for $t \in (0, \pi)$). That is, the equality holds if and only if $G(t) = K$ for some constant $K$ and $F(t) = K \sin t$.
 \end{problem}
 
 \begin{problem}{2 (ii)}
     Using the Wirtinger's inequality, prove the isoperimetric inequality.
 
-    \solution Solution
+    \solution\\
+    \textbf{Statement:} Let $\gamma$ be a simple closed curve in the plane with length $\ell(\gamma)$, and enclosing an area $A(\gamma)$. Then,
+        \begin{equation*}
+            A(\gamma) \leq \frac{1}{4\pi} \ell(\gamma)^2
+        \end{equation*}
+        and the equality holds if and only if $\gamma$ is a circle.
+    
+    \textbf{Proof:} Without loss of generality, we assume that the curve is parametrised by arc-length, so $\gamma : [0, \ell] \to \R^2$ with $\gamma = \gamma(s)$. Also, we translate the curve so that $\gamma(0) = 0$; this doesn't effect the value of $\ell(\gamma)$ and $A(\gamma)$. Also note that $\gamma(\ell) = \gamma(0)$ because it is a closed curve.
+
+    We reparametrize the curve using the parameter $t = \pi s / \ell$. Then, $t \in [0, \pi]$ and $ds/dt = \ell/\pi$. We can then write the curve in coordinates as $\gamma(t) = \paren*{x(t), y(t)}$. Switching to polar coordinates $x = r \cos\theta$ and $y = r \sin\theta$ we find $\dot{x}^2 + \dot{y}^2 = \dot{r}^2 + r^2 \dot{\theta}^2$ and $x\dot{y} - y\dot{x} = r^2 \dot{\theta}$ because $\dot{x} = \dot{r} \cos\theta - r \dot{\theta} \sin\theta$ and $\dot{y} = \dot{r} \sin\theta + r \dot{\theta} \cos\theta$.
+
+    Therefore,
+    \begin{equation*}
+        \dot{r}^2 + r^2 \dot{\theta}^2
+        = \paren*{ \paren*{\frac{dx}{dt}}^2 + \paren*{\frac{dy}{dt}}^2 }
+        = \paren*{ \paren*{\frac{dx}{ds}}^2 + \paren*{\frac{dy}{ds}}^2 } \paren*{\frac{ds}{dt}}^2
+        = \frac{\ell^2}{\pi^2}
+    \end{equation*}
+    as $(dx/ds)^2 + (dy/ds)^2 = 1$. This allows us to write
+    \begin{equation*}
+        \frac{\ell^2}{4\pi^2} = \frac{1}{4} \int_0^\pi \paren*{\dot{r}^2 + r^2 \dot{\theta}^2} \,dt.
+    \end{equation*}
+    Also, $A = \frac{1}{2} \int_0^\pi \paren*{x\dot{y} - y\dot{x}} \,dt = \frac{1}{2} \int_0^\pi r^2 \dot{\theta} \,dt$. Consequently,
+    \begin{align*}
+        \frac{\ell^2}{4\pi} - A
+        &= \frac{1}{4} \int_0^\pi \paren*{\dot{r}^2 + r^2 \dot{\theta}^2 - 2r^2\dot{\theta}} \,dt\\
+        &= \frac{1}{4} \int_0^\pi \paren*{\dot{r}^2 + r^2 \dot{\theta}^2 - 2r^2\dot{\theta} + r^2 - r^2} \,dt\\
+        &= \frac{1}{4} \int_0^\pi \paren*{r^2 (\dot{\theta}^2 - 2\dot{\theta} + 1) + \dot{r}^2 - r^2} \,dt\\
+        &= \frac{1}{4} \int_0^\pi r^2 \paren{\dot{\theta}-1}^2 \,dt + \frac{1}{4}\int_0^\pi \paren*{\dot{r}^2 - r^2} \,dt. \tag{\textasteriskcentered}
+        \label{eq:isoperi-proof-a}
+    \end{align*}
+    In equation~\eqref{eq:isoperi-proof-a}, the first term is non-negative because the integrand is non-negative, and the second is non-negative by Wirtinger's inequality. Consequently, $\frac{\ell^2}{4\pi} - A \geq 0$. Or equivalently,
+    \begin{equation*}
+        A \leq \frac{1}{4\pi} \ell^2.
+    \end{equation*}
+    Also, the first term in equation~\eqref{eq:isoperi-proof-a} is zero precisely when $\dot{\theta} = 1$ (i.e. $\theta = t + \theta_0$ with $\theta_0$ constant), while the second term becomes zero when $r = K \sin\theta$ for some constant $K$. Collectively, both of these terms vanish when $r = K \sin(t + \theta_0)$. This is the equation of a circle with diameter $K$ and passing through the origin. Therefore, $A = \ell^2 / 4\pi$ if and only if the curve is a circle.
 \end{problem}
 
 \begin{problem}{3 (i)}
