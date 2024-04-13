@@ -16,7 +16,7 @@
 
 \textbf{Textbook:} Calculus of Variations, I. M. Gelfand and S. V. Fomin.
 
-\textbf{Disclaimer:} This document most likely contains some errors --- use with caution. I have rephrased or paraphrased the content in most of the sections. Some examples may be missing. The numbering that I have used for sections, definitions, theorems, etc will not match the numbering given in the lectures.
+\textbf{Disclaimer:} This document most likely contains some errors --- use with caution. I have rephrased or paraphrased the content in most of the sections. Some examples may be missing. The numbering that I have used for sections, definitions, theorems, etc. will not match the numbering given in the lectures.
 
 \section{Euler-Lagrange Equation}
 \begin{nthm}
@@ -150,7 +150,7 @@ The corresponding Euler-Lagrange equation is
     = 0
 \end{equation}
 
-% STATE THIS AS A THEOREM AND PROVE IT (USES GREEN'S THEOREM)
+% STATE THIS AS A THEOREM AND PROVE IT (USES GREEN'S THEOREM) [TBC]
 
 \begin{negg}
     Consider the functional
@@ -611,7 +611,7 @@ Here again we can obtain some first integrals when the integrand $F\paren*{x, y,
     \end{equation}
 \end{enumerate}
 
-% \begin{negg}
+% \begin{negg} [TBC]
 %     Find the extremals of
 %     \begin{equation}
 %         J[y] = \int_a^b \frac{\paren*{1 + y'^2}^2}{y''}.
@@ -757,6 +757,63 @@ The associated Euler-Lagrange equations are then
     \frac{\pd F}{\pd y_2} + \lambda(x)\frac{\pd g}{\pd y_2} - \frac{d}{dx} \paren*{\frac{\pd F}{\pd y'_2}} = 0
 \end{gather}
 
-\end{document}
+\begin{negg}
+    $J[y] = \int_a^b \frac{1}{2}m\paren*{\dot{x}^2+\dot{y}^2} - mgy \,dt$ with $x^2 + y^2 = \ell^2$.
+\end{negg}
 
-0101109853
+\begin{negg}
+    $J[y] = \int_a^b \sqrt{1+\dot{x}^2+\dot{y}^2} \,dt$ with $x^2 + y^2 = 1$.
+\end{negg}
+
+\subsection{Non-Holonomic Constraints}
+Any constraint that is not holonomic and called non-holonomic. We will focus on the non-holonomic constraints of the form $g(x, y_1, y_2, y'_1, y'_2)$.
+
+\begin{nthm}
+    Let $y_1, y_2$ be the extremals of
+    \begin{equation}
+        J[y_1, y_2] = \int_a^b F\paren*{x, y_1, y_2, y'_1, y'_2} \,dx
+    \end{equation}
+    subject to the boundary conditions $y_i(a) = A_i$ and $y_i(b) = B_i$ with $i=1, 2$ and the non-holonomic constrain
+    \begin{equation}
+        g(x, y_1, y_2, y'_1, y'_2) = 0.
+    \end{equation}
+    If $\pd g / \pd y_1$ and $\pd g / \pd y_2$ do not vanish simultaneously for the points satisfying $g = 0$, then there exists $\lambda(x)$ such that $y_1, y_2$ are the extremals of
+    \begin{equation}
+        I[y_1, y_2] = \int_a^b \Phi\paren*{x, y_1, y_2, y'_1, y'_2} \,dx
+    \end{equation}
+    with $\Phi = F\paren*{x, y_1, y_2, y'_1, y'_2} + \lambda(x) g\paren*{x, y_1, y_2, y'_1, y'_2}$.
+\end{nthm}
+
+The corresponding Euler-Lagrange equations are easily seen to be
+\begin{gather}
+    \frac{\pd F}{\pd y} + \lambda \frac{\pd g}{\pd y}
+    - \frac{d}{dx}\paren*{\frac{\pd F}{\pd y'} + \lambda \frac{\pd g}{\pd y'}} = 0,\\
+    \frac{\pd F}{\pd z} + \lambda \frac{\pd g}{\pd z}
+    - \frac{d}{dx}\paren*{\frac{\pd F}{\pd z'} + \lambda \frac{\pd g}{\pd z'}} = 0.
+\end{gather}
+
+\begin{negg}
+    Let $x = x(t)$ and $y = y(t)$ be the extremals of the functional
+    \begin{equation}
+        J[x, y] = \int \paren{x^2 + y^2} \,dt
+    \end{equation}
+    subject to the non-holonomic constraint $g(t, x, y, \dot{x}, \dot{y}) = x + y + \dot{x} = 0$.
+
+    The associated Euler-Lagrange equations are $2x + \lambda - \dot{\lambda} = 0$ and $2y + \lambda = 0$. So, the system of equations for this constrained variational problems is
+    \begin{equation}
+        x + y + \dot{x} = 0, \quad
+        x - y + \dot{y} = 0, \quad
+        \lambda = -2y.
+    \end{equation}
+    Eliminating $x$ leads to $\ddot{y} - 2y = 0$, which reduces to
+    \begin{equation}
+        y(t) = c_1 \cos(\sqrt{2}t) + c_2 \sin(\sqrt{2}t),
+    \end{equation}
+    with arbitrary constants $c_1$ and $c_2$. The equations for $x(t)$ and $\lambda(t)$ are then
+    \begin{gather}
+        x(t) = y(t) - \dot{y}(t) = \paren{c_1 - c_2 \sqrt{2}} \cos\paren{\sqrt{2}t} + \paren{c_2 + c_1 \sqrt{2}} \sin\paren{\sqrt{2}t},\\
+        \lambda(t) = -2y(t) = -2c_1 \cos(\sqrt{2}t) - 2c_2 \sin(\sqrt{2}t).
+    \end{gather}
+\end{negg}
+
+\end{document}
