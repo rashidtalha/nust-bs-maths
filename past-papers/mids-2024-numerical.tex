@@ -19,16 +19,16 @@
 
     \solution \phantom{}
     \begin{enumerate}[label=(\alph*)]
-        \item $x = (10 010 110)_2 = 0(1) + 1(2) + 1(4) + 0(8) + 1(16) + 0(32) + 0(64) + 1(128) = 999$.
+        \item $x = (10 010 110)_2 = 0(1) + 1(2) + 1(4) + 0(8) + 1(16) + 0(32) + 0(64) + 1(128) = 150$.
         \item $x = (1 011)_2 = 1(1) + 1(2) + 0(4) + 1(8) = 11$.
-        \item $x = (777)_8 = 7(1) + 7(8) + 7(64) = 999$.
+        \item $x = (777)_8 = 7(1) + 7(8) + 7(64) = 511$.
     \end{enumerate}
 \end{problem}
 
 \begin{problem}{2}
     Determine the LU factorization of the given matrix using Crout's method
     \begin{equation*}
-        \begin{bmatrix*} 2 & 1 & 4 \\ 8 & -3 & 2 \\ 4 & 11 & -1 \end{bmatrix*}
+        \begin{bmatrix*}[r] 2 & 1 & 4 \\ 8 & -3 & 2 \\ 4 & 11 & -1 \end{bmatrix*}
     \end{equation*}
 
     \solution We take
@@ -46,9 +46,9 @@
     \end{gather*}
     Overall,
     \begin{equation*}
-        \begin{bmatrix*} 2 & 1 & 4 \\ 8 & -3 & 2 \\ 4 & 11 & -1 \end{bmatrix*}
-        = \begin{bmatrix*} 2 & 0 & 0 \\ 8 & -7 & 0 \\ 4 & 9 & -27 \end{bmatrix*}
-        \begin{bmatrix*} 1 & 0.5 & 2 \\ 0 & 1 & 2 \\ 0 & 0 & 1 \end{bmatrix*}
+        \begin{bmatrix*}[r] 2 & 1 & 4 \\ 8 & -3 & 2 \\ 4 & 11 & -1 \end{bmatrix*}
+        = \begin{bmatrix*}[r] 2 & 0 & 0 \\ 8 & -7 & 0 \\ 4 & 9 & -27 \end{bmatrix*}
+        \begin{bmatrix*}[r] 1 & 0.5 & 2 \\ 0 & 1 & 2 \\ 0 & 0 & 1 \end{bmatrix*}
     \end{equation*}
 \end{problem}
 
@@ -57,31 +57,122 @@
     \begin{equation*}
         4x - y + z = 12,
         \quad
-        x - 2y + 4z = 5
+        x - 2y + 4z = 5,
         \quad
         -x + 4y - 2z = -1.
     \end{equation*}
     Perform two iterations with $5$ decimal place digit calculations.
 
-    \solution Solution
+    \solution We arrange this system as
+    \begin{equation*}
+    \begin{gathered}
+    \begin{aligned}
+        4x - y + z &= 12\\
+        -x + 4y - 2z &= -1\\
+        x - 2y + 4z &= 5
+    \end{aligned}
+    \qquad\to\qquad
+    \begin{aligned}
+        \underbrace{
+        \begin{bmatrix*}[r]
+            4 & -1 & 1 \\ -1 & 4 & -2 \\ 1 & -2 & 4
+        \end{bmatrix*}
+        }_{A}
+        \underbrace{
+        \begin{bmatrix}
+            x \\ y \\ z
+        \end{bmatrix}
+        }_{X}
+        =
+        \underbrace{
+        \begin{bmatrix}
+            12 \\ -1 \\ 5
+        \end{bmatrix}
+        }_{B}
+    \end{aligned}
+    \end{gathered}
+    \end{equation*}
+    to ensure $\abs{a_{11}} > \abs{a_{12}} + \abs{a_{13}}$, $\abs{a_{22}} > \abs{a_{21}} + \abs{a_{23}}$ and $\abs{a_{33}} > \abs{a_{31}} + \abs{a_{32}}$.
+
+    The Gauss-Seidel method for this system gives
+    \begin{align*}
+        x_{n+1} &= \frac{1}{a_{11}} \paren*{b_{1} - a_{12}y_{n} - a_{13}z_{n}} = \frac{1}{4} \paren*{12 + y_{n} - z_{n}},\\
+        y_{n+1} &= \frac{1}{a_{22}} \paren*{b_{2} - a_{21}x_{n+1} - a_{23}z_{n}} = \frac{1}{4} \paren*{-1 + x_{n+1} + 2 z_{n}},\\
+        z_{n+1} &= \frac{1}{a_{33}} \paren*{b_{3} - a_{31}x_{n+1} - a_{32}y_{n+1}} = \frac{1}{4} \paren*{5 - x_{n+1} + 2 y_{n+1}}.
+    \end{align*}
+
+    So, starting with $x_0 = y_0 = z_0 = 0$, we have:
+
+    \underline{1st Iteration:}
+    \begin{align*}
+        x_{1} &= \frac{1}{4} \paren*{12 + 0 - 0} = 3.00000,\\
+        y_{1} &= \frac{1}{4} \paren*{-1 + 3 + 0} = 0.50000,\\
+        z_{1} &= \frac{1}{4} \paren*{5 - 3 + 2 (0.5)} = 0.75000.
+    \end{align*}
+    
+    \underline{2nd Iteration:}
+    \begin{align*}
+        x_{2} &= \frac{1}{4} \paren*{12 + 0.5 - 0.75} = 2.93750,\\
+        y_{2} &= \frac{1}{4} \paren*{-1 + 2.9375 + 2 (0.75)} = 0.85938,\\
+        z_{2} &= \frac{1}{4} \paren*{5 - 2.9375 + 2 (0.85938)} = 0.94532.
+    \end{align*}
 \end{problem}
 
 \begin{problem}{4 (a)}
     Derive the formula for the false-position method.
 
-    \solution Solution
+    \solution Suppose the equation $f(x) = 0$ has a root $x_r$ in the interval $[x_\ell, x_u]$. That means $f(x_r) = 0$. In order for the root to lie in the interval $(x_\ell, x_u)$, we must have $f(x_\ell)f(x_u) < 0$. So, without loss of generality, we take $f(x_\ell) < 0$ and $f(x_u) > 0$.
+
+    By the method of similar triangles, we obtain
+    \begin{equation*}
+        \frac{f(x_u)}{x_u - x_r} = \frac{-f(x_\ell)}{x_r - x_\ell}
+    \end{equation*}
+    which can be re-expressed as
+    \begin{equation*}
+        (x_r - x_\ell) f(x_u) = - (x_u - x_r) f(x_\ell)
+        \implies
+        x_r (f(x_u) - f(x_\ell)) = x_\ell f(x_u) - x_u f(x_\ell).
+    \end{equation*}
+
+    Therefore, if the root $x_r$ lies within the interval $[x_\ell, x_u]$, then it can be iteratively estimated as
+    \begin{equation*}
+        x_r = \frac{x_\ell f(x_u) - x_u f(x_\ell)}{f(x_u) - f(x_\ell)}.
+    \end{equation*}
 \end{problem}
 
 \begin{problem}{4 (b)}
     Apply the method of false position to find a real root of the equation $x^4 - 11x + 8 = 0$ within the interval $[1,2]$. Perform five decimal place digit calculations. Apply two iterations.
 
-    \solution Solution
+    \solution Let $f(x) = x^4 - 11x + 8$.
+
+    \underline{1st Iteration:}
+    We set $x_\ell = 1$ and $x_u = 2$. This gives $f(x_\ell) = -2$ and $f(x_u) = 2$. So, $f(x_\ell)f(x_u) < 0$ and a root lies in the interval $[1,2]$. Then,
+    \begin{equation*}
+        x_r = \frac{x_\ell f(x_u) - x_u f(x_\ell)}{f(x_u) - f(x_\ell)} = \frac{(1)(2) - (2)(-2)}{2 + 2} = 1.50000.
+    \end{equation*}
+    
+    \underline{2nd Iteration:}
+    Next, $f(x_r) = -3.4375 < 0$. Therefore, $f(x_r)f(x_u) < 0$ and the root lies in the interval $[1.5, 2]$. So, we set $x_\ell = 1.5$ and $x_u = 2$. Then,
+    \begin{align*}
+        x_r = \frac{x_\ell f(x_u) - x_u f(x_\ell)}{f(x_u) - f(x_\ell)} = \frac{(1.5)(2) - (2)(-3.4375)}{2 + 3.4375} = 1.81609.
+    \end{align*}
 \end{problem}
 
 \begin{problem}{5 (a)}
     Derive Newton-Raphson method.
 
-    \solution Solution
+    \solution Suppose the equation $f(x) = 0$ has a root at $x = x_r$. That means $f(x_r) = 0$. We can Taylor expand $f(x)$ near $x_r$ to get
+    \begin{equation*}
+        f(x_r) = f(x) + (x_r - x) f'(x) + \BigO(2).
+    \end{equation*}
+    Now, working up to linear order and using $f(x_r) = 0$ gives $f(x) + (x_r - x) f'(x) = 0$, which can be re-arrange as
+    \begin{equation*}
+        x_r = x - \frac{f(x)}{f'(x)}.
+    \end{equation*}
+    This gives an iterative formula for root estimation, with an initial guess $x = x_0$,
+    \begin{equation*}
+        x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}.
+    \end{equation*}
 \end{problem}
 
 \begin{problem}{5 (b)}
@@ -94,13 +185,13 @@
     with $f'(x) = 2x$. As a result, we have
     \begin{align*}
         x_0 &= 3.3\\
-        x_1 &= SOMETHING\\
-        x_2 &= SOMETHING\\
-        x_3 &= SOMETHING\\
-        x_4 &= SOMETHING\\
-        x_5 &= SOMETHING.
+        x_1 &= 6.0439394\dots\\
+        x_2 &= 5.4210672\dots\\
+        x_3 &= 5.3852837\dots\\
+        x_4 &= 5.3851648\dots\\
+        x_5 &= 5.3851648\dots
     \end{align*}
-    Therefore, $\sqrt{29} = 5.ABCDE$ to 5 decimal digits.
+    Therefore, $\sqrt{29} = 5.38516$ to 5 decimal digits.
 \end{problem}
 
 \begin{problem}{6}
@@ -112,7 +203,33 @@
     \end{equation*}
     Use the initial guess as $(x_0, y_0) = (0,0)$. Apply one iteration only.
 
-    \solution Solution
+    \solution We have $f_1 (x,y) = x - y^3 - 1$ and $f_2 (x,y) = \sin(x) + y - 1$. The iterative formula for the Newton-Raphson method is
+    \begin{align*}
+        x_{n+1} &= x_{n} + \left.\frac{\displaystyle -f_1 \frac{\pd f_2}{\pd y} + f_2 \frac{\pd f_1}{\pd y}}{J( f_1, f_2 )}\right|_{(x_n, y_n)}\\
+        y_{n+1} &= y_{n} + \left.\frac{\displaystyle -f_2 \frac{\pd f_1}{\pd x} + f_1 \frac{\pd f_2}{\pd x}}{J( f_1, f_2 )}\right|_{(x_n, y_n)}
+    \end{align*}
+    where
+    \begin{equation}
+        J(f_1, f_2)
+        = \begin{vmatrix}
+        \frac{\pd f_1}{\pd x} & \frac{\pd f_1}{\pd y}\\
+        \frac{\pd f_2}{\pd x} & \frac{\pd f_2}{\pd y}
+        \end{vmatrix}
+        = \frac{\pd f_1}{\pd x} \frac{\pd f_2}{\pd y} - \frac{\pd f_1}{\pd y} \frac{\pd f_2}{\pd x}.
+    \end{equation}
+
+    For the given $f_1$ and $f_2$ we have
+    \begin{equation}
+        \frac{\pd f_1}{\pd x} = 1, \quad
+        \frac{\pd f_1}{\pd y} = -3y^2, \quad
+        \frac{\pd f_2}{\pd x} = \cos x, \quad
+        \frac{\pd f_2}{\pd y} = 1,
+    \end{equation}
+    and $J(f_1, f_2) = 1 + 3y^2 \cos x$. Starting with $(x_0, y_0) = (0,0)$ we get
+    \begin{align*}
+        x_{1} &= \left.\frac{\displaystyle -(x - y^3 - 1)(1) + (\sin(x) + y - 1)(-3y^2)}{1 + 3y^2 \cos x}\right|_{(0,0)} = 1\\
+        y_{1} &= \left.\frac{\displaystyle -(\sin(x) + y - 1)(1) + (x - y^3 - 1)(\cos x)}{1 + 3y^2 \cos x}\right|_{(0,0)} = 0.
+    \end{align*}
 \end{problem}
 
 \end{document}
