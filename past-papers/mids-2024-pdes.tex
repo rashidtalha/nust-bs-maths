@@ -57,7 +57,47 @@
     \end{equation*}
     into canonical form, where $b$, $d$ $A$, $B$ and $C$ are constants.
 
-    \solution Solution
+    \solution We note that this is a second order linear PDE with constant coefficients such that $D=E=0$. Under the change of variables $\xi = x+by$ and $\eta = x+dy$, these coefficients transform to
+    \begin{align*}
+        A^{*} &= A \xi_x^2 + (2B) \xi_x \xi_y + C \xi_y^2 = A + 2Bb + Cb^2,\\
+        B^{*} &= 2A\xi_x \eta_x + (2B) \paren*{\xi_x \eta_y + \xi_y \eta_x} + 2C \xi_y \eta_y = 2A + 2B (b+d) + 2C bd,\\
+        C^{*} &= A \eta_x^2 + (2B) \eta_x \eta_y + C \eta_y^2 = A + 2Bd + Cd^2,\\
+        D^{*} &= A \xi_{xx} + (2B) \xi_{xy} + C \xi_{yy} + D \xi_{x} + E \xi_{y} = 0,\\
+        E^{*} &= A \eta_{xx} + (2B) \eta_{xy} + C \eta_{yy} + D \eta_{x} + E \eta_{y} = 0.
+    \end{align*}
+    The resulting transformed PDE is
+    \begin{equation*}
+        \paren*{A + 2Bb + Cb^2} u_{\xi\xi} + 2\paren*{A + B (b+d) + C bd} u_{\xi\eta} + \paren*{A + 2Bd + Cd^2} u_{\eta\eta} = 0.
+    \end{equation*}
+
+    The canonical form depends on the solutions of $A^* = 0$; i.e. $A + 2Bb + Cb^2 = 0$. This gives
+    \begin{equation*}
+        A + 2Bb + Cb^2
+        \implies
+        b = \frac{-B \pm \sqrt{B^2 - AC}}{C}.
+    \end{equation*}
+
+    If $B^2 > AC$, then let
+    \begin{equation*}
+        b = \frac{-B + \sqrt{B^2 - AC}}{C}
+        \quad\text{and}\quad
+        d = \frac{-B - \sqrt{B^2 - AC}}{C}.
+    \end{equation*}
+    This eliminates $A^*$ and $C^*$ and reduces the transformed PDE to the hyperbolic canonical form $2\paren*{A + B (b+d) + C bd} u_{\xi\eta} = 0 \implies u_{\xi\eta} = 0$.
+
+    If $B^2 = AC$, then let $b = -B/C$. We note that
+    \begin{equation*}
+        A + B (b+d) + C bd = A - \frac{B^2}{C} + Bd - Bd = A - A = 0.
+    \end{equation*}
+    This eliminates $A^*$ and $B^*$ and reduces the transformed PDE to the parabolic canonical form $\paren*{A + 2Bd + Cd^2} u_{\eta\eta} = 0 \implies u_{\eta\eta} = 0$.
+
+    If $B^2 < AC$, then let
+    \begin{equation*}
+        b = \frac{-B + i\sqrt{AC - B^2}}{C},\quad
+        \alpha = \Re \xi = x - \frac{B}{C}, \quad
+        \beta = \Im \xi = \frac{\sqrt{AC-B^2}}{C}.
+    \end{equation*}
+    We find that this leads to $u_{\alpha\alpha} + u_{\beta\beta} = 0$, the elliptic canonical form.
 \end{problem}
 
 \begin{problem}{3}
@@ -67,7 +107,45 @@
     \end{equation*}
     with the data $x + y = 0$ and $u = 1$.
 
-    \solution Solution
+    \solution The characteristic equations are
+    \begin{equation*}
+        \frac{dx}{xy^2 + xu}
+        = \frac{dy}{-yx^2 - yu}
+        = \frac{du}{(x^2 - y^2)u}
+        = \frac{xdx+ydy}{(x^2 - y^2)u}
+        = \frac{\frac{dx}{x}+\frac{dy}{y}}{y^2 - x^2}
+    \end{equation*}
+    Therefore,
+    \begin{align*}
+        \frac{du}{(x^2 - y^2)u} = \frac{xdx+ydy}{(x^2 - y^2)u}
+        &\implies
+        du = xdx+ydy\\
+        &\implies
+        u = \frac{1}{2}x^2 + \frac{1}{2}y^2 + k\\
+        &\implies
+        2u - x^2 - y^2 = c_1.
+    \end{align*}
+    And,
+    \begin{align*}
+        \frac{du}{(x^2 - y^2)u} = \frac{\frac{dx}{x}+\frac{dy}{y}}{y^2 - x^2}
+        &\implies
+        -\frac{du}{u} = \frac{dx}{x} + \frac{dy}{y}\\
+        &\implies
+        \log\abs{u} + \log\abs{x} + \log\abs{y} = k\\
+        &\implies
+        uxy = c_2.
+    \end{align*}
+    Here, $c_1$, $c_2$ and $k$ are constants. The general solution is $f(2u - x^2 - y^2, uxy) = 0$ where $f$ is an arbitrary function.
+
+    We are given that $x+y = 0$ when $u=1$. This means, $y = -x$ when $u=1$. So,
+    \begin{gather*}
+        c_2 = uxy = x(-x) = -x^2,\\
+        c_1 = 2u - x^2 - y^2 = 2 - x^2 - x^2 = 2 - 2x^2 = 2 + 2c_2.
+    \end{gather*}
+    Therefore, $c_1 = 2 + 2c_2 \implies 2u - x^2 - y^2 = 2(1 + uxy)$, which can be expressed as
+    \begin{equation*}
+        u = \frac{2+x^2+y^2}{2-2xy}.
+    \end{equation*}
 \end{problem}
 
 \begin{problem}{4}
@@ -80,7 +158,61 @@
         \frac{dx}{a} = \frac{dy}{b} = \frac{du}{c}.
     \end{equation*}
 
-    \solution Solution.
+    \solution By equating the ratios in the characteristic equations to a common parameter
+    \begin{equation*}
+        \frac{dx}{a(x,y,u)} = \frac{dy}{b(x,y,u)} = \frac{du}{c(x,y,u)} = dt
+    \end{equation*}
+    we can write $dx = a dt$, $dy = b dt$ and $du = c dt$. Now,
+    \begin{gather*}
+        \phi(x,y,u) = c_1
+        \implies
+        d\phi = \phi_x dx + \phi_y dy + \phi_u du = 0
+        \implies
+        a \phi_x + b \phi_y + c \phi_u = 0,\\
+        \psi(x,y,u) = c_2
+        \implies
+        d\psi = \psi_x dx + \psi_y dy + \psi_u du = 0
+        \implies
+        a \psi_x + b \psi_y + c \psi_u = 0.
+    \end{gather*}
+
+    Simultaneously solving these two equations (for $a, b, c$) gives
+    \begin{equation*}
+        \frac{a}{\begin{vmatrix} \phi_y & \phi_u \\ \psi_y & \psi_u \end{vmatrix}}
+        = \frac{-b}{\begin{vmatrix} \phi_x & \phi_u \\ \psi_x & \psi_u \end{vmatrix}}
+        = \frac{c}{\begin{vmatrix} \phi_x & \phi_y \\ \psi_x & \psi_y \end{vmatrix}}
+        = \lambda.
+    \end{equation*}
+    By defining the notation $\frac{\pd(\phi,\psi)}{\pd(x,y)} = \begin{vsmallmatrix*} \phi_x & \phi_y \\ \psi_x & \psi_y \end{vsmallmatrix*}$ these ratios can be rewritten as
+    \begin{equation*}
+        \frac{a}{\displaystyle\frac{\pd(\phi,\psi)}{\pd(y,u)}}
+        = \frac{b}{\displaystyle\frac{\pd(\phi,\psi)}{\pd(u,x)}}
+        = \frac{c}{\displaystyle\frac{\pd(\phi,\psi)}{\pd(x,y)}}
+        = \lambda.
+    \end{equation*}
+    Here we used $-\begin{vsmallmatrix*} \phi_u & \phi_x \\ \psi_u & \psi_x \end{vsmallmatrix*} = \begin{vsmallmatrix*} \phi_x & \phi_u \\ \psi_x & \psi_u \end{vsmallmatrix*}$. Consequently,
+    \begin{equation*}
+        \frac{\pd(\phi, \psi)}{\pd(y,u)} = \frac{a}{\lambda}, \quad
+        \frac{\pd(\phi, \psi)}{\pd(u,x)} = \frac{b}{\lambda}, \quad
+        \frac{\pd(\phi, \psi)}{\pd(x,y)} = \frac{c}{\lambda}.
+    \end{equation*}
+
+    Using the expressions found above, we get
+    \begin{equation*}
+        a u_x + b u_y = c
+        \iff
+        u_x \frac{\pd(\phi, \psi)}{\pd(y,u)}
+        + u_y \frac{\pd(\phi, \psi)}{\pd(u,x)}
+        = \frac{\pd(\phi, \psi)}{\pd(x,y)}.
+    \end{equation*}
+
+    Now, since $f(\phi, \psi) = 0$ satisfies the PDE
+    \begin{equation*}
+        u_x \frac{\pd(\phi, \psi)}{\pd(y,u)}
+        + u_y \frac{\pd(\phi, \psi)}{\pd(u,x)}
+        = \frac{\pd(\phi, \psi)}{\pd(x,y)},
+    \end{equation*}
+    we conclude that $f(\phi,\psi) = 0$ satisfies the PDE $au_x + bu_y = c$.
 \end{problem}
 
 \begin{problem}{5}
