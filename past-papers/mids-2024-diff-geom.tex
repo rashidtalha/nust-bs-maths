@@ -33,9 +33,9 @@
         \vec{T} &= \frac{(1, 2t, 3t^2)}{\sqrt{1 + 4t^2 + 9t^4}}\\
         \vec{B} &= \frac{(6t^2, -6t, 2)}{2\sqrt{1 + 9t^2 + 9t^4}} = \frac{(3t^2, -3t, 1)}{\sqrt{1 + 9t^2 + 9t^4}}.
     \end{align*}
-    Lastly, $(3t^2, -3t, 1) \times (1, 2t, 3t^2) = ()$ gives
+    Lastly, $(3t^2, -3t, 1) \times (1, 2t, 3t^2) = (-2t-9t^3, 1-9t^4, 3t+6t^3)$ gives
     \begin{equation*}
-        \vec{N} = \frac{()}{\sqrt{(1 + 9t^2 + 9t^4) (1 + 4t^2 + 9t^4)}}.
+        \vec{N} = \frac{(-2t-9t^3, 1-9t^4, 3t+6t^3)}{\sqrt{(1 + 9t^2 + 9t^4) (1 + 4t^2 + 9t^4)}}.
     \end{equation*}
 \end{problem}
 
@@ -43,13 +43,13 @@
     State and prove the Wirtinger's inequality.
 
     \solution\\
-    \textbf{Statement:} Let $F : [0, \pi] \to \R$ be a smooth function with $F(0) = F(\pi) = 0$. Then,
+    \underline{Statement}: Let $F : [0, \pi] \to \R$ be a smooth function with $F(0) = F(\pi) = 0$. Then,
         \begin{equation*}
             \int_{0}^{\pi} \paren*{\frac{dF}{dt}}^2 \,dt \geq \int_{0}^{\pi} F^2 \,dt
         \end{equation*}
         and the equality holds if and only if $F(t) = K \sin t$ for all $t \in [0, \pi]$ and $K$ is a constant.
     
-    \textbf{Proof:} Let $G(t) = F(t) / \sin(t)$. This is well-defined because $\sin(t)$ is non-zero for $t \in (0, \pi)$, and smooth because it is a quotient of two smooth functions. Writing $F(t) = G(t) \sin(t)$ we get,
+    \underline{Proof}: Let $G(t) = F(t) / \sin(t)$. This is well-defined because $\sin(t)$ is non-zero for $t \in (0, \pi)$, and smooth because it is a quotient of two smooth functions. Writing $F(t) = G(t) \sin(t)$ we get,
     \begin{align*}
         \int_{0}^{\pi} \paren*{\frac{dF}{dt}}^2 \,dt
         &= \int_{0}^{\pi} \paren*{ G' \sin t + G \cos t }^2 \,dt\\
@@ -96,13 +96,13 @@
     Using the Wirtinger's inequality, prove the isoperimetric inequality.
 
     \solution\\
-    \textbf{Statement:} Let $\gamma$ be a simple closed curve in the plane with length $\ell(\gamma)$, and enclosing an area $A(\gamma)$. Then,
+    \underline{Statement}: Let $\gamma$ be a simple closed curve in the plane with length $\ell(\gamma)$, and enclosing an area $A(\gamma)$. Then,
         \begin{equation*}
             A(\gamma) \leq \frac{1}{4\pi} \ell(\gamma)^2
         \end{equation*}
         and the equality holds if and only if $\gamma$ is a circle.
     
-    \textbf{Proof:} Without loss of generality, we assume that the curve is parametrised by arc-length, so $\gamma : [0, \ell] \to \R^2$ with $\gamma = \gamma(s)$. Also, we translate the curve so that $\gamma(0) = 0$; this doesn't effect the value of $\ell(\gamma)$ and $A(\gamma)$. Also note that $\gamma(\ell) = \gamma(0)$ because it is a closed curve.
+    \underline{Proof}: Without loss of generality, we assume that the curve is parametrised by arc-length, so $\gamma : [0, \ell] \to \R^2$ with $\gamma = \gamma(s)$. Also, we translate the curve so that $\gamma(0) = 0$; this doesn't effect the value of $\ell(\gamma)$ and $A(\gamma)$. Also note that $\gamma(\ell) = \gamma(0)$ because it is a closed curve.
 
     We reparametrize the curve using the parameter $t = \pi s / \ell$. Then, $t \in [0, \pi]$ and $ds/dt = \ell/\pi$. We can then write the curve in coordinates as $\gamma(t) = \paren*{x(t), y(t)}$. Switching to polar coordinates $x = r \cos\theta$ and $y = r \sin\theta$ we find $\dot{x}^2 + \dot{y}^2 = \dot{r}^2 + r^2 \dot{\theta}^2$ and $x\dot{y} - y\dot{x} = r^2 \dot{\theta}$ because $\dot{x} = \dot{r} \cos\theta - r \dot{\theta} \sin\theta$ and $\dot{y} = \dot{r} \sin\theta + r \dot{\theta} \cos\theta$.
 
@@ -136,19 +136,87 @@
 \begin{problem}{3 (i)}
     For a unit speed curve $\beta(s)$, show that $\beta'' \cdot \beta''' \times \beta'''' = \kappa^5 \frac{d}{ds}\paren*{\frac{\tau}{\kappa}}$, where $\kappa$ and $\tau$ are curvature and torsion of the curve $\beta(s)$.
 
-    \solution Solution
+    \solution For a unit speed curve $\beta'' = \kappa \vec{N}$ and $\beta''' = -\kappa^2 \vec{T} + \kappa' \vec{N} + \tau\kappa \vec{B}$. So,
+    \begin{equation*}
+        \beta^{(4)}
+        = -3\kappa\dot{\kappa} \vec{T}
+        + \paren*{\dot{\tau}\kappa + 2\tau\dot{\kappa}} \vec{B}
+        + \paren*{\ddot{\kappa} - \kappa^3 - \tau^2 \kappa} \vec{N}.
+    \end{equation*}
+    Frenet-Serret equations were used to simplify the previous expression. Now, by the cyclic property of the triple scalar product, $\beta'' \cdot \beta''' \times \beta^{(4)} = \beta^{(4)} \cdot \beta'' \times \beta'''$. And
+    \begin{equation*}
+        \beta'' \times \beta'''
+        = \kappa\vec{N} \times \paren*{-\kappa^2 \vec{T} + \kappa' \vec{N} + \tau\kappa \vec{B}}
+        = \tau \kappa^2 \vec{T} + \kappa^3 \vec{B}
+    \end{equation*}
+    where we used $\vec{N} \times \vec{T} = - \vec{B}$ and $\vec{N} \times \vec{B} = \vec{T}$. Consequently,
+    \begin{equation*}
+        \beta^{(4)} \cdot \beta'' \times \beta'''
+        = \paren*{-3 \kappa^3 \tau \dot{\kappa}} + \paren*{\kappa^4 \dot{\tau} + 2 \kappa^3 \tau \dot{\kappa}}
+        = \kappa^4 \dot{\tau} - \kappa^3 \tau \dot{\kappa}.
+    \end{equation*}
+    We can re-write this as
+    \begin{equation*}
+        \beta'' \cdot \beta''' \times \beta^{(4)}
+        = \beta^{(4)} \cdot \beta'' \times \beta'''
+        = \kappa^4 \dot{\tau} - \kappa^3 \tau \dot{\kappa}
+        = \kappa^5 \paren*{ \frac{\dot{\tau} \kappa}{\kappa^2} - \frac{\tau \dot{\kappa}}{\kappa^2} }
+        = \kappa^5 \frac{d}{ds}\paren*{\frac{\tau}{\kappa}}.
+    \end{equation*}
 \end{problem}
 
 \begin{problem}{3 (ii)}
     Reparametrize the curve $\alpha(t) = e^{t}\paren*{\cos t, \sin t, 1}$ by its arc-length.
 
-    \solution Solution
+    \solution Differentiating $\alpha(t) = \paren*{e^t \cos t, e^t \sin t, e^t}$ gives,
+    \begin{equation*}
+        \alpha'(t) = (e^t \cos t - e^t \sin t, e^t \sin t + e^t \cos t, e^t) = e^t \paren*{\cos t - \sin t, \cos t + \sin t, 1}.
+    \end{equation*}
+    So, $\abs{\alpha'}^2 = e^{2t} \paren*{\cos^2 t + \sin^2 t - 2\cos t \sin t + \cos^2 t + \sin^2 t + 2\cos t \sin t + 1} = 3 e^{2t}$. Therefore, $\abs{\alpha'(t)} = \sqrt{3} e^t$ and,
+    \begin{equation*}
+        s(t)
+        = \int_0^t \abs{\alpha'(u)} \,du
+        = \sqrt{3} \int_0^t e^u \,du
+        = \sqrt{3} e^u \bigg|_0^t
+        = \sqrt{3} (e^t - 1).
+    \end{equation*}
+    Inverting this to make $t$ the subject,
+    \begin{equation*}
+        s(t) = \sqrt{3} (e^t - 1)
+        \implies
+        e^t = 1 + \frac{s}{\sqrt{3}}
+        \implies
+        t = \ln \paren*{1 + \frac{s}{\sqrt{3}}}
+    \end{equation*}
+
+    So, the arc-length paremetrisation of $\alpha$ is
+    \begin{equation*}
+        \alpha(s) = \paren*{1 + \frac{s}{\sqrt{3}}}\cos \paren*{\ln \paren*{1 + \frac{s}{\sqrt{3}}}} \uvec{i} + \paren*{1 + \frac{s}{\sqrt{3}}}\sin \paren*{\ln \paren*{1 + \frac{s}{\sqrt{3}}}} \uvec{j} + \paren*{1 + \frac{s}{\sqrt{3}}} \uvec{k}.
+    \end{equation*}
 \end{problem}
 
 \begin{problem}{4 (i)}
     Show that the curve $\beta(s) = \frac{1}{2}\paren*{s + \sqrt{s^2 + 1}, \paren*{s + \sqrt{s^2 + 1}}^{-1}, \sqrt{2}\ln\paren*{s + \sqrt{s^2 + 1}}}$ has unit speed.
 
-    \solution Solution
+    \solution Differentiating $\beta(s)$ gives,
+    \begin{align*}
+        \beta'(s)
+        &= \frac{1}{2} \paren*{1 + \frac{s}{\sqrt{s^2 + 1}}, -\frac{1 + \frac{s}{\sqrt{s^2 + 1}}}{\paren*{s + \sqrt{s^2 + 1}}^2}, \frac{\sqrt{2} \paren*{s + \sqrt{s^2 + 1}}}{1 + \frac{s}{\sqrt{s^2 + 1}}}}\\
+        &= \frac{1}{2} \paren*{1 + \frac{s}{\sqrt{s^2 + 1}}, -\frac{1 + \frac{s}{\sqrt{s^2 + 1}}}{\paren*{s + \sqrt{s^2 + 1}}^2},
+        \frac{ \sqrt{2} \paren*{1 + \frac{s}{\sqrt{s^2 + 1}}} }{ \frac{1}{\sqrt{s^2 + 1}} + \frac{s}{s^2 + 1} }}\\
+        &= \frac{1}{2} \paren*{1 + \frac{s}{\sqrt{s^2 + 1}}} \paren*{1, -\frac{1}{\paren*{s + \sqrt{s^2 + 1}}^2}, \frac{ \sqrt{2} }{ \frac{1}{\sqrt{s^2 + 1}} + \frac{s}{s^2 + 1}} }\\
+        &= \frac{1}{2} \paren*{1 + \frac{s}{\sqrt{s^2 + 1}}} \paren*{1, -\frac{1}{\paren*{s + \sqrt{s^2 + 1}}^2}, \frac{ \sqrt{2} (s^2 + 1) }{ s + \sqrt{s^2 + 1}} }.
+    \end{align*}
+    Therefore,
+    \begin{align*}
+        \abs{\beta'(s)}^2
+        &= \frac{1}{4} \paren*{1 + \frac{s}{\sqrt{s^2 + 1}}}^2
+        \paren*{1 + \frac{1}{\paren*{s + \sqrt{s^2 + 1}}^4} + \frac{ 2 (s^2 + 1)^2 }{\paren*{s + \sqrt{s^2 + 1}}^2}}\\
+        &= \frac{1}{4} \frac{\paren*{s + \sqrt{s^2 + 1}}^2}{s^2 + 1}
+        \paren*{1 + \frac{1}{\paren*{s + \sqrt{s^2 + 1}}^4} + \frac{ 2 (s^2 + 1)^2 }{\paren*{s + \sqrt{s^2 + 1}}^2}}\\
+        \paren*{1 + \frac{1}{\paren*{s + \sqrt{s^2 + 1}}^4} + \frac{ 2 (s^2 + 1)^2 }{\paren*{s + \sqrt{s^2 + 1}}^2}}\\
+    \end{align*}
+    So, $\abs{\beta'(s)}^2 = 1$. Therefore, $\beta(s)$ is a unit-speed parametrised curve.
 \end{problem}
 
 \begin{problem}{4 (ii)}

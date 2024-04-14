@@ -15,7 +15,7 @@
         u_{xy} + y u_{yy} + \sin(x+y) = 0.
     \end{equation*}
 
-    \solution We start by making a change of variables $x \leftrightarrow y$ to get the transformed PDE
+    \solution We start by swapping the variables $x \leftrightarrow y$ to get the transformed PDE
     \begin{equation*}
         x u_{xx} + u_{xy} + \sin(x+y) = 0. \tag{\textasteriskcentered}\label{eq:pde-swap}
     \end{equation*}
@@ -28,26 +28,26 @@
         \frac{dy}{dx} = \frac{1}{x} \implies k + y = \ln x \implies x e^{-y} = c_1, \quad
         \frac{dy}{dx} = 0 \implies y = c_2.
     \end{equation*}
-    These lead to $\xi = x e^{-y} = c_1$ and $\eta = y = c_2$. As a result
+    Here, $k, c_1$ and $c_2$ are constants. These lead to $\xi = x e^{-y} = c_1$ and $\eta = y = c_2$. As a result
     \begin{align*}
-        B^{*} &= EQQ = EQQ\\
-        D^{*} &= EQQ = EQQ\\
-        E^{*} &= EQQ = EQQ.
+        B^{*} &= 2A\xi_x \eta_x + B \paren*{\xi_x \eta_y + \xi_y \eta_x} + 2C \xi_y \eta_y = e^{-y},\\
+        D^{*} &= A \xi_{xx} + B \xi_{xy} + C \xi_{yy} + D \xi_{x} + E \xi_{y} = -e^{-y},\\
+        E^{*} &= A \eta_{xx} + B \eta_{xy} + C \eta_{yy} + D \eta_{x} + E \eta_{y} = 0.
     \end{align*}
-    (The coefficients $A^{*} = C^{*} = 0$ because the PDE is hyperbolic.)
+    (Also, $A^{*} = C^{*} = 0$ because the PDE is hyperbolic.)
 
     As a result, equation~\eqref{eq:pde-swap} implies
     \begin{equation*}
-        e^{y} u_{\xi\eta} - e^{y} u_{\xi\xi} = \sin(x + y)
-        \implies u_{\xi\eta} - u_{\xi\xi} = e^{-\eta}\sin\paren*{\eta + \xi e^\eta}.
+        e^{-y} u_{\xi\eta} - e^{-y} u_{\xi} = \sin(x + y)
+        \implies u_{\xi\eta} - u_{\xi} = e^{\eta}\sin\paren*{\eta + \xi e^\eta}.
     \end{equation*}
     Here, we used $y = \eta$ and $x = \xi e^y = \xi e^\eta$.
 
     Overall, the canonical form of the given PDE is
     \begin{equation*}
-        u_{\xi\eta} = u_{\xi\xi} + e^{-\eta}\sin\paren*{\eta + \xi e^\eta}
+        u_{\xi\eta} = u_{\xi} + e^{\eta}\sin\paren*{\eta + \xi e^\eta}
     \end{equation*}
-    with $\xi = y e^{-x}$ and $\eta = x$ (in the original variables).
+    with $\xi = y e^{-x}$ and $\eta = x$ (in terms of the original variables).
 \end{problem}
 
 \begin{problem}{2}
