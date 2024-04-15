@@ -423,12 +423,12 @@ Generators are not unique. Indeed if $a \in G$ is a generator then so is $\inv{a
     Let $G$ be a group and $a \in G$ with $O(a) = n$. If $a^m = e$ then $n \mid m$.
 \end{nthm}
 \begin{proof}
-    By the division algorithm, we have $m = qn + r$ for $q, r \in \Z$ and $0 \leq r < n$. So,
+    By the division algorithm, $m = qn + r$ for $q, r \in \Z$ and $0 \leq r < n$. So,
     \begin{equation*}
         a^m = a^{nq + r} = \paren*{{a^n}^q} \paren*{a^r} = \paren*{e^q} \paren*{a^r} = e \paren*{a^r} = a^r.
     \end{equation*}
 
-    Now, $a^m = e \implies a^r = e$. However, $r < n$ and $n$ is the least positive integer for which $a^n = e$. Therefore, $r$ must be zero (if it was positive then it would contradict the minimality of $n$). Therefore, $m = qn$, or $n \mid m$
+    Now, $a^m = e \implies a^r = e$. However, $r < n$ and $n$ is the least positive integer for which $a^n = e$. Therefore, $r$ must be zero (if it was positive then it would contradict the minimality of $n$). Therefore, $m = qn$. That is $n \mid m$.
 \end{proof}
 
 \begin{nthm}
@@ -457,7 +457,7 @@ Generators are not unique. Indeed if $a \in G$ is a generator then so is $\inv{a
 \begin{proof}
     Suppose $a^k$ is a generator of $G$. Then, we can write $a$ as a power of $a^k$, say $a = \paren{a^k}^m = a^{km}$ for some $m \in \Z$.
 
-    Then, $a = \paren{a^k}^m \implies a a^{-km} = e \implies a^{1-km} = e$.
+    Then, $a = a^{km} \implies a a^{-km} = e \implies a^{1-km} = e$.
 
     So, $n \mid 1 - km$. That is $\exists q \in \Z$ such that $1 - km = qn$. We can re-arrange this to get $qn + km = 1$. From number theory (Bezout's lemma) we know that this implies $\gcd(n,k)=1$.
 
@@ -478,7 +478,7 @@ Generators are not unique. Indeed if $a \in G$ is a generator then so is $\inv{a
 
     Let $b \in G$ be another generator of $G$. Then, we can write $b = a^s$ and $a = b^t$ for some $s, t \in \Z$. Therefore, $a = \paren*{a^{s}}^{t} = a^{st} \implies a^{st-1} = e \implies st-1 = 0$.
     
-    The only solutions to this diophantine equation are $s=t=1$ and $s=t=-1$. So, $b = a$ or $b = \inv{a}$.
+    The only solutions to this Diophantine equation are $s=t=1$ and $s=t=-1$. So, $b = a$ or $b = \inv{a}$.
 \end{proof}
 
 \section{Equivalence Relations}
@@ -592,13 +592,13 @@ We have an analogous result for the right cosets.
     Let $H \subgroup G$ and $a \in G$.
     \begin{enumerate}[label=(\roman*)]
         \item $a \in aH$
-        \item $aH = bH$ iff $a \in bH$
+        \item $aH = bH \iff a \in bH$
         \item $aH = bH$ or $aH \cap bH = \emptyset$
     \end{enumerate}
 \end{nthm}
 \begin{proof}
     \begin{enumerate}[label=(\roman*)]
-        \item Since $H \subgroup G$, $e \in H$. So, $a = ae \in H$.
+        \item Since $H \subgroup G$, $e \in H$. So, $a = ae \in aH$.
 
         \item Suppose $aH = bH$. By part (i) $a \in aH$. So, $a \in aH = bH$. Therefore, $a \in bH$.
 
@@ -612,16 +612,15 @@ We have an analogous result for the right cosets.
             = bH
         \end{equation*}
 
-        \item Suppose $aH \cap bH \neq \emptyset$. Then, $\exists c \in G$ such that $c \in aH \cap bH$. So, $c = ah_1$ and $c = bh_2$ for some $h_1, h_2 \in H$. Thus,
+        \item Suppose $aH \cap bH \neq \emptyset$. Then, $\exists c \in G$ such that $c \in aH \cap bH$. By part (ii),
         \begin{equation*}
-            ah_1 = bh_2
-            \implies a = bh_2 \inv{h_1}
-            \implies a = bh
-            \implies a \in bH,
+            c \in aH \implies cH = aH
+            \quad\text{and}\quad
+            c \in bH \implies cH = bH.
         \end{equation*}
-        with $h = h_2 \inv{h_1} \in H$. By part (ii) $a \in bH$ implies $aH = bH$.
+        So, $aH = cH = bH$.
 
-        Therefore, either $aH \cap bH = \emptyset$ of $aH = bH$.\qedhere
+        Therefore, either $aH \cap bH = \emptyset$ or $aH = bH$.\qedhere
     \end{enumerate}
 \end{proof}
 
@@ -635,7 +634,7 @@ We have an analogous result for the right cosets.
 \end{nthm}
 \begin{proof}
     \begin{enumerate}[label=(\roman*)]
-        \item This is a special case of part (ii) from theorem~(\ref{thm:coset-properties-a}) with $b = e$.
+        \item This is a special case of part (ii) from theorem~(\ref{thm:coset-properties-a}) with $b = e$. Here, we need to note that $eH = \set{eh \st h \in H} = \set{h \st h \in H} = H$.
 
         \item Consider the map $\varphi : aH \to bH$ with $\varphi(ah) = bh$. This is injective because
         \begin{equation*}
@@ -712,5 +711,141 @@ When $G$ is a finite group, Lagrange's theorem states that $[G:H] = |G|/|H|$.
 \begin{remark}
     If $|G|$ is infinite then $[G:H]$ may or may not be finite. Therefore, we cannot write $[G:H] = |G|/|H|$ when $|G|$ is infinite. For example, $[\Z:n\Z]=n$, while $[\R:\Z] = \infty$.
 \end{remark}
+
+\section{Symmetric Groups}
+
+\begin{ndfn}
+    A permutation of a non-empty set $A$ is a bijective function $\varphi: A \to A$.
+\end{ndfn}
+
+\begin{notation}
+    Let $A$ be a non-empty set. The set of all the permutations of $A$ is denoted by $S_A = \set{\varphi: A \to A \st \varphi \text{ is bijective}}$.
+\end{notation}
+
+\begin{nlemma}\label{lemma:composition-binary}
+    Let $A$ be a non-empty set. The the composition of functions is a binary operation on $S_A$. More precisely, if $\varphi, \psi \in S_A$, then $\varphi \circ \psi \in S_A$.
+\end{nlemma}
+\begin{proof}
+    Take $\varphi, \psi \in S_A$. So, $\varphi, \psi$ are bijective.
+
+    Consider the map $\varphi \circ \psi : A \to A$ with $(\varphi \circ \psi)(a) = \varphi(\psi(a))$.
+
+    Let $a, b \in A$. Then, $\varphi(\psi(a)) = \varphi(\psi(b)) \implies \psi(a) = \psi(b) \implies a = b$. Therefore, $\varphi \circ \psi$ is injective.
+
+    Next, for all $a \in A$, there exists $b \in A$ such that $\varphi(b) = a$. And for all $b \in A$, there exists $c \in A$ such that $\psi(c) = b$. So, for all $a \in A$, we have $c \in A$ such that $(\varphi \circ \psi)(c) = \varphi(\psi(c)) = \varphi(b) = a$. Therefore, $\varphi \circ \psi$ is surjective.
+
+    Consequently, $\varphi \circ \psi$ is bijective.
+\end{proof}
+
+\begin{notation}
+    The operation of composition of functions in $S_A$ is also called permutation multiplication.
+\end{notation}
+
+\begin{nthm}
+    Let $A$ be a non-empty set. Then, $S_A$ is a group under permutation multiplication.
+\end{nthm}
+\begin{proof}
+    (Closure.) By lemma~(\ref{lemma:composition-binary}), $S_A$ is closed under permutation multiplication.
+
+    (Associativity.) Let $\varphi_1, \varphi_2, \varphi_3 \in S_A$. Then, for all $a \in A$,
+    \begin{equation*}
+        (\varphi_1 \circ (\varphi_2 \circ \varphi_3))(a)
+        = \varphi_1 \circ ( \varphi_2(\varphi_3(a)) )
+        = \varphi_1( \varphi_2(\varphi_3(a)) )
+    \end{equation*}
+    and
+    \begin{equation*}
+        ((\varphi_1 \circ \varphi_2) \circ \varphi_3)(a)
+        = (\varphi_1 \circ \varphi_2)(\varphi_3(a))
+        = \varphi_1( \varphi_2(\varphi_3(a)) )
+    \end{equation*}
+    So, $\varphi_1 \circ (\varphi_2 \circ \varphi_3) = (\varphi_1 \circ \varphi_2) \circ \varphi_3$.
+
+    (Identity.) The map $I : A \to A$ with $I(a) = a$ is the identity element because $I$ is bijective and for all $\varphi \in S_A$,
+    \begin{equation*}
+        (I \circ \varphi)(a) = I(\varphi(a)) = \varphi(a)
+        \quad\text{and}\quad
+        (\varphi \circ I)(a) = \varphi(I(a)) = \varphi(a)
+    \end{equation*}
+
+    (Inverse.) For each $\varphi \in S_A$ consider the map $\varphi^{-1} : A \to A$ with SOMETHING.
+\end{proof}
+
+\begin{ndfn}
+    When $A=\set{1,\dots,n}$ with $n \geq 1$, the set $S_A$ is denoted by $S_n$. This is called the symmetric group of $n$ elements.
+\end{ndfn}
+
+\subsection{Cycle Notation for Permutations}
+A permutation $\sigma: A \to A$ is a bijection, so it can be viewed simply as a relabelling of the elements in $A$. This suggests a more compact notation, called the cycle notation,
+\begin{equation*}
+    \begin{pmatrix}
+        1 & 2 & \dots & n \\ \sigma(1) & \sigma(2) & \dots & \sigma(n)
+    \end{pmatrix}
+\end{equation*}
+where the top row is the input and the bottom row contains its corresponding output; each column should be read as $a \mapsto \sigma(a)$. By convention, we keep the elements of the top row (input) sorted in ascending order.
+
+Composition of permutations can also be carried out in this notation. We present this with an example.
+\begin{negg}
+    Consider $\sigma, \rho \in S_4$ given as
+    \begin{equation*}
+        \sigma = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2 & 4 & 3 & 1 \end{pmatrix},
+        \quad
+        \rho = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3 & 4 & 2 & 1 \end{pmatrix}.
+    \end{equation*}
+    Then,
+    \begin{equation*}
+        \sigma\rho
+        = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2 & 4 & 3 & 1 \end{pmatrix}
+        \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3 & 4 & 2 & 1 \end{pmatrix}
+        = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3 & 1 & 4 & 2 \end{pmatrix}.
+    \end{equation*}
+    We compute this by starting at $1$ in the input row of the matrix for $\rho$ (recall that the permutation on the right is applied first). We read $\rho(1)$, in this case it is $3$. We then locate $3$ in the input row of the next permutation (that is $\sigma$), and read the corresponding output. In this case, $\sigma(3) = 3$. So, we write $1$ under $3$ in the final matrix. This process basically computed $\sigma(\rho(1)) = 3$. Next, we focus on $2$ in the input row of the matrix for $\rho$ and repeat the full process, obtaining $\sigma(\rho(2)) = 1$.
+
+    This process is continued until all entries in the output row of $\sigma\rho$ have been assigned.
+\end{negg}
+
+The same method can be extended to longer chains of permutations, $\sigma_1 \sigma_2 \dots \sigma_k$.
+
+The inverse of a permutation can also be calculated easily in this cycle notation. Given a permutation $\sigma$, we simply swap its two rows and then re-arrange the columns so that the top row is in ascending order.
+\begin{negg}
+    In order to calculate the inverse of
+    \begin{equation*}
+        \sigma = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2 & 4 & 3 & 1 \end{pmatrix}
+    \end{equation*}
+    we, firstly, swap the input and output rows
+    \begin{equation*}
+        \sigma^{-1} = \begin{pmatrix} 2 & 4 & 3 & 1 \\ 1 & 2 & 3 & 4 \end{pmatrix},
+    \end{equation*}
+    and then sort the columns to get the conventional order for the top row
+    \begin{equation*}
+        \sigma^{-1} = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4 & 1 & 3 & 2 \end{pmatrix}.
+    \end{equation*}
+\end{negg}
+
+An even more compact notation can be achieved by omitting the top row (since it is always in the ascending order by convention). The permutation $\sigma = \begin{psmallmatrix} 1 & 2 & 3 & 4 \\ 2 & 4 & 3 & 1 \end{psmallmatrix}$ is then written as $\sigma = (2, 4, 3, 1)$. We shall not this notation.
+
+\subsection{Symmetric Group \texorpdfstring{$S_3$}{S3}}
+The symmetric groups $S_n$ are non-abelian for $n \geq 3$; we shall later show that $S_2$ is the same as $C_2$, the cyclic group of order $2$. The order of $S_n$ is $n!$, the number of possible permutations of $n$ distinct elements.
+
+In particular, $|S_3| = 6$. The six elements of $S_3$ are
+\begin{gather*}
+    \sigma_1 = \begin{pmatrix} 1 & 2 & 3 \\ 1 & 2 & 3 \end{pmatrix}, \quad
+    \sigma_2 = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 3 & 1 \end{pmatrix}, \quad
+    \sigma_3 = \begin{pmatrix} 1 & 2 & 3 \\ 3 & 1 & 2 \end{pmatrix},\\
+    \sigma_4 = \begin{pmatrix} 1 & 2 & 3 \\ 1 & 3 & 2 \end{pmatrix}, \quad
+    \sigma_5 = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 1 & 3 \end{pmatrix}, \quad
+    \sigma_6 = \begin{pmatrix} 1 & 2 & 3 \\ 3 & 2 & 1 \end{pmatrix}.
+\end{gather*}
+A simple calculation shows that their orders are
+\begin{equation*}
+    O(\sigma_1) = 1, \quad
+    O(\sigma_2) = 3, \quad
+    O(\sigma_3) = 3, \quad
+    O(\sigma_4) = 2, \quad
+    O(\sigma_5) = 2, \quad
+    O(\sigma_6) = 2.
+\end{equation*}
+
+Since, $S_3$ is not abelian, its Cayley table is not symmetric.
 
 \end{document}
