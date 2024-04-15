@@ -136,8 +136,6 @@ A PDE is called semi-linear if the coefficients of the highest order derivatives
     \begin{equation}
         \frac{dx}{a(x,y,u)} = \frac{dy}{b(x,y,u)} = \frac{du}{c(x,y,u)}.
     \end{equation}
-
-    % (The solution curves $\phi = c_1$ and $\psi = c_2$ are called the characteristic curves of the given PDE.)
 \end{nthm}
 \begin{proof}
     The ratios in the characteristic equations can all be equated to a common parameter
@@ -184,12 +182,9 @@ A PDE is called semi-linear if the coefficients of the highest order derivatives
     \end{equation}
 
     In other words, this $f(\phi,\psi) = 0$ satisfies the PDE $ap + bq = c$.
-
-
-
 \end{proof}
 
-% \subsection*{Worked Examples}
+% \subsection*{Worked Examples} [TBC]
 
 \section{Canonical Form of the First Order Linear PDEs}
 The method developed for the first order quasi-linear PDEs can also be applied to linear PDEs as a special cases where the coefficient functions take a particular form. However, when dealing only with linear first order PDEs, it is often more convenient to first transform them into a form that is easier to integrate. This is called the canonical (or standard) form.
@@ -234,7 +229,7 @@ Overall, if we can find a suitable $\xi = \xi(x,y)$ then we have transformed the
 \end{equation}
 Here, $\alpha = c/B$ and $\beta = d/B$.
 
-% \subsection*{Worked Examples}
+% \subsection*{Worked Examples} [TBC]
 \begin{negg}
     Reduce $u_x - u_y = u$ to its canonical form, and obtain its general solution.
 
@@ -690,6 +685,7 @@ We obtained equations~\eqref{eq:wave-phi}-\eqref{eq:wave-psi} using the initial 
     \label{eq:wave-soln-semiinfinite}
 \end{equation}
 
+% [TBC]
 % Alternatively, we can require $u(x,t)$ to be free at $x=0$. This corresponds to $u_x(0,t) = 0$ for all $t \geq 0$. Collectively, the initial-boundary conditions become
 % \begin{equation}
 %     u(x, 0) = f(x)
@@ -716,34 +712,34 @@ We obtained equations~\eqref{eq:wave-phi}-\eqref{eq:wave-psi} using the initial 
 % SOMETHING SOMETHING.
 
 \section{Method of Separation of Variables}
-\subsection{The Vibrating String Problem}
-Consider the initial-boundary value problem
-\begin{gather}
+\subsection{The Vibrating String Problem (Homogenous Case)}
+Consider an inelastic string of length $\ell$. We fix its ends at $x = 0$ and $x = \ell$. Let $u = u(x,t)$ describes the profile of the string at time $t$ after it has been given an initial displacement $f(x)$ and an initial velocity $g(x)$. The shape of the string, $u(x,t)$, then evolves according to the wave equation along with the prescribed initial and boundary data.
+\begin{equation}
+\begin{gathered}
     \utt - c^2 \uxx = 0, \quad x \in [0, \ell], \quad t \geq 0\\
     u(x,0) = f(x), \quad x \in [0, \ell]\\
     u_t(x,0) = g(x), \quad x \in [0, \ell]\\
     u(0,t) = u(\ell,t) = 0, \quad t \geq 0.
-\end{gather}
+\end{gathered}
+\label{eq:vibrating-string-problem-h}
+\end{equation}
+Here, $c$ is a constant, called the wave speed. Physically, it is determined by the tension in the string.
 
-Using the method of separation of variables\footnote{Applicable only when the PDE is homogenous, the boundary conditions are homogenous and the spatial domain is bounded.}, we look for a non-trivial solution $u(x,t)$ of the form $u(x,t) = X(x) T(t)$. Since $u$ is assumed to be non-trivial, we must \emph{not} have $X(x) \equiv 0$ or $T(t) \equiv 0$.
+We note that this is a homogenous PDE, and that the boundary conditions are also homogenous. Such problems can sometimes be handled by the method of separation of variables. Using this method, we look for a non-trivial solution $u(x,t)$ of the form $u(x,t) = X(x) T(t)$. Since $u$ is assumed to be non-trivial, we must \emph{not} have $X(x) \equiv 0$ or $T(t) \equiv 0$.
 
-In terms of this ansatz, the problem becomes
-\begin{gather}
-    X(x) \ddot{T}(t) - c^2 X''(x) T(t) = 0, \quad x \in [0, \ell], \quad t \geq 0\\
-    X(x) = \frac{f(x)}{T(0)} \quad\text{when}\quad t = 0, \quad x \in [0, \ell]\\
-    X(x) = \frac{g(x)}{\dot{T}(0)} \quad\text{when}\quad t = 0, \quad x \in [0, \ell]\\
-    X(0) = X(\ell) = 0, \quad t \geq 0.
-\end{gather}
+In terms of this ansatz, the PDE becomes
+\begin{equation}
+    X(x) \ddot{T}(t) - c^2 X''(x) T(t) = 0, \quad x \in [0, \ell], \quad t \geq 0,
+\end{equation}
+and the boundary conditions take the form $X(0) = X(\ell) = 0$ for all $t \geq 0$.
 
-This gives
+We can now separate the differential equation as
 \begin{equation}
     X(x) \ddot{T}(t) - c^2 X''(x) T(t) = 0
     \implies
     \frac{X''(x)}{X(x)} = \frac{1}{c^2} \frac{\ddot{T}(t)}{T(t)} = \lambda.
 \end{equation}
-In the last step we used the fact that the LHS is a function of $x$ while the RHS is only a function of $y$, so, they are equal to some common constant $\lambda$.
-
-Equivalently,
+In the last step we used the fact that the LHS is a function of $x$ while the RHS is only a function of $y$, so, they are equal to some common constant $\lambda$. As a result, the given PDE has been decoupled into two ODEs
 \begin{equation}
     X'' - \lambda X = 0
     \quad\text{and}\quad
@@ -751,42 +747,148 @@ Equivalently,
 \end{equation}
 These ODEs lead to different solutions based on the values of $\lambda$.
 
-For $\lambda = 0$, we have $X'' = 0$ which gives $X(x) = c_1 x + c_2$ for some constants $c_1, c_2$. Now, $X(0)=X(\ell)=0$ implies $c_1 = c_2 = 0$. As a result, $X(x) \equiv 0$.
-
-Consequently, the case $\lambda = 0$ is not valid because it gives the trivial solution $u(x,t) = 0$ for all $x \in [0, \ell]$ and $t \geq 0$, while we are only seeking non-trivial solutions.
+For $\lambda = 0$, we have $X'' = 0$ which gives $X(x) = c_1 x + c_2$ for some constants $c_1, c_2$. Now, $X(0)=X(\ell)=0$ implies $c_1 = c_2 = 0$. Therefore, $X(x) \equiv 0$. So, the case $\lambda = 0$ is not valid because it results in the trivial solution $u(x,t) = 0$ for all $x \in [0, \ell]$ and $t \geq 0$, while we are only seeking non-trivial solutions.
 
 If $\lambda > 0$, then $X'' - \lambda X = 0$ implies $X(x) = c_1 e^{\sqrt{\lambda}x} + c_2 e^{-\sqrt{\lambda}x}$, which along with the boundary conditions $X(0) = X(\ell) = 0$ leads to the system of linear equations
 \begin{align}
     c_1 + c_2 &= 0 \\
     c_1 e^{\sqrt{\lambda}\ell} + c_2 e^{-\sqrt{\lambda}\ell} &= 0.
 \end{align}
-Here, the coefficient matrix is non-singular, so we must have $c_1 = c_2 = 0$. As a result, $X(x) \equiv 0$ and we get the trivial solution for $u(x,t)$. Therefore, we also ignore $\lambda > 0$.
+Here, the coefficient matrix is non-singular, so we must have $c_1 = c_2 = 0$. Therefore, $X(x) \equiv 0$ and we again get the trivial solution for $u(x,t)$. So, we also ignore $\lambda > 0$.
 
-Lastly, if $\lambda < 0$, then we can write it in a more expressive manner as $\lambda = - k^2$. Now $X'' - \lambda X = 0$ becomes $X'' + k^2 X = 0$ and leads to the solution
+Lastly, if $\lambda < 0$, then we can write it as $\lambda = - \alpha^2$. Now, $X'' - \lambda X = 0$ becomes $X'' + \alpha^2 X = 0$ and leads to the solution
 \begin{equation}
-    X(x) = c_1 \cos\paren*{kx} + c_2 \sin\paren*{kx}.
+    X(x) = c_1 \cos\paren*{\alpha x} + c_2 \sin\paren*{\alpha x}.
 \end{equation}
-Now, $X(0) = 0 \implies c_1 = 0$, reducing it to $X(x) = c_2 \sin\paren*{kx}$.
+Using $X(0) = 0$ implies $c_1 = 0$, giving $X(x) = c_2 \sin\paren*{\alpha x}$.
 
-The other boundary condition $X(\ell) = 0$ corresponds to $c_2 \sin\paren{k\ell} = 0$. If we take $c_2 = 0$ then again we obtain the trivial solution $X(x) \equiv 0$. So, we require $\sin\paren{k\ell} = 0$ instead. This is equivalent to $k\ell = \pi$, or $k = \pi / \ell$.
-
-Solving $\ddot{T} - c^2 \lambda T = 0$ with $\lambda = -k^2 = -\pi^2 / \ell^2$ gives
+The other boundary condition $X(\ell) = 0$ corresponds to $c_2 \sin\paren{\alpha \ell} = 0$. If we take $c_2 = 0$ then again we obtain the trivial solution $X(x) \equiv 0$. So, instead, we require $\sin\paren{\alpha \ell} = 0$. This is equivalent to $\alpha \ell = n\pi$, or $\alpha = n\pi / \ell$. This shows that the allowed solutions for $X(x)$ can be labelled by $n$,
 \begin{equation}
-    T(t) = c_3 \cos\paren*{\frac{c \pi t}{\ell}} + c_4 \sin\paren*{\frac{c \pi t}{\ell}}.
+    X_n (x) = c_{2n} \sin\paren*{\frac{n \pi x}{\ell}}
+    \quad n = 1, 2, 3, \dots.
+\end{equation}
+Here, we disallow $n = 0$ as it leads to $\lambda = -\alpha_0^2 = 0$. Also, we don't include $n < 0$ because writing $n = -m$ with $m > 0$ gives
+\begin{equation}
+    c_{2m} \sin\paren*{\frac{-m \pi x}{\ell}} = -c_{2m} \sin\paren*{\frac{m \pi x}{\ell}}
+\end{equation}
+and the minus sign can be absorbed into the arbitrary constant.
+
+Next, solving $\ddot{T} - c^2 \lambda_n T = 0$ with $\lambda_n = -\alpha_n^2 = -n^2\pi^2 / \ell^2$ gives
+\begin{equation}
+    T_n(t) = c_{3n} \cos\paren*{\frac{n \pi ct}{\ell}} + c_{4n} \sin\paren*{\frac{n \pi ct}{\ell}}.
 \end{equation}
 Overall,
 \begin{equation}
-    u(x,t) = \paren*{q_1 \cos\paren*{\frac{c \pi t}{\ell}} + q_2 \sin\paren*{\frac{c \pi t}{\ell}}} \sin\paren*{\frac{\pi x}{\ell}}
+    u_n(x,t) = \paren*{a_{n} \cos\paren*{\frac{n \pi ct}{\ell}} + b_{n} \sin\paren*{\frac{n \pi ct}{\ell}}} \sin\paren*{\frac{n \pi x}{\ell}}
 \end{equation}
-where $q_1, q_2$ are constants.
+where $a_n, b_n$ are arbitrary constants to be determined by the initial conditions.
 
-Next we apply the initial conditions,
+Since the given PDE is linear, we apply the linear superposition principle to obtain the general solution
+\begin{equation}
+    u(x,t) = \sum_{n=1}^{\infty} \paren*{a_{n} \cos\paren*{\frac{n \pi ct}{\ell}} + b_{n} \sin\paren*{\frac{n \pi ct}{\ell}}} \sin\paren*{\frac{n \pi x}{\ell}}.
+\end{equation}
+
+In order to determined the constants $a_n$ and $b_n$, we use the initial data. We note that
 \begin{equation}
     u(x,0) = f(x)
     \implies
-    q_1 \sin\paren*{\frac{\pi x}{\ell}} = f(x).
+    \sum_{n=1}^{\infty} a_n \sin\paren*{\frac{n \pi x}{\ell}} = f(x).
+\end{equation}
+This is a Fourier sine-series. By recognizing that $\set{ \sin\paren*{\frac{n \pi x}{\ell}} }$ form an orthogonal set of functions over $[0, \ell]$, we deduce the expression for $a_n$ to be
+\begin{equation*}
+    a_n = \frac{2}{\ell} \int_0^\ell f(x) \sin\paren*{\frac{n \pi x}{\ell}} \,dx.
+\end{equation*}
+Likewise,
+\begin{equation}
+    u_t (x,0) = g(x)
+    \implies
+    \sum_{n=1}^{\infty} b_n \paren*{\frac{n \pi}{\ell}} \sin\paren*{\frac{n \pi x}{\ell}} = g(x).
+\end{equation}
+This is again a Fourier sine-series, and by analogy with the previous calculation, we have
+\begin{equation*}
+    b_n = \frac{2}{n \pi c} \int_0^\ell g(x) \sin\paren*{\frac{n \pi x}{\ell}} \,dx.
+\end{equation*}
+
+Therefore, the complete solution for the vibrating string problem~\eqref{eq:vibrating-string-problem-h} (in the homogenous case) is
+\begin{equation}
+\begin{gathered}
+    u(x,t) = \sum_{n=1}^{\infty} \paren*{a_{n} \cos\paren*{\frac{n \pi ct}{\ell}} + b_{n} \sin\paren*{\frac{n \pi ct}{\ell}}} \sin\paren*{\frac{n \pi x}{\ell}},\\
+    a_n = \frac{2}{\ell} \int_0^\ell f(x) \sin\paren*{\frac{n \pi x}{\ell}} \,dx,
+    \quad
+    b_n = \frac{2}{n \pi c} \int_0^\ell g(x) \sin\paren*{\frac{n \pi x}{\ell}} \,dx.
+\end{gathered}
+\end{equation}
+We observe that for all $n$, $a_n = 0$ if $f(x) \equiv 0$ and, similarly, $b_n = 0$ if $g(x) \equiv 0$.
+
+\subsection{The Heat Conduction Problem (Homogenous Case)}
+Consider a thin, conducting, homogenous rod of length $\ell$. Let $u = u(x,t)$ denote the temperature at position $0 \leq x \leq \ell$ along the rod at time $t \geq 0$. We arrange for the ends $x=0$ and $x=\ell$ to always remain at temperature $0$, and give the rod an initial temperature profile $f(x)$. The temperature profile at later times is then modelled by the heat equation along with the following initial-boundary data.
+\begin{equation}
+\begin{gathered}
+    u_t = k \uxx, \quad x \in [0, \ell], \quad t \geq 0\\
+    u(x,0) = f(x), \quad x \in [0, \ell]\\
+    u(0,t) = u(\ell,t) = 0, \quad t \geq 0.
+\end{gathered}
+\label{eq:heat-conduction-problem-h}
+\end{equation}
+Here $k$ is a constant encoding thermal conductivity. We note that this is a second order linear homogenous PDE, and the boundary conditions are also homogenous. So, it is reasonable to try to apply the method of separation of variables.
+
+We take the ansatz $u(x,t) = X(x) T(t)$ and look for the non-trivial solutions of the above problem. Under this ansatz the PDE becomes
+\begin{equation}
+    X(x) \dot{T}(t) - k X''(x) T(t) = 0, \quad x \in [0, \ell], \quad t \geq 0,
+\end{equation}
+and the boundary conditions take the form $X(0) = X(\ell) = 0$ for all $t \geq 0$. We can now separate the differential equation as
+\begin{equation}
+    X(x) \dot{T}(t) - k X''(x) T(t) = 0
+    \implies
+    \frac{X''(x)}{X(x)} = \frac{1}{k} \frac{\dot{T}(t)}{T(t)} = \lambda,
+\end{equation}
+where $\lambda$ is a constant. The resulting decoupled ODEs are
+\begin{equation}
+    X'' - \lambda X = 0
+    \quad\text{and}\quad
+    \dot{T} - k \lambda T = 0.
+\end{equation}
+These ODEs lead to different solutions based on the values of $\lambda$.
+
+As in the (homogenous) vibrating string problem~\eqref{eq:vibrating-string-problem-h}, the case $\lambda \geq 0$ only leads to the trivial solution, while $\lambda = - \alpha^2 < 0$ gives
+\begin{equation}
+    X_n (x) = c_{2n} \sin\paren*{\frac{n \pi x}{\ell}}
+    \quad n = 1, 2, 3, \dots,
+\end{equation}
+when $\lambda_n -\alpha_n^2 = -n^2 \pi^2 / \ell^2$. From $\dot{T} - k \lambda_n T = 0$ we obtain
+\begin{equation}
+    T_n(t) = c_{3n} \exp\paren*{-\frac{n^2 \pi^2 kt}{\ell^2}}.
 \end{equation}
 
-FOURIER ETC.
+Combining $X_n$ and $T_n$ gives,
+\begin{equation}
+    u_n(x,t) = a_{n} \sin\paren*{\frac{n \pi x}{\ell}} e^{-(n\pi/\ell)^2 kt}
+\end{equation}
+where $a_n$ is an arbitrary constant.
+
+Since the given PDE is linear, we apply the linear superposition principle to obtain the general solution
+\begin{equation}
+    u(x,t) = \sum_{n=1}^{\infty} a_{n} e^{-(n\pi/\ell)^2 kt} \sin\paren*{\frac{n \pi x}{\ell}}.
+\end{equation}
+
+In order to determined the constants $a_n$, we use the initial data.
+\begin{equation}
+    u(x,0) = f(x)
+    \implies
+    \sum_{n=1}^{\infty} a_n \sin\paren*{\frac{n \pi x}{\ell}} = f(x).
+\end{equation}
+This is the same Fourier sine-series that we obtained in the case of the vibrating string problem. Following the same approach, we conclude that
+\begin{equation*}
+    a_n = \frac{2}{\ell} \int_0^\ell f(x) \sin\paren*{\frac{n \pi x}{\ell}} \,dx.
+\end{equation*}
+
+Therefore, the complete solution for the heat conduction problem~\eqref{eq:heat-conduction-problem-h} (in the homogenous case) is
+\begin{equation}
+\begin{gathered}
+    u(x,t) = \sum_{n=1}^{\infty} a_{n} e^{-(n\pi/\ell)^2 kt} \sin\paren*{\frac{n \pi x}{\ell}},
+    \quad
+    a_n = \frac{2}{\ell} \int_0^\ell f(x) \sin\paren*{\frac{n \pi x}{\ell}} \,dx.
+\end{gathered}
+\end{equation}
 
 \end{document}
