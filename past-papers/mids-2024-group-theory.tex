@@ -1,7 +1,6 @@
 \documentclass[11pt]{penrose}
 
 \input{header}
-\let\cyclic\mean
 
 \title{Past Paper: Group Theory I}
 \subtitle{Midterm Exam, 2024}
@@ -51,7 +50,7 @@
     
     (Reflexive.) Take $a \in G$. Then, $a^{-1} a = e$ and $e \in H$ because $H \subgroup G$. So, $a \sim a$.
 
-    (Symmetric.) If $a \sim b$, then $a^{-1} b \in H$. As $H \subgroup G$, the element $\inv{\paren*{a^{-1} b}} \in H$. And $\inv{\paren*{a^{-1} b}} = b^{-1} (a^{-1})^{-1} = b^{-1} a$. That is, $b^{-1} a \in H$. So, $b \sim a$.
+    (Symmetric.) If $a \sim b$, then $a^{-1} b \in H$. As $H \subgroup G$, the element $\paren*{a^{-1} b}^{-1} \in H$. And $\paren*{a^{-1} b}^{-1} = b^{-1} (a^{-1})^{-1} = b^{-1} a$. That is, $b^{-1} a \in H$. So, $b \sim a$.
 
     (Transitive.) If $a \sim b$ and $b \sim c$, then $a^{-1} b \in H$ and $b^{-1} c \in H$. As $H \subgroup G$, closure and associativity gives $\paren*{a^{-1} b} \paren*{b^{-1} c} = a^{-1} (b b^{-1}) c = a^{-1} c \in H$. So, $a \sim c$.
 
