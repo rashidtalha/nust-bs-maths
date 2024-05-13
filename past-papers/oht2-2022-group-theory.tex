@@ -1,0 +1,71 @@
+\documentclass[11pt]{penrose}
+
+\input{header}
+
+\title{Past Paper: Group Theory I}
+\subtitle{OHT-II, 2022}
+\begin{document}
+
+\maketitle
+\warningtext
+
+\begin{problem}{1}
+    Let $G = \cyclic{a}$ be a finite cyclic group of order $n$. Then, prove that $a^k$ is a generator of $G$ if and only if $\gcd(k,n) = 1$.
+
+    \solution TBC.
+\end{problem}
+
+\begin{problem}{2 (i)}
+    Let $G$ be a finite group. If $H$ is a subgroup of $G$ then prove that $\abs{H}$ divides $\abs{G}$.
+
+    \solution TBC
+\end{problem}
+
+\begin{problem}{2 (ii)}
+    Let $H$ be a subgroup of $G$. If $a, b \in G$, then prove that $aH = bH$ if and only if $a^{-1}b \in H$.
+
+    \solution TBC
+\end{problem}
+
+\begin{problem}{3}
+    Let $C_{24} = \set{1, a, a^2, \dots, a^{23} \st a^{24}=1}$ be the cyclic group of order $24$. If $H = \cyclic{a^4}$ then find $[C_{24} : H]$.
+
+    \solution We have $O(a^4) = 6$. So, $\abs{H} = O(a^4) = 6$. Also, $\abs{C_{24}} = 24$.
+    \begin{equation*}
+        [C_{24} : H] = \frac{\abs{C_{24}}}{\abs{H}} = \frac{24}{6} = 4.
+    \end{equation*}
+\end{problem}
+
+\begin{problem}{4 (i)}
+    Let $\Z_{15} = {0,1,2,\dots,14}$ be the group of integers under addition modulo $15$. Let $H = \set{0,3,6,9,12}$ is a subgroup of $\Z_{15}$. Find the partition of $\Z_{15}$ into left cosets of $H$ in $\Z_{15}$.
+
+    \solution Firstly note that there are exactly $[Z_{15} : H] = \abs{\Z_{15}}/\abs{H} = 15/5 = 3$ distinct (left) cosets of $H$ in $\Z_{15}$. These are $\set{H, 1+H, 2+H}$. So,
+    \begin{equation*}
+        \Z_{15} = H \cup (1+H) \cup (2+H).
+    \end{equation*}
+    Here, $1+H = \set{1,4,7,10,13}$ and $2+H = \set{2,5,8,11,14}$.
+\end{problem}
+
+\begin{problem}{4 (ii)}
+    Find all the subgroups of $\Z_{15}$.
+
+    \solution $\Z_{15}$ is a cyclic group, so all of its subgroups are also cyclic. We arrange these by the GCD of $n = 15$ and the order of the generator.
+    \begin{equation*}
+    \begin{aligned}
+        \gcd &= 1:  & & \cyclic{1}   = \set{1}\\
+        \gcd &= 3:  & & \cyclic{a^5} = \cyclic{a^{10}} = \set{1, a^5, a^{10}}\\
+        \gcd &= 5:  & & \cyclic{a^3} = \cyclic{a^6} = \cyclic{a^9} = \cyclic{a^{12}} = \set{1, a^3, a^6, a^9, a^{12}}\\
+        \gcd &= 15: & & \cyclic{a} = \cyclic{a^2} = \cyclic{a^4} = \cyclic{a^7} = \cyclic{a^8} = \cyclic{a^{11}} = \cyclic{a^{13}} = \cyclic{a^{14}} = \Z_{15}
+    \end{aligned}
+    \end{equation*}
+\end{problem}
+
+\begin{problem}{5}
+    If $a, b \in \Z$, define $a R b$ if $ab \geq 0$. Prove or disprove that $R$ is an equivalence relation on $\Z$.
+
+    \solution This is not an equivalence relation because it is not transitive.
+
+    We have $-1 R 0$ because $(-1)(0) = 0 \geq 0$, and $0 R 1$ because $(0)(1) = 0 \geq 0$, but $-1 \slashed{R} 1$ because $(-1)(1) = -1 \ngeq 0$.
+\end{problem}
+
+\end{document}

@@ -1,0 +1,93 @@
+\documentclass[11pt]{penrose}
+
+\input{header}
+
+\title{Past Paper: Partial Differential Equations}
+\subtitle{Final Exam, 2022}
+\begin{document}
+
+\maketitle
+\warningtext
+
+\begin{problem}{1}
+    Use an appropriate method to find the solution of the following problem
+    \begin{gather*}
+        u_t = k u_{xx} - h u, \quad 0 < x < \ell, \quad t > 0,\\
+        u(x, 0) = f(x), \quad 0 \leq x \leq \ell,\\
+        u_x(0, t) = u_x(\ell, t) = 0, \quad t \geq 0.
+    \end{gather*}
+    
+    \solution TBC
+\end{problem}
+
+\begin{problem}{2}
+    Find the Fourier transform of the following functions
+    \begin{enumerate}
+        \item[(a)] $f_a(x) = \begin{cases} 1, &\abs{x} < a \\ 0, &\abs{x} \geq a \end{cases}$ where $a$ is a constant.
+        \item[(b)] $f(x) = \exp(-a \abs{x})$, where $a$ is a constant.
+    \end{enumerate}
+    
+    \solution TBC
+\end{problem}
+
+\begin{problem}{3}
+    Use Fourier transform to determine the solution for the initial value problem
+    \begin{gather*}
+        u_{tt} = c^2 u_{xx}, \quad -\infty < x < \infty, \quad t > 0,\\
+        u(x,0) = f(x), \quad u_{t}(x,0) = g(x), \quad -\infty < x < \infty.
+    \end{gather*}
+    
+    \solution TBC
+\end{problem}
+
+\begin{problem}{4}
+    What is an exponential order function? Find the Laplace transform of the following functions
+    \begin{enumerate}
+        \item[(a)] $f(t) = \cos(\omega t)$.
+        \item[(a)] $g(t) = H(t-a)$, where $H(t-a)$ denotes the Heaviside or unit-step function.
+    \end{enumerate}
+    
+    \solution TBC
+\end{problem}
+
+\begin{problem}{5}
+    Solve the one-dimensional wave equation
+    \begin{equation*}
+        u_{tt} = c^2 u_{xx}, \quad 0 < x < \infty, \quad t > 0,
+    \end{equation*}
+    with the boundary and initial conditions
+    \begin{gather*}
+        u(0,t) = A f(t), \quad t \geq 0,\\
+        u(x,t) \to 0 \quad\text{as}\quad x \to 0, \quad t \geq 0,\\
+        u(x,t) = u_t(x,t) = 0 \quad\text{at}\quad t = 0.
+    \end{gather*}
+    
+    \solution TBC
+\end{problem}
+
+\begin{problem}{6}
+    Classify the given equation as hyperbolic, parabolic or elliptic PDE. then reduce it into the canonical form
+    \begin{equation*}
+        u_{xx} + 2 \cosec y u_{xy} + (\cosec y)^2 u_{yy} = 0.
+    \end{equation*}
+    
+    \solution TBC
+\end{problem}
+
+\begin{problem}{7}
+    Show that $u(x,y) = e^{-x/b} f(ax-by)$ satisfies the equation $b u_x + a u_y = 0$.
+    
+    \solution TBC
+\end{problem}
+
+\begin{problem}{8}
+    Find the general solution of the following first order equations
+    \begin{enumerate}
+        \item[(a)] $x (y^2 + u) u_x - y (x^2 + u) u_y = (x^2 - y^2) u$.
+        \item[(b)] $x^2 u_x + y^2 u_y = (x + y) u$.
+    \end{enumerate}
+    
+    \solution
+\end{problem}
+
+\end{document}

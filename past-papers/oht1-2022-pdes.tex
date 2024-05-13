@@ -1,0 +1,64 @@
+\documentclass[11pt]{penrose}
+
+\input{header}
+
+\title{Past Paper: Partial Differential Equations}
+\subtitle{OHT-I, 2022}
+\begin{document}
+
+\maketitle
+\warningtext
+
+\begin{problem}{1}
+    Reduce each of the following equations into canonical form and then find the general solution
+    \begin{enumerate}
+        \item[(a)] $u_x + 2xy u_y = x$.
+        \item[(b)] $u_x - y u_y - u = 1$.
+    \end{enumerate}
+    
+    \solution TBC
+\end{problem}
+
+\begin{problem}{2}
+    Solve the following first-order quasi-linear equation
+    \begin{equation*}
+        (cy-bz) z_x + (az-cx) z_y = bx-ay
+    \end{equation*}
+    
+    \solution TBC
+\end{problem}
+
+\begin{problem}{3}
+    Reduce the following equation into canonical form
+    \begin{equation*}
+        u_{xx} - u_{yy} + 3u_{x} - 2u_{y} + u = 0.
+    \end{equation*}
+    
+    \solution TBC
+\end{problem}
+
+\begin{problem}{4}
+    Verify that the function
+    \begin{equation*}
+        u = \varphi(xy) + x \psi\paren*{\frac{y}{x}}
+    \end{equation*}
+    is the general solution of the equation
+    \begin{equation*}
+        x^2 u_{xx} - y^2 u_{yy} = 0.
+    \end{equation*}
+
+    \solution We have
+    \begin{align*}
+        u_{x} &= y \varphi'(xy) + \psi\paren*{\frac{y}{x}} - x \paren*{\frac{y}{x^2}} \psi'\paren*{\frac{y}{x}} = y \varphi'(xy) + \psi\paren*{\frac{y}{x}} - \frac{y}{x} \psi'\paren*{\frac{y}{x}}\\
+        u_{y} &= x \varphi'(xy) + x \paren*{\frac{1}{x}} \psi'\paren*{\frac{y}{x}} = x \varphi'(xy) + \psi'\paren*{\frac{y}{x}}\\
+        u_{xx} &= y^2 \varphi''(xy) - \frac{y}{x^2} \psi'\paren*{\frac{y}{x}} + \frac{y}{x^2} \psi'\paren*{\frac{y}{x}} + \frac{y^2}{x^3} \psi''\paren*{\frac{y}{x}}
+        = y^2 \varphi''(xy) + \frac{y^2}{x^3} \psi''\paren*{\frac{y}{x}}\\
+        u_{yy} &= x^2 \varphi''(xy) + \frac{1}{x} \psi''\paren*{\frac{y}{x}}
+    \end{align*}
+    Therefore,
+    \begin{equation*}
+        x^2 u_{xx} - y^2 u_{yy} = x^2 y^2 \varphi''(xy) + \frac{y^2}{x} \psi''\paren*{\frac{y}{x}} - x^2 y^2 \varphi''(xy) + \frac{y^2}{x} \psi''\paren*{\frac{y}{x}} = 0
+    \end{equation*}
+\end{problem}
+
+\end{document}

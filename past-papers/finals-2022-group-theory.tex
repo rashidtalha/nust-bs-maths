@@ -1,0 +1,151 @@
+\documentclass[11pt]{penrose}
+
+\input{header}
+
+\title{Past Paper: Group Theory I}
+\subtitle{Final Exam, 2022}
+\begin{document}
+
+\maketitle
+\warningtext
+
+\begin{problem}{1 (i)}
+    Prove that the order of any permutation of $\varphi \in S_n$ is equal to the least common multiple of the orders of the disjoint cycles in $\varphi$.
+
+    \solution TBC.
+\end{problem}
+
+\begin{problem}{1 (ii)}
+    Let $G$ be a group and $H$ be a normal subgroup of $G$. Let $G/H = \set{aH \st a \in G}$ be the set of all left cosets of $H$ in $G$. Prove that $G/H$ forms a group under the binary operation $(aH)(bH) = abH$.
+
+    \solution TBC
+\end{problem}
+
+\begin{problem}{1 (iii)}
+    Let $G = \set{\begin{psmallmatrix*} a & b \\ c & d \end{psmallmatrix*} \st a, b, c, d \in \Z}$ be a group under addition of matrices, and take $H = \set{\begin{psmallmatrix*} a & b \\ c & d \end{psmallmatrix*} \st a + b + c + d = 1 \in \Z}$. Prove or disprove that $H$ is a subgroup of $G$.
+
+    \solution $H$ is not a subgroup of $G$ because it doesn't contain the identity element. That is $\begin{psmallmatrix*} 0 & 0 \\ 0 & 0 \end{psmallmatrix*} \notin H$ since $0 + 0 + 0 + 0  \neq 1$.
+\end{problem}
+
+\begin{problem}{2 (i)}
+    Let $n \geq 3$. If $\alpha, \beta \in S_n$, then show that $\alpha\beta\alpha^{-1}\beta^{-1}$ is an even permutation.
+
+    \solution Suppose $\alpha$ can be written as a product of $p$ transpositions, and $\beta$ can be written as a product of $q$ transpositions.
+    \begin{equation*}
+        \alpha
+        = \tau_1 \dots \tau_p
+        \quad\text{and}\quad
+        \beta
+        = \tilde{\tau}_1 \dots \tilde{\tau}_q.
+    \end{equation*}
+    Then, $\alpha^{-1}$ is simply obtained by reversing the order in which the transpositions are multiplied
+    \begin{equation*}
+        \alpha^{-1}
+        = (\tau_1 \dots \tau_p)^{-1}
+        = \tau_p^{-1} \dots \tau_1^{-1}
+        = \tau_p \dots \tau_1.
+    \end{equation*}
+    So, $\alpha^{-1}$ can also be written as a product of $p$ transpositions. Similarly, $\beta^{-1}$ can be written as a product of $q$ transpositions.
+
+    Consequently, $\alpha\beta\alpha^{-1}\beta^{-1}$ is a product of $p+q+p+q = 2(p+q)$ transpositions. That is, it is a product of an even number of transpositions. Therefore, it is an even permutation.
+\end{problem}
+
+\begin{problem}{2 (ii)}
+    Let $\alpha = (1\ 2\ 3\ 4\ 5\ 6)(2\ 5\ 6\ 7\ 8)(8\ 9\ 10) \in S_{10}$ be a permutation. Then,
+    \begin{enumerate}
+        \item[(a)] Find the order of $\alpha$.
+        \item[(b)] Check whether $\alpha$ is even or odd.
+    \end{enumerate}
+
+    \solution TBC
+\end{problem}
+
+\begin{problem}{2 (iii)}
+    Let $S_n$ be the symmetric group, and let $\varphi: S_n \to \set{-1,1}$ be defined by
+    \begin{equation*}
+    \varphi(\alpha) =
+    \begin{cases}
+        1, & \text{if } \alpha \text{ is an even permutation};\\
+        0, & \text{if } \alpha \text{ is an odd permutation}.
+    \end{cases}
+    \end{equation*}
+    Show that $\varphi$ is a homomorphism.
+
+    \solution TBC
+\end{problem}
+
+\begin{problem}{3 (i)}
+    Let $H$ be a subgroup of $G$. If $[G:H]=2$, then prove that $H$ is a normal subgroup of $G$.
+
+    \solution Let $H \subgroup G$. Then, $[G:H]=2$ means that there are exactly two distinct (left) cosets of $H$ in $G$. These are $H$ and $aH$ with $a \in G-H$. Also, we know that $H \cup aH = G$.
+
+    Take any $g \in G$. If $g \in H$ then $gH = H$ and $Hg = H$. So, $gH = Hg$. Otherwise, if $g \in G-H$ then TBC.
+\end{problem}
+
+\begin{problem}{3 (ii)}
+    Define the kernel of a group homomorphism. Give an example of a subgroup homomorphism from a group $G$ to any group $G'$ whose kernel is non-trivial (that is the kernel contains at least 2 elements)
+
+    \solution TBC
+\end{problem}
+
+\begin{problem}{3 (iii)}
+    Let $G$ be an abelian group. If $\varphi: G \to G$ be a map defined by $\varphi(g) = g^{-1}$, then prove that $\varphi$ is an isomorphism.
+
+    \solution TBC
+\end{problem}
+
+\begin{problem}{4 (i)}
+    Prove that a subgroup $H$ of $G$ is normal if and only if $g^{-1}hg \in G$ for all $h \in H$, $g \in G$.
+
+    \solution TBC
+\end{problem}
+
+\begin{problem}{4 (ii)}
+    Let $\sim$ be an equivalence relation on $S$. Prove that $\sim$ partitions $S$ into equivalence classes.
+
+    \solution TBC
+\end{problem}
+
+\begin{problem}{5 (i)}
+    Prove that a subgroup of a cyclic group is cyclic.
+
+    \solution TBC
+\end{problem}
+
+\begin{problem}{5 (ii)}
+    Let $D_4 = \set{1, a, a^2, a^3, b, ba, ba^2, ba^3}$, $a^4 = b^2 = 1$ and $ab = ba^3$ be the dihedral group.
+    \begin{enumerate}
+        \item[(a)] Find all cyclic subgroups of $D_4$.
+        \item[(b)] If $H = \set{1,a^2}$ is a normal subgroup of $D_4$, then find $D_4/H$ and all the subgroups of $D_4/H$.
+    \end{enumerate}
+
+    \solution The cyclic subgroups of $D_4$ are
+    \begin{gather*}
+        \cyclic{1} = \set{1}, \qquad
+        \cyclic{a} = \cyclic{a^3} = \set{1, a, a^2, a^3}, \qquad
+        \cyclic{a^2} = \set{1, a^2},\\
+        \cyclic{b} = \set{1, b}, \qquad
+        \cyclic{ba} = \set{1, ba}, \qquad
+        \cyclic{ba^2} = \set{1, ba^2}, \qquad
+        \cyclic{ba^3} = \set{1, ba^3}.
+    \end{gather*}
+
+    Next, note that $H = \set{1,a^2}$ is indeed a normal subgroup of $D_4$ because the centre of $D_4$ is $Z(D_4) = \set{1,a^2}$, and the centre of a group is always a normal subgroup.
+
+    Now, the elements of $D_4/H$ are simply the (left) cosets of $H$ is $D_4$. That is
+    \begin{equation*}
+        D_4/H = \set{H, aH, bH, baH}.
+    \end{equation*}
+    (This is the Klein-4 group because $\abs{D_4/H} = 4$ and each non-identity element has $2$.)
+
+    Let $K$ be any non-trivial proper subgroup of $D_4/H$. By Lagrange's theorem, $\abs{K} = 2$. Therefore, all subgroups of $D_4/H$ are
+    \begin{equation*}
+        K_0 = \set{H}, \quad
+        K_1 = \set{H, aH}, \quad
+        K_2 = \set{H, bH}, \quad
+        K_3 = \set{H, baH}, \quad
+        K_4 = D_4/H.
+    \end{equation*}
+\end{problem}
+
+\end{document}
