@@ -18,7 +18,7 @@
     \begin{equation*}
         a^n = a^m \implies a^{n - m} = e \implies O(a) \leq \abs{n-m}
     \end{equation*}
-    which is a contradiction because $O(a) = +\infty$. Now, since each $a^n$ is different from $a^{n+1}$, we have infinitely many elements in the set $\cyclic{a} = \set{a^k \st k \in \Z}$. Consequently, $G = \cyclic{a}$ has infinitely many elements; i.e. $|G|$ is also infinite.
+    which is a contradiction since $O(a) = +\infty$. Now, since each $a^n$ is different from $a^{m}$, we have infinitely many distinct elements in the set $\cyclic{a} = \set{a^k \st k \in \Z}$. Consequently, $G = \cyclic{a}$ has infinitely many elements; i.e. $|G|$ is also infinite.
 
     Next, consider the case when $O(a) = n$ is finite. By definition $\cyclic{a} = \set{a^k \st k \in \Z}$. We can write $k = qn + r$ for $q, r \in \Z$ and $0 \leq r < n$. So, for all $k \in \Z$,
     \begin{equation*}
@@ -44,7 +44,7 @@
 \end{problem}
 
 \begin{problem}{2 (i)}
-    Let $H$ be a subgroup of $G$. Let $\sim$ be a relation on $G$ defined by $a \sim b$ if and only if $a^{-1} b \in H$. Then show that $\sim$ is an equivalence relation on $G$. Also prove $[a] = aH$.
+    Let $H$ be a subgroup of $G$. Let $\sim$ be a relation on $G$ defined by $a \sim b$ if and only if $a^{-1} b \in H$. Show that $\sim$ is an equivalence relation on $G$. Also prove $[a] = aH$.
 
     \solution We check the three conditions for being an equivalence relation.
     

@@ -10,116 +10,253 @@
 \warningtext
 
 \begin{problem}{1 (i)}
-    Prove that the order of any permutation of $\varphi \in S_n$ is equal to the least common multiple of the orders of the disjoint cycles in $\varphi$.
+    % Prove that the order of any permutation of $\varphi \in S_n$ is equal to the least common multiple of the orders of the disjoint cycles in $\varphi$.
 
-    \solution TBC.
+    % \solution
+    We write $\varphi = \alpha_1 \dots \alpha_m$, where $\alpha_1, \dots, \alpha_m$ are pairwise disjoint cycles. Let $r_i$ be the order of $\alpha_i$. So, $\alpha_i^{r_i} = e$ for all $i$.
+
+    Let $r = \lcm(r_1, \dots, r_m)$. Then, for each $i$, there is some $k_i \in \Z_+$ such that $r = r_i k_i$ because $r_i \mid r$. Therefore,
+    \begin{equation*}
+        \varphi^r
+        = \smash[b]{\underbrace{\paren*{\alpha_1 \dots \alpha_m}^r = \alpha_1^r \dots \alpha_m^r}_{\mathclap{\text{disjoint, so commute}}}}
+        = (\alpha_1^{r_1})^{k_1} \dots (\alpha_m^{r_m})^{k_m}
+        = e^{k_1} \dots e^{k_m}
+        = e.
+    \end{equation*}
+
+    As a result, $O(\varphi) \leq r$.
+
+    Now, suppose $O(\varphi) = s$, i.e. $\varphi^s = e$ with $0 < s \leq r$. Since, $\varphi^s = \paren*{\alpha_1 \dots \alpha_m}^s = \alpha_1^s \dots \alpha_m^s$, we obtain $\alpha_1^s \dots \alpha_m^s = e$. This is only possible when $\alpha_i^s = e$ for each $i$ because $\alpha_i$ are all disjoint. So, $r_i \mid s$ for all $i$. Thus, $r \mid s$.
+    \begin{equation*}
+        0 < s \leq r \text{ and } r \mid s \implies s = r.
+    \end{equation*}
+    Consequently, $O(\varphi) = r \equiv \lcm(r_1, \dots, r_m)$.
 \end{problem}
 
 \begin{problem}{1 (ii)}
-    Let $G$ be a group and $H$ be a normal subgroup of $G$. Let $G/H = \set{aH \st a \in G}$ be the set of all left cosets of $H$ in $G$. Prove that $G/H$ forms a group under the binary operation $(aH)(bH) = abH$.
+    % Let $G$ be a group and $H$ be a normal subgroup of $G$. Let $G/H = \set{aH \st a \in G}$ be the set of all left cosets of $H$ in $G$. Prove that $G/H$ forms a group under the binary operation $(aH)(bH) = abH$.
 
-    \solution TBC
+    % \solution
+    (Closure.) Take any two cosets $aH, bH$. Now, since $H \nsubgroup G$, we have
+    \begin{equation*}
+        (aH)(bH) = a(Hb)H = a(bH)H = (ab)HH = (ab)H.
+    \end{equation*}
+    So, the prodcut of any two left cosets is again a left coset.
+
+    (Associativity.) Take any three cosets $aH, bH$ and $cH$. Then,
+    \begin{align*}
+        \paren*{(aH)(bH)}(cH) &= ((ab)H)(cH) = (abc)H,\\
+        (aH)\paren*{(bH)(cH)} &= (aH)((bc)H) = (abc).
+    \end{align*}
+    So, $\paren*{(aH)(bH)}(cH) = (aH)\paren*{(bH)(cH)}$.
+
+    (Identity.) For any $aH$ we have
+    \begin{equation*}
+        (aH)(eH) = (ae)H = aH
+        \quad\text{and}\quad
+        (eH)(aH) = (ea)H = aH.
+    \end{equation*}
+    Thus, $(aH)(eH) = (eH)(aH) = aH$. So, $eH$ acts as the identity element.
+
+    (Identity.) For any $aH$ we have
+    \begin{equation*}
+        (aH)(a^{-1}H) = (aa^{-1})H = eH
+        \quad\text{and}\quad
+        (a^{-1}H)(aH) = (a^{-1}a)H = eH.
+    \end{equation*}
+    Thus, $(aH)(a^{-1}H) = (a^{-1}H)(aH) = eH$. So, $a^{-1}H$ acts as the inverse of $aH$.
 \end{problem}
 
+\clearpage
 \begin{problem}{1 (iii)}
-    Let $G = \set{\begin{psmallmatrix*} a & b \\ c & d \end{psmallmatrix*} \st a, b, c, d \in \Z}$ be a group under addition of matrices, and take $H = \set{\begin{psmallmatrix*} a & b \\ c & d \end{psmallmatrix*} \st a + b + c + d = 1 \in \Z}$. Prove or disprove that $H$ is a subgroup of $G$.
+    % Let $G = \set{\begin{psmallmatrix*} a & b \\ c & d \end{psmallmatrix*} \st a, b, c, d \in \Z}$ be a group under addition of matrices, and take $H = \set{\begin{psmallmatrix*} a & b \\ c & d \end{psmallmatrix*} \st a + b + c + d = 1 \in \Z}$. Prove or disprove that $H$ is a subgroup of $G$.
 
-    \solution $H$ is not a subgroup of $G$ because it doesn't contain the identity element. That is $\begin{psmallmatrix*} 0 & 0 \\ 0 & 0 \end{psmallmatrix*} \notin H$ since $0 + 0 + 0 + 0  \neq 1$.
+    % \solution
+    $H$ is not a subgroup of $G$ because it doesn't contain the identity element. That is $\begin{psmallmatrix*} 0 & 0 \\ 0 & 0 \end{psmallmatrix*} \notin H$ since $0 + 0 + 0 + 0  \neq 1$.
 \end{problem}
 
 \begin{problem}{2 (i)}
-    Let $n \geq 3$. If $\alpha, \beta \in S_n$, then show that $\alpha\beta\alpha^{-1}\beta^{-1}$ is an even permutation.
+    % Let $n \geq 3$. If $\alpha, \beta \in S_n$, then show that $\alpha\beta\alpha^{-1}\beta^{-1}$ is an even permutation.
 
-    \solution Suppose $\alpha$ can be written as a product of $p$ transpositions, and $\beta$ can be written as a product of $q$ transpositions.
-    \begin{equation*}
-        \alpha
-        = \tau_1 \dots \tau_p
-        \quad\text{and}\quad
-        \beta
-        = \tilde{\tau}_1 \dots \tilde{\tau}_q.
-    \end{equation*}
-    Then, $\alpha^{-1}$ is simply obtained by reversing the order in which the transpositions are multiplied
-    \begin{equation*}
-        \alpha^{-1}
-        = (\tau_1 \dots \tau_p)^{-1}
-        = \tau_p^{-1} \dots \tau_1^{-1}
-        = \tau_p \dots \tau_1.
-    \end{equation*}
+    % \solution
+    Suppose $\alpha$ can be written as a product of $p$ transpositions, and $\beta$ can be written as a product of $q$ transpositions: $\alpha = \tau_1 \dots \tau_p$ and $\beta = \tilde{\tau}_1 \dots \tilde{\tau}_q$.
+
+    Then, $\alpha^{-1}$ is simply obtained by reversing the order in which the transpositions are multiplied $\alpha^{-1} = (\tau_1 \dots \tau_p)^{-1} = \tau_p^{-1} \dots \tau_1^{-1} = \tau_p \dots \tau_1$.
+    
     So, $\alpha^{-1}$ can also be written as a product of $p$ transpositions. Similarly, $\beta^{-1}$ can be written as a product of $q$ transpositions.
 
     Consequently, $\alpha\beta\alpha^{-1}\beta^{-1}$ is a product of $p+q+p+q = 2(p+q)$ transpositions. That is, it is a product of an even number of transpositions. Therefore, it is an even permutation.
 \end{problem}
 
 \begin{problem}{2 (ii)}
-    Let $\alpha = (1\ 2\ 3\ 4\ 5\ 6)(2\ 5\ 6\ 7\ 8)(8\ 9\ 10) \in S_{10}$ be a permutation. Then,
-    \begin{enumerate}
-        \item[(a)] Find the order of $\alpha$.
-        \item[(b)] Check whether $\alpha$ is even or odd.
-    \end{enumerate}
+    % Let $\alpha = (1\ 2\ 3\ 4\ 5\ 6)(2\ 5\ 6\ 7\ 8)(8\ 9\ 10) \in S_{10}$ be a permutation. Then,
+    % \begin{enumerate}
+    %     \item[(a)] Find the order of $\alpha$.
+    %     \item[(b)] Check whether $\alpha$ is even or odd.
+    % \end{enumerate}
 
-    \solution TBC
+    % \solution
+    We start by writing $\alpha$ as a product of disjoint cycles. This is $\alpha = (1\ 2\ 6\ 7\ 8\ 9\ 10\ 3\ 4\ 5)$.    Therefore, $\alpha$ can be written as a single cycle.
+
+    \begin{enumerate}
+        \item[(a)] The order of $\alpha$ is equal to its length. So, $O(\alpha) = 10$.
+        \item[(b)] Since, the length of $\alpha$ is 10, it can be written as a product of $10-1=9$ transpositions. So, $\alpha$ is an odd permutation.
+    \end{enumerate}
 \end{problem}
 
 \begin{problem}{2 (iii)}
-    Let $S_n$ be the symmetric group, and let $\varphi: S_n \to \set{-1,1}$ be defined by
-    \begin{equation*}
-    \varphi(\alpha) =
-    \begin{cases}
-        1, & \text{if } \alpha \text{ is an even permutation};\\
-        0, & \text{if } \alpha \text{ is an odd permutation}.
-    \end{cases}
-    \end{equation*}
-    Show that $\varphi$ is a homomorphism.
+    % Let $S_n$ be the symmetric group, and let $\varphi: S_n \to \set{-1,1}$ be defined by
+    % \begin{equation*}
+    % \varphi(\alpha) =
+    % \begin{cases}
+    %     1, & \text{if } \alpha \text{ is an even permutation};\\
+    %     0, & \text{if } \alpha \text{ is an odd permutation}.
+    % \end{cases}
+    % \end{equation*}
+    % Show that $\varphi$ is a homomorphism.
 
-    \solution TBC
+    % \solution
+    Take $\alpha, \beta \in S_n$. There are four cases to consider.
+    \begin{itemize}
+        \item If $\alpha$ is even and $\beta$ is even, then $\alpha\beta$ is even, and $\varphi(\alpha)\varphi(\beta) = (1)(1) = 1 = \varphi(\alpha\beta)$.
+        \item If $\alpha$ is even and $\beta$ is odd, then $\alpha\beta$ is odd, and $\varphi(\alpha)\varphi(\beta) = (1)(-1) = -1 = \varphi(\alpha\beta)$.
+        \item If $\alpha$ is odd and $\beta$ is even, then $\alpha\beta$ is odd, and $\varphi(\alpha)\varphi(\beta) = (-1)(1) = -1 = \varphi(\alpha\beta)$.
+        \item If $\alpha$ is odd and $\beta$ is odd, then $\alpha\beta$ is even, and $\varphi(\alpha)\varphi(\beta) = (-1)(-1) = 1 = \varphi(\alpha\beta)$.
+    \end{itemize}
+    In every case, $\varphi(\alpha\beta) = \varphi(\alpha)\varphi(\beta)$. So, $\varphi$ is a homomorphism.
 \end{problem}
 
 \begin{problem}{3 (i)}
-    Let $H$ be a subgroup of $G$. If $[G:H]=2$, then prove that $H$ is a normal subgroup of $G$.
+    % Let $H$ be a subgroup of $G$. If $[G:H]=2$, then prove that $H$ is a normal subgroup of $G$.
 
-    \solution Let $H \subgroup G$. Then, $[G:H]=2$ means that there are exactly two distinct (left) cosets of $H$ in $G$. These are $H$ and $aH$ with $a \in G-H$. Also, we know that $H \cup aH = G$.
+    % \solution
+    As $H$ is a subgroup of $G$ with index $2$, there are exactly two distinct left (right) cosets of $H$ in $G$; and $G$ is a union of these two disjoint cosets.
 
-    Take any $g \in G$. If $g \in H$ then $gH = H$ and $Hg = H$. So, $gH = Hg$. Otherwise, if $g \in G-H$ then TBC.
+    Take $g \in G$. If $g \in H$, then $gH = H$ and $Hg = H$. So, $gH = Hg$.
+
+    Otherwise, if $g \notin H$, then $gH \cap H = \emptyset$ and $Hg \cap H = \emptyset$. Therefore,
+    \begin{equation*}
+        G = H \cup gH \quad\text{and}\quad G = H \cup Hg.
+    \end{equation*}
+    And,
+    \begin{gather*}
+        gH \cap H = \emptyset \text{ and } gH \subseteq G = H \cup Hg \implies gH \subseteq Hg,\\
+        Hg \cap H = \emptyset \text{ and } Hg \subseteq G = H \cup gH \implies Hg \subseteq gH.
+    \end{gather*}
+    So, $gH = Hg$.
+
+    Overall, $gH = Hg$ for all $g \in G$. Therefore, $H$ is a normal subgroup of $G$.
 \end{problem}
 
 \begin{problem}{3 (ii)}
-    Define the kernel of a group homomorphism. Give an example of a subgroup homomorphism from a group $G$ to any group $G'$ whose kernel is non-trivial (that is the kernel contains at least 2 elements)
+    % Define the kernel of a group homomorphism. Give an example of a group homomorphism from a group $G$ to any group $G'$ whose kernel is non-trivial (that is the kernel contains at least 2 elements)
 
-    \solution TBC
+    % \solution\\
+    \underline{Definition}: Let $\varphi:G \to H$ be a group homomorphism. The kernel of $\varphi$ is the set
+    \begin{equation*}
+        \ker\varphi = \set{g \in G \st \varphi(g) = e} \subseteq G.
+    \end{equation*}
+
+    \underline{Example}: Consider the map $\det: \GL_2(\R) \to \R^*$, where $\det(A)$ is the determinant of the matrix $A$. This is a homomorphism because $\det(AB) = \det(A) \det(B)$.
+
+    Now, $\ker\det = \set{A \in \GL_2(\R) \st \det(A) = 1} = \SL_2(\R)$. This is non-trivial because, for example,
+    \begin{equation*}
+        \begin{pmatrix*} 1 & 0 \\ 0 & 1 \end{pmatrix*},
+        \begin{pmatrix*} 1 & 1 \\ 0 & 1 \end{pmatrix*}
+        \in \ker\det
+    \end{equation*}
 \end{problem}
 
 \begin{problem}{3 (iii)}
-    Let $G$ be an abelian group. If $\varphi: G \to G$ be a map defined by $\varphi(g) = g^{-1}$, then prove that $\varphi$ is an isomorphism.
+    % Let $G$ be an abelian group. If $\varphi: G \to G$ be a map defined by $\varphi(g) = g^{-1}$, then prove that $\varphi$ is an isomorphism.
 
-    \solution TBC
+    % \solution
+    Take any $a,b \in G$. Then, $\varphi(ab) = (ab)^{-1} = b^{-1} a^{-1} = a^{-1} b^{-1} = \varphi(a)\varphi(b)$. So, $\varphi$ is a homomorphism. Here, we used $b^{-1} a^{-1} = a^{-1} b^{-1}$ because $G$ is abelian.
+
+    Next, $\varphi(a) = \varphi(b) \implies a^{-1} = b^{-1} \implies aa^{-1}b = ab^{-1}b \implies eb = ae \implies b = a$. So, $\varphi$ is injective. Here we multiplied by $a$ on the left and by $b$ on the right and used associativity and the properties of inverse.
+
+    Now, every $g^{-1} \in G$ has an inverse $(g^{-1})^{-1} = g \in G$ because $G$ is a group. So, for all $g^{-1} \in G$, there is a $g \in G$ such that $\varphi(g) = g^{-1}$. This shows that $\varphi$ is surjective.
+
+    Overall, $\varphi$ is an isomorphism (a bijective homomorphism).
 \end{problem}
 
 \begin{problem}{4 (i)}
-    Prove that a subgroup $H$ of $G$ is normal if and only if $g^{-1}hg \in G$ for all $h \in H$, $g \in G$.
+    % Prove that a subgroup $H$ of $G$ is normal if and only if $g^{-1}hg \in H$ for all $h \in H$, $g \in G$.
 
-    \solution TBC
+    % \solution
+    Suppose $H \nsubgroup G$, i.e. $Hg = gH$ for all $g \in G$. Then, for all $h \in H$ and $g \in G$,
+    \begin{equation*}
+         Hg = gH \implies hg \in gH \implies hg = gh' \implies g^{-1}hg = h' \in H.
+    \end{equation*}
+    Overall, for all $h \in H$ and $g \in H$ $g^{-1}hg \in H$.
+
+    Conversely, fix any $g \in G$. Then, for all $h \in H$,
+    \begin{equation*}
+        g^{-1}hg \in H
+        \implies g(g^{-1}hg) \in gH
+        \implies (gg^{-1})hg \in gH
+        \implies hg \in gH
+        \implies Hg \subseteq gH.
+    \end{equation*}
+    Also, $x^{-1}hx \in H \implies ghg^{-1} \in H$ by taking $x = g^{-1}$. So,
+    \begin{equation*}
+        ghg^{-1} \in H
+        \implies (ghg^{-1})g \in Hg
+        \implies gh(g^{-1}g) \in Hg
+        \implies gh \in Hg
+        \implies gH \subseteq Hg.
+    \end{equation*}
+    Overall, $gH = Hg$ for all $g \in G$, and $H$ is a normal subgroup of $G$.
 \end{problem}
 
 \begin{problem}{4 (ii)}
-    Let $\sim$ be an equivalence relation on $S$. Prove that $\sim$ partitions $S$ into equivalence classes.
+    % Let $\sim$ be an equivalence relation on $S$. Prove that $\sim$ partitions $S$ into equivalence classes.
 
-    \solution TBC
+    % \solution
+    The set of equivalence classes due to $\sim$ is $\set{[a] \st a \in S}$. We need to show that every equivalence class is non-empty, and that the union of all the equivalence classes form $S$, and that if $[a] \neq [b]$ then $[a]$ and $[b]$ are disjoint.
+    \begin{enumerate}
+        \item By reflexivity, $a \sim a$ we have $a \in [a]$. Therefore, $[a] \neq \emptyset$.
+
+        \item By definition $[a] \subseteq S$, so $\bigcup_{a \in S} [a] \subseteq S$.
+
+        Take any $a \in S$. Then, $a \in [a] \subseteq \bigcup_{a \in S} [a]$. So, $S = \bigcup_{a \in S} [a]$.
+
+        \item Suppose $[a] \cap [b] \neq \emptyset$. So, there is some $c \in [a] \cap [b]$. By definition, this means $c \sim a$ and $c \sim b$. Then, by symmetry, $a \sim c$. So, the transitivity of $\sim$ gives
+        \begin{equation*}
+            a \sim c \quad\text{and}\quad c \sim b \implies a \sim b.
+        \end{equation*}
+        Also, by symmetry, $b \sim a$.
+
+        Now, if $x \in [a]$, then $x \sim a$. By transitivity, $x \sim a$ and $a \sim b$ implies $x \sim b$. That is, $x \in [b]$. So, $[a] \subseteq [b]$.
+
+        Similarly, if $y \in [b]$, then $y \sim b$. Again, by transitivity, $y \sim b$ and $b \sim a$ implies $y \sim a$. That is, $y \in [a]$. So, $[b] \subseteq [a]$. Overall, $[a] = [b]$.
+    \end{enumerate}
+
+    Overall, the set of equivalence classes partitions $S$.
 \end{problem}
 
 \begin{problem}{5 (i)}
-    Prove that a subgroup of a cyclic group is cyclic.
+    % Prove that a subgroup of a cyclic group is cyclic.
 
-    \solution TBC
+    % \solution
+    Consider the cyclic group $G = \cyclic{a}$. Let $H$ be a subgroup of $G$. If $H = \set{e}$ then it is generated by $e$. So, suppose $H$ is not the trivial subgroup. Then, every element in $b \in H$ can be written as $b = a^k$ for some $k \in \Z$ because $b \in G$ also. Let $m$ be the least positive integer such that $a^m \in H$. Therefore, by the existence of inverses in the subgroup, $a^{-m} \in H$ also.
+
+    Take any $a^t \in H$. Then, we can write $t = mq + r$ for some $q, r \in \Z$ with $0 \leq r < m$. Equivalently, $r = t - mq$. So,
+    \begin{equation*}
+        a^r = a^{t - mq} = a^{t} a^{-mq} = a^{t} (a^{-m})^{q} \in H
+    \end{equation*}
+    by closure. If $r \neq 0$, then this contradicts the requirement that $m$ is the least positive integer with $a^m \in H$ because $0 \leq r < m$ and we have shown that $a^r \in H$. So, $r = 0$. Therefore, $t = mq$, and every arbitrary element of $H$ has the form $a^t = a^{mq} = (a^{m})^{q}$. In other words, $H \subgroup G$ is cyclic and generated by $a^m$.
 \end{problem}
 
 \begin{problem}{5 (ii)}
-    Let $D_4 = \set{1, a, a^2, a^3, b, ba, ba^2, ba^3}$, $a^4 = b^2 = 1$ and $ab = ba^3$ be the dihedral group.
-    \begin{enumerate}
-        \item[(a)] Find all cyclic subgroups of $D_4$.
-        \item[(b)] If $H = \set{1,a^2}$ is a normal subgroup of $D_4$, then find $D_4/H$ and all the subgroups of $D_4/H$.
-    \end{enumerate}
+    % Let $D_4 = \set{1, a, a^2, a^3, b, ba, ba^2, ba^3}$, $a^4 = b^2 = 1$ and $ab = ba^3$ be the dihedral group.
+    % \begin{enumerate}
+    %     \item[(a)] Find all cyclic subgroups of $D_4$.
+    %     \item[(b)] If $H = \set{1,a^2}$ is a normal subgroup of $D_4$, then find $D_4/H$ and all the subgroups of $D_4/H$.
+    % \end{enumerate}
 
-    \solution The cyclic subgroups of $D_4$ are
+    % \solution
+    The cyclic subgroups of $D_4$ are
     \begin{gather*}
         \cyclic{1} = \set{1}, \qquad
         \cyclic{a} = \cyclic{a^3} = \set{1, a, a^2, a^3}, \qquad

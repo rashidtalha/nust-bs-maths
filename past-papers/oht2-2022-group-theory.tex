@@ -10,36 +10,63 @@
 \warningtext
 
 \begin{problem}{1}
-    Let $G = \cyclic{a}$ be a finite cyclic group of order $n$. Then, prove that $a^k$ is a generator of $G$ if and only if $\gcd(k,n) = 1$.
+    % Let $G = \cyclic{a}$ be a finite cyclic group of order $n$. Then, prove that $a^k$ is a generator of $G$ if and only if $\gcd(k,n) = 1$.
 
-    \solution TBC.
+    % \solution
+    Suppose $a^k$ is a generator of $G$. Then, we can write $a$ as a power of $a^k$, say, $a = \paren{a^k}^m = a^{km}$ for some $m \in \Z$.
+
+    Then, $a = a^{km} \implies a a^{-km} = e \implies a^{1-km} = e$. So, $n \mid 1 - km$. That is $\exists q \in \Z$ such that $1 - km = qn$. We can re-arrange this to get $qn + km = 1$. From number theory, this implies $\gcd(n,k)=1$ (Bezout's lemma).
+
+    Conversely, suppose $\gcd(n,k)=1$. Then, there exist integers $x, y$ such that $xk + yn = 1$. So, $a = a^1 = a^{xk + yn} = a^{xk} a^{yn} = \paren{a^{k}}^{x} \paren{a^{n}}^{y} = \paren{a^{k}}^{x} e^{y} = \paren{a^{k}}^{x}$.
+
+    Now, for all $b \in G=\cyclic{a}$, we have $b = a^r$ for some $r \in Z$. Therefore, we can write it as a power of $a^k$ as $b = a^r = \paren{\paren{a^{k}}^{x}}^{r} = \paren{a^{k}}^{xr}$. So, $a^k$ also generates $G$.
 \end{problem}
 
 \begin{problem}{2 (i)}
-    Let $G$ be a finite group. If $H$ is a subgroup of $G$ then prove that $\abs{H}$ divides $\abs{G}$.
+    % Let $G$ be a finite group. If $H$ is a subgroup of $G$ then prove that $\abs{H}$ divides $\abs{G}$.
 
-    \solution TBC
+    % \solution
+    Let $a_1 H, \dots, a_k H$ be all the distinct cosets of $H$ in $G$. Then, $G = \bigcup_{j=1}^{k} a_j H$ because for all $g \in G$, $g \in a_j H$ for some $j$.
+
+    Moreover, $|aH| = |bH|$, for all $a, b \in G$. In particular, $|a_j H| = |e H| = |H|$ for all $j$.
+
+    Now, since $G$ is written as a union of distinct sets, we have
+    \begin{equation*}
+        |G| = |a_1 H| \cup \dots \cup |a_k H| = |H| \cup \dots \cup |H| = k |H|.
+    \end{equation*}
+    Therefore, $|H|$ divides $|G|$.
 \end{problem}
 
 \begin{problem}{2 (ii)}
-    Let $H$ be a subgroup of $G$. If $a, b \in G$, then prove that $aH = bH$ if and only if $a^{-1}b \in H$.
+    % Let $H$ be a subgroup of $G$. If $a, b \in G$, then prove that $aH = bH$ if and only if $a^{-1}b \in H$.
 
-    \solution TBC
+    % \solution
+    Suppose $aH = bH$. As $H \subgroup G$, we have $e \in H$. So, $b = be \in bH = aH$. Thus, we can write $b = ah$ for some $h \in H$. Consequently, $a^{-1} b = h \in H$.
+
+    Conversely, let $a^{-1} b \in H$. This means $a^{-1} b = h$ for some $h \in H$. As a result, $b = ah$. Therefore,
+    \begin{equation*}
+        bH = \set{bk \st k \in H} = \set{(ah)k \st k \in H} = \set{ah' \st h' \in H} = aH.
+    \end{equation*}
+    Here we used the associativity and closure property because $H \subgroup G$.
 \end{problem}
 
 \begin{problem}{3}
-    Let $C_{24} = \set{1, a, a^2, \dots, a^{23} \st a^{24}=1}$ be the cyclic group of order $24$. If $H = \cyclic{a^4}$ then find $[C_{24} : H]$.
+    % Let $C_{24} = \set{1, a, a^2, \dots, a^{23} \st a^{24}=1}$ be the cyclic group of order $24$. If $H = \cyclic{a^4}$ then find $[C_{24} : H]$.
 
-    \solution We have $O(a^4) = 6$. So, $\abs{H} = O(a^4) = 6$. Also, $\abs{C_{24}} = 24$.
+    % \solution
+    We have $O(a^4) = 6$. So, $\abs{H} = O(a^4) = 6$. Also, $\abs{C_{24}} = 24$.
     \begin{equation*}
         [C_{24} : H] = \frac{\abs{C_{24}}}{\abs{H}} = \frac{24}{6} = 4.
     \end{equation*}
 \end{problem}
 
-\begin{problem}{4 (i)}
-    Let $\Z_{15} = {0,1,2,\dots,14}$ be the group of integers under addition modulo $15$. Let $H = \set{0,3,6,9,12}$ is a subgroup of $\Z_{15}$. Find the partition of $\Z_{15}$ into left cosets of $H$ in $\Z_{15}$.
+\clearpage
 
-    \solution Firstly note that there are exactly $[Z_{15} : H] = \abs{\Z_{15}}/\abs{H} = 15/5 = 3$ distinct (left) cosets of $H$ in $\Z_{15}$. These are $\set{H, 1+H, 2+H}$. So,
+\begin{problem}{4 (i)}
+    % Let $\Z_{15} = {0,1,2,\dots,14}$ be the group of integers under addition modulo $15$. Let $H = \set{0,3,6,9,12}$ is a subgroup of $\Z_{15}$. Find the partition of $\Z_{15}$ into left cosets of $H$ in $\Z_{15}$.
+
+    % \solution
+    Firstly note that there are exactly $[Z_{15} : H] = \abs{\Z_{15}}/\abs{H} = 15/5 = 3$ distinct (left) cosets of $H$ in $\Z_{15}$. These are $\set{H, 1+H, 2+H}$. So,
     \begin{equation*}
         \Z_{15} = H \cup (1+H) \cup (2+H).
     \end{equation*}
@@ -61,9 +88,10 @@
 \end{problem}
 
 \begin{problem}{5}
-    If $a, b \in \Z$, define $a R b$ if $ab \geq 0$. Prove or disprove that $R$ is an equivalence relation on $\Z$.
+    % If $a, b \in \Z$, define $a R b$ if $ab \geq 0$. Prove or disprove that $R$ is an equivalence relation on $\Z$.
 
-    \solution This is not an equivalence relation because it is not transitive.
+    % \solution
+    This is not an equivalence relation because it is not transitive.
 
     We have $-1 R 0$ because $(-1)(0) = 0 \geq 0$, and $0 R 1$ because $(0)(1) = 0 \geq 0$, but $-1 \slashed{R} 1$ because $(-1)(1) = -1 \ngeq 0$.
 \end{problem}

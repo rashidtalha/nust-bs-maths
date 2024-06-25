@@ -14,19 +14,19 @@
 
     \solution Firstly, note that
     \begin{equation*}
-        \kappa = \frac{\abs{\alpha' \times \alpha''}}{\abs{\alpha'}^3},\quad
-        \tau = \frac{\alpha' \times \alpha'' \cdot \alpha'''}{\abs{\alpha' \times \alpha''}^2},\quad
-        \vec{T} = \frac{\alpha'}{\abs{\alpha'}},\quad
-        \vec{B} = \frac{\alpha' \times \alpha''}{\abs{\alpha' \times \alpha''}},\quad
+        \kappa = \frac{\norm{\alpha' \times \alpha''}}{\norm{\alpha'}^3},\quad
+        \tau = \frac{\alpha' \times \alpha'' \cdot \alpha'''}{\norm{\alpha' \times \alpha''}^2},\quad
+        \vec{T} = \frac{\alpha'}{\norm{\alpha'}},\quad
+        \vec{B} = \frac{\alpha' \times \alpha''}{\norm{\alpha' \times \alpha''}},\quad
         \vec{N} = \vec{B} \times \vec{T}.
     \end{equation*}
 
     Now, $\alpha'(t) = (1, 2t, 3t^2)$, $\alpha''(t) = (0, 2, 6t)$ and $\alpha'''(t) = (0, 0, 6)$. Therefore,
     \begin{equation*}
         \alpha' \times \alpha'' = (6t^2, -6t, 2),\quad
-        \abs{\alpha' \times \alpha''} = \sqrt{4 + 36t^2 + 36t^4} = 2\sqrt{1 + 9t^2 + 9t^4},
+        \norm{\alpha' \times \alpha''} = \sqrt{4 + 36t^2 + 36t^4} = 2\sqrt{1 + 9t^2 + 9t^4},
     \end{equation*}
-    and $\abs{\alpha'} = \sqrt{1 + 4t^2 + 9t^4}$. As a result,
+    and $\norm{\alpha'} = \sqrt{1 + 4t^2 + 9t^4}$. As a result,
     \begin{align*}
         \kappa &= \frac{2\sqrt{1 + 9t^2 + 9t^4}}{\paren*{\sqrt{1 + 4t^2 + 9t^4}}^3} = 2 \paren*{\frac{1 + 9t^2 + 9t^4}{\paren*{1 + 4t^2 + 9t^4}^3}}^{1/2}\\
         \tau &= \frac{(6t^2, -6t, 2) \cdot (0,0,6)}{\paren*{\sqrt{4 + 36t^2 + 36t^4}}^2} = \frac{12}{4 + 36t^2 + 36t^4} = \frac{3}{1 + 9t^2 + 9t^4}\\
@@ -172,10 +172,12 @@
     \begin{equation*}
         \alpha'(t) = (e^t \cos t - e^t \sin t, e^t \sin t + e^t \cos t, e^t) = e^t \paren*{\cos t - \sin t, \cos t + \sin t, 1}.
     \end{equation*}
-    So, $\abs{\alpha'}^2 = e^{2t} \paren*{\cos^2 t + \sin^2 t - 2\cos t \sin t + \cos^2 t + \sin^2 t + 2\cos t \sin t + 1} = 3 e^{2t}$. Therefore, $\abs{\alpha'(t)} = \sqrt{3} e^t$ and,
+    So, $\norm{\alpha'}^2 = e^{2t} \paren*{\cos^2 t + \sin^2 t - 2\cos t \sin t + \cos^2 t + \sin^2 t + 2\cos t \sin t + 1} = 3 e^{2t}$.
+
+    Therefore, $\norm{\alpha'(t)} = \sqrt{3} e^t$ and,
     \begin{equation*}
         s(t)
-        = \int_0^t \abs{\alpha'(u)} \,du
+        = \int_0^t \norm{\alpha'(u)} \,du
         = \sqrt{3} \int_0^t e^u \,du
         = \sqrt{3} e^u \bigg|_0^t
         = \sqrt{3} (e^t - 1).
@@ -226,18 +228,18 @@
 
     Now, since $\paren*{s + \sqrt{s^2 + 1}}^2 + \paren*{s - \sqrt{s^2 + 1}}^2 = 4s^2 + 2$, we obtain
     \begin{equation*}
-        \abs{\beta'(s)}^2
+        \norm{\beta'(s)}^2
         = \frac{ 1 }{4(s^2 + 1)} \paren*{4s^2 + 2 + 2 }
         = \frac{ 4(s^2 + 1) }{4(s^2 + 1)}
         = 1.
     \end{equation*}
-    Thus, $\abs{\beta'(s)} = 1$. In other words, $\beta(s)$ is a unit-speed parametrised curve.
+    Thus, $\norm{\beta'(s)} = 1$. In other words, $\beta(s)$ is a unit-speed parametrised curve.
 \end{problem}
 
 \begin{problem}{4 (ii)}
     Calculate the curvature of the curve $\beta(s)$ given in Q4(i).
 
-    \solution Since $\beta = \beta(s)$ is unit-speed parameterised, its curvature is $\kappa = \abs{\beta''(s)}$. Differentiating
+    \solution Since $\beta = \beta(s)$ is unit-speed parameterised, its curvature is $\kappa = \norm{\beta''(s)}$. Differentiating
     \begin{equation*}
         \beta'(s)
         = \frac{1}{2\sqrt{s^2 + 1}}
@@ -262,10 +264,10 @@
         }\\
         &= \frac{1}{2 \paren*{s^2 + 1}^{3/2}} \paren*{ 1, 1, -s\sqrt{2}}
     \end{align*}
-    Now, $\abs*{\paren*{ 1, 1, -s\sqrt{2}}}^2 = 1 + 1 + 2s^2 = 2 (1 + s^2)$. Therefore,
+    Now, $\norm*{\paren*{ 1, 1, -s\sqrt{2}}}^2 = 1 + 1 + 2s^2 = 2 (1 + s^2)$. Therefore,
     \begin{equation*}
         \kappa
-        = \abs*{\beta''}
+        = \norm*{\beta''}
         = \frac{\sqrt{2} \paren*{ 1 + s^2 }^{1/2}}{2 \paren*{s^2 + 1}^{3/2}}
         = \frac{1}{\sqrt{2} \paren*{s^2 + 1}}
     \end{equation*}

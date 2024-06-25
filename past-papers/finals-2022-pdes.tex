@@ -17,7 +17,61 @@
         u_x(0, t) = u_x(\ell, t) = 0, \quad t \geq 0.
     \end{gather*}
     
-    \solution TBC
+    \solution
+    Using the separation of variables, we look for a non-trivial solution of the form $u(x,t) = X(x)T(t) \neq 0$. As a result, the PDE separates into two ODEs,
+    \begin{equation*}
+        X\dot{T} = kX''T - hXT
+        \implies
+        \frac{\dot{T}}{kT} = \frac{X''}{X} - \frac{h}{k}
+        \implies
+        \frac{\dot{T}}{kT} + \frac{h}{k} = \frac{X''}{X} = \lambda,
+    \end{equation*}
+    where $\lambda$ is a constant.
+
+    Moreover, the boundary conditions reduce to
+    \begin{equation*}
+        u_x(0, t) = u_x(\ell, t) = 0
+        \implies
+        X'(0) = X'(\ell) = 0.
+    \end{equation*}
+
+    Solving the ODE for $T(t)$ leads to,
+    \begin{equation*}
+        \frac{\dot{T}}{kT} + \frac{h}{k} = \lambda
+        \implies
+        \frac{\dot{T}}{T} = k\lambda - h
+        \implies
+        \ln T = -(h - k\lambda)t + \mu
+        \implies
+        T(t) = A e^{-(h - k\lambda)t},
+    \end{equation*}
+    where $\mu$ and $A$ are constants.
+
+    Next, we consider $X'' - \lambda X = 0$. This leads to three separate cases.
+
+    \underline{$\lambda > 0$:} The auxiliary equation is then $m^2 - \lambda = 0$. So, $m = \pm \sqrt{\lambda}$ and we get
+    \begin{equation*}
+        X(x) = c_1 \sinh(\sqrt{\lambda}x) + c_2 \cosh(\sqrt{\lambda}x).
+    \end{equation*}
+    So, $X'(0) = 0$ implies $c_1 = 0$ and then $X'(\ell) = 0$ requires $c_2 = 0$. This is the trivial solution $X \equiv 0$, so we ignore it.
+
+    \underline{$\lambda = 0$:} The ODE simplifies to $X'' = 0$. So, $X(x) = c_0 + c_1 x$. Now, $X'(0) = 0$ and $X'(\ell) = 0$ both imply $c_1 = 0$. Therefore, $X_0(x) = c_0$, a constant.
+
+    \underline{$\lambda < 0$:} Let $\lambda = - \alpha^2$, then the auxiliary equation is $m^2 + \alpha^2 = 0$. So, $m = \pm i\alpha$ and we get
+    \begin{equation*}
+        X(x) = c_1 \sin(\alpha x) + c_2 \cos(\alpha x).
+    \end{equation*}
+    So, $X'(0) = 0$ implies $c_1 = 0$ and then $X'(\ell) = 0$ requires $c_2 \sin(\alpha\ell) = 0$. In order to get a non-trivial solution, we put $\alpha\ell = n\pi$ with $n = 1,2,3,\dots$. Overall, $X_n(x) = c_2 \cos(\frac{n\pi}{\ell} x)$.
+
+    Combining these, we get
+    \begin{gather*}
+        u_0(x,t) = a_0 e^{-ht},\\
+        u_n(x,t) = a_n e^{-(h - k(n\pi/\ell)^2)t}.
+    \end{gather*}
+    By the principle of superposition, the complete solution is
+    \begin{equation*}
+        u(x,t) = a_0 e^{-ht} + \sum_{n=1}^{\infty} a_n e^{-(h - k(n\pi/\ell)^2)t}.
+    \end{equation*}
 \end{problem}
 
 \begin{problem}{2}
@@ -27,7 +81,23 @@
         \item[(b)] $f(x) = \exp(-a \abs{x})$, where $a$ is a constant.
     \end{enumerate}
     
-    \solution TBC
+    \solution
+    \begin{enumerate}
+        \item[(a)] By definition
+        \begin{equation*}
+            F[f_a(x)]
+            = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} f_a(x) e^{-ikx} \,dx
+            = \frac{1}{\sqrt{2\pi}} \int_{-a}^{a} e^{-ikx} \,dx
+            = \frac{1}{\sqrt{2\pi}} \frac{e^{-ikx}}{-ik} \at[\bigg]{-a}^{a}.
+        \end{equation*}
+        So,
+        \begin{equation*}
+            F[f_a(x)]
+            = \frac{1}{\sqrt{2\pi}} \frac{e^{ika} - e^{-ika}}{ik}\\
+            = \sqrt{\frac{2}{\pi}} \frac{\sin{ka}}{k}.
+        \end{equation*}
+        \item[(b)] $f(x) = \exp(-a \abs{x})$, where $a$ is a constant.
+    \end{enumerate}
 \end{problem}
 
 \begin{problem}{3}
@@ -68,10 +138,38 @@
 \begin{problem}{6}
     Classify the given equation as hyperbolic, parabolic or elliptic PDE. then reduce it into the canonical form
     \begin{equation*}
-        u_{xx} + 2 \cosec y u_{xy} + (\cosec y)^2 u_{yy} = 0.
+        u_{xx} + (2 \cosec y) u_{xy} + (\cosec y)^2 u_{yy} = 0.
     \end{equation*}
     
-    \solution TBC
+    \solution
+    We identify $A = 1$, $B = 2 \cosec y$, $C = \cosec^2 y$, $D = E = 0$. So,
+    \begin{equation*}
+        B^2 - 4AC = 4 \cosec^2 y - 4 \cosec^2 y = 0.
+    \end{equation*}
+    Therefore, this is a parabolic PDE.
+
+    The characteristic equation gives
+    \begin{equation*}
+        \frac{dy}{dx}
+        = \frac{B \pm \sqrt{B^2 - 4AC}}{2A}
+        = \cosec y
+        \implies
+        \sin y \,dy = dx
+        \implies
+        x + \cos y = c,
+    \end{equation*}
+    for some constant $c$. Let $\alpha = x + \cos y$ and $\beta = x$. Then,
+    \begin{align*}
+        C^{*} &= A \beta_x^2 + B \beta_x \beta_y + C \beta_y^2 = 1\\
+        D^{*} &= A \alpha_{xx} + B \alpha_{xy} + C \alpha_{yy} + D \alpha_{x} + E \alpha_{y} = -\cosec^2 y \cos y = -\cot(y)\cosec(y)\\
+        E^{*} &= A \beta_{xx} + B \beta_{xy} + C \beta_{yy} + D \beta_{x} + E \beta_{y} = 0.
+    \end{align*}
+    and $A^* = B^* = 0$ because this is a parabolic PDE.
+
+    As a result, the transformed PDE is
+    \begin{equation*}
+        u_{\beta\beta} - \cot(y)\cosec(y) u_\alpha = 0
+    \end{equation*}
 \end{problem}
 
 \begin{problem}{7}

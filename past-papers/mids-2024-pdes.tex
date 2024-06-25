@@ -19,16 +19,16 @@
     \begin{equation*}
         x u_{xx} + u_{xy} + \sin(x+y) = 0. \tag{\textasteriskcentered}\label{eq:pde-swap}
     \end{equation*}
-    Now, $A = x$, $B = 1$, $C = D = E = 0$. Since, $B^2 - 4AC = 1 > 0$, this is a hyperbolic PDE. So, the corresponding characteristic equation
+    Now, $A = x$, $B = 1$, $C = D = E = 0$. Since, $B^2 - 4AC = 1 > 0$, this is a hyperbolic PDE with the characteristic equation
     \begin{equation*}
         \frac{dy}{dx} = \frac{B \pm \sqrt{B^2 - 4AC}}{2A} = \frac{1 \pm 1}{2x}
     \end{equation*}
-    gives
+    So,
     \begin{equation*}
-        \frac{dy}{dx} = \frac{1}{x} \implies k + y = \ln x \implies x e^{-y} = c_1, \quad
+        \frac{dy}{dx} = \frac{1}{x} \implies k + y = \ln x \implies x e^{-y} = c_1; \quad
         \frac{dy}{dx} = 0 \implies y = c_2.
     \end{equation*}
-    Here, $k, c_1$ and $c_2$ are constants. These lead to $\xi = x e^{-y} = c_1$ and $\eta = y = c_2$. As a result
+    Here, $k, c_1$ and $c_2$ are constants. These lead to $\xi = x e^{-y} = c_1$ and $\eta = y = c_2$. As a result,
     \begin{align*}
         B^{*} &= 2A\xi_x \eta_x + B \paren*{\xi_x \eta_y + \xi_y \eta_x} + 2C \xi_y \eta_y = e^{-y},\\
         D^{*} &= A \xi_{xx} + B \xi_{xy} + C \xi_{yy} + D \xi_{x} + E \xi_{y} = -e^{-y},\\
@@ -91,13 +91,13 @@
     \end{equation*}
     This eliminates $A^*$ and $B^*$ and reduces the transformed PDE to the parabolic canonical form $\paren*{A + 2Bd + Cd^2} u_{\eta\eta} = 0 \implies u_{\eta\eta} = 0$.
 
-    If $B^2 < AC$, then let
-    \begin{equation*}
-        b = \frac{-B + i\sqrt{AC - B^2}}{C},\quad
-        \alpha = \Re \xi = x - \frac{B}{C}, \quad
-        \beta = \Im \xi = \frac{\sqrt{AC-B^2}}{C}.
-    \end{equation*}
-    We find that this leads to $u_{\alpha\alpha} + u_{\beta\beta} = 0$, the elliptic canonical form.
+    % If $B^2 < AC$, then let
+    % \begin{equation*}
+    %     b = \frac{-B + i\sqrt{AC - B^2}}{C},\quad
+    %     \alpha = \Re \xi = x - \frac{B}{C}, \quad
+    %     \beta = \Im \xi = \frac{\sqrt{AC-B^2}}{C}.
+    % \end{equation*}
+    % We find that this leads to $u_{\alpha\alpha} + u_{\beta\beta} = 0$, the elliptic canonical form.
 \end{problem}
 
 \begin{problem}{3}
@@ -235,7 +235,7 @@
     \end{align*}
     Therefore,
     \begin{equation*}
-        x^2 u_{xx} - y^2 u_{yy} = x^2 y^2 \varphi''(xy) + \frac{y^2}{x} \psi''\paren*{\frac{y}{x}} - x^2 y^2 \varphi''(xy) + \frac{y^2}{x} \psi''\paren*{\frac{y}{x}} = 0
+        x^2 u_{xx} - y^2 u_{yy} = x^2 y^2 \varphi''(xy) + \frac{y^2}{x} \psi''\paren*{\frac{y}{x}} - x^2 y^2 \varphi''(xy) - \frac{y^2}{x} \psi''\paren*{\frac{y}{x}} = 0
     \end{equation*}
 \end{problem}
 

@@ -10,34 +10,80 @@
 \warningtext
 
 \begin{problem}{1}
-    Classify the given equation and reduce it into the canonical form
-    \begin{equation*}
-        u_{xx} - (2 \cos x) u_{xy} + (1 + \cos^2 x) u_{yy} + u = 0.
-    \end{equation*}
+    % Classify the given equation and reduce it into the canonical form
+    % \begin{equation*}
+    %     u_{xx} - (2 \cos x) u_{xy} + (1 + \cos^2 x) u_{yy} + u = 0.
+    % \end{equation*}
     
-    \solution TBC
+    % \solution
+    Here, $A = 1$, $B = -2 \cos x$, $C = 1 + \cos^2 x$, so $B^2 - 4AC = -4 < 0$. This is an elliptic PDE. Also, $D = E = 0$. The characteristic equation for this PDE is
+    \begin{equation*}
+        \frac{dy}{dx} = \frac{B \pm \sqrt{B^2 - 4AC}}{2A} = \frac{-2\cos x \pm \sqrt{-4}}{2} = - \cos x \pm i.
+    \end{equation*}
+    Upon integration we obtain $y = -\sin x - i x + c_1$ and $y = -\sin x + i x + c_2$, where $c_1$ and $c_2$ are constants. Consequently, we have $\xi = y + \sin x + ix$ and $\eta = y + \sin x - ix$.
+
+    Let $\alpha = \Re\xi = y + \sin x$ and $\beta = \Im\xi = x$. Then,
+    \begin{align*}
+        A^{*} &= A \alpha_x^2 + B \alpha_x \alpha_y + C \alpha_y^2 = (\cos x)^2 - (2 \cos x) (\cos x) + (1 + \cos^2 x) = 1\\
+        B^{*} &= 2A\alpha_x \beta_x + B \paren*{\alpha_x \beta_y + \alpha_y \beta_x} + 2C \alpha_y \beta_y = 2 (\cos x) - (2 \cos x)(0+1) + 0 = 0\\
+        C^{*} &= A \beta_x^2 + B \beta_x \beta_y + C \beta_y^2 = 1 + 0 + 0 = 1\\
+        D^{*} &= A \alpha_{xx} + B \alpha_{xy} + C \alpha_{yy} + D \alpha_{x} + E \alpha_{y} = -\sin x + 0 + 0 + 0 + 0 = -\sin x\\
+        E^{*} &= A \beta_{xx} + B \beta_{xy} + C \beta_{yy} + D \beta_{x} + E \beta_{y} = 0 + 0 + 0 + 0 + 0 = 0.
+    \end{align*}
+
+    So, the given PDE transforms into
+    \begin{equation*}
+        u_{\alpha\alpha} + u_{\beta\beta} - (\sin x) u_{\alpha} + u = 0.
+    \end{equation*}
 \end{problem}
 
-\begin{problem}{2}
-    Find the solution of the following problem governed by the wave equation
-    \begin{gather*}
-        u_{tt} = c^2 u_{xx}, \quad x > 0, \quad t > 0,\\
-        u(x,0) = u_{t}(x,0) = 0, \quad x \geq 0,\\
-        u(0,t) = U(t), \quad t \geq 0.
-    \end{gather*}
+% \begin{problem}{2}
+%     Find the solution of the following problem governed by the wave equation
+%     \begin{gather*}
+%         u_{tt} = c^2 u_{xx}, \quad x > 0, \quad t > 0,\\
+%         u(x,0) = u_{t}(x,0) = 0, \quad x \geq 0,\\
+%         u(0,t) = U(t), \quad t \geq 0.
+%     \end{gather*}
     
-    \solution TBC
-\end{problem}
+%     \solution TBC
+% \end{problem}
 
 \begin{problem}{3}
-    Use the method of separation of variables to obtain the solution of the initial-value prblem
-    \begin{gather*}
-        u_{t} = 4 u_{xx}, \quad 0 < x < 1, \quad t > 0,\\
-        u(x,0) = x^2 (1-x), \quad 0 \leq x \leq 1,\\
-        u(0,t) = u(1,t) = 0, \quad t \geq 0.
-    \end{gather*}
+    % Use the method of separation of variables to obtain the solution of the initial-value prblem
+    % \begin{gather*}
+    %     u_{t} = 4 u_{xx}, \quad 0 < x < 1, \quad t > 0,\\
+    %     u(x,0) = x^2 (1-x), \quad 0 \leq x \leq 1,\\
+    %     u(0,t) = u(1,t) = 0, \quad t \geq 0.
+    % \end{gather*}
     
-    \solution TBC
+    % \solution
+    (Direct) The standard solution of the homogenous heat equation, with homogenous boundary conditions is
+    \begin{equation*}
+        u(x,t) = \sum_{n=1}^{\infty} a_n \sin\paren*{\frac{n \pi}{\ell} x} e^{-(n\pi/\ell)^2 kt},
+        \quad a_n = \frac{2}{\ell} \int_0^\ell f(x) \sin\paren*{\frac{n \pi}{\ell} x} \, dx.
+    \end{equation*}
+    We are given that $k = 4$, $\ell = 1$, and $f(x) = x^2 (1-x)$.
+
+    From this, $a_n = -\frac{4 + 8(-1)^n}{(n \pi)^3}$. Therefore,
+    \begin{equation*}
+        u(x,t)
+        = \sum_{n=1}^{\infty} a_n \sin\paren*{n \pi x} e^{-(2n\pi)^2 t}
+        = -\sum_{n=1}^{\infty} \frac{4 + 8(-1)^n}{(n \pi)^3} \sin\paren*{n \pi x} e^{-(2n\pi)^2 t}.
+    \end{equation*}
+
+    Full calculation:
+    \begin{align*}
+        a_n
+        &= 2 \int_0^1 (x^2 - x^3) \sin\paren*{n \pi x} \, dx\\
+        &= 2 \bparen*{ -\frac{(x^2 - x^3) \cos\paren*{n \pi x}}{n \pi} \at[\bigg]{0}^{1} + \frac{1}{n \pi} \int_0^1 (2x - 3x^2) \cos\paren*{n \pi x} \, dx }\\
+        &= \frac{2}{n \pi} \int_0^1 (2x - 3x^2) \cos\paren*{n \pi x} \, dx\\
+        &= \frac{2}{n \pi} \bparen*{ \frac{(2x - 3x^2) \sin\paren*{n \pi x}}{n \pi} \at[\bigg]{0}^{1} - \frac{1}{n \pi} \int_0^1 (2 - 6x) \sin\paren*{n \pi x} \, dx }\\
+        &= -\frac{2}{(n \pi)^2} \int_0^1 (2 - 6x) \sin\paren*{n \pi x} \, dx\\
+        &= -\frac{2}{(n \pi)^2} \bparen*{ -\frac{(2 - 6x) \cos\paren*{n \pi x}}{n \pi} \at[\bigg]{0}^{1} - \frac{6}{n \pi} \int_0^1 \cos\paren*{n \pi x} \, dx }\\
+        &= \frac{2}{(n \pi)^3} \bparen*{ (-4(-1)^n - 2) + 6 \int_0^1 \cos\paren*{n \pi x} \, dx }\\
+        &= \frac{2}{(n \pi)^3} \bparen*{ -(2 + 4(-1)^n) + \frac{6}{n\pi}\sin\paren*{n \pi x} \at[\bigg]{0}^{1} }\\
+        &= -\frac{4 + 8(-1)^n}{(n \pi)^3}.
+    \end{align*}
 \end{problem}
 
 \end{document}

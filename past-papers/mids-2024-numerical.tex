@@ -134,7 +134,7 @@
         x_r (f(x_u) - f(x_\ell)) = x_\ell f(x_u) - x_u f(x_\ell).
     \end{equation*}
 
-    Therefore, if the root $x_r$ lies within the interval $[x_\ell, x_u]$, then it can be iteratively estimated as
+    Therefore, if the root $x_r$ lies within the interval $[x_\ell, x_u]$, then it can be iteratively estimated
     \begin{equation*}
         x_r = \frac{x_\ell f(x_u) - x_u f(x_\ell)}{f(x_u) - f(x_\ell)}.
     \end{equation*}
@@ -165,7 +165,7 @@
     \begin{equation*}
         f(x_r) = f(x) + (x_r - x) f'(x) + \BigO(2).
     \end{equation*}
-    Now, working up to linear order and using $f(x_r) = 0$ gives $f(x) + (x_r - x) f'(x) = 0$, which can be re-arrange as
+    Now, working up to linear order and using $f(x_r) = 0$ gives $f(x) + (x_r - x) f'(x) = 0$, which can be re-arranged as
     \begin{equation*}
         x_r = x - \frac{f(x)}{f'(x)}.
     \end{equation*}
@@ -180,9 +180,9 @@
 
     \solution Take $f(x) = x^2 - 29$. Then, $f(x) = 0 \implies x = \pm \sqrt{29}$. So, we apply the Newton-Raphson method to estimate $f(x) = 0$. The corresponding formula is
     \begin{equation*}
-        x_{n+1} = x_{n} - \frac{f(x_n)}{f'(x_n)}.
+        x_{n+1} = x_{n} - \frac{f(x_n)}{f'(x_n)} = x_{n} - \frac{x_n^2 - 29}{2 x_n} = \frac{x_n}{2} - \frac{29}{2 x_n}.
     \end{equation*}
-    with $f'(x) = 2x$. As a result, we have
+    As a result, we have
     \begin{align*}
         x_0 &= 3.3\\
         x_1 &= 6.0439394\dots\\
@@ -223,11 +223,12 @@
         \frac{\pd f_1}{\pd x} = 1, \quad
         \frac{\pd f_1}{\pd y} = -3y^2, \quad
         \frac{\pd f_2}{\pd x} = \cos x, \quad
-        \frac{\pd f_2}{\pd y} = 1,
+        \frac{\pd f_2}{\pd y} = 1, \quad
+        J(f_1, f_2) = 1 + 3y^2 \cos x.
     \end{equation}
-    and $J(f_1, f_2) = 1 + 3y^2 \cos x$. Starting with $(x_0, y_0) = (0,0)$ we get
+    Starting with $(x_0, y_0) = (0,0)$ we get
     \begin{align*}
-        x_{1} &= \left.\frac{\displaystyle -(x - y^3 - 1)(1) + (\sin(x) + y - 1)(-3y^2)}{1 + 3y^2 \cos x}\right|_{(0,0)} = 1\\
+        x_{1} &= \left.\frac{\displaystyle -(x - y^3 - 1)(1) + (\sin(x) + y - 1)(-3y^2)}{1 + 3y^2 \cos x}\right|_{(0,0)} = 1,\\
         y_{1} &= \left.\frac{\displaystyle -(\sin(x) + y - 1)(1) + (x - y^3 - 1)(\cos x)}{1 + 3y^2 \cos x}\right|_{(0,0)} = 0.
     \end{align*}
 \end{problem}
