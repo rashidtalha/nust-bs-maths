@@ -17,6 +17,271 @@
 \textbf{Disclaimer:} This document most likely contains some errors --- use with caution. I have rephrased or paraphrased the content in many of the sections. Some examples may be missing. The numbering that I have used for sections, definitions, theorems, etc will not match the numbering given in the lectures.
 
 \section{Introduction}
+\begin{ndfn}
+    A \keyword{ring} is a non-empty set $R$ with two \keyword{binary operations}
+    \begin{equation*}
+        + : R \times R \to R
+        \quad\text{and}\quad
+        \cdot : R \times R \to R
+    \end{equation*}
+    such that
+    \begin{enumerate}[label=(\roman*)]
+        \item[(R1)] $(R,+)$ is an Abelian group with $O \in R$ as the identity element.
+        \item[(R2)] For all $a, b, c \in R$, $a \cdot (b \cdot c) = (a \cdot b) \cdot c$.
+        \item[(R3)] There exists $1 \in R$ such that for all $a \in R$, $a \cdot 1 = 1 \cot a = a$.
+        \item[(R4)] For all $a, b, c \in R$, $a \cdot (b + c) = a \cdot b + a \cdot c$ and $(b+c) \cdot a = b \cdot a + c \cdot a$.
+    \end{enumerate}
+\end{ndfn}
 
+\begin{notation}
+    We call `$+$' \keyword{addition} and `$\cdot$' \keyword{multiplication}. Typically $a \cdot b$ is abbreviated as $ab$, but $a+b$ is always written in full. The element $0 \in R$ is called the \keyword{additive identity}; this is unique because $(R,+)$ is a group and each group has a unique identity element. The element $1 \in R$ is called a \keyword{multiplicative identity}; later we shall show that this is also unique.
+\end{notation}
+
+\begin{remark}
+    The definition of a ring does not require the existence of multiplicative inverses, nor does it require the multiplication to be commutative.
+
+    Some authors exclude axiom (R3) about the existence of a multiplicative identity. We shall not adopt this approach. A ring without a multiplicative identity is called a \keyword{rng}.
+
+    Property (R4) is called that the distribution of multiplication over addition.
+\end{remark}
+
+\begin{ndfn}
+    A ring $R$ is called \keyword{Abelian} or \keyword{commutative} if its multiplication is commutative. That is, if for all $a, b \in R$, we have $ab = ba$.
+\end{ndfn}
+
+\begin{nthm}
+    Let $R$ be a ring and $a, b, c \in R$. Then
+    \begin{enumerate}[label=(\roman*)]
+        \item $a0 = 0a = a$
+        \item $a(-b) = (-a)b = -(ab)$
+        \item $(-a)(-b) = ab$
+        \item $a(b-c) = ab - ac$
+        \item $(b-c)a = ba - ca$
+        \item $(-1)a = -a$
+        \item $(-1)(-1) = 1$
+    \end{enumerate}
+\end{nthm}
+
+\begin{nthm}
+    Each group $R$ has a unique multiplicative identity.
+\end{nthm}
+
+\begin{nlemma}
+    Let $R$ be a ring. $0 = 1$ if and only if $R = \set{0}$.
+\end{nlemma}
+
+\begin{ndfn}
+    The ring $R = \set{0}$ is called the \keyword{zero ring}. It is usually written as $R = 0$.
+\end{ndfn}
+
+
+\section{Subrings}
+\begin{ndfn}
+    A subset $S \subseteq R$ is called a \keyword{subring} of $R$ if it is a ring with respect to the same binary operations and the same identity elements.
+\end{ndfn}
+
+\begin{remark}
+    We shall see later that having the same identity elements needs to be specified as a separate condition, because $S$ might form a ring with the same binary operations of $R$ but with a different multiplicative identity. In such a case, $S$ does not form a subring of $R$. Some authors drop the condition that $1_R \in S$.
+\end{remark}
+
+\begin{nlemma}
+    Let $R$ be a ring. $S \subseteq R$ is a subring of $R$ if and only if
+    \begin{enumerate}[label=(\roman*)]
+        \item $0, 1 \in S$
+        \item For all $a, b \in S$, $a-b \in S$
+        \item For all $a, b \in S$, $ab \in S$
+    \end{enumerate}
+    (So, $S \subgroup R$, $S$ is closed under multiplication and $1 \in S$.)
+\end{nlemma}
+
+\begin{negg}
+    The prototypical examples of a ring is the set of integers $\Z$ with the usual addition and multiplication. This is a commutative ring.
+\end{negg}
+
+\begin{negg}
+    The sets $\Q$, $\R$, $\C$ and $\Z_n$ are all commutative rings with their standard addition and multiplication operations. Here, $\Z_n$ is the set of integers mod $n$.
+
+    Let $R \neq 0$. The set of $n \times n$ matrices with entries in $R$, denoted $M_n (\R)$ is ring. It is non-commutative for $n \geq 2$.
+\end{negg}
+
+\begin{negg}
+    The set $S = \set*{\begin{psmallmatrix*} a & b \\ 0 & c \end{psmallmatrix*} \st a, b, c \in \Z}$ is a subring of $M_2 (\Z)$.
+
+    We know that $2\Z \subgroup \Z$ and that it is closed under multiplication, but it is not a subring of $\Z$ because $1 \notin 2\Z$.
+\end{negg}
+
+\begin{negg}
+    We can give $\R^2$ a ring structure by defining element-wise addition and multiplication
+    \begin{equation}
+        (a_1, a_2) + (b_1, b_2) = (a_1 + b_1, a_2 + b_2)
+        \quad\text{and}\quad
+        (a_1, a_2) \cdot (b_1, b_2) = (a_1 b_1, a_2 b_2),
+    \end{equation}
+    where $a_1, a_2, b_1, b_2 \in \R$. We find that $0_{\R^2} = (0,0)$ and $1_{\R^2} = (1,1)$.
+
+    Consider $S = \set{(a,0) \set a \in \R} \subseteq \R^2$. This is not a subring of $R$ since $1_{\R^2} = (1,1) \notin S$. This is despite the fact that $S$ does form a ring with the same element-wise addition and multiplication as defined above; its multiplicative identity is $(1,0)$.
+\end{negg}
+
+\section{Division Rings and Integral Domains}
+\begin{ndfn}
+    Let $R \neq 0$ be a ring. We say that $u \in R$ is a \keyword{unit} if there exists some $v \in R$ such that $uv = vu = 1$.
+\end{ndfn}
+
+\begin{remark}
+    If $u \in R$ is a unit due to $v \in R$, then $v$ is also a unit (due to $u$). The element $v$ is then called the multiplicative inverse of $u$. We shall later show that this is unique.
+\end{remark}
+
+\begin{nthm}
+    Take $R \neq 0$ and consider $R^* = \set{u \in R \st u \text{ is a unit}}$. Then, $(R^*, \cdot)$ forms a group. It is called the \keyword{group of units} of $R$.
+\end{nthm}
+
+\begin{remark}
+    We note that if $R \neq 0$, then $R^* \neq \emptyset$ because $1 \in R$ is a unit.
+
+    Since $(R^*, \cdot)$ is a group, we have that if $u$ is a unit with the inverse $v$, then $v$ is the unique element satisfying $uv = vu = 1$ due to the uniqueness of inverses in a group.
+\end{remark}
+
+\begin{ndfn}
+    A \keyword{division ring} is a non-zero ring $R$ where every non-zero element is a unit. That is, $R \neq 0$ and $R^* = R - \set{0}$. Such a ring is also called a \keyword{skew-field}.
+\end{ndfn}
+
+\begin{ndfn}
+    A \keyword{field} $\F$ is a commutative division ring. That is, $\F \neq 0$, $\F^* = \F - \set{0}$ and for all $a, b \in \F$ we have $ab = ba$.
+\end{ndfn}
+
+\begin{nthm}
+    Every finite division ring is a field.
+\end{nthm}
+
+\begin{negg}
+    $\Q$, $\R$ and $\C$ are fields.
+
+    $\Z$ is a commutative ring but not a division ring (and therefore not a field) because
+    \begin{equation*}
+        \Z^* = \set{\pm 1} \neq \Z - \set{0}.
+    \end{equation*}
+\end{negg}
+
+\begin{negg}
+    It is easy to check that $M_2 (\R)^* = \GL_2 (\R)$. Similarly,
+    \begin{equation*}
+        M_2 (\Z)^*
+        = \set{A \in M_2 (\Z) \set \det A = \pm 1}
+        = \GL_2 (\Z).
+    \end{equation*}
+    In fact we find that, for any $R \neq 0$, $M_n (R)^* = \GL_n (R)$.
+\end{negg}
+
+\begin{nthm}
+    If $S$ is a subring of $R$, then $S^*$ is a subgroup of $R^*$.
+\end{nthm}
+
+\begin{nthm}
+    The ring $\Z_n$ is a field if and only if $n$ is prime. We write $\F_p = \Z_p$, where $p$ is prime.
+\end{nthm}
+
+\begin{ndfn}
+    Let $R$ be a ring. A non-zero element $a \in R$ is called a \keyword{zero divisor} if there is a non-zero element $b \in R$ such that either $ab = 0$ or $ba = 0$.
+\end{ndfn}
+
+\begin{ndfn}
+    An \keyword{integral domain} is a non-zero commutative ring $R \neq 0$ that has no zero divisors.
+\end{ndfn}
+
+\begin{nthm}
+    Let $R$ be a ring and take $a, b, c \in R$. Suppose $a$ is not a zero divisor. If $ab = ac$, then either $a = 0$ or $b = c$.
+\end{nthm}
+\begin{proof}
+    If $ab = ac$ then $a (b - c) = 0$ by distributivity. Since, $a$ is not a zero divisor, we must have either $a = 0$ or $b-c = 0$. Consequently, either $a = 0$ or $b = c$.
+\end{proof}
+\begin{remark}
+    In particular, if $R$ is an integral domain then it has no zero divisors. Therefore, for all $a, b, c \in R$, $ab = ac \implies a = 0$ or $b = c$.
+\end{remark}
+
+\begin{nthm}
+    Every field is an integral domain.
+\end{nthm}
+
+\begin{nthm}
+    Every finite integral domain is a field.
+\end{nthm}
+
+\begin{negg}
+    We know that $\Z_p$ is a finite commutative ring, and that it is a field if and only if $p$ is prime. So, $\Z_p$ is an integral domain exactly when $p$ is prime.
+\end{negg}
+
+\section{Polynomials}
+
+\begin{negg}
+    Let $R \neq 0$ be a ring. The set of polynomials in powers of $X$ and with coefficients in $R$ is denoted by $R[X]$. In other words, the general element of $R[X]$ is a polynomial
+    \begin{equation*}
+        r(X) = a_0 + a_1 X + a_2 X^2 + \dots + a_n X^n \equiv \sum_{i=0}^n a_i X^i.
+    \end{equation*}
+    Note that only finite summations are allowed.
+
+    We find that $R[X]$ forms are ring with the standard polynomial addition and multiplication. The additive identity is the zero polynomial $f(X) = 0$ and the multiplicative identity is $f(X) = 1$.
+
+    $R[X]$ does not form a ring if we use composition of functions as the multiplicative operation because composition does not distribute over addition.
+\end{negg}
+
+\begin{negg}
+    Consider the set $\Z[i]$ with $i \in \C$. This is
+    \begin{equation*}
+        \Z[i] = \set{a + bi \st a, b \in \Z} \subseteq \C.
+    \end{equation*}
+    Elements of this set are called \keyword{Gaussian integers}. We note that $\Z[i]$ is a ring under the usual polynomial addition and multiplication. Moreover, it is a subgroup of $\C$. Also,
+    \begin{equation*}
+        \Z[i]^* = \set{1, i, -1, -i} \neq \Z[i] - \set{0}.
+    \end{equation*}
+    So, this is not a division ring (and therefore not a field).
+\end{negg}
+
+\begin{nlemma}
+    Let $\F$ be a field. Then, $\F[X]^* = \F^*$.
+\end{nlemma}
+
+\section{Homomorphisms}
+
+\begin{ndfn}
+    Let $R, S$ be rings. A ring \keyword{homomorphism} is a map $\varphi : R \to S$ such that for all $a, b \in R$
+    \begin{itemize}
+        \item $\varphi(a + b) = \varphi(a) + \varphi(b)$
+        \item $\varphi(ab) = \varphi(a)\varphi(b)$
+        \item $\varphi(1_R) = 1_S$
+    \end{itemize}
+    In other words, $\varphi$ is a group homomorphism $R \to S$, that preserves the multiplication and the multiplicative identity.
+\end{ndfn}
+
+\begin{ndfn}
+    A bijective ring homomorphism is called an \keyword{isomorphism}.
+\end{ndfn}
+
+\begin{nthm}
+    Let $\varphi : R \to S$ be a ring homomorphism. Then, for all $a, b \in R$
+    \begin{enumerate}[label=(\roman*)]
+        \item $\varphi(-a) = -\varphi(a)$
+        \item $\varphi(0_R) = 0_S$
+    \end{enumerate}
+\end{nthm}
+
+\section{Ideals}
+
+\begin{ndfn}
+    Let $R$ be a ring. A left ideal of $R$ is a subset $I \subset R$ such that
+    \begin{itemize}
+        \item $(I,+) \subgroup (R,+)$
+        \item For all $r \in R$ and $x \in I$, we have $rx \in I$
+    \end{itemize}
+    A right ideal of $R$ is a subset $I \subset R$ such that
+    \begin{itemize}
+        \item $(I,+) \subgroup (R,+)$
+        \item For all $r \in R$ and $x \in I$, we have $xr \in I$
+    \end{itemize}
+    A 2-sided ideal is a subset that is both a left and a right ideal.
+\end{ndfn}
+
+\begin{nlemma}
+    The only ideals of a field $\F$ are $0$ and $\F$ itself. (Here, $0$ is the zero ring).
+\end{nlemma}
 
 \end{document}
