@@ -17,5 +17,60 @@
 \textbf{Disclaimer:} This document most likely contains some errors --- use with caution. I have rephrased or paraphrased the content in many of the sections. Some examples may be missing. The numbering that I have used for sections, definitions, theorems, etc will not match the numbering given in the lectures.
 
 \section{Introduction}
+Fluid mechanics is the study of fluids either in motion (fluid dynamics) or at rest (fluid statics) and the subsequent effects of the fluid upon the boundaries. Both gases and liquids are classified as fluids.
+
+From the point of view of fluid mechanics, all matter consists of only two states, fluid and solid. A solid can resist a shear stress by a static deformation; a fluid cannot. Any shear stress applied to a fluid, no matter how small, will result in motion of that fluid. The fluid moves and deforms continuously as long as the shear stress is applied. In simpler terms, a fluid has no definite shape; it takes the shape of its container (think of water in a glass).
+
+\missing{Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.}
+
+\section{Dimensions and Units}
+A dimension is the measure by which a physical variable is expressed quantitatively. A unit is a particular way of attaching a number to the quantitative dimension. Thus, length is a dimension associated with such variables as distance, displacement, width, deflection, and height, while centimetres and inches are both numerical units for expressing length.
+
+There are several different systems of units. We shall use the British Gravitational (BG) and International System (SI) of units.
+
+Some dimensions appear as a combination of other dimensions (e.g. velocity is a combination of length and time). As a result, we can derive all the required dimensions from a smaller set of quantities, called the primary dimensions. In fluid mechanics, we typically only deal with 4 primary dimensions. Table~(\ref{tab:primary-dimensions}) lists these primary dimensions along with their respective units in the SI and BG systems, as well as the formulae for converting between these two systems.
+\begin{table}[htb]
+    \caption{Primary dimensions in fluid mechanics, with their SI and BG base units}
+    \label{tab:primary-dimensions}
+    \centering
+    \begin{tabularx}{\textwidth}{Xp{25mm}p{25mm}p{35mm}}
+        \toprule
+        Dimension & SI Unit & BG Unit & Conversion Factor\\
+        \midrule
+        Mass $[M]$ & kilogram (\si{kg}) & slug (\si{slug}) & $\SI{1}{slug} = \SI{14.5939}{kg}$\\
+        Length $[L]$ & meter (\si{m}) & foot (\si{ft}) & $\SI{1}{ft} = \SI{0.3048}{m}$\\
+        Time $[T]$ & second (\si{s}) & second (\si{s}) & $\SI{1}{s} = \SI{1}{s}$\\
+        Temperature $[\Theta]$ & Kelvin (\si{K}) & Rankine (\si{^{\circ}R}) & $\SI{1}{K} = \ang{1.8}\si{R}$\\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+Table~(\ref{tab:derived-dimensions}) lists some of the commonly used derived dimensions along with their SI and BG units, and the corresponding conversion factors. It should be noted that the value of the gravitation acceleration on Earth is $g = \SI{9.81}{m.s^{-2}}$ in the SI units and this converts to $g = \SI{32.174}{ft.s^{-2}}$ in the BG units.
+\begin{table}[htb]
+    \caption{Some derived dimensions with their SI and BG base units}
+    \label{tab:derived-dimensions}
+    \centering
+    \begin{tabularx}{\textwidth}{Xp{25mm}p{25mm}p{35mm}}
+        \toprule
+        Dimension & SI Unit & BG Unit & Conversion Factor\\
+        \midrule
+        Area $[L^2]$ & $\si{m^2}$ & $\si{ft^2}$ & $\SI{1}{ft^2} = \SI{10.764}{m^2}$\\
+        Volume $[L^3]$ & $\si{m^3}$ & $\si{ft^3}$ & $\SI{1}{ft^3} = \SI{35.315}{m^2}$\\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+\section{Properties of the Velocity Field}
+\missing{Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.}
 
 \end{document}
