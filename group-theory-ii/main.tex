@@ -1,0 +1,207 @@
+\documentclass[11pt]{penrose}
+
+\usepackage{mathsphystools}
+\usepackage{thmstyles}
+
+\setlist[enumerate]{label=(\roman*)}
+
+\title{MATH ???: Group Theory II}
+\subtitle{Brief lecture notes}
+\author{Rashid M. Talha}
+\affiliation{School of Natural Sciences, NUST}
+\date{\today}
+\begin{document}
+
+\maketitle
+
+\textbf{Textbooks \& Reference books:}
+\begin{itemize}
+    \item \dots
+    \item \dots
+    \item \dots
+    \item \dots
+\end{itemize}
+
+\textbf{Disclaimer:} This document most likely contains some errors. Use with caution. I have rephrased or paraphrased the content in many of the sections. Some examples may be missing. The numbering that I have used for sections, definitions, theorems, etc will not match the numbering given in the lectures.
+
+\section{Recap of Group Theory I}
+\begin{ndfn}
+    Let $G$ be a non-empty set, and $* : G \times G \to G$ be a binary operation. The pair $(G, *)$ is called a \keyword{group} if it satisfies all of the following
+    \begin{enumerate}
+        \item $\forall a, b, c \in G$, $(a * b) * c = a * (b * c)$ \hfill(\keyword{Associativity})
+        \item $\exists e \in G$ such that $\forall a \in G$, $a * e = e * a = a$ \hfill(\keyword{Identity})
+        \item $\forall a \in G$, $\exists a^{-1} \in G$ such that $a * a^{-1} = a^{-1} * a = e$ \hfill(\keyword{Inverse})
+    \end{enumerate}
+\end{ndfn}
+
+\begin{ndfn}
+    A group $(G, *)$ is called \keyword{Abelian} if the binary operation $*$ is commutative. That is, for all $a, b \in G$, $a * b = b * a$ .
+\end{ndfn}
+
+\begin{nthm}
+    Each group has a unique identity element.
+\end{nthm}
+
+\begin{nthm}
+    Each $a \in G$ has a unique inverse element.
+\end{nthm}
+
+\begin{nthm}
+    Let $G$ be a group. Then, for all $a \in G$, $(a^{-1})^{-1} = a$.
+\end{nthm}
+
+\begin{nthm}
+    Let $G$ be a group. Then, for all $a, b \in G$, $(ab)^{-1} = b^{-1} a^{-1}$.
+\end{nthm}
+
+\begin{ndfn}
+    The \keyword{order} of a group $G$, denoted $\abs{G}$ or $O(G)$, is the number of elements in $G$. If $G$ has infinitely many elements then $\abs{G} = \infty$.
+\end{ndfn}
+
+\begin{ndfn}
+    A non-empty subset $H \subseteq G$ is called a \keyword{subgroup} of $G$ if it is a group under the same binary operation. We denote this as $H \subgroup G$.
+\end{ndfn}
+
+\begin{ndfn}
+    $H \subgroup G$ is called a \keyword{proper subgroup} if $H \neq G$. This is sometimes emphasised by writing $H < G$. A proper subgroup is called non-trivial if $H \neq \set{e}$.
+\end{ndfn}
+
+\begin{nthm}
+    Let $G$ be a group. A non-empty subset $H \subseteq G$ is a subgroup of $G$ if and only if
+    \begin{enumerate}
+        \item $a, b \in H \implies ab \in H$.
+        \item $a \in H \implies a^{-1} \in H$.
+    \end{enumerate}
+\end{nthm}
+
+\begin{nthm}
+    Let $G$ be a group. A non-empty subset $H \subseteq G$ is a subgroup of $G$ if and only if $a, b \in H \implies ab^{-1} \in H$.
+\end{nthm}
+
+\begin{ndfn}
+    The order of an element $a \in G$ is the least positive integer $k$ such that $a^k = e$. We denote this as $O(a)$ or $\abs{a}$.
+\end{ndfn}
+
+\begin{nthm}
+    The set $K_4 = \set{1, a, b, ab}$ where the order of each non-identity element is $2$ forms a group.
+\end{nthm}
+
+\begin{nthm}
+    The set $Q_8 = \set{\pm 1, \pm i, \pm j, \pm k}$ forms a group with the multiplication rule $i^2 = j^2 = k^2 = ijk = -1, (-1)^2 = 1$.
+\end{nthm}
+
+\begin{nthm}\label{thm:cyclic-finite-form}
+    Let $G$ be a group, and take $a \in G$ such that $a^n = e$. Then, the cyclic group $\cyclic{a}$ has the form $\set{e, a, a^2, \dots, a^{n-1}}$.
+\end{nthm}
+
+\begin{nthm}\label{thm:cyclic-group-order}
+    Let $G = \cyclic{a}$ be a cyclic group. Then, $|G| = O(a)$.
+\end{nthm}
+
+\begin{nthm}
+    Every cyclic group is abelian.
+\end{nthm}
+
+\begin{nthm}
+    Every subgroup of a cyclic group is cyclic.
+\end{nthm}
+
+\begin{nthm}
+    Let $G = \cyclic{a}$ be a finite cyclic group of order $n$. Then an element $a^k$ is a generator of $G$ if and only if $\gcd(k,n) = 1$.
+\end{nthm}
+
+\begin{nthm}
+    The number of generators for a finite cyclic group of order $n$ is $\varphi(n)$, the Euler's $\varphi$ function. An infinite cyclic group $G = \cyclic{a}$ has exactly two generators.
+\end{nthm}
+
+\begin{ndfn}
+    Let $H \subgroup G$. Take some $a \in G$. The subsets
+    \begin{equation*}
+        aH = \set{ah \st h \in H}
+        \quad\text{and}\quad
+        Ha = \set{ha \st h \in H}
+    \end{equation*}
+    are called the left and right \keyword{cosets} of $H$ containing $a \in G$, respectively.
+\end{ndfn}
+
+For the coset $aH$, the element $a$ is called a \keyword{representative} of the coset. We note that any element of $aH$ can act as its representative. A coset always contains its representative element; because $a = a e = e a$ and $e \in H$ for every subgroup.
+
+\begin{nthm}\label{thm:coset-properties-a}
+    Let $H \subgroup G$ and $a \in G$.
+    \begin{enumerate}
+        \item $a \in aH$
+        \item $aH = bH \iff a \in bH$
+        \item $aH = bH$ or $aH \cap bH = \emptyset$
+    \end{enumerate}
+\end{nthm}
+
+\begin{nthm}
+    Let $H$ be a subgroup of $G$ and let $a, b \in G$. Then,
+    \begin{enumerate}
+        \item $aH = H$ if and only if $a \in H$.
+        \item $|aH| = |bH|$
+        \item $aH = bH$ if and only if $a^{-1} b \in H$.
+    \end{enumerate}
+\end{nthm}
+
+Again, we have an analogous version of the previous two theorems for right cosets.
+
+\begin{nthm}[Lagrange]
+    Let $G$ be a finite group and $H$ be its subgroup. Then $|H|$ divides $|G|$. Moreover, the number of distinct left (right) cosets of $H$ in $G$ is $|G|/|H|$.
+\end{nthm}
+
+\begin{ndfn}
+    Let $H \subgroup G$. The number of distinct left (right) cosets of $H$ in $G$ is called the index of $H$ in $G$. It is denoted as $[G:H]$.
+\end{ndfn}
+
+When $G$ is a finite group, Lagrange's theorem states that $[G:H] = |G|/|H|$.
+
+\begin{ncor}\label{cor:lagrange-element-order}
+    Let $G$ be a finite group and $a \in G$. Then $O(a)$ divides the order of $G$.
+\end{ncor}
+
+\begin{ncor}
+    If $G$ is a finite group and $a \in G$, then $a^{|G|} = e$.
+\end{ncor}
+
+\begin{ncor}
+    Every group of prime order is cyclic.
+\end{ncor}
+
+\section{Subgroups generated by Subsets}
+\begin{ndfn}
+    A group $G$ is called \keyword{cyclic} if there is an element $a \in G$ such that all elements of $G$ can be written as powers of $a$. More precisely, $\forall g \in G$, $\exists m \in \Z$ such that $g = a^m$.
+
+    Such an element $a$ is called a \keyword{generator} of $G$, and we say that $G$ is the group generated by $a$ and denote this as $G = \cyclic{a}$. Cyclic group of order $n$ is sometimes denoted as $C_n$.
+\end{ndfn}
+
+Generators are not unique. Indeed if $a \in G$ is a generator then so is $a^{-1}$.
+
+    
+\dots
+
+\section{Commutator Subgroup}
+\begin{ndfn}
+    Let $G$ be a group. For any $a,b \in G$ we define $\comm{a,b} = aba^{-1}b^{-1}$ as the commutator of $a$ and $b$.
+\end{ndfn}
+
+Note that $\comm{a,b}^{-1} = \paren*{aba^{-1}b^{-1}}^{-1} = bab^{-1}a^{-1} = \comm{b,a}$.
+
+\begin{ndfn}
+    Let $G$ be a group. Consider the set $S = \set*{ \comm{a,b} \st a,b \in G }$. The subgroup generated by $S$ is called the commutator subgroup of $G$. We denote this as $\comm{G,G}$.
+\end{ndfn}
+
+We know that a general element of $\cyclic{S}$ is a finite product of commutators and their inverses. However, since the inverse of a commutator is again a commutator, we obtain that a general element of $\cyclic{S}$ is simply a product of commutators; $x \in \cyclic{S} = \comm{G,G}$ means that $x = \comm{a_{1}, b_{1}} \dots \comm{a_{k}, b_{k}}$ for $a_{1}, \dots, a_{k}, b_{1}, \dots, b_{k} \in G$.
+
+\begin{nthm}
+    Let $G$ be a group and $G' = \comm{G,G}$. Then,
+    \begin{enumerate}
+        \item $G' \nsubgroup G$ (i.e. $G'$ is normal in $G$).
+        \item $G / G'$ is abelian.
+        \item If $G / K$ is abelian for some $K \nsubgroup G$, then $G' \subseteq K$ (i.e. $G'$ is the smallest subgroup of $G$ such that $G/G'$ is abelian).
+    \end{enumerate}
+\end{nthm}
+
+
+
+\end{document}
