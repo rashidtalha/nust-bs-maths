@@ -38,7 +38,7 @@ Some dimensions appear as a combination of other dimensions (e.g. velocity is a 
     \caption{Primary dimensions in fluid mechanics, with their SI and BG base units}
     \label{tab:primary-dimensions}
     \centering
-    \begin{tabularx}{\textwidth}{Xp{25mm}p{25mm}p{35mm}}
+    \begin{tabularx}{\textwidth}{Xp{30mm}p{30mm}p{35mm}}
         \toprule
         Dimension & SI Unit & BG Unit & Conversion Factor\\
         \midrule
@@ -55,22 +55,39 @@ Table~(\ref{tab:derived-dimensions}) lists some of the commonly used derived dim
     \caption{Some derived dimensions with their SI and BG base units}
     \label{tab:derived-dimensions}
     \centering
-    \begin{tabularx}{\textwidth}{Xp{25mm}p{25mm}p{35mm}}
+    \begin{tabularx}{\textwidth}{Xp{35mm}p{35mm}}
         \toprule
-        Dimension & SI Unit & BG Unit & Conversion Factor\\
+        Dimension & SI Unit & BG Unit \\
         \midrule
-        Area $[L^2]$ & $\si{m^2}$ & $\si{ft^2}$ & $\SI{1}{ft^2} = \SI{10.764}{m^2}$\\
-        Volume $[L^3]$ & $\si{m^3}$ & $\si{ft^3}$ & $\SI{1}{ft^3} = \SI{35.315}{m^2}$\\
+        Area $[L^2]$ & $\si{m^2}$ & $\si{ft^2}$ \\
+        Volume $[L^3]$ & $\si{m^3}$ & $\si{ft^3}$ \\
+        Velocity $[LT^{-1}]$ & $\si{m.s^{-1}}$ & $\si{ft.s^{-1}}$ \\
+        Acceleration $[LT^{-2}]$ & $\si{m.s^{-2}}$ & $\si{ft.s^{-2}}$ \\
+        Force $[MLT^{-2}]$ & $\si{N}=\si{kg.m.s^{-2}}$ & $\si{slug.ft.s^{-2}}$ \\
+        Pressure $[ML^{-1}T^{-2}]$ & $\si{Pa}=\si{N.m^{-2}}$ & $\si{lbf.ft^{-2}}$ \\
+        Energy $[ML^{2}T^{-2}]$ & $\si{J}=\si{N.m}$ & $\si{ft.lbf}$ \\
         \bottomrule
     \end{tabularx}
 \end{table}
 
 \section{Properties of the Velocity Field}
-\missing{Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.}
+Foremost among the properties of a flow is the velocity field V(x, y, z, t). In fact, determining the velocity is often tantamount to solving a flow problem, since other properties follow directly from the velocity field.
+
+In general, velocity is a vector function of position and time and thus has three components $u$, $v$, and $w$, each a scalar field in itself
+\begin{equation}
+    \vec{v}(x,y,z,t) = u(x,y,z,t) \uvec{i} + w(x,y,z,t) \uvec{j} + w(x,y,z,t) \uvec{k}.
+\end{equation}
+Several other quantities, called kinematic properties, can be derived by mathematically manipulating the velocity field. Some of these are listed below, and we shall study them in detail later in this course
+\begin{equation*}
+    Q = \int \vec{V} \cdot \uvec{n} \,dA,
+    \quad
+    \vec{\omega} = \frac{1}{2} \nabla \times \vec{V},
+    \quad
+    \dots
+\end{equation*}
+
+\missing{\begin{negg}
+    CALCULATING THE CONVECTIVE ACCELERATION DUE TO A STEADY FLOW THROUGH A CONTRACTING SECTION OF A DUCT
+\end{negg}}
 
 \end{document}
