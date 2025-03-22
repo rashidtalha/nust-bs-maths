@@ -1,0 +1,145 @@
+\documentclass[11pt]{penrose}
+
+\input{header}
+
+\title{Past Paper: Functional Analysis I}
+\subtitle{Midterm Exam, 2024}
+\begin{document}
+
+\maketitle
+\warningtext
+
+\begin{problem}{1 (a)}
+    These are easy exercises where we simply check all the axioms of being a norm.
+\end{problem}
+
+\begin{problem}{1 (b)}
+    Suppose $\norm{x} = \min\set{\abs{\xi_{1}}, \abs{\xi_{2}}}$ with $x = (\xi_{1}, \xi_{2})$.
+
+    Consider the vector $x = (1,0)$. Then, $\norm{x} = \min\set{1,0} = 0$, while $x \neq 0$. Therefore, this is not a norm.
+\end{problem}
+
+\begin{problem}{2 (a)}
+    Suppose $x \in \bar{M}$. This means, either $x \in M$ or $x \in M'$.
+
+    If $x \in M$, then consider the constant sequence $(x_{n}) = x, \forall n$. Then, clearly $x_{n} \to n$.
+
+    On the other hand, if $x \notin M$, then $x \in M'$. This means, for all $n > 1$ the open ball $B(x, 1/n)$ contains infinitely many points of $M$. For each $n > 1$, choose some $x_{n} \in B(x, 1/n) \cap M$. Then $(x_{n}) \in M$ that converges to $x$ because $1/n \to 0$ as $n \to \infty$.
+
+    Conversely, suppose there is a sequence $(x_{n}) \in M$ such that $x_{n} \to x$.
+
+    If $x \in M$, then $x \in \bar{M} = M \cup M'$.
+
+    And, if $x \notin M$, then $x$ is a limit point of a sequence in $M$. Therefore, $x \in M'$. So, $x \in \bar{M} = M \cup M'$.
+\end{problem}
+
+\begin{problem}{2 (b)}
+    As $d$ is real-valued, finite and non-negative, we have
+    \begin{equation*}
+        0 \leq d(x,y) < 1 + d(x,y)
+        \implies
+        0 \leq \frac{d(x,y)}{1 + d(x,y)} < 1
+        \implies
+        0 \leq \tilde{d}(x,y) < 1
+    \end{equation*}
+    for all $x,y \in X$. Therefore, $\tilde{d}$ is also real-valued, finite and non-negative. Moreover,
+    \begin{equation*}
+        \tilde{d}(x,y) = 0
+        \iff
+        \frac{d(x,y)}{1 + d(x,y)} = 0
+        \iff
+        d(x,y) = 0
+        \iff
+        x = y.
+    \end{equation*}
+    And,
+    \begin{equation*}
+        \tilde{d}(y,x) = \frac{d(y,x)}{1 + d(y,x)} = \frac{d(x,y)}{1 + d(x,y)} = \tilde{d}(x,y).
+    \end{equation*}
+    Now, for the triangle inequality, firstly note that
+    \begin{equation*}
+        f(t) = \frac{t}{1+t} \implies f'(t) = \frac{1}{\paren{1+t}^{2}} \geq 0.
+    \end{equation*}
+    Thus, $f(t)$ is a monotonically increasing function. Consequently,
+    \begin{equation*}
+        d(x,y) \leq d(x,z) + d(z,y) \implies f(d(x,y)) \leq f(d(x,z) + d(z,y)).
+    \end{equation*}
+    As a result, for all $x,y,z \in X$,
+    \begin{align*}
+        \tilde{d}(x,y)
+        = f(d(x,y))
+        &\leq f(d(x,z) + d(z,y))\\
+        &= \frac{d(x,z) + d(z,y)}{1 + d(x,z) + d(z,y)}\\
+        &= \frac{d(x,z)}{1 + d(x,z) + d(z,y)} + \frac{d(z,y)}{1 + d(x,z) + d(z,y)}\\
+        &\leq \frac{d(x,z)}{1 + d(x,z)} + \frac{d(z,y)}{1 + d(z,y)}.
+    \end{align*}
+
+    Moreover, the set $X$ is bounded in the metric $\tilde{d}$ because
+    \begin{equation*}
+        0 \leq \tilde{d}(x,y) < 1
+        \implies
+        d(X) = \sup_{x,y \in X} \tilde{d}(x,y) \leq \sup_{x,y \in X} 1 \leq 1.
+    \end{equation*}
+\end{problem}
+
+\begin{problem}{3 (a)}
+    \underline{Definition:} A metric space $X$ is called complete if every Cauchy sequence in $X$ converges to a limit in $X$.
+
+    \underline{Example (Complete):} $(\R, \abs{})$ is a complete metric space because from real analysis we know that every Cauchy sequence of real numbers is convergent.
+    
+    \underline{Example (Incomplete):} The space $X = (0,2) \subset \R$ with the metric $d(x,y) = \abs{x-y}$ induced from $\R$ is incomplete. To see this, consider the sequence $(x_{n}) = 1/n \in X$. Then, $\forall\varepsilon > 0$, taking $N = 2/\varepsilon$ gives
+    \begin{equation*}
+        n > m > N
+        \implies
+        d(x_{n}, x_{m}) =
+        \abs*{\frac{1}{n} - \frac{1}{m}}
+        \leq \frac{1}{n} + \frac{1}{m} < \frac{2}{N} = \varepsilon.
+    \end{equation*}
+    Therefore, $(x_{n})$ is Cauchy. However, $(x_{n}) \to 0 \notin X$. So, $(x_{n})$ is not convergent in $X$.
+\end{problem}
+
+\begin{problem}{3 (b)}
+    \underline{Proof:} Let $(X,d)$ be a metric space and $(a_{n})$ be a sequence in $X$ with $a_{n} \to a \in X$. This means, $\forall \varepsilon > 0$, there exists $N \in \N$ such that $n > N$ implies $d(a_{n}, a) < \varepsilon/2$. Thus,
+    \begin{equation*}
+        n,m > N \implies d(a_{n}, a_{m}) \leq d(a_{n}, a) + d(a, a_{m}) < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon.
+    \end{equation*}
+    Therefore, $(a_{n})$ is Cauchy.
+
+    The converse is not true in general. To see this, let $X = (0,2) \subset \R$ be a metric space with the metric induced from $\R$, $d(x,y) = \abs{x-y}$. Consider the sequence $(x_{n}) = 1/n \in X$. Then, $\forall\varepsilon > 0$, $N = 2/\varepsilon$ gives
+    \begin{equation*}
+        n > m > N
+        \implies
+        d(x_{n}, x_{m}) =
+        \abs*{\frac{1}{n} - \frac{1}{m}}
+        \leq \frac{1}{n} + \frac{1}{m} < \frac{2}{N} = \varepsilon.
+    \end{equation*}
+    Therefore, $(x_{n})$ is Cauchy. However, $(x_{n}) \to 0 \notin X$. So, $(x_{n})$ is not convergent in $X$.
+\end{problem}
+
+\begin{problem}{4 (a)}
+    Let $Y$ be a finite dimensional subspace of a normed space $X$ with $\dim Y = r$. Let $e_{1}, \dots, e_{r}$ be a basis for $Y$. Let $(y_{n})$ be a Cauchy sequence in $Y$. Then, we can write
+    \begin{equation*}
+        y_{n} = \alpha_{1}^{(n)} e_{1} + \dots + \alpha_{r}^{(n)} e_{r}.
+    \end{equation*}
+    Also, since $(y_{n})$ is Cauchy, we know that $\forall\varepsilon>0$, there exists $N \in \N$ such that $\norm{ y_{n} - y_{m} } < \varepsilon$ whenever $n, m > N$. As a result, $n, m > N$ implies
+    \begin{equation*}
+        \varepsilon > \norm{ y_{n} - y_{m} } = \norm*{ \sum_{j=1}^{r} \paren{\alpha_{j}^{(n)} - \alpha_{j}^{(m)}} e_{j} } \geq c \sum_{j=1}^{r} \abs{\alpha_{j}^{(n)} - \alpha_{j}^{(m)}} \geq \abs{\alpha_{j}^{(n)} - \alpha_{j}^{(m)}}, \;\forall j
+    \end{equation*}
+    for some $c > 0$. Thus, for each fixed $j$,
+    \begin{equation*}
+        n, m > N \implies \abs{\alpha_{j}^{(n)} - \alpha_{j}^{(m)}} < \varepsilon/c.
+    \end{equation*}
+    So, $(\alpha_{j}^{(n)})$ is a Cauchy sequence in $\R$ which is a complete normed space. Therefore, it is convergent, with limit $\alpha_{j}$, say. Let $y = \alpha_{1} e_{1} + \dots + \alpha_{r} e_{r}$. Clearly, $y \in Y$. Then,
+    \begin{equation*}
+        \norm{ y_{n} - y }
+        = \norm*{ \sum_{j=1}^{r} \paren{\alpha_{j}^{(n)} - \alpha_{j}} e_{j} }
+        \leq \sum_{j=1}^{r} \abs{\alpha_{j}^{(n)} - \alpha_{j}} \norm{e_{j}}.
+    \end{equation*}
+    Now, $\alpha_{j}^{(n)} \to \alpha_{j}$ means that $\norm{ y_{n} - y } \to 0$. Therefore, $y_{n} \to y \in Y$. As every arbitrary Cauchy sequence in $Y$ is convergent, we conclude that $Y$ is complete.
+\end{problem}
+
+\begin{problem}{4 (b)}
+    Let $X = \ell^{\infty}$ be the space of bounded sequences, and $Y$ be the space of sequences with finitely many non-zero terms. Then, $Y$ is a subspace of $X$ that is not complete (while $X$ is complete).
+\end{problem}
+
+\end{document}
