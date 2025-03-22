@@ -5,7 +5,7 @@
 
 \setlist[enumerate]{label=(\roman*)}
 \geometry{left=26mm, right=26mm}
-% \fancyhfoffset{0pt}
+\fancyhfoffset{0pt}
 
 \title{MATH 421: Group Theory II}
 \subtitle{Brief lecture notes}
@@ -15,13 +15,6 @@
 \begin{document}
 
 \maketitle
-
-\textbf{Textbooks \& Reference books:}
-\begin{itemize}
-    \item \dots
-    \item \dots
-    \item \dots
-\end{itemize}
 
 \textbf{Disclaimer:} This document most likely contains some errors. Use with caution. I have rephrased or paraphrased the content in many of the sections. Some examples may be missing. The numbering that I have used for sections, definitions, theorems, etc will not match the numbering given in the lectures.
 
@@ -213,11 +206,11 @@ By definition, a general element of $\cyclic{S}$ is a finite product of commutat
 \end{negg}
 
 \begin{nthm}
-    Let $G$ be a group. Then,
+    Let $G'$ be the commutator subgroup of a group $G$. Then,
     \begin{enumerate}
         \item $G' \nsubgroup G$ (i.e. $G'$ is normal in $G$).
         \item $G / G'$ is abelian.
-        \item $G'$ is the smallest subgroup of $G$ such that $G/G'$ is abelian; more precisely, $G/G'$ is abelian and if $G / K$ is abelian for some $K \nsubgroup G$, then $G' \subseteq K$.
+        \item $G'$ is the smallest subgroup of $G$ such that $G/G'$ is abelian; more precisely, if $G / K$ is abelian for some $K \nsubgroup G$, then $G' \subseteq K$.
     \end{enumerate}
 \end{nthm}
 \begin{proof}
@@ -228,22 +221,55 @@ By definition, a general element of $\cyclic{S}$ is a finite product of commutat
         Take any $g \in G$ and $x \in G' \subseteq G$. Then $g x g^{-1} x^{-1} = \comm{g, x} \in G'$ because it is a commutator. Now, by closure in $G'$, we have
         $\paren*{ g x g^{-1} x^{-1} } x \in G' \implies g x g^{-1} \in G'$. As a result, $G' \nsubgroup G$.
 
-        \item Take $aG', bG' \in G/G'$. Then, $a^{-1}b^{-1}ab \in G \implies \paren*{a^{-1}b^{-1}ab} G' = G'$. So,
-        \begin{equation*}
-            \paren{ba\paren{a^{-1}b^{-1}ab}} G' = \paren{ba} G' \paren{a^{-1}b^{-1}ab} G' = \paren{ba G'} \paren{G'} = ba G'.
-        \end{equation*}
-        Now, $G/G'$ is abelian because
-        \begin{equation*}
-            \paren{aG'} \paren{bG'} = ab G' = \paren{baa^{-1}b^{-1}}ab G' = ba\paren{a^{-1}b^{-1}ab} G' = ba G' = \paren{bG'} \paren{aG'}.
-        \end{equation*}
+        \item Take any $a, b \in G$. Then, $(ba)^{-1} (ab) \in G'$ because $(ba)^{-1} (ab) = a^{-1} b^{-1} a b = [a^{-1}, b^{-1}]$ is a commutator of $a^{-1}, b^{-1} \in G$. And, $(ba)^{-1} (ab) \in G' \iff ab G' = ba G'$.
 
-        \item TBC
+        So, $G/G'$ is abelian because we obtain $(aG')(bG') = ab G' = ba G' = (bG')(aG')$.
+
+        \item Suppose $G/K$ is abelian for some $K \nsubgroup G$. This means, $\forall a,b \in G$,
+        \begin{equation*}
+            abK = (aK)(bK) = (bK)(aK) = baK.
+        \end{equation*}
+        Now, $abK = baK \iff (ba)^{-1}(ab) \in K$. And, $(ba)^{-1} (ab) = a^{-1} b^{-1} a b = [a^{-1}, b^{-1}]$. Therefore, $K$ contains all the commutators of $G$. Thus, $G' \subseteq K$.
+        \qedhere
     \end{enumerate}
 \end{proof}
 
-\missing{(POSSIBLY MISSING SOME CONTENT HERE)}
+\section{Direct Product of Groups}
 
-\section{Direct Product}
+\begin{ndfn}
+    Let $H, K \subgroup G$. Define $HK = \set{hk \st h \in H, k \in K}$ .
+\end{ndfn}
+
+In general, $HK$ may or may not be a subgroup of $G$.
+
+\begin{nthm}
+    Let $H, K \subgroup G$. Then, $HK$ is a subgroup of $G$ if and only if $HK = KH$.
+\end{nthm}
+\begin{proof}
+    TBC
+\end{proof}
+
+\begin{nthm}\label{thm:normal-product-subgroup}
+    Let $H \nsubgroup G$ and $K \subgroup G$. Then, $HK \subgroup G$.
+\end{nthm}
+\begin{proof}
+    Since $H \nsubgroup G$, we have $kH = Hk$, for all $k \in K \subseteq G$. And,
+    \begin{equation*}
+        kH = Hk \implies khk^{-1} = h \implies kh = hk
+    \end{equation*}
+    for all $k \in K$ and $h \in H$. Therefore, $HK = \set{hk \st h \in H, k \in K} = \set{kh \st h \in H, k \in K} = KH$.
+    Thus, $HK \subgroup G$.
+\end{proof}
+
+\begin{nthm}
+    If $H, K$ are two finite subgroups of a group $G$, then
+    \begin{equation*}
+        \abs{H} = \frac{\abs{H} \abs{K}}{\abs{H \cap K}}.
+    \end{equation*}
+\end{nthm}
+\begin{proof}
+    TBC
+\end{proof}
 
 \begin{ndfn}[External direct product]
     The \keyword{external direct product} of a collection of groups $G_{1}, \dots, G_{n}$ is the set $G_{1} \oplus \dots \oplus G_{n} = \set{ (g_{1}, \dots, g_{n}) \st g_{i} \in G_{i} }$.
@@ -256,8 +282,13 @@ By definition, a general element of $\cyclic{S}$ is a finite product of commutat
     \end{equation*}
     where $(g_{1}, \dots, g_{n}), (g'_{1}, \dots, g'_{n}) \in G_{1} \oplus \dots \oplus G_{n}$.
 \end{nthm}
+\begin{proof}
+    Easy exercise. We simply check all the group axioms.
+\end{proof}
 
-\missing{MISSING}
+\begin{remark}
+    It is easy to see that if $\abs{G_{i}} = r_{i}$, then $\abs{ G_{1} \oplus \dots \oplus G_{n} } = r_{1} r_{2} \dots r_{n}$.
+\end{remark}
 
 \begin{nthm}
     Let $G = G_{1} \oplus \dots \oplus G_{n}$ be a finite product of group and $g = (g_{1}, \dots, g_{n}) \in G$. Then, $\abs{g} = \lcm \set{\abs{g_{1}}, \dots, \abs{g_{n}}}$.
@@ -281,10 +312,14 @@ By definition, a general element of $\cyclic{S}$ is a finite product of commutat
 \end{proof}
 
 \begin{nthm}
-    Let $G, H$ be finite cyclic groups. Then, $G \oplus H$ is cyclic iff $\abs{G}$ and $\abs{H}$ are relatively prime.
+    Let $G, H$ be finite cyclic groups. Then, $G \oplus H$ is cyclic if and only if $\abs{G}$ and $\abs{H}$ are relatively prime.
 \end{nthm}
 \begin{proof}
-    TBC
+    Let $\abs{G} = m$ and $\abs{H} = n$. So, $\abs{G \oplus H} = mn$.
+
+    Suppose $G \oplus H$ is cyclic with the generator $(g,h)$. Then, $O((g,h)) = mn$. However, $O((g,h)) = \lcm\set{O(g), O(h)}$. Now, $O(g) \mid m$ and $O(h) \mid n$ by Lagrange's theorem. This implies $\lcm\set{O(g), O(h)} \mid \lcm\set{m,n}$.
+
+    So, $mn = \lcm\set{O(g), O(h)} \mid \lcm\set{m,n}$. Thus, $mn \leq \lcm\set{m,n}$. However, $\lcm\set{m,n} \mid mn$. Therefore, $\lcm\set{m,n} = mn$. In other words, $\gcd\set{m,n} = 1$.
 \end{proof}
 
 \begin{ncor}
@@ -299,36 +334,38 @@ By definition, a general element of $\cyclic{S}$ is a finite product of commutat
     The group $G \oplus H$ is abelian if and only if and $G$ and $H$ are abelian.
 \end{nlemma}
 \begin{proof}
-    TBC
-\end{proof}
-
-\missing{MISSING}
-
-\begin{nthm}
-    Let $H, K \subgroup G$. Then, $HK$ is a subgroup of $G$ if and only if $HK = KH$.
-\end{nthm}
-\begin{proof}
-    TBC
-\end{proof}
-
-\begin{nthm}
-    Let $H \nsubgroup G$ and $K \subgroup G$. Then, $HK \subgroup G$.
-\end{nthm}
-\begin{proof}
-    TBC
-\end{proof}
-
-\begin{nthm}
-    If $H, K$ are two finite subgroups of a group $G$, then
+    Suppose $G$ and $H$ are abelian. Then, for any $(g,h), (g',h') \in G \oplus H$ we have
     \begin{equation*}
-        \abs{H} = \frac{\abs{H} \abs{K}}{\abs{H \cap K}}.
+        (g,h) \oplus (g',h')
+        = (gg', hh')
+        = (g'g, h'h)
+        = (g',h') \oplus (g,h).
     \end{equation*}
-\end{nthm}
-\begin{proof}
-    TBC
+    Therefore, $G \oplus H$ is abelian.
+
+    Conversely, suppose $G \oplus H$ is abelian. Then, for all $g, g' \in G$ and $h, h' \in H$ we have
+    \begin{equation*}
+        (gg', hh')
+        = (g,h) \oplus (g',h')
+        = (g',h') \oplus (g,h)
+        = (g'g, h'h).
+    \end{equation*}
+    Therefore, $gg' = g'g$ and $hh' = h'h$. So, both $G$ and $H$ are abelian.
 \end{proof}
 
-\missing{MISSING}
+\begin{ndfn}[Internal direct product]
+    We say that a group $G$ is the internal direct product of $H$ and $K$ and write $G = H \times K$ if $H$ and $K$ are normal subgroups of $G$ and $H \cap K = \set{e}$ and $G = HK$.
+\end{ndfn}
+
+\begin{ndfn}[Internal direct product]
+    Let $H_{1}, H_{2}, \dots, H_{n}$ be a finite collection of normal subgroups of $G$. We say that $G$ is the internal direct product of $H_{1}, H_{2}, \dots, H_{n}$ and write $G = H_{1} \times H_{2} \times \dots \times H_{n}$ if
+    \begin{enumerate}
+        \item $G = H_{1} H_{2} \dots H_{n} = {h_{1} h_{2} \dots h_{n} \st h_{i} \in H_{i}}$.
+        \item $(H_{1} H_{2} \dots H_{i}) \cap H_{i+1} = \set{e}$, for $i = 1,2,\dots,n-1$
+    \end{enumerate}
+\end{ndfn}
+
+% MISSING: USEFUL EXAMPLE OF AN INTERNAL DIRECT PRODUCT
 
 \begin{nthm}
     If a group $G$ is the internal direct product of subgroups $H_{1}, \dots, H_{n}$, then $G$ is isomorphic to the external direct product of $H_{1}, \dots, H_{n}$. That is,
@@ -337,6 +374,10 @@ By definition, a general element of $\cyclic{S}$ is a finite product of commutat
     \end{equation*}
 \end{nthm}
 \begin{proof}
+    STUFF
+
+    Consider the isomorphism $\varphi : H_{1} \times \dots \times H_{n} \to H_{1} \oplus \dots \oplus H_{n}$ by        
+
     TBC
 \end{proof}
 
@@ -361,7 +402,7 @@ where $p_{i}$ and $n_{i}$ are uniquely determined by $G$, and $p_{i}$ (primes) n
 
 Two partitions that differ only in the order of the summands are considered as the same partitions. For example, $3+1$ and $1+3$ are the same partitions. Since the order of summand does not matter therefore we write the summands in the descending order.
 
-Note that the relation $\sim$ on the set of all groups, defined by $G_{1} \sim G_{2}$ iff $G_{1} \isom G_{2}$ is an equivalence relation. The equivalence class $[G] = \set{H : H \isom G}$ is called the isomorphism class of $G$.
+Note that the relation $\sim$ on the set of all groups, defined by $G_{1} \sim G_{2}$ iff $G_{1} \isom G_{2}$ is an equivalence relation. The class $[G] = \set{H : H \isom G}$ is called the isomorphism class of $G$.
 
 \begin{nthm}[Fundamental Theorem]
     Let $G$ be a finite abelian group of order $n > 1$. Consider the unique factorisation of $n$ into distinct prime powers $n = p_{1}^{\alpha_{1}} p_{2}^{\alpha_{2}} \dots p_{k}^{\alpha_{k}}$. Then,
@@ -437,8 +478,24 @@ Throughout this section, let $G$ be a group.
         \item $H \cap N$ is a normal subgroup of $H$.
     \end{enumerate}
 \end{nlemma}
-\begin{proof}
-    TBC
+\begin{proof}\phantom{}
+    \begin{enumerate}
+        \item This was proved in theorem (\ref{thm:normal-product-subgroup}).
+
+        \item Firstly, note that $N, HN \subgroup G$ and $N \subseteq HN$ means that $N \subgroup HN$.
+
+        Now, $N \subgroup HN \subgroup G$ along with $N \nsubgroup G$ means that $N \nsubgroup HN$.
+
+        \item Firstly, note that $H, N \subgroup G \implies (H \cap N) \subgroup G$. Also, $H, (H \cap N) \subgroup G$ with $(H \cap N) \subseteq H$ means that $(H \cap N) \subgroup H$.
+
+        Now, take any $a \in (H \cap N)$ and $h \in H$. Then,
+        \begin{align*}
+            a \in (H \cap N) \implies a \in N &\implies h a h^{-1} \in N \qquad\text{(as $N \nsubgroup G$)},\\
+            a \in (H \cap N) \implies a \in N &\implies h a h^{-1} \in H \qquad\text{(by closure in  $H$)}.
+        \end{align*}
+        So, $h a h^{-1} \in (H \cap N)$, for all $h \in H$ and $a \in (H \cap N)$. Therefore, $H \cap N \nsubgroup N$.
+        \qedhere
+    \end{enumerate}
 \end{proof}
 
 \begin{nthm}[Second Isomorphism Theorem]
@@ -448,14 +505,44 @@ Throughout this section, let $G$ be a group.
     \end{equation*}
 \end{nthm}
 \begin{proof}
-    TBC
+    Firstly, note that elements of $HN/N$ have the form $hN$ because $(hn)N = hN$ as $n \in N$.
+
+    Consider the map $\varphi : H \to HN/N$ defined as $\varphi(h) = hN$. This is clearly surjective because the pre-image of $hN \in HN/N$ is $h \in H$. Moreover, it is a homomorphism because
+    \begin{equation*}
+        \varphi( h_{1} h_{2} )
+        = (h_{1} h_{2}) N
+        = (h_{1}N) (h_{2}N)
+        = \varphi(h_{1}) \varphi(h_{2}).
+    \end{equation*}
+    Therefore, by the 1st isomorphism theorem, $H / \ker\varphi \isom HN / N$.
+
+    However, $\ker\varphi = \set{h \in H \st \varphi(h) = N} = \set{h \in H \st hN = N} = \set{h \in H \st h \in N} = H \cap N$. Therefore,
+    \begin{equation*}
+        H / (H \cap N) \isom HN / N. \qedhere
+    \end{equation*}
 \end{proof}
 
 \begin{nlemma}
     Let $K, N \nsubgroup G$ with $K \subseteq N$. Then, $N/K \nsubgroup G/K$.
 \end{nlemma}
 \begin{proof}
-    TBC
+    Note that $N/K$ is a non-empty subset of $G/K$ because $1 \in N \implies 1K = K \in N/K$. Take any $n_{1}K, n_{2}K \in N/K$, then
+    \begin{equation*}
+        (n_{1}K) (n_{2}K)^{-1}
+        = (n_{1}K) (n_{2}^{-1} K)
+        = n_{1} n_{2}^{-1} K
+        \in N/K
+    \end{equation*}
+    since $n_{1} n_{2}^{-1} \in N$. Therefore, $N/K \subgroup G/K$.
+
+    Next, for every $nK \in N/K$ and $gK \in G/K$, we have
+    \begin{equation*}
+        (gK) (nK) (gK)^{-1}
+        = gK nK g^{-1}K
+        = g n g^{-1 } K
+        \in N/K
+    \end{equation*}
+    since $N \nsubgroup G \implies g n g^{-1 } \in N$. Thus, $N/K \nsubgroup G/K$.
 \end{proof}
 
 \begin{nthm}[Third Isomorphism Theorem]
@@ -465,7 +552,33 @@ Throughout this section, let $G$ be a group.
     \end{equation*}
 \end{nthm}
 \begin{proof}
-    TBC
+    Consider the map $\varphi : G/K \to G/N$ with $\varphi(gK) = gN$.
+
+    This is well-defined because
+    \begin{equation*}
+        g_{1}K = g_{2}K
+        \implies
+        g_{1}^{-1}g_{2} \in K \subseteq N
+        \implies
+        g_{1}^{-1}g_{2} \in N
+        \implies
+        g_{1}N = g_{2}N
+        \implies
+        \varphi(g_{1}K) = \varphi(g_{2}K).
+    \end{equation*}
+    Also, $\varphi$ is clearly surjective, since $gK$ is the preimage of $gN$. Next, note that
+    \begin{equation*}
+        \varphi( (g_{1}K)(g_{2}K) )
+        = \varphi( g_{1} g_{2} K )
+        = g_{1} g_{2} N
+        = (g_{1}N) (g_{2}N)
+        = \varphi(g_{1}K) \varphi(g_{2}K).
+    \end{equation*}
+    So, $\varphi$ is a surjective homomorphism. Moreover,
+    \begin{equation*}
+        \ker\varphi = \set{gK \st \varphi(gK) = N} = \set{gK \st gN = N} = \set{gK \st g \in N} = N/K.
+    \end{equation*}
+    Therefore, by the first isomorphism theorem, $(G/K) / (N/K) \isom G/N$.
 \end{proof}
 
 \section{Centraliser and Normaliser}
@@ -483,23 +596,17 @@ Throughout this section let $A$ be a non-empty subset of $G$.
     Let $A \subseteq G$. Then, $C_{G}(A) \subgroup G$.
 \end{nthm}
 \begin{proof}
-    The centraliser $C_{G}(A) \subseteq G$ is non-empty because $1 \in C_{G}(A)$. Take any $x, y \in C_{G}(A)$. Then, $xax^{-1} = a$ and $yay^{-1} = a$, for all $a \in A$. Then,
-    \begin{equation*}
-        yay^{-1} = a
-        \implies
-        ya = ay
-        \implies
-        a = y^{-1}ay.
-    \end{equation*}
+    The centraliser $C_{G}(A) \subseteq G$ is non-empty because $1 \in C_{G}(A)$. Take any $x, y \in C_{G}(A)$. Then, $xax^{-1} = a$ and $yay^{-1} = a$, for all $a \in A$. Then, $yay^{-1} = a \implies ya = ay \implies a = y^{-1}ay$.
+
     So, $(xy^{-1}) a (xy^{-1})^{-1} = x y^{-1} a y x^{-1} = x a x^{-1} = a$. Therefore, $xy^{-1} \in C_{G}(A)$, and we conclude that $C_{G}(A) \subgroup G$.
 \end{proof}
 
 \begin{remark}\phantom{}
     \begin{enumerate}
         \item If $G$ is abelian, then $C_{G}(A) = G$ for all non-empty $A \subseteq G$.
-        \item When $A = \set{a}$ is a singeton, we write $C_{G}(a)$ instead of $C_{G}(\set{a})$.
+        \item When $A = \set{a}$ is a singleton, we write $C_{G}(a)$ instead of $C_{G}(\set{a})$.
         \item For every $a \in G$, $Z(G) \subgroup C_{G}(a)$.
-        \item The centraliser of $G$ in $G$ is the center of $G$; i.e. $Z(G) = C_{G}(G)$.
+        \item The centraliser of $G$ in $G$ is the centre of $G$; i.e. $Z(G) = C_{G}(G)$.
     \end{enumerate}
 \end{remark}
 
@@ -540,22 +647,41 @@ Throughout this section let $A$ be a non-empty subset of $G$.
     Let $A \subseteq G$. Then, $C_{G}(A) \nsubgroup N_{G}(A)$.
 \end{nprop}
 \begin{proof}
-    TBC
+    We already have $C_{G}(A) \subgroup N_{G}(A)$.
+
+    We need to show that for all $c \in C_{G}(A)$ and $n \in N_{G}(A)$, the element $n c n^{-1} \in C_{G}(A)$. So, let $c \in C_{G}(A)$ and $n \in N_{G}(A)$. Then, for every $a \in A$,
+    \begin{equation*}
+        (ncn^{-1}) a (ncn^{-1})^{-1}
+        = nc(n^{-1} a n)c^{-1}n^{-1}
+        = n(cbc^{-1})n^{-1}
+        = nbn^{-1}
+        = (nn^{-1}) a (nn^{-1})
+        = a,
+    \end{equation*}
+    where $b = n^{-1} a n \in A$. Thus, $n c n^{-1} \in C_{G}(A)$, and we conclude that $C_{G}(A) \nsubgroup N_{G}(A)$.
 \end{proof}
 
 \begin{nprop}
     Let $H \subgroup G$. Then,
     \begin{enumerate}
-        \item $N_{G}(H)$ is the largest subgroup of $G$ in which $H$ is normal; more precisely, $N_{G}(H)$ is normal in $G$, and if $K \subgroup G$ with $H \nsubgroup K$ then $K \subseteq N_{G}(H)$.
+        \item $N_{G}(H)$ is the largest subgroup of $G$ in which $H$ is normal; more precisely, $H$ is normal in $N_{G}(H)$, and if $K \subgroup G$ with $H \nsubgroup K$ then $K \subseteq N_{G}(H)$.
         \item $H \nsubgroup G$ if and only if $N_{G}(H) = G$.
     \end{enumerate}
 \end{nprop}
-\begin{proof}
-    TBC
+\begin{proof}\phantom{}
+    \begin{enumerate}
+        \item $H \subgroup G$, $N_{G}(H) \subgroup G$ and $H \subseteq N_{G}(H)$ collectively imply that $H \subgroup N_{G}(H)$.
+
+        Now, take any $x \in N_{G}(H)$. Then, by definition, $xHx^{-1} = H$. So, $H$ is normal in $N_{G}(H)$.
+
+        \item If $H \nsubgroup G$, then $\forall g \in G$, $gHg^{-1} = H$. Therefore, $G \subseteq N_{G}(H) \subseteq G$. So, $N_{G}(H) = G$.
+
+        Conversely, if $N_{G}(H) = G$, then $gHg^{-1} = H$ for all $g \in G$. So, $H \nsubgroup G$ ($H \subgroup G$ already).
+    \end{enumerate}
 \end{proof}
 
 \begin{nex}
-    If $H, K \subgroup G$ and $H \subgroup N_{G}(H)$. Then, $HK \subgroup G$. (Hint: it is enough to show that $HK = KH$.)
+    If $H, K \subgroup G$ and $H \subgroup N_{G}(K)$. Then, $HK \subgroup G$. (Hint: it is enough to show that $HK = KH$.)
 \end{nex}
 
 
@@ -568,7 +694,23 @@ Throughout this section let $A$ be a non-empty subset of $G$.
     Given $a,b \in G$, define the relation $\sim$ on $G$ such that $a \sim b$ iff $b = g a g^{-1}$ for some $g \in G$. Then, this is an equivalence relation, called the conjugacy relation.
 \end{nthm}
 \begin{proof}
-    TBC
+    Easy exercise. We simply show that $\sim$ is reflexive, symmetric and transitive.
+
+    Take $a, b, c \in G$. Then, $a = e a e^{-1}$, so $a \sim a$. Also,
+    \begin{align*}
+        a \sim b
+        \implies
+        a = g b g^{-1}
+        \implies
+        g^{-1} a g = b
+        \implies
+        (g^{-1}) a (g^{-1})^{-1} = b
+        \implies
+        b \sim a,
+    \end{align*}
+    where $g \in G$. Moreover, suppose $a \sim b$ and $b \sim c$. This means, $a = g b g^{-1}$ and $b = h c h^{-1}$ for some $g, h \in G$. Then, $a = g b g^{-1} = g h c h^{-1} g^{-1} = (gh) c (gh)^{-1}$ because $gh \in G$. So, $a \sim c$.
+
+    Overall, $\sim$ is an equivalence relation.
 \end{proof}
 
 \begin{ndfn}
@@ -581,10 +723,40 @@ Note that in every group the identity element $1$ is only conjugate to itself. T
     Let $G$ be a group and $a \in G$ be any element. Then, $\abs{[a]} = [G : C_{G}(a)]$.
 \end{nthm}
 \begin{proof}
-    TBC
-\end{proof}
+    Let $H = C_{G}(a) \subgroup G$ and $\mathcal{H} = \set{xH \st x \in G}$ be the set of all left cosets of $H$ in $G$. Consider the map $\varphi : \mathcal{H} \to [a]$ defined as $\varphi(xH) = x a x^{-1} \in [a]$.
 
-REMARK
+    We shall show that $\varphi$ is a well-defined bijective map.
+
+    To this end, suppose $xH = yH$, then $y^{-1} x \in H = C_{G}(a)$. So, $(y^{-1} x) a (y^{-1} x)^{-1} = a$. And,
+    \begin{align*}
+        (y^{-1} x) a (y^{-1} x)^{-1} = a
+        \implies
+        (y^{-1} x) a = a (y^{-1} x)
+        \implies
+        xa = yay^{-1} x
+        \implies
+        xax^{-1} = yay^{-1}
+    \end{align*}
+    Therefore, $\varphi(xH) = \varphi(yH)$. So, $\varphi$ is well-defined.
+
+    Now, $\varphi$ is clearly surjective because the pre-image of any $x a x^{-1} \in [a]$ is simply $xH \in \mathcal{H}$. Also, $\varphi$ is also injective because
+    \begin{align*}
+        \varphi(xH) = \varphi(yH)
+        \implies
+        xax^{-1} = yay^{-1}
+        \implies
+        xa = yay^{-1} x
+        &\implies
+        y^{-1} x a = a y^{-1} x\\
+        &\implies
+        (y^{-1} x) a (y^{-1} x)^{-1} = a\\
+        &\implies
+        y^{-1} x \in C_{G}(a) = H\\
+        &\implies
+        xH = yH.
+    \end{align*}
+    Overall, $\varphi$ is a well-defined bijective map. Therefore, $\abs{ \mathcal{H} } = \abs{ [a] }$ as sets.
+\end{proof}
 
 \begin{nthm}
     Let $g_{1}, \dots, g_{n} \in G$ be representatives of distinct conjugacy classes. Then,
@@ -593,21 +765,28 @@ REMARK
     \end{equation*}
 \end{nthm}
 \begin{proof}
-    TBC
+    The set of all the equivalence classes partitions the group $G$. So,
+    \begin{equation*}
+        G = \bigcup_{i = 1}^{n} [g_{i}]
+        \implies \abs{G} = \sum_{i = 1}^{n} \abs{[g_{i}]} = \sum_{i = 1}^{n} [G : C_{G}(a)]
+        \qedhere
+    \end{equation*}
 \end{proof}
 
 \begin{nlemma}
     Let $G$ be a group and $a \in G$. Then, $[a] = \set{a}$ if and only if $a \in Z(G)$.
 \end{nlemma}
 \begin{proof}
-    TBC
+    If $a \in Z(G)$, then $g a g^{-1} = a, \forall g \in G$. So, $[a] = \set{g a g^{-1} \st g \in G} = \set{a \st g \in G} = \set{a}$.
+
+    Conversely, if $[a] = \set{a}$, then $\set{g a g^{-1} \st g \in G} = \set{a}$. So, $g a g^{-1} = a, \forall g \in G$. Equivalently, $ga = ag$, for all $g \in G$. Therefore, $a \in Z(G)$.
 \end{proof}
 
 \begin{ncor}
     If $a \in Z(G)$, then $[G : C_{G}(a)] = \abs{ [a] } = 1$.
 \end{ncor}
 \begin{proof}
-    TBC
+    If $a \in Z(G)$, then $[a] = \set{a}$. So, $[G : C_{G}(a)] = \abs{[a]} = \abs{\set{a}} = 1$.
 \end{proof}
 
 \begin{nthm}[Class Equation]
@@ -655,7 +834,7 @@ REMARK
         \implies
         p < \abs{C_{G}(a)} < p^{2}.
     \end{equation*}
-    This is not possible because $\abs{C_{G}(a)}$ divides $p^{2}$ by Lagrange's theorem.
+    This is not possible because $\abs{C_{G}(a)}$ divides $p^{2}$ by Lagrange's theorem and $p$ is prime.
 
     Therefore, $\abs{Z(G)} = p^{2}$. In other words, $Z(G) = G$. So, $G$ is abelian.
 \end{proof}
@@ -708,11 +887,75 @@ REMARK
     This is a contradiction. Therefore, we must have $O(y^{\abs{H}}) = p$ instead, and we are done because $y^{\abs{H}} \in G$ is an element of order $p$ in this case.
 \end{proof}
 
-\begin{nthm}[Sylow]
-    .
+(END OF SYLABUS FOR THE MIDTERM EXAM)
+
+\begin{nthm}[Sylow's 1st Theorem]
+    Let $G$ be a finite group and $p$ a prime. If $p^{k}$ divides $\abs{G}$, then $G$ has at least one subgroup of order $p^{k}$.
 \end{nthm}
 \begin{proof}
-    TBC
+    We proceed by induction on $\abs{G}$. If $\abs{G} = 1$, then there is nothing to prove.
+
+    Assume that the statement is true for all groups of order less than $\abs{G}$.
+
+    If $G$ has a proper subgroup $H$ such that $p^{k}$ divides $\abs{H}$, then by our induction hypothesis, $H$ (and therefore $G$) has at least one subgroup of order $p^{k}$ and we are done. Thus, we may assume that $p^{k}$ does not divide the order of any proper subgroup of $G$.
+
+    Now, let $a_{1}, \dots, a_{r}$ be the representatives of the distinct non-central conjugacy classes of $G$.
+
+    Now, for all $i$, $p^{k}$ divides $\abs{G} = [G : C_{G}(a_{i})] \abs{C_{G}(a_{i})}$ and does not divide $\abs{C_{G}(a_{i})}$ (since $C_{G}(a_{i})$ is a proper subgroup of $G$). Therefore, we must have that $p$ must divide $[G : C_{G}(a_{i})]$ for all $a_{i} \notin Z(G)$. Then, it follow from the class equation
+    \begin{equation*}
+        \abs{G} = \abs{Z(G)} + \sum_{i=1}^{r} \comm{G : C_{G}(a_{i})}
+    \end{equation*}
+    that $p$ divides $\abs{Z(G)}$.
+
+    Thus, by Cauchy's theorem for abelian groups, there is some $x \in Z(G)$ such that $O(x) = p$. Then, $\cyclic{x} \subgroup Z(G) \nsubgroup G$ implies that $\cyclic{x} \nsubgroup G$.
+
+    Consider $G / \cyclic{x}$. We see that $p^{k-1}$ divides $\abs{G / \cyclic{x}}$. Thus, by the inductive hypothesis, $G / \cyclic{x}$ has a subgroup of order $p^{k-1}$. Denote this subgroup as $H / \cyclic{x}$, where $H \subgroup G$. Finally, note that $\abs{ H / \cyclic{x} } = p^{k-1}$ and $\abs{\cyclic{x}} = p$ imply that $\abs{H} = p^{k}$. This complete the proof.
 \end{proof}
+
+\begin{ndfn}[Sylow $p$-subgroup]
+    Let $G$ be a finite group and let $p$ be a prime dividing $\abs{G}$. If $p^{k}$ divides $\abs{G}$ and $p^{k+1} $ does not divide $\abs{G}$, then any subgroup of $G$ of order $p^{k}$ is called a Sylow $p$-subgroup.
+\end{ndfn}
+
+\begin{ndfn}[Conjugate groups]
+    Let $H, K \subgroup G$. We say that $H$ and $K$ are conjugates in $G$, if $H = g K g^{-1}$ for some $g \in G$.
+\end{ndfn}
+
+\begin{nprop}
+    Let $H, K \subgroup G$ and $a, b \in G$. Define a relation $\sim$ on $G$ by $a \sim b$ if and only if there exists $h \in H$ and $k \in K$ such that $a = hbk$. Then, $\sim$ is an equivalence relation on $G$.
+\end{nprop}
+\begin{proof}
+    Since $e \in H, K$, then we have $a = e a e$, so $a \sim a$.
+
+    Also, $a \sim b$ means that $a = hbk$ for some $h \in H$ and $k \in K$. So, $b = h^{-1} a k^{-1}$ with $h^{-1} \in H$ and $k^{-1} \in K$. Thus, $b \sim a$.
+
+    And, if $a \sim b$ and $b \sim c$, then $a = hbk$ and $b = h'ck'$ for $h, h' \in H$ and $k, k' \in K$. So, $a \sim c$ because $a = h b k = (h h') c (k' k)$ and $hh' \in H$ and $kk' \in K$.
+\end{proof}
+
+\begin{remark}
+    Since $\sim$ is an equivalence relation on $G$, it divides $G$ into disjoint equivalence classes. The equivalence class for $a$ is given by
+    \begin{equation*}
+        Cl(a)
+        = \set{x \in G \st x \sim a}
+        = \set{hak \st h \in H, k \in K}
+        \equiv HaK.
+    \end{equation*}
+
+    In other words, $G = \bigsqcup_{a} Cl(a) = \bigsqcup_{a} HaK$.
+\end{remark}
+
+\begin{ndfn}[Double cosets]
+    Let $H, K \subgroup G$ and $a \in G$. Then, $HaK$ is called a double coset of $H$ and $K$ in $G$.
+\end{ndfn}
+
+\begin{nlemma}
+    Let $G$ be a group and $H$ be a subgroup of $G$. Then, for $g \in G$, $f : H \to g H g^{-1}$ defined by $f(h) = ghg^{-1}$ is a bijection. (It is an isomorphism)
+\end{nlemma}
+\begin{proof}
+    Easy exercise.
+\end{proof}
+
+\begin{nex}
+    Let $H \subgroup G$. Show that $gHg^{-1} \subgroup G$ for all $g \in G$.
+\end{nex}
 
 \end{document}
