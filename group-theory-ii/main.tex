@@ -246,18 +246,32 @@ In general, $HK$ may or may not be a subgroup of $G$.
     Let $H, K \subgroup G$. Then, $HK$ is a subgroup of $G$ if and only if $HK = KH$.
 \end{nthm}
 \begin{proof}
-    TBC
+    Suppose $HK \subgroup G$. Then, for all $x \in HK$ we have $x^{-1} \in HK$ because $HK$ is a subgroup of $G$. Thus, $x^{-1} = hk$ for some $h \in H$ and $k \in K$. So, $x = (x^{-1})^{-1} = (hk)^{-1} = k^{-1} h^{-1} \in KH$. As a result, $HK \subseteq KH$.
+
+    Next, let $x \in KH$. Then, $x = kh$ for some $h \in H$, $k \in K$. So, $x^{-1} = (kh)^{-1} = h^{-1} k^{-1} \in HK$. Thus, $x \in HK$ because $HK \subgroup G$. As a result, $KH \subseteq HK$.
+
+    Overall, $HK = KH$.
+
+    Conversely, suppose $HK = KH$. Take any $a, b \in HK$. Then, $a = h_{1} k_{1}$ and $b = h_{2} k_{2}$ for some $h_{1}, h_{2} \in H$ and $k_{1}, k_{2} \in K$. So, $a b^{-1} = (h_{1} k_{1}) (h_{2} k_{2})^{-1} = h_{1} k_{1} k_{2}^{-1} h_{2}^{-1}$.
+
+    Now, $(k_{1} k_{2}^{-1}) h_{2}^{-1} \in KH = HK$. So, $(k_{1} k_{2}^{-1}) h_{2}^{-1} = hk$ for some $h \in H$ and $k \in K$. Therefore,
+    \begin{equation*}
+        a b^{-1}
+        = h_{1} k_{1} k_{2}^{-1} h_{2}^{-1}
+        = h_{1} (h k)
+        = (h_{1} h) k
+        \in HK.
+    \end{equation*}
+    And we conclude that $HK \subgroup G$.
 \end{proof}
 
 \begin{nthm}\label{thm:normal-product-subgroup}
     Let $H \nsubgroup G$ and $K \subgroup G$. Then, $HK \subgroup G$.
 \end{nthm}
 \begin{proof}
-    Since $H \nsubgroup G$, we have $kH = Hk$, for all $k \in K \subseteq G$. And,
-    \begin{equation*}
-        kH = Hk \implies khk^{-1} = h \implies kh = hk
-    \end{equation*}
-    for all $k \in K$ and $h \in H$. Therefore, $HK = \set{hk \st h \in H, k \in K} = \set{kh \st h \in H, k \in K} = KH$.
+    Since $H \nsubgroup G$, we have $khk^{-1} = h$, $\forall h \in H, k \in K \subseteq G$. And, $khk^{-1} = h \implies kh = hk$.
+
+    Therefore, $HK = \set{hk \st h \in H, k \in K} = \set{kh \st h \in H, k \in K} = KH$.
     Thus, $HK \subgroup G$.
 \end{proof}
 
@@ -268,7 +282,22 @@ In general, $HK$ may or may not be a subgroup of $G$.
     \end{equation*}
 \end{nthm}
 \begin{proof}
-    TBC
+    We begin by noting that
+    \begin{equation*}
+        HK = \bigcup_{h \in H} hK,
+    \end{equation*}
+    and $\abs{hK} = \abs{K}$ for all $h \in H$. So, $\abs{HK} = r \abs{K}$, where $r$ is the number of distinct left cosets of the form $hK$ with $h \in H$. Now, for all $h_{1}, h_{2} \in H$,
+    \begin{equation*}
+        h_{1} K = h_{2} K
+        \iff h_{2}^{-1} h_{1} \in K
+        \iff h_{2}^{-1} h_{1} \in H \cap K
+        \iff h_{1} (H \cap K) = h_{2} (H \cap K).
+    \end{equation*}
+    Therefore, the number of distinct left cosets of the form $hK$ and those of the form $h (H \cap K)$ is the same. Since, $(H \cap K) \subgroup H$, we have $r = [H : H \cap K]$. Thus,
+    \begin{equation*}
+        \abs{HK} = r \abs{K} = [H : H \cap K] \abs{K} = \frac{\abs{H}\abs{K}}{\abs{H \cap K}}.
+        \qedhere
+    \end{equation*}
 \end{proof}
 
 \begin{ndfn}[External direct product]
@@ -276,10 +305,7 @@ In general, $HK$ may or may not be a subgroup of $G$.
 \end{ndfn}
 
 \begin{nthm}
-    The external direct product $G_{1} \oplus \dots \oplus G_{n}$ forms a group under the binary operation
-    \begin{equation*}
-        (g_{1}, \dots, g_{n}) (g'_{1}, \dots, g'_{n}) = (g_{1}g'_{1}, \dots, g_{n}g'_{n})
-    \end{equation*}
+    The external direct product $G_{1} \oplus \dots \oplus G_{n}$ forms a group under the binary operation $(g_{1}, \dots, g_{n}) (g'_{1}, \dots, g'_{n}) = (g_{1}g'_{1}, \dots, g_{n}g'_{n})$,
     where $(g_{1}, \dots, g_{n}), (g'_{1}, \dots, g'_{n}) \in G_{1} \oplus \dots \oplus G_{n}$.
 \end{nthm}
 \begin{proof}
@@ -291,24 +317,20 @@ In general, $HK$ may or may not be a subgroup of $G$.
 \end{remark}
 
 \begin{nthm}
-    Let $G = G_{1} \oplus \dots \oplus G_{n}$ be a finite product of group and $g = (g_{1}, \dots, g_{n}) \in G$. Then, $\abs{g} = \lcm \set{\abs{g_{1}}, \dots, \abs{g_{n}}}$.
+    Let $G = G_{1} \oplus \dots \oplus G_{n}$ be a finite product of group and $(g_{1}, \dots, g_{n}) \in G$. Then, $O( (g_{1}, \dots, g_{n}) ) = \lcm( O(g_{1}), \dots, O(g_{n}) )$.
 \end{nthm}
 \begin{proof}
-    Take $(g_{1}, \dots, g_{n}) \in G_{1} \oplus \dots \oplus G_{n}$. Let $s = \lcm \set{\abs{g_{1}}, \dots, \abs{g_{n}}}$. Then, $s$ divides $\abs{g_{k}}$ for all $k$. Therefore,
-    \begin{equation*}
-        (g_{1}, \dots, g_{n})^{s}
-        = (g_{1}^{s}, \dots, g_{n}^{s})
-        = (e_{1}, \dots, e_{n})
-    \end{equation*}
-    As a result, $t = \abs{(g_{1}, \dots, g_{n})}$ divides $s$. In particular, $t \leq s$.
+    Let $t = O( (g_{1}, \dots, g_{n}) )$ and $s = \lcm( O(g_{1}), \dots, O(g_{n}) )$.
 
-    Also, by construction,
+    Now, $s = \lcm( O(g_{1}), \dots, O(g_{n}) )$ means that $s$ divides $O(g_{k})$ for all $k$. Therefore,
     \begin{equation*}
-        (g_{1}^{t}, \dots, g_{n}^{t})
-        = (g_{1}, \dots, g_{n})^{t}
-        = (e_{1}, \dots, e_{n}).
+        (g_{1}, \dots, g_{n})^{s} = (g_{1}^{s}, \dots, g_{n}^{s}) = (e, \dots, e)
     \end{equation*}
-    So, $g_{k}^{t} = e_{k}$ for all $k$. Consequently, $\abs{e_{k}}$ divides $t$ for all $k$, and we obtain that $t$ divides $\lcm \set{\abs{g_{1}}, \dots, \abs{g_{n}}}$.
+    As a result, $t \mid s$. In particular, $t \leq s$.
+
+    Also, by construction, $(g_{1}^{t}, \dots, g_{n}^{t}) = (g_{1}, \dots, g_{n})^{t} = (e, \dots, e)$. So, $g_{k}^{t} = e_{k}$ for all $k$. Thus, $O(g_{k})$ divides $t$ for all $k$, and we obtain that $s = \lcm( O(g_{1}), \dots, O(g_{n}) )$ divides $t$; i.e. $s \leq t$.
+
+    Overall, $t = s$.
 \end{proof}
 
 \begin{nthm}
@@ -317,9 +339,22 @@ In general, $HK$ may or may not be a subgroup of $G$.
 \begin{proof}
     Let $\abs{G} = m$ and $\abs{H} = n$. So, $\abs{G \oplus H} = mn$.
 
-    Suppose $G \oplus H$ is cyclic with the generator $(g,h)$. Then, $O((g,h)) = mn$. However, $O((g,h)) = \lcm\set{O(g), O(h)}$. Now, $O(g) \mid m$ and $O(h) \mid n$ by Lagrange's theorem. This implies $\lcm\set{O(g), O(h)} \mid \lcm\set{m,n}$.
+    Suppose $G \oplus H$ is cyclic with a generator $(g,h)$. Then, $O((g,h)) = mn$. Also, by Lagrange's theorem $O(g) \mid m$ and $O(h) \mid n$. So, $\lcm(O(g), O(h))$ divides $\lcm(m,n)$. Thus,
+    \begin{equation*}
+        mn = O((g,h)) = \lcm(O(g), O(h)) \mid \lcm(m,n)
+    \end{equation*}
+    i.e. $mn \leq \lcm\set{m,n}$. However, $\lcm(m,n) \mid mn$. So, $\lcm(m,n) = mn$, and $\gcd(m,n) = 1$.
 
-    So, $mn = \lcm\set{O(g), O(h)} \mid \lcm\set{m,n}$. Thus, $mn \leq \lcm\set{m,n}$. However, $\lcm\set{m,n} \mid mn$. Therefore, $\lcm\set{m,n} = mn$. In other words, $\gcd\set{m,n} = 1$.
+    Conversely, suppose $\abs{G}$ and $\abs{H}$ are relatively prime; i.e. $\gcd(m,n) = 1$. Let $G = \cyclic{g}$ and $H = \cyclic{h}$ for some $g \in G$ and $h \in H$. Then, $O(g) = \abs{G} = m$ and $O(h) = \abs{H} = n$. So,
+    \begin{equation*}
+        O( (g,h) )
+        = \lcm(O(g), O(h))
+        = \frac{O(g)O(h)}{\lcm(O(g), O(h))}
+        = \frac{mn}{\gcd(m,n)}
+        = mn
+        = \abs{G \oplus H}.
+    \end{equation*}
+    Therefore, $\cyclic{(g,h)} = G \oplus H$, and we conclude that $G \oplus H$ is cyclic.
 \end{proof}
 
 \begin{ncor}
@@ -365,26 +400,53 @@ In general, $HK$ may or may not be a subgroup of $G$.
     \end{enumerate}
 \end{ndfn}
 
-% MISSING: USEFUL EXAMPLE OF AN INTERNAL DIRECT PRODUCT
-
 \begin{nthm}
-    If a group $G$ is the internal direct product of subgroups $H_{1}, \dots, H_{n}$, then $G$ is isomorphic to the external direct product of $H_{1}, \dots, H_{n}$. That is,
-    \begin{equation*}
-        H_{1} \times \dots \times H_{n} \isom H_{1} \oplus \dots \oplus H_{n}.
-    \end{equation*}
+    If a group $G$ is the internal direct product of subgroups $H_{1}, \dots, H_{n}$, then $G$ is isomorphic to the external direct product of $H_{1}, \dots, H_{n}$. That is, $H_{1} \times \dots \times H_{n} \isom H_{1} \oplus \dots \oplus H_{n}$.
 \end{nthm}
 \begin{proof}
-    STUFF
+    Firstly note that for all $i \neq j$,
+    \begin{equation*}
+        H_{i} \nsubgroup G \implies h_{j} h_{i}^{-1} h_{j}^{-1} \in H_{i}
+        \qquad\text{and}\qquad
+        H_{j} \nsubgroup G \implies h_{i} h_{j} h_{i}^{-1} \in H_{j}.
+    \end{equation*}
+    Thus, $h_{i} (h_{j} h_{i}^{-1} h_{j}^{-1}) \in H_{i}$ and $(h_{i} h_{j} h_{i}^{-1}) h_{j}^{-1} \in H_{j}$ by closure. This means $h_{i} h_{j} h_{i}^{-1} h_{j}^{-1} \in H_{i} \cap H_{j}$. However, $H_{i} \cap H_{j} = \set{e} \implies h_{i} h_{j} h_{i}^{-1} h_{j}^{-1} = e \implies h_{i} h_{j} = h_{j} h_{i}$, whenever $i \neq j$.
 
-    Consider the isomorphism $\varphi : H_{1} \times \dots \times H_{n} \to H_{1} \oplus \dots \oplus H_{n}$ by        
+    Now, since $G = H_{1} H_{2} \dots H_{n}$, every $g \in G$ has the form $g = h_{1} h_{2} \dots h_{n}$ with $h_{i} \in H_{i}$. To see that this representation is unique, suppose $h_{1} h_{2} \dots h_{n}  = h'_{1} h'_{2} \dots h'_{n}$ for some $h'_{i} \in H_{i}$. Then,
+    \begin{align*}
+        h_{1} h_{2} \dots h_{n-1} h_{n}  = h'_{1} h'_{2} \dots h'_{n-1} h'_{n}
+        &\implies h_{1} h_{2} \dots h_{n-1} h_{n} (h'_{n})^{-1}  = h'_{1} h'_{2} \dots h'_{n-1}\\
+        &\implies h_{n} (h'_{n})^{-1} = h'_{1} h'_{2} \dots h'_{n-1} (h_{1} h_{2} \dots h_{n-1})^{-1}\\
+        &\implies h_{n} (h'_{n})^{-1} = h'_{1} h'_{2} \dots h'_{n-1} h_{n-1}^{-1} \dots h_{2}^{-1} h_{1}^{-1}\\
+        &\implies h_{n} (h'_{n})^{-1} = h'_{1}h_{1}^{-1} h'_{2}h_{2}^{-1} \dots h'_{n-1}h_{n-1}^{-1}\\
+        &\implies h_{n} (h'_{n})^{-1} \in H_{1}H_{2} \dots H_{n-1}.
+    \end{align*}
+    Also, $h_{n} (h'_{n})^{-1} \in H_{n}$. Therefore, $h_{n} (h'_{n})^{-1} \in (H_{1}H_{2} \dots H_{n-1}) \cap H_{n} = \set{e}$. In other words, $h_{n} (h'_{n})^{-1} = e$. Thus, $h_{n} = h'_{n}$. This allows us to cancel $h_{n}$ from both sides and write
+    \begin{equation*}
+        h_{1} h_{2} \dots h_{n-1} h_{n}  = h'_{1} h'_{2} \dots h'_{n-1} h'_{n}
+        \implies
+        h_{1} h_{2} \dots h_{n-1}  = h'_{1} h'_{2} \dots h'_{n-1}.
+    \end{equation*}
+    By repeating the same argument $n-1$ times, we conclude that $h_{i} = h'_{i}$ for all $i$.
 
-    TBC
+    Next, consider the map $\varphi : H_{1} \times \dots \times H_{n} \to H_{1} \oplus \dots \oplus H_{n}$ with $\varphi(h_{1} h_{2} \dots h_{n}) = (h_{1}, h_{2}, \dots, h_{n})$. This is a homomorphism because
+    \begin{align*}
+        \varphi((h_{1} h_{2} \dots h_{n}) (h'_{1} h'_{2} \dots h'_{n}))
+        = \varphi(h_{1}h'_{1} h_{2}h'_{2} \dots h_{n}h'_{n})
+        &= (h_{1}h'_{1}, h_{2}h'_{2}, \dots, h_{n}h'_{n})\\
+        &= (h_{1}, h_{2}, \dots, h_{n}) (h'_{1}, h'_{2}, \dots, h'_{n})\\
+        &= \varphi(h_{1} h_{2} \dots h_{n} ) \varphi(h'_{1} h'_{2} \dots h'_{n}).
+    \end{align*}
+    Moreover, $\varphi$ is clearly surjective because the pre-image of $(h_{1}, h_{2}, \dots, h_{n})$ is simply $h_{1} h_{2} \dots h_{n}$. Additionally, $\varphi(h_{1} h_{2} \dots h_{n}) = (e, e, \dots, e) \implies (h_{1}, h_{2}, \dots, h_{n}) = (e, e, \dots, e) \implies h_{i} = e, \forall i$.
+    Consequently, $\ker\varphi$ is trivial and we conclude that $\varphi$ is injective.
+
+    Overall, $\varphi$ is an isomorphism. Thus, $H_{1} \times \dots \times H_{n} \isom H_{1} \oplus \dots \oplus H_{n}$.
 \end{proof}
 
 \begin{negg}
-    The group $S^{3}$ cannot be written as the (internal) direct product of two proper subgroups.
+    The group $S_{3}$ cannot be written as the (internal) direct product of two proper subgroups.
 
-    For a contradiction, suppose that we have two such proper subgroups $H, K \subgroup S^{3}$. Then, $\abs{H} = 2$ and $\abs{K} = 3$ or vice versa. However, every group of order $2$ and $3$ is abelian. So the product $H \times K \isom H \oplus K$ will also be abelian, while $S_{3}$ is not abelian. \eggqed
+    For a contradiction, suppose that we have two such proper subgroups $H, K \subgroup S_{3}$. Then, $\abs{H} = 2$ and $\abs{K} = 3$ or vice versa. However, every group of order $2$ and $3$ is abelian. Thus, $H \oplus K$ is also abelian. As a result, $H \times K \isom H \oplus K$ will be abelian. This is a contradiction because $S_{3} = H \times K$ is not abelian. \eggqed
 \end{negg}
 
 \section{Fundamental Theorem of Finite Abelian Groups}
@@ -432,7 +494,7 @@ Note that the relation $\sim$ on the set of all groups, defined by $G_{1} \sim G
             \bottomrule
         \end{tabularx}
     \end{center}
-    So, up to isomorphism, there are are exactly $5$ abelian groups of order $12$:
+    So, up to isomorphism, there are exactly $5$ abelian groups of order $12$:
     \begin{equation*}
         \Z_{3^{4}}, \Z_{3^{3}} \oplus \Z_{3}, \Z_{3^{2}} \oplus \Z_{3^{2}}, \Z_{3^{2}} \oplus \Z_{3} \oplus \Z_{3}, \Z_{3} \oplus \Z_{3} \oplus \Z_{3} \oplus \Z_{3}.
     \end{equation*}
@@ -451,7 +513,7 @@ Note that the relation $\sim$ on the set of all groups, defined by $G_{1} \sim G
             \bottomrule
         \end{tabularx}
     \end{center}
-    Now, we consider all possible combinations of these constituent groups (taking one group from each row). So, up to isomorphism, there are are exactly $2$ abelian groups of order $12$:
+    Now, we consider all possible combinations of these constituent groups (taking one group from each row). So, up to isomorphism, there are exactly $2$ abelian groups of order $12$:
     \begin{equation*}
         \Z_{2^{2}} \oplus \Z_{3} \oplus \Z_{5}
         \quad\text{and}\quad 
@@ -491,9 +553,9 @@ Throughout this section, let $G$ be a group.
         Now, take any $a \in (H \cap N)$ and $h \in H$. Then,
         \begin{align*}
             a \in (H \cap N) \implies a \in N &\implies h a h^{-1} \in N \qquad\text{(as $N \nsubgroup G$)},\\
-            a \in (H \cap N) \implies a \in N &\implies h a h^{-1} \in H \qquad\text{(by closure in  $H$)}.
+            a \in (H \cap N) \implies a \in H &\implies h a h^{-1} \in H \qquad\text{(by closure in  $H$)}.
         \end{align*}
-        So, $h a h^{-1} \in (H \cap N)$, for all $h \in H$ and $a \in (H \cap N)$. Therefore, $H \cap N \nsubgroup N$.
+        So, $h a h^{-1} \in (H \cap N)$, for all $h \in H$ and $a \in (H \cap N)$. Therefore, $(H \cap N) \nsubgroup H$.
         \qedhere
     \end{enumerate}
 \end{proof}
@@ -516,23 +578,14 @@ Throughout this section, let $G$ be a group.
     \end{equation*}
     Therefore, by the 1st isomorphism theorem, $H / \ker\varphi \isom HN / N$.
 
-    However, $\ker\varphi = \set{h \in H \st \varphi(h) = N} = \set{h \in H \st hN = N} = \set{h \in H \st h \in N} = H \cap N$. Therefore,
-    \begin{equation*}
-        H / (H \cap N) \isom HN / N. \qedhere
-    \end{equation*}
+    However, $\ker\varphi = \set{h \in H \st \varphi(h) = N} = \set{h \in H \st hN = N} = \set{h \in H \st h \in N} = H \cap N$. Therefore, $H / (H \cap N) \isom HN / N$.
 \end{proof}
 
 \begin{nlemma}
     Let $K, N \nsubgroup G$ with $K \subseteq N$. Then, $N/K \nsubgroup G/K$.
 \end{nlemma}
 \begin{proof}
-    Note that $N/K$ is a non-empty subset of $G/K$ because $1 \in N \implies 1K = K \in N/K$. Take any $n_{1}K, n_{2}K \in N/K$, then
-    \begin{equation*}
-        (n_{1}K) (n_{2}K)^{-1}
-        = (n_{1}K) (n_{2}^{-1} K)
-        = n_{1} n_{2}^{-1} K
-        \in N/K
-    \end{equation*}
+    Note that $N/K$ is a non-empty subset of $G/K$ because $1 \in N \implies 1K = K \in N/K$. Take any $n_{1}K, n_{2}K \in N/K$, then $(n_{1}K) (n_{2}K)^{-1} = (n_{1}K) (n_{2}^{-1} K) = (n_{1} n_{2}^{-1}) K \in N/K$
     since $n_{1} n_{2}^{-1} \in N$. Therefore, $N/K \subgroup G/K$.
 
     Next, for every $nK \in N/K$ and $gK \in G/K$, we have
@@ -674,9 +727,11 @@ Throughout this section let $A$ be a non-empty subset of $G$.
 
         Now, take any $x \in N_{G}(H)$. Then, by definition, $xHx^{-1} = H$. So, $H$ is normal in $N_{G}(H)$.
 
-        \item If $H \nsubgroup G$, then $\forall g \in G$, $gHg^{-1} = H$. Therefore, $G \subseteq N_{G}(H) \subseteq G$. So, $N_{G}(H) = G$.
+        Next, suppose $H \nsubgroup K \subgroup G$. Then, $H \nsubgroup K \implies kHk^{-1} = H, \forall k \in K$. So, $K \subseteq N_{G}(H)$.
 
-        Conversely, if $N_{G}(H) = G$, then $gHg^{-1} = H$ for all $g \in G$. So, $H \nsubgroup G$ ($H \subgroup G$ already).
+        \item Firstly, $H \nsubgroup G \implies gHg^{-1} = H, \forall g \in G$. Therefore, $G \subseteq N_{G}(H) \subseteq G$. So, $N_{G}(H) = G$.
+
+        Conversely, if $N_{G}(H) = G \implies gHg^{-1} = H, \forall g \in G$. So, $H \nsubgroup G$ ($H \subgroup G$ already).\qedhere
     \end{enumerate}
 \end{proof}
 
@@ -723,7 +778,7 @@ Note that in every group the identity element $1$ is only conjugate to itself. T
     Let $G$ be a group and $a \in G$ be any element. Then, $\abs{[a]} = [G : C_{G}(a)]$.
 \end{nthm}
 \begin{proof}
-    Let $H = C_{G}(a) \subgroup G$ and $\mathcal{H} = \set{xH \st x \in G}$ be the set of all left cosets of $H$ in $G$. Consider the map $\varphi : \mathcal{H} \to [a]$ defined as $\varphi(xH) = x a x^{-1} \in [a]$.
+    Let $H = C_{G}(a) \subgroup G$ and $\mathcal{H} = \set{xH \st x \in G}$ be the set of all left cosets of $H$ in $G$. Consider the map $\varphi : \mathcal{H} \to [a]$ defined as $\varphi(xH) = x a x^{-1}$.
 
     We shall show that $\varphi$ is a well-defined bijective map.
 
@@ -739,7 +794,7 @@ Note that in every group the identity element $1$ is only conjugate to itself. T
     \end{align*}
     Therefore, $\varphi(xH) = \varphi(yH)$. So, $\varphi$ is well-defined.
 
-    Now, $\varphi$ is clearly surjective because the pre-image of any $x a x^{-1} \in [a]$ is simply $xH \in \mathcal{H}$. Also, $\varphi$ is also injective because
+    Now, $\varphi$ is clearly surjective because the pre-image of any $x a x^{-1} \in [a]$ is simply $xH \in \mathcal{H}$. Also, $\varphi$ is injective because
     \begin{align*}
         \varphi(xH) = \varphi(yH)
         \implies
@@ -768,7 +823,7 @@ Note that in every group the identity element $1$ is only conjugate to itself. T
     The set of all the equivalence classes partitions the group $G$. So,
     \begin{equation*}
         G = \bigcup_{i = 1}^{n} [g_{i}]
-        \implies \abs{G} = \sum_{i = 1}^{n} \abs{[g_{i}]} = \sum_{i = 1}^{n} [G : C_{G}(a)]
+        \implies \abs{G} = \sum_{i = 1}^{n} \abs{[g_{i}]} = \sum_{i = 1}^{n} [G : C_{G}(g_{i})].
         \qedhere
     \end{equation*}
 \end{proof}
@@ -796,7 +851,14 @@ Note that in every group the identity element $1$ is only conjugate to itself. T
     \end{equation*}
 \end{nthm}
 \begin{proof}
-    TBC
+    Let $k = \abs{Z(G)}$ and note that $a_{i} \in Z(G) \implies \abs{[a_{i}]} = 1, \forall i=1,\dots,k$.
+
+    Since $G$ can be partitioned by conjugacy classes of elements from $Z(G)$, and the non-central conjugacy classes with representative $g_{1}, \dots, g_{r}$, we obtain   
+    \begin{equation*}
+        \abs{G}
+        = \underbrace{1 + \dots + 1}_{k-\text{times}} + \sum_{i=1}^{r} [G : C_{G}(g_{i})]
+        = \abs{Z(G)} + \sum_{i=1}^{r} [G : C_{G}(g_{i})].\qedhere
+    \end{equation*}
 \end{proof}
 
 \begin{nthm}
@@ -805,7 +867,7 @@ Note that in every group the identity element $1$ is only conjugate to itself. T
 \begin{proof}
     If $G$ is abelian, then $Z(G) = G \neq \set{e}$. So, we are done.
 
-    Let $G$ be non-abelian. Let $g_{1}, \dots, g_{r}$ be the representatives of the non-central conjugacy classes of $G$. Since, $C_{G}(g_{i}) \subgroup G$ and $\abs{G} = p^{n}$, by Lagrange's theorem $\abs{C_{G}(g_{i})} = p^{k}$ for some $k < n$. Thus,
+    Let $G$ be non-abelian, and $g_{1}, \dots, g_{r}$ be the representatives of the non-central conjugacy classes of $G$. Since, $C_{G}(g_{i}) \subgroup G$ and $\abs{G} = p^{n}$, by Lagrange's theorem $\abs{C_{G}(g_{i})} = p^{k}$ for some $k < n$. Thus,
     \begin{equation*}
         [G : C_{G}(g_{i})] = \frac{\abs{G}}{\abs{C_{G}(g_{i})}} = p^{n-k}.
     \end{equation*}
@@ -839,6 +901,8 @@ Note that in every group the identity element $1$ is only conjugate to itself. T
     Therefore, $\abs{Z(G)} = p^{2}$. In other words, $Z(G) = G$. So, $G$ is abelian.
 \end{proof}
 
+\missing{(END OF SYLABUS FOR THE MIDTERM EXAM)}
+
 \section{Sylow's Theorem}
 \begin{nthm}[Cauchy]
     Let $G$ be a finite abelian group and $p$ be a prime such that $p$ divides $\abs{G}$. Then, there is an element $x \in G$ with $O(x) = p$.
@@ -850,15 +914,15 @@ Note that in every group the identity element $1$ is only conjugate to itself. T
 
     Take any non-identity element $a \in G$ and consider the subgroup $H = \cyclic{a}$. As $G$ is abelian, $H$ is normal in $G$. Moreover, $a \neq e$ implies $\abs{H} > 1$.
 
-    If $p$ divides $\abs{H}$, then $a^{\abs{H}/p}$ is an element of order $p$ in $G$; this is because $(a^{\abs{H}/p})^{p} = e$, so $O(a^{\abs{H}/p})$ divides $p$, but $O(a^{\abs{H}/p}) \neq 1$ because $O(a) = \abs{H} > \abs{H}/p \implies a^{\abs{H}/p} \neq e$. Therefore, $O(a^{\abs{H}/p}) = p$.
+    If $p$ divides $\abs{H}$, then $a^{\abs{H}/p}$ is an element of order $p$ in $G$; this is because $(a^{\abs{H}/p})^{p} = e$, so $O(a^{\abs{H}/p})$ divides $p$, but $O(a^{\abs{H}/p}) \neq 1$ because $O(a) = \abs{\cyclic{a}} = \abs{H} > \abs{H}/p \implies a^{\abs{H}/p} \neq e$. Therefore, $O(a^{\abs{H}/p}) = p$.
 
-    Otherwise, consider the group $G/H$. This is abelian because $G$ is abelian, and
+    Otherwise, consider the group $G/H$. This is abelian because $G$ is abelian. Also,
     \begin{equation*}
         \abs{G/H} = \abs{G} / \abs{H} < \abs{G}
         \quad\text{and}\quad
         \abs{G} = \abs{G/H} \abs{H}.
     \end{equation*}
-    Now, $p$ divides $\abs{G}$ but not $\abs{H}$. So, $p$ divides $\abs{G/H}$. Then, by the inductive hypothesis, there exists $yH \in G/H$ with $O(yH) = p$. Now,
+    As, $p$ divides $\abs{G}$ but not $\abs{H}$, we get that $p$ divides $\abs{G/H}$. Then, by the inductive hypothesis, there exists $yH \in G/H$ with $O(yH) = p$. Now,
     \begin{equation*}
         (yH)^{p} = H
         \implies
@@ -870,46 +934,32 @@ Note that in every group the identity element $1$ is only conjugate to itself. T
         \implies
         (y^{\abs{H}})^{p} = e.
     \end{equation*}
-    Thus, $O(y^{\abs{H}})$ divides $p$. So, $O(y^{\abs{H}}) = 1$ or $p$.
-
-    If $O(y^{\abs{H}}) = 1$, then $y^{\abs{H}} = e$. And,
+    Thus, $O(y^{\abs{H}})$ divides $p$. So, $O(y^{\abs{H}}) = 1$ or $p$. But, $O(y^{\abs{H}}) = 1 \implies y^{\abs{H}} = e$. So,
     \begin{equation*}
-        y^{\abs{H}} = e
+        (yH)^{\abs{H}} = y^{\abs{H}}H = eH = H
         \implies
-        y^{\abs{H}} H = H
-        \implies
-        (yH)^{\abs{H}} = H
-        \implies
-        O(yH) \mid \abs{H}
-        \implies
-        p \mid \abs{H}.
+        p = O(yH) \mid \abs{H}
     \end{equation*}
-    This is a contradiction. Therefore, we must have $O(y^{\abs{H}}) = p$ instead, and we are done because $y^{\abs{H}} \in G$ is an element of order $p$ in this case.
+    which is a contradiction (since $p \nmid \abs{H}$). Therefore, we must have $O(y^{\abs{H}}) = p$, and we are done because $y^{\abs{H}} \in G$ is an element of order $p$ in this case.
 \end{proof}
-
-(END OF SYLABUS FOR THE MIDTERM EXAM)
 
 \begin{nthm}[Sylow's 1st Theorem]
     Let $G$ be a finite group and $p$ a prime. If $p^{k}$ divides $\abs{G}$, then $G$ has at least one subgroup of order $p^{k}$.
 \end{nthm}
 \begin{proof}
-    We proceed by induction on $\abs{G}$. If $\abs{G} = 1$, then there is nothing to prove.
+    If $\abs{G} = 1$, then there is nothing to prove. Similarly, if $\abs{G} = p^{k}$, then $G \subgroup G$ satisfies the statement of the theorem. Therefore, assume $\abs{G} > p^{k}$.
 
     Assume that the statement is true for all groups of order less than $\abs{G}$.
 
-    If $G$ has a proper subgroup $H$ such that $p^{k}$ divides $\abs{H}$, then by our induction hypothesis, $H$ (and therefore $G$) has at least one subgroup of order $p^{k}$ and we are done. Thus, we may assume that $p^{k}$ does not divide the order of any proper subgroup of $G$.
+    If $G = Z(G)$, then clearly $p$ divides $\abs{Z(G)}$.
 
-    Now, let $a_{1}, \dots, a_{r}$ be the representatives of the distinct non-central conjugacy classes of $G$.
+    Otherwise, let $a_{1}, \dots, a_{r}$ be the representatives of the distinct non-central conjugacy classes of $G$. If $p^{k}$ divides $\abs{C_{G}(a_{i})}$ for any $i$, then we are done because $C_{G}(a_{i}) \subgroup G$ satisfies the statement of the theorem. If this is not the case, then $\forall i$, $p$ divides $[G : C_{G}(a_{i})]$ because $p^{k}$ divides $\abs{G} = [G : C_{G}(a_{i})] \abs{C_{G}(a_{i})}$ and we have assumed that $p^{k}$ doesn't divide $\abs{C_{G}(a_{i})}$. From the class equation $\abs{Z(G)} = \abs{G} - \sum_{i=1}^{r} \comm{G : C_{G}(a_{i})}$ it follows that, again, $p$ divides $\abs{Z(G)}$.
 
-    Now, for all $i$, $p^{k}$ divides $\abs{G} = [G : C_{G}(a_{i})] \abs{C_{G}(a_{i})}$ and does not divide $\abs{C_{G}(a_{i})}$ (since $C_{G}(a_{i})$ is a proper subgroup of $G$). Therefore, we must have that $p$ must divide $[G : C_{G}(a_{i})]$ for all $a_{i} \notin Z(G)$. Then, it follow from the class equation
-    \begin{equation*}
-        \abs{G} = \abs{Z(G)} + \sum_{i=1}^{r} \comm{G : C_{G}(a_{i})}
-    \end{equation*}
-    that $p$ divides $\abs{Z(G)}$.
+    Now, by Cauchy's theorem for abelian groups, there exists $x \in Z(G)$ such that $O(x) = p$. Also, $\cyclic{x} \subgroup Z(G) \nsubgroup G$ implies $\cyclic{x} \nsubgroup G$. So, consider $G / \cyclic{x}$. Here $\abs{G / \cyclic{x}} = \abs{G} / \abs{\cyclic{x}} = p^{k-1}$.
 
-    Thus, by Cauchy's theorem for abelian groups, there is some $x \in Z(G)$ such that $O(x) = p$. Then, $\cyclic{x} \subgroup Z(G) \nsubgroup G$ implies that $\cyclic{x} \nsubgroup G$.
+    Since, $p^{k-1}$ divides $\abs{G / \cyclic{x}}$ and $\abs{G / \cyclic{x}} < \abs{G}$, by the inductive hypothesis, there exists a subgroup $H / \cyclic{x} \subgroup G / \cyclic{x}$ with $\abs{H / \cyclic{x}} = p^{k-1}$. Here $H \subgroup G$.
 
-    Consider $G / \cyclic{x}$. We see that $p^{k-1}$ divides $\abs{G / \cyclic{x}}$. Thus, by the inductive hypothesis, $G / \cyclic{x}$ has a subgroup of order $p^{k-1}$. Denote this subgroup as $H / \cyclic{x}$, where $H \subgroup G$. Finally, note that $\abs{ H / \cyclic{x} } = p^{k-1}$ and $\abs{\cyclic{x}} = p$ imply that $\abs{H} = p^{k}$. This complete the proof.
+    However, $p^{k-1} = \abs{H / \cyclic{x}} = \abs{H} / \abs{\cyclic{x}}$ gives $\abs{H} = p^{k}$. Again, we are done because $H \subgroup G$ satisfies the requirements of the theorem. This covers all the possible cases.
 \end{proof}
 
 \begin{ndfn}[Sylow $p$-subgroup]
@@ -932,30 +982,29 @@ Note that in every group the identity element $1$ is only conjugate to itself. T
 \end{proof}
 
 \begin{remark}
-    Since $\sim$ is an equivalence relation on $G$, it divides $G$ into disjoint equivalence classes. The equivalence class for $a$ is given by
-    \begin{equation*}
-        Cl(a)
-        = \set{x \in G \st x \sim a}
-        = \set{hak \st h \in H, k \in K}
-        \equiv HaK.
-    \end{equation*}
+    Since $\sim$ is an equivalence relation on $G$, it divides $G$ into disjoint equivalence classes. The equivalence class for $a$ is given by $\mathrm{Cl}(a) = \set{x \in G \st x \sim a} = \set{hak \st h \in H, k \in K} \equiv HaK$. In other words, $\displaystyle G = \bigsqcup_{a} Cl(a) = \bigsqcup_{a} HaK$.
 
-    In other words, $G = \bigsqcup_{a} Cl(a) = \bigsqcup_{a} HaK$.
 \end{remark}
 
 \begin{ndfn}[Double cosets]
-    Let $H, K \subgroup G$ and $a \in G$. Then, $HaK$ is called a double coset of $H$ and $K$ in $G$.
+    Let $H, K \subgroup G$ and $a \in G$. Then, $HaK = \set{hak \st h \in H, k \in K}$ is called a double coset of $H$ and $K$ in $G$.
 \end{ndfn}
 
 \begin{nlemma}
     Let $G$ be a group and $H$ be a subgroup of $G$. Then, for $g \in G$, $f : H \to g H g^{-1}$ defined by $f(h) = ghg^{-1}$ is a bijection. (It is an isomorphism)
 \end{nlemma}
 \begin{proof}
-    Easy exercise.
+    This map is clearly surjective, because the pre-iamge of every $ghg^{-1} \in gHg^{-1}$ is $h \in H$. Also, $f$ is injective because $\forall h_{1}, h_{2} \in H$, $f(h_{1}) = f(h_{2}) \implies gh_{1}g^{-1} = gh_{2}g^{-1} \implies h_{1} = h_{2}$. Therefore, $f$ is a bijection.
 \end{proof}
 
 \begin{nex}
     Let $H \subgroup G$. Show that $gHg^{-1} \subgroup G$ for all $g \in G$.
+
+    Note that $e \in gHg^{-1}$, so it is non-empty. Next, take $gag^{-1}, gbg^{-1} \in gHg^{-1}$. Then,
+    \begin{equation*}
+        (gag^{-1})(gbg^{-1})^{-1} = (gag^{-1})(gb^{-1}g^{-1}) = g (ab^{-1}) g^{-1}.
+    \end{equation*}
+    Now, $a, b \in H \subgroup G \implies ab^{-1} \in H$. So, $g (ab^{-1}) g^{-1} \in gHg^{-1}$. Therefore, $gHg^{-1} \subgroup G$.
 \end{nex}
 
 \end{document}
