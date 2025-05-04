@@ -986,10 +986,14 @@ Throughout this section, let $G$ be a finite group.
 \end{ndfn}
 
 \begin{nlemma}
-    Let $G$ be a group and $H$ be a subgroup of $G$. Then, for every fixed $g \in G$, $f : H \to g H g^{-1}$ defined by $f(h) = ghg^{-1}$ is a bijection. (It is an isomorphism)
+    Let $G$ be a group and $H$ be a subgroup of $G$. Then, for every fixed $a \in G$, $f : H \to a H a^{-1}$ defined by $f(h) = aha^{-1}$ is a bijection. (It is an isomorphism)
 \end{nlemma}
 \begin{proof}
-    This map is clearly surjective, because the pre-iamge of every $ghg^{-1} \in gHg^{-1}$ is $h \in H$. Also, $f$ is injective because $\forall h_{1}, h_{2} \in H$, $f(h_{1}) = f(h_{2}) \implies gh_{1}g^{-1} = gh_{2}g^{-1} \implies h_{1} = h_{2}$. Therefore, $f$ is a bijection.
+    This map is clearly surjective, because the pre-image of every $aha^{-1} \in aHa^{-1}$ is $h \in H$. Also, $f$ is injective because $\forall h_{1}, h_{2} \in H$,
+    \begin{equation*}
+        f(h_{1}) = f(h_{2}) \implies ah_{1}a^{-1} = ah_{2}a^{-1} \implies h_{1} = h_{2}.
+    \end{equation*}
+    Therefore, $f$ is a bijection.
 \end{proof}
 
 \begin{nex}
@@ -997,9 +1001,642 @@ Throughout this section, let $G$ be a finite group.
 
     Note that $e \in gHg^{-1}$, so it is non-empty. Next, take $gag^{-1}, gbg^{-1} \in gHg^{-1}$. Then,
     \begin{equation*}
-        (gag^{-1})(gbg^{-1})^{-1} = (gag^{-1})(gb^{-1}g^{-1}) = g (ab^{-1}) g^{-1}.
+        \paren*{gag^{-1}} \paren*{gbg^{-1}}^{-1} = \paren*{gag^{-1}} \paren*{gb^{-1}g^{-1}} = g \paren*{ab^{-1}} g^{-1}.
     \end{equation*}
-    Now, $a, b \in H \subgroup G \implies ab^{-1} \in H$. So, $g (ab^{-1}) g^{-1} \in gHg^{-1}$. Therefore, $gHg^{-1} \subgroup G$.
+    Now, $a, b \in H \subgroup G \implies ab^{-1} \in H$. So, $g \paren*{ab^{-1}} g^{-1} \in gHg^{-1}$. Therefore, $gHg^{-1} \subgroup G$.
 \end{nex}
+
+\begin{nlemma}
+    Let $G$ be a group and $H$ be a subgroup of $G$. Then, for every fixed $a \in G$, $f : HaK \to H a K a^{-1}$ defined by $f(hak) = haka^{-1}$ is a bijection.
+\end{nlemma}
+\begin{proof}
+    This map is clearly surjective, because the pre-image of every $haka^{-1} \in HaKa^{-1}$ is $hak \in HaK$. Also, $f$ is injective because $\forall h_{1}ak_{1}, h_{2}ak_{2} \in H$,
+    \begin{equation*}
+        f(h_{1}ak_{1}) = f(h_{2}ak_{2}) \implies h_{1}ak_{1}a^{-1} = h_{2}ak_{2}a^{-1} \implies h_{1}ak_{1} = h_{2}ak_{2}.
+    \end{equation*}
+    Therefore, $f$ is a bijection.
+\end{proof}
+
+\begin{ncor}
+    Let $H, K$ be subgroups of a finite group $G$. Then, for all $a \in G$
+    \begin{equation*}
+        \abs{H} = \abs{aHa^{-1}}
+        \quad\text{and}\quad
+        \abs{HaK} = \abs{HaKa^{-1}}
+    \end{equation*}
+\end{ncor}
+
+\begin{remark}
+    Let $H, K$ be subgroups of a finite group $G$, and fix $a \in G$. Then,
+    \begin{equation*}
+        \abs{HaK} = \abs{HaKa^{-1}} = \frac{\abs{H}\abs{K}}{\abs{H \cap aKa^{-1}}}
+        \quad\text{and}\quad
+        \abs{G} = \sum_{a \in G} \frac{\abs{H}\abs{K}}{\abs{H \cap aKa^{-1}}},
+    \end{equation*}
+    where the sum runs over distinct double cosets.
+\end{remark}
+
+\begin{nthm}[Sylow's 2nd Theorem]
+    Any two Sylow $p$-subgroups of $G$ are conjugate to each other. More precisely, if $P$ and $Q$ are Sylow $p$-subgroups of $G$, then $Q = gPg^{-1}$.
+\end{nthm}
+\begin{proof}
+    Let $P, Q$ be Sylow $p$-subgroups of $G$ (of order $p^{n}$). Decompose $G$ as a union of distinct double cosets of $P$ and $Q$ as
+    \begin{equation*}
+        G = \bigsqcup_{x} PxQ.
+    \end{equation*}
+    Here the union runs over disjoint double cosets. Now, if $P \neq xQx^{-1}$ then, $\abs{P \cap x Q x^{-1}} = p^{m}$ for $m < n$. Thus,
+    \begin{equation*}
+        \abs{PxQ}
+        = \frac{\abs{P}\abs{Q}}{\abs{P \cap x Q x^{-1}}}
+        = \frac{p^{2n}}{p^{m}}
+        = p^{2n-m}.
+    \end{equation*}
+    And, $2n-m \geq n+1$. Therefore, $p^{n+1} \mid p^{2n-m}$. Consequently, $p^{n+1} \mid \abs{PxQ}$ for every $x \in G$. Moreover,
+    \begin{equation*}
+        \abs{G} = \sum_{x} \abs{PxQ}
+        \implies
+        p^{n+1} \mid \abs{G}.
+    \end{equation*}
+    This is a contradiction. Therefore, $P = xQx^{-1}$ for some $x \in G$.
+\end{proof}
+
+\begin{ncor}
+    $P$ is the unique Sylow $p$-subgroup of $G$ if and only if $P \nsubgroup G$.
+\end{ncor}
+\begin{proof}
+    Suppose $P$ is the unique Sylow $p$-subgroup of $G$. This means, $\forall g \in G$, we have $gPg^{-1} = P$, otherwise, $gPg^{-1}$ would be another Sylow $p$-subgroup by Sylow's 2nd theorem. And, $\forall g \in G$, $gPg^{-1} = P \implies P \nsubgroup G$.
+
+    For the converse, suppose $P \nsubgroup G$. Now, if $Q$ is another Sylow $p$-subgroup, then by Sylow's 2nd theorem, we can write $Q = gPg^{-1}$ for some $g \in G$. But, $P \nsubgroup G \implies gPg^{-1} = P$, for all $g \in G$. Therefore, $Q = P$.
+\end{proof}
+
+\begin{ndfn}[Simple groups]
+    Let $G$ be a group with $\abs{G} > 1$. We say $G$ is \keyword{simple} if it has no proper non-trivial normal subgroups.
+\end{ndfn}
+
+\begin{nlemma}
+    Let $P$ be a Sylow $p$-subgroup of $G$, then the number of Sylow $p$-subgroups of $G$ is
+    \begin{equation*}
+        n_{p} = [G : N_{G}(P)] = \frac{ \abs{G} }{ \abs{N_{G}(P)} }
+    \end{equation*}
+\end{nlemma}
+
+\begin{nthm}[Sylow's 3rd Theorem]
+    The number of Sylow $p$-subgroups of $G$ is of the form $n_{p} = 1 + kp$ with $k \in \Z_{+}$. Moreover, $n_{p} \mid \abs{G}$.
+\end{nthm}
+\begin{proof}
+    Let $P$ be a Sylow $p$-subgroup with $\abs{P} = p^{n}$. Then, $p^{n+1} \nmid G$. We can partition $G$ as
+    \begin{equation*}
+        G
+        = \bigsqcup_{x} PxP
+        = \paren*{\bigsqcup_{x \in N_{G}(P)} PxP} \bigcup \paren*{\bigsqcup_{x \notin N_{G}(P)} PxP}
+    \end{equation*}
+    where the union runs over the distinct equivalence classes.
+
+    Now, $x \in N_{G}(P) \implies xPx^{-1} = P \implies xP = Px \implies PxP = PPx \implies PxP = Px$. So,
+    \begin{equation*}
+        \bigsqcup_{x \in N_{G}(P)} PxP
+        = \bigsqcup_{x \in N_{G}(P)} Px
+        = N_{G}(P).
+    \end{equation*}
+    This is because $P \subgroup N_{G}(P)$, and the union of all distinct right cosets of $P$ in $N_{G}(P)$ forms the full group $N_{G}(P)$.
+
+    On the other hand, $x \notin N_{G}(P) \implies xPx^{-1} \neq P$. But, $P \cap xPx^{-1} \subgroup G$. So, $\abs{P \cap xPx^{-1}} = p^{m}$ with $0 \leq m < n$. As a result,
+    \begin{equation*}
+        \abs{G}
+        = \abs{N_{G}(P)} + \sum_{x} \abs{PxP}
+        = \abs{N_{G}(P)} + \sum_{x} \frac{\abs{P}^{2}}{\abs{P \cap xPx^{-1}}}
+        = \abs{N_{G}(P)} + \sum_{x} p^{2n-m}.
+    \end{equation*}
+    Here, the summation runs over distinct equivalence classes outside of $N_{G}(P)$. Now, since $P \subgroup N_{G}(P)$, we obtain that $p^{n}$ divides $\abs{N_{G}(P)}$. Thus, $\abs{N_{G}(P)} = p^{n}b$ for some $b \in \Z_{+}$. Therefore,
+    \begin{equation*}
+        \abs{G}
+        = \abs{N_{G}(P)} + \sum_{x} p^{2n-m}
+        = \abs{N_{G}(P)} + p^{n+1} \sum_{x} p^{n-m-1}
+        = \abs{N_{G}(P)} + p^{n+1} t,
+    \end{equation*}
+    with $t = \sum_{x} p^{n-m-1}$. Using $n_{p} = \abs{G}/\abs{N_{G}(P)}$ and $\abs{N_{G}(P)} = p^{n}b$ gives
+    \begin{equation*}
+        \frac{\abs{G}}{\abs{N_{G}(P)}} = 1 + \frac{p^{n+1}}{\abs{N_{G}(P)}} t
+        \implies
+        n_{p} = 1 + \frac{pt}{b}.
+    \end{equation*}
+    We have $pt/b = r$ for some $r \in \Z$ because $pt/b = n_{p} - 1 \in \Z$. And,
+    \begin{equation*}
+        pt/b = r
+        \implies
+        pt = br
+        \implies
+        p \mid br.
+    \end{equation*}
+    If $p \mid b$, then $p^{n+1} \mid \abs{N_{G}(P)}$, and thus $p^{n+1} \mid \abs{G}$. This is a contradiction because the Sylow $p$-subgroup has order $p^{n}$ by construction, so $p^{n+1} \nmid \abs{G}$. Therefore, $p$ divides $r$, and we obtain $t/b = r/p \in \Z_{+}$. Thus, $t/b = k$ for some $k \in \Z_{+}$. Overall,
+    \begin{equation*}
+        n_{p} = 1 + \frac{pt}{b} = 1 + pk.
+    \end{equation*}
+
+    Lastly, since $n_{p} = [G : N_{G}(P)]$ we have $n_{p} \mid \abs{G}$ by Lagrange's theorem.
+\end{proof}
+
+\begin{nex}\phantom{}
+    \begin{enumerate}
+        \item $A_{4}$ is not simple. (Because it has a single Sylow $2$-subgroup.)
+        \item Let $\abs{G} = 2 p^{2}$ with $p$ prime and $p \neq 2$. Then, $G$ is not simple.
+        \item Groups of the following order are not simple: $33, 51, 56, 65, 69$ and $100$.
+    \end{enumerate}
+\end{nex}
+
+\section{Automorphisms}
+
+Throughout this section, let $G$ be a group.
+
+\begin{ndfn}[Automorphism]
+    An isomorphism from $G$ to $G$ is called an \keyword{automorphism}. The set of all automorphism of $G$ is denoted by $\Aut(G)$.
+\end{ndfn}
+
+Let $S$ be a non-empty set and $A(S)$ denote the set of all bijective functions from $S$ to $S$. Then, $A(S)$ forms a group under the composition of functions.
+
+\begin{nprop}
+    $\Aut(G) \subgroup A(G)$.
+\end{nprop}
+\begin{proof}
+    Every isomorphism is bijective, and the identity map is an isomorphism from $G$ to $G$. Therefore, $\Aut(G)$ is a non-empty subset of $A(G)$.
+
+    Take $\varphi, \psi \in \Aut(G)$. By definition, these are isomorphisms from $G$ to $G$. Therefore, $\psi^{-1}$ exists and it is also an isomorphism from $G$ to $G$. Composition of two isomorphisms is again an isomorphism, so $\varphi \circ \psi^{-1}$ is an isomorphism from $G$ to $G$. In particular, $\varphi \circ \psi^{-1} \in \Aut(G)$. Therefore, $\Aut(G) \subgroup A(G)$ by the subgroup criteria.
+\end{proof}
+
+\begin{nprop}
+    Let $G$ be abelian. The map $\varphi: G \to G$ with $\varphi(x) = x^{-1}$ is an automorphism.
+\end{nprop}
+\begin{proof}
+    This map is bijective because it has an inverse function, namely itself; $\forall x \in G$,
+    \begin{equation*}
+        (\varphi \circ \varphi) (x) = \varphi( \varphi(x) ) = \varphi( x^{-1} ) = x = I(x).
+    \end{equation*}
+    Moreover, for all $x, y \in G$, $\varphi(xy) = (xy)^{-1} = y^{-1} x^{-1} = x^{-1} y^{-1} = \varphi(x) \varphi(y)$.
+
+    Therefore, $\varphi$ is a bijective homomorphism from $G$ to $G$, i.e. it is an automorphism of $G$.
+\end{proof}
+
+\begin{nprop}
+    Fix $g \in G$. The map $T_{g} : G \to G$ with $T_{g}(x) = g x g^{-1}$ is an automorphism.
+\end{nprop}
+\begin{proof}
+    This map is bijective because it has an inverse function, given by $T_{g^{-1}}$; $\forall x \in G$,
+    \begin{gather*}
+        (T_{g^{-1}} \circ T_{g}) (x) = T_{g^{-1}}( T_{g}(x) ) = T_{g^{-1}}( g x g^{-1} ) = g^{-1} ( g x g^{-1} ) g = x = I(x),\\
+        (T_{g} \circ T_{g^{-1}}) (x) = T_{g}( T_{g^{-1}}(x) ) = T_{g}( g^{-1} x g ) = g ( g^{-1} x g ) g^{-1} = x = I(x).
+    \end{gather*}
+
+    Moreover, for all $x, y \in G$,
+    \begin{equation*}
+        T_{g} (xy) = g (xy) g^{-1} = g x (g^{-1}g) y g^{-1} = (g x g^{-1})(g y g^{-1}) = T_{g}(x) T_{g}(y).
+    \end{equation*}
+    Therefore, $T_{g}$ is a bijective homomorphism from $G$ to $G$, i.e. it is an automorphism of $G$.
+\end{proof}
+
+\begin{ndfn}
+    For every fixed $g \in G$, the automorphism $x \mapsto g x g^{-1}$ is called an inner automorphism corresponding to $g$. We denote it by $T_{g}$. The set of all inner automorphisms is denoted by $\Inn(G)$. Thus, $\Inn(G) = \set{T_{g} \in \Aut(G) \st g \in G} \subseteq \Aut(G)$.
+\end{ndfn}
+
+\begin{nprop}
+    Let $g \in G$. We have $T_{g} = I$ (identity) if and only if $g \in Z(G)$.
+\end{nprop}
+\begin{proof}
+    Firstly, note that $T_{g}(x) = I(x) \iff g x g^{-1} = x \iff g x = x g$, for all $x \in G$.
+
+    Now, if $g \in Z(G)$, then $gx = xg$ for all $x \in G$. Thus, $T_{g} = I$. On the other hand, if $T_{g} = I$, then $gx = xg$ for all $x \in G$. Therefore, $g \in Z(G)$.
+\end{proof}
+
+\begin{ncor}
+    If $G$ is abelian then $\Inn(G) = \set{I}$.
+\end{ncor}
+\begin{proof}
+    If $G$ is abelian, then $G = Z(G)$. So, $G/Z(G)$ is trivial. Therefore, $\Inn(G) = \set{I}$.
+\end{proof}
+
+\begin{nthm}
+    $\Inn(G) \nsubgroup \Aut(G)$.
+\end{nthm}
+\begin{proof}
+    Every inner automorphism is an automorphism, and the identity automorphism is an inner automorphism corresponding to $T_{1}$. Therefore, $\Inn(G)$ is a non-empty subset of $\Aut(G)$.
+
+    Furthermore, note that for every $T_{h} \in \Inn(G)$, we have $T_{h}^{-1} = T_{h^{-1}}$ because for all $x \in G$,
+    \begin{gather*}
+        \paren*{T_{h^{-1}} \circ T_{h}} (x)
+        = T_{h^{-1}} \paren{ T_{h}(x) }
+        = h^{-1} \paren{ h x h^{-1} } h
+        = \paren{h^{-1} h} x \paren{h^{-1} h}
+        = x,\\
+        \paren{ T_{h} \circ T_{h^{-1}} } (x)
+        = T_{h} \paren{ T_{h^{-1}}(x) }
+        = h \paren{ h^{-1} x h } h^{-1}
+        = \paren{h h^{-1}} x \paren*{h h^{-1}}
+        = x.
+    \end{gather*}
+
+    Now, take $T_{g}, T_{h} \in \Inn(G)$. Then, for all $x \in G$
+    \begin{equation*}
+        (T_{g} \circ T_{h}^{-1}) (x)
+        = (T_{g} \circ T_{h^{-1}})(x)
+        = g (h^{-1} x h) g^{-1}
+        = (g h^{-1}) x (g h^{-1})^{-1}
+        = T_{gh^{-1}}(x).
+    \end{equation*}
+    Thus, $T_{g} \circ T_{h}^{-1} = T_{gh^{-1}} \in \Inn(G)$. By the subgroup test, this shows that $\Inn(G) \subgroup \Aut(G)$.
+
+    Next, take $\varphi \in \Aut(G)$ and $T_{g} \in \Inn(G)$. Then, for all $x \in G$
+    \begin{equation*}
+        (\varphi \circ T_{g} \circ \varphi^{-1})(x)
+        = \varphi( T_{g}( \varphi^{-1}(x) ) )
+        = \varphi( g \varphi^{-1}(x) g^{-1} )
+        = \varphi( g ) \varphi( \varphi^{-1}(x) ) \varphi ( g^{-1} )
+        = \varphi( g ) x \varphi ( g^{-1} ).
+    \end{equation*}
+    Since $\varphi(g) \in G$, we can write $\varphi( g ) x \varphi ( g^{-1} ) = \varphi( g ) x \varphi ( g )^{-1} = T_{\varphi(g)}(x)$.
+
+    Thus, $\varphi \circ T_{g} \circ \varphi^{-1} = T_{\varphi(g)} \in \Inn(G)$. This shows that $\Inn(G) \nsubgroup \Aut(G)$.
+\end{proof}
+
+\begin{nthm}
+    The map $\varphi: G \to \Inn(G)$ defined by $\varphi(g) = T_{g}$ is a surjective homomorphism.
+\end{nthm}
+\begin{proof}
+    Firstly, note that for all $g,h \in G$ and $x \in G$,
+    \begin{equation*}
+        (T_{g} \circ T_{h})(x)
+        = T_{g} ( T_{h}(x) )
+        = g ( hxh^{-1} ) g^{-1}
+        = (gh) x (h^{-1}g^{-1})
+        = (gh) x (gh)^{-1}
+        = T_{gh} (x).
+    \end{equation*}
+    Thus, $\varphi$ is a homomorphism $\varphi(gh) = T_{gh} = T_{g} \circ T_{h} = \varphi(g) \circ \varphi(h)$. Next, $\varphi$ is clearly a surjection because the pre-image of $T_{g} \in \Inn(G)$ is $g \in G$. So, $\varphi$ is a surjective homomorphism.
+\end{proof}
+
+\begin{nthm}
+    $G/Z(G) \isom \Inn(G)$
+\end{nthm}
+\begin{proof}
+    We know that the map $\varphi : G \to \Inn(G)$ with $\varphi(g) = T_{g}$ is a surjective homomorphism.
+
+    Also, $\ker\varphi = \set{g \in G \st \varphi(g) = I,\, \text{identity}} = \set{g \in G \st T_{g} = I} = \set{g \in G \st g \in Z(G)} = Z(G)$.
+
+    Therefore, by the 1st isomorphism theorem, $G / \ker\varphi \isom \Inn(G) \implies G / Z(G) \isom \Inn(G)$.
+\end{proof}
+
+\begin{nex}
+    Find $\Inn(D_{4})$. Here, $D_{4} = \set{1, a, a^{2}, a^{3}, ba, ba^{2}, ba^{3}}$.
+\end{nex}
+
+\begin{nthm}
+    Let $G = \cyclic{a}$ be an infinite cyclic group. Then, $\Aut(G) = \set{I,T}$, where $I$ is the identity map and $T:G \to G$ is given by $T(x) = x^{-1}$.
+\end{nthm}
+\begin{proof}
+    Let $\psi \in \Aut(G)$ be an arbitrary automorphism of $G$.
+
+    Since $\psi$ is surjective, for every $x \in G$, we have some $y \in G$ such that $\psi(y) = x$. Since $G = \cyclic{a}$, we can write $x = a^{k}$ and $y = a^{r}$ for some $k, r \in \Z$. Thus, $x = \psi(y) = \psi(a^{r}) = (\psi(a))^{r}$.
+
+    In other words, every element $x \in G$ can be written as a power of $\psi(a)$. Therefore, $\psi(a)$ generates $G$; $G = \cyclic{\psi(a)}$. However, every infinite cyclic group has exactly two generators, $a$ and $a^{-1}$. Therefore, either $\psi(a) = a$ or $\psi(a) = a^{-1}$.
+
+    In the first case, $\psi(x) = \psi(a^{k}) = \psi(a)^{k} = a^{k} = x$. This is the identity map $I$.
+
+    While, in the second case, $\psi(x) = \psi(a^{k}) = \psi(a)^{k} = \paren*{a^{-1}}^{k} = \paren*{a^{x}}^{-1} = x^{-1}$. This is the inverse map $T(x) = x^{-1}$.
+
+    Therefore, $\Aut(G)$ has exactly two elements, $I$ and $T$.
+\end{proof}
+
+\begin{remark}
+    we observe that if $G$ is an infinite cyclic group then $\Aut(G) \isom \Z_{2}$.
+\end{remark}
+
+\begin{nthm}
+    Let $G$ be a cyclic group with $\abs{G} = n$. Then,
+    \begin{equation*}
+        \Aut(G) = \set{T_{m} \st T_{m}(x) = x^{m},\, 1 \leq m < n,\, \gcd(m,n) = 1}.
+    \end{equation*}
+    Consequently, $\abs{\Aut(G)} = \varphi(n)$, where $\varphi$ is the Euler totient function.
+\end{nthm}
+\begin{proof}
+    Let $G = \cyclic{a}$. Since $G$ is a finite cyclic group, it has exactly $\varphi(n)$ generators, each of the form $a^{m}$ where $1 \leq m < n$ with $\gcd(m,n) = 1$.
+
+    Take $\psi \in \Aut(G)$ and $x \in G$. Since $\psi$ is surjective, we have $x = \psi(y)$ for some $y \in G$. But, we can write $y = a^{r}$ for some $1 \leq r < n$. So, $x = \psi(y) = \psi(a^{r}) = \psi(a)^{r}$. Thus, every $x \in G$ can be written as a power of $\psi(a)$. In other words, $\psi(a)$ is a generator of $G$. Consequently, $\psi(a) = T_{m}(a) \equiv a^{m}$ for some $1 \leq m < n$ with $\gcd(m,n) = 1$.
+
+    Next, suppose $1 \leq m_{1} < m_{2} < n$ with $\gcd(m_{1}, n) = \gcd(m_{2}, n) = 1$. Then,
+    \begin{equation*}
+        T_{m_{1}}(a) = T_{m_{2}}(a)
+        \implies a^{m_{1}} = a^{m_{2}}
+        \implies a^{m_{2} - m_{1}} = 1
+        \implies n \mid (m_{2} - m_{1}).
+    \end{equation*}
+    This is a contradiction because $(m_{2} - m_{1}) < n$. Therefore, $T_{m_{1}} \neq T_{m_{2}}$. This shows that every element of $\Aut(G)$ has the form $T_{m}$ and that there are exactly $\varphi(n)$ such elements.
+
+    Finally, if $x \in G$, then $x = a^{k}$ for some $1 \leq k \leq n$. So,
+    \begin{equation*}
+        T(x) = T(a^{k}) = T(a)^{k} = (a^{m})^{k} = (a^{k})^{m} = x^{m}.
+    \end{equation*}
+    Overall, $\Aut(G) = \set{T_{m} \st T_{m}(x) = x^{m},\, 1 \leq m < n,\, \gcd(m,n) = 1}$ and $\abs{\Aut(G)} = \varphi(n)$.
+\end{proof}
+
+\begin{ndfn}
+    Let $n \geq 2$ be an integer. We define
+    \begin{equation*}
+        U(n) = \set{m \in \Z \st 1 \leq m \leq n,\, \gcd(m, n) = 1}
+    \end{equation*}
+    as the set of positive integers less than or equal to $n$ that are relatively prime with $n$.
+\end{ndfn}
+
+\begin{nthm}
+    $U(n)$ is a group under multiplication modulo $n$.
+\end{nthm}
+\begin{proof}
+    Firstly, note that $U(n)$ is non-empty because $\forall n$, $\gcd(1,n) = 1 \implies 1 \in U(n)$. Moreover, modular multiplication is associative and commutative.
+
+    Take $x,y \in U(n)$. Then, $ax+bn = 1$ and $cy + dn = 1$ for $a,b,c,d \in \Z$. Then,
+    \begin{equation*}
+        1
+        = (1)(1)
+        = (ax+bn)(cy+dn)
+        = acxy + adxn + bcny + bdn^{2}
+        = (ac)(xy) + (adx + bcy + bdn)n.
+    \end{equation*}
+    Thus, $\gcd(xy, n) = 1$ because $ac, adx + bcy + bdn \in \Z$. So, the closure property also holds.
+
+    Next, $\forall x \in U(n)$, $1 x = x \pmod p$. Therefore, $1 \in U(n)$ is the identity element.
+
+    Also, $\gcd(x,n) = 1 \implies ax + bn = 1$ for some $a, b \in \Z$. So, $ax \equiv 1 \pmod p$. Therefore, the inverse of $x \in U(n)$ is $a \pmod p \in U(n)$.
+
+
+    Overall, $U(n)$ satisfies all of the group axioms.
+\end{proof}
+
+\begin{remark}
+    The Euler's totient function $\varphi(n)$ counts the number of positive integers less than or equal to $n$ that are relatively prime with $n$. So, clearly, $\abs{U(n)} = \varphi(n)$.
+\end{remark}
+
+\begin{nthm}
+    Let $G$ be a cyclic group with $\abs{G} = n$. Then, $\Aut(G) \isom U(n)$.
+\end{nthm}
+\begin{proof}
+    Define the map $\psi : \Aut(G) \to U(n)$ by $\psi(T_{m}) = m$, where
+    \begin{gather*}
+        \Aut(G) = \set{T_{m} \st T_{m}(x) = x^{m},\, 1 \leq m < n,\, \gcd(m,n) = 1},\\
+        U(n) = \set{m \in \Z \st 1 \leq m \leq n,\, \gcd(m, n) = 1}.
+    \end{gather*}
+
+    Now, for all $T_{x}, T_{y} \in \Aut(G)$, $\psi(T_{x}) = \psi(T_{y}) \implies x = y \implies T_{x} = T_{y}$.
+
+    Therefore, $\psi$ is injective. Since $\abs{\Aut(G)} = \varphi(n)$ and $\psi$ is injective, we conclude that $\psi$ is surjective. Next, take $T_{x}, T_{y} \in \Aut(G)$ with $1 \leq x, y < n$ and $\gcd(x,n) = \gcd(y,n) = 1$. Then, $\forall g \in G$ we obtain
+    \begin{equation*}
+        (T_{x} \circ T_{y})(g)
+        = T_{x}( T_{y}(g) )
+        = T_{x}( g^{y} )
+        = (g^{y})^{x}
+        = g^{xy \,(\mathrm{mod}\, p)}
+        = T_{xy \,(\mathrm{mod}\, p)}(g).
+    \end{equation*}
+    So, $\psi(T_{x} T_{y}) = \psi( T_{xy \,(\mathrm{mod}\, p)} ) = xy \,(\mathrm{mod}\, p) = \psi(T_{x}) \psi(T_{y})$.
+
+    Therefore, $\psi$ is an isomorphism and we obtain $\Aut(G) \isom U(n)$.
+\end{proof}
+
+\section{Characteristic Subgroups}
+Throughout this section, let $G$ be a group.
+
+\begin{ndfn}[characteristic subgroup]
+    A subgroup $H \subgroup G$ is called a characteristic subgroup of $G$ if, for all $T \in \Aut(G)$, $T(H) \subseteq H$.
+\end{ndfn}
+
+\begin{negg}
+    Consider $C_{4}$, the cyclic group of order $4$. We have $\Aut(C_{4}) \isom U(4) = \set{1,3}$. Thus, $\Aut(C_{4}) = \set{T_{1}, T_{3}}$ with $T_{1}(x) = x = I(x)$ and $T_{3}(x) = x^{3}$.
+
+    Let $H = \set{1, a^{2}} \subgroup G$. Then,
+    \begin{gather*}
+        T_{1}(H) = I(H) = \set{I(1), I(a^{2})} = \set{1, a^{2}} = H,\\
+        T_{3}(H) = \set{T_{3}(1), T_{3}(a^{2})} = \set{1, a^{6}} = \set{1, a^{2}} = H.
+    \end{gather*}
+    Therefore, $H$ is a characteristic subgroup of $H$.
+\end{negg}
+
+\begin{remark}
+    Let $G$ be a group. Then the trivial subgroup $\set{1}$ and the full group $G$ are always characteristic subgroups of $G$.
+\end{remark}
+
+\begin{nprop}
+    If $H \subgroup G$ is a characteristic subgroup of $G$, then $H \nsubgroup G$.
+\end{nprop}
+\begin{proof}
+    Let $H \subgroup G$ be a characteristic subgroup of $G$. This means, $T(H) \subgroup H$ for all $T \in \Aut(G)$. In particular, $\forall g \in G$, $T_{g}(H) \subseteq H$ because $T_{g} \in \Inn(G) \subseteq \Aut(G)$.
+
+    Then, for all $g \in G$ and $h \in H$
+    \begin{equation*}
+        T_{g}(H) \subseteq H
+        \implies
+        T_{g}(h) \in T_{g}(H) \subseteq H
+        \implies
+        g h g^{-1} \in H.
+    \end{equation*}
+    Therefore, $H \nsubgroup G$.
+\end{proof}
+
+\begin{remark}
+    The converse of this proposition is not true. For example, consider the Klein-$4$ group $V_{4} = \set{1, a, b, ab}$ and take $H = \set{1, a}$. Consider the automorphism $T: V_{4} \to V_{4}$ such that
+    \begin{equation*}
+        T(1) = 1, \quad
+        T(a) = b, \quad
+        T(b) = a, \quad
+        T(ab) = ab.
+    \end{equation*}
+    Then, $T(H) = \set{T(1), T(a)} = \set{1, b} \nsubseteq H$.
+\end{remark}
+
+\begin{nprop}
+    Suppose for some $g \in G$, $g^{2} \neq 1$. Then, $G$ has a non-trivial automorphism.
+\end{nprop}
+\begin{proof}
+    Suppose $G$ is abelian. Consider the map $T: G \to G$ with $T(g) = g^{-1}$. This is an automorphism. Moreover, it is not the identity automorphism because otherwise
+    \begin{equation*}
+        T(g) = I(g)
+        \implies
+        g^{-1} = g
+        \implies
+        g^{2} = 1
+    \end{equation*}
+    for all $g \in G$. This is false by hypothesis. Therefore, $\Aut(G)$ has a non-trivial element.
+
+    If $G$ is non-abelian, then $Z(G) \neq G$. This means, $\abs{G / Z(G)} > 1$. Thus,
+    \begin{equation*}
+        \Inn(G) \isom G / Z(G)
+        \implies
+        \abs{\Inn(G)} = \abs{G / Z(G)} > 1
+        \implies
+        \abs{\Aut(G)} \geq \abs{\Inn(G)} > 1.
+    \end{equation*}
+    Here we used $\Inn(G) \subseteq \Aut(G)$. Therefore, again, $\Aut(G)$ has a non-trivial element.
+\end{proof}
+
+\section{Group Action \& Cayley's Theorem}
+\begin{nthm}[Cayley's Theorem]
+    Every group $G$ is isomorphic to a subgroup of a permutation group. In particular, if $\abs{G} = n$, then $G \isom H$ with $H \subgroup S_{n}$.
+\end{nthm}
+\begin{proof}
+    Let $S_{G}$ be the group of permutations of $G$. Define the map $\varphi : G \to S_{G}$ by $\varphi(x) = t_{x}$, where $t_{x} : G \to G$ is a map such that $t_{x}(g) = xg$. We need to check that $\forall x \in G$, $t_{x}$ is indeed a bijection (permutation of $G$).
+
+    To this end, note that $t_{x}$ is injective because for all $a, b \in G$ we have
+    \begin{equation*}
+        t_{x}(a) = t_{x}(b) \implies xa = xb \implies a = b.
+    \end{equation*}
+    Also, $\forall b \in G$ we have $x^{-1}b \in G$ such that $t_{x}\paren*{x^{-1} b} = x \paren*{x^{-1} b} = b$. So, $t_{g}$ is also surjective. Overall, $t_{g}$ is a bijection (permutation of $G$).
+
+    Next, note that for all $x, y \in G$, $t_{x} \circ t_{y} = t_{xy}$ because $\forall g \in G$
+    \begin{equation*}
+        t_{x y}(g)
+        = \paren*{x y} g
+        = x \paren*{ yg }
+        = t_{x} \paren*{ yg }
+        = t_{x} \paren*{ t_{y}(g) }
+        = \paren*{t_{x} \circ t_{y}} (g).
+    \end{equation*}
+    As a result, $\varphi$ is a homomorphism because $\varphi(xy) = t_{xy} = t_{x} \circ t_{y} = \varphi(x) \circ \varphi(y)$. Also,
+    \begin{align*}
+        \ker\varphi
+        = \set{x \in G \st t_{x} = I}
+        = \set{x \in G \st t_{x}(g) = I(g), \forall g \in G}
+        = \set{x \in G \st xg = g, \forall g \in G}
+        = \set{1}.
+    \end{align*}
+
+    Now, by the 1st isomorphism theorem, $G / \ker\varphi \isom \img\varphi \implies G \isom H$,
+    where $H = \img\varphi$ is some subgroup of $S_{G}$. In other words, $G$ is isomorphic to a subgroup of a permutation group. If $\abs{G} = n$, then $S_{G}$ reduces to $S_{n}$.
+\end{proof}
+
+\begin{ndfn}
+    A group action of $G$ on a non-empty set $A$ is a map $G \times A \to A$ with $(g, a) \mapsto g \cdot a$ such that $\forall g_{1}, g_{2} \in G$ and $\forall a \in A$, $g_{1} \cdot \paren*{ g_{2} \cdot a } = (g_{1} g_{2}) \cdot a$ and $1 \cdot a = a$.
+\end{ndfn}
+
+\begin{negg}
+    Let $G$ be a group and $A$ be a non-empty set. Consider the map $G \times A \to A$ with $g \cdot a = a$, for all $a \in A$. It is easy to check that it satisfies the conditions of being a group action. This is called the trivial action of $G$ on $A$.
+\end{negg}
+
+\begin{negg}
+    Let $V$ be a vector space over $\R$ and consider the group $\R^{*}$ under the usual multiplication of real numbers. The map $\R^{*} \times V \to V$ defined as $\alpha \cdot \vec{v} = \alpha \vec{v}$ is a group action because $1 \cdot \vec{v} = 1\vec{v} = \vec{v}$ and $\alpha \cdot \paren*{ \beta \cdot \vec{v} } = \alpha \cdot \paren*{ \beta\vec{v} } = \alpha\beta\vec{v} = \paren*{\alpha\beta} \vec{v} = \paren*{\alpha\beta} \cdot \vec{v}$.
+\end{negg}
+
+\begin{negg}
+    Let $\Z$ be the additive group of integers which acts on itself by $z \cdot a = z + a$, for all $z, a \in \Z$. This is a group action because for all $a \in \Z$, $0 \cdot a = 0 + a = a$ and
+    \begin{equation*}
+        z_{1} \cdot (z_{2} \cdot a)
+        = z_{1} \cdot (z_{2} + a)
+        = z_{1} + (z_{2} + a)
+        = (z_{1} + z_{2}) + a
+        = (z_{1} + z_{2}) \cdot a
+    \end{equation*}
+    for all $z_{1}, z_{2} \in \Z$.
+\end{negg}
+
+\begin{negg}
+    Let $\R$ be the additive group of real numbers, and define $\cdot : \R \times \R^{2} \to \R^{2}$ by
+    \begin{equation*}
+        r \cdot (x,y) = (x + ry, y).
+    \end{equation*}
+    Now, for all $(x,y) \in \R^{2}$ we have $0 \cdot (x,y) = (x + 0y, y) = (x, y)$. And, for all $r_{1}, r_{2} \in \R$,
+    \begin{equation*}
+        r_{1} \cdot (r_{2} \cdot (x,y))
+        = r_{1} \cdot (x + r_{2}y, y)
+        = (x + r_{2}y + r_{1}y, y)
+        = (x + (r_{1} + r_{2})y, y)
+        = (r_{1} + r_{2}) \cdot (x, y).
+    \end{equation*}
+    Therefore, this is a group action of $\R$ on $\R^{2}$.
+\end{negg}
+
+\begin{ndfn}
+    Let $\cdot : G \times A \to A$ be a group action. The kernel of this group action, denoted by $K$, is the set of elements of $G$ that act trivially on every element of $A$; i.e.
+    \begin{equation*}
+        K = \set{g \in G \st g \cdot a = a, \, \forall a \in A}.
+    \end{equation*}
+    The stabiliser of $a \in A$ in $G$, denoted by $G_{a}$, is the set of elements of $G$ that fix $a$; i.e.
+    \begin{equation*}
+        G_{a} = \set{g \in G \st g \cdot a = a}.
+    \end{equation*}
+\end{ndfn}
+
+\begin{ndfn}
+    An action is said to be faithful if its kernel is the trivial subgroup of $G$.
+\end{ndfn}
+
+\begin{nprop}
+    Let $G$ be a group acting on a non-empty set $A$. Then,
+    \begin{enumerate}
+        \item $K \nsubgroup G$.
+        \item $G_{a} \subgroup G$.
+    \end{enumerate}
+\end{nprop}
+\begin{proof}
+    \phantom{.}
+    \begin{enumerate}
+        \item Note that $K$ is non-empty because $1 \in K$. Take $k_{1}, k_{2} \in K$ and $a \in A$. Then,
+        \begin{equation*}
+            k_{2}^{-1} \cdot a
+            = k_{2}^{-1} \cdot (k_{2} \cdot a)
+            = (k_{2}^{-1} k_{2}) \cdot a
+            = 1 \cdot a
+            = a.
+        \end{equation*}
+        So, $(k_{1}k_{2}^{-1}) \cdot a = k_{1} \cdot (k_{2}^{-1} \cdot a) = k_{1} \cdot a = a$.
+
+        Therefore, $k_{1} k_{2}^{-1} \in K$, and we conclude that $K \subgroup G$. Next, for every $g \in G$ and $k \in K$,
+        \begin{equation*}
+            (gkg^{-1}) \cdot a
+            = g \cdot (k \cdot (g^{-1} \cdot a))
+            = g \cdot (g^{-1} \cdot a)
+            = (gg^{-1}) \cdot a
+            = 1 \cdot a
+            = a.
+        \end{equation*}
+        Therefore, $gkg^{-1} \in K$, which means $K \nsubgroup G$.
+
+        \item We have $1 \in G_{a}$ because $1 \cdot a = a$, so this is a non-empty subset of $G$. Now, take $x, y \in G_{a}$. Then, $x \cdot a = y \cdot a = a$. So, $y^{-1} \cdot a = y^{-1} \cdot (y \cdot a) = (y^{-1} y) \cdot a = 1 \cdot a = a$. As a result,
+        \begin{equation*}
+            (x y^{-1}) \cdot a = x \cdot (y^{-1} \cdot a) = x \cdot a = a.
+        \end{equation*}
+        Therefore, $x y^{-1} \in G_{a}$, which means $G_{a} \subgroup G$.
+        \qedhere
+    \end{enumerate}
+\end{proof}
+
+\begin{nprop}
+    Let $G$ be a group acting on a set $A$. For each fixed $g \in G$, define a map $\gamma_{g} : A \to A$ by $\gamma_{g}(a) = g \cdot a$. Then,
+    \begin{enumerate}
+        \item $\gamma_{g}$ is a permutation of $A$.
+        \item The map $\varphi : G \to S_{A}$ given by $\varphi(g) = \gamma_{g}$ is a homomorphism.
+    \end{enumerate}
+\end{nprop}
+\begin{proof}
+    \phantom{.}
+    \begin{enumerate}
+        \item Note that for all $a_{1}, a_{2} \in A$ we have
+        \begin{align*}
+            \gamma_{g}(a_{1}) = \gamma_{g}(a_{2})
+            \implies g \cdot a_{1} = g \cdot a_{2}
+            &\implies g^{-1} \cdot (g \cdot a_{1}) = g^{-1} \cdot (g \cdot a_{2})\\
+            &\implies (g^{-1}g) \cdot a_{1} = (g^{-1}g) \cdot a_{2}\\
+            &\implies 1 \cdot a_{1} = 1 \cdot a_{2}\\
+            &\implies a_{1} = a_{2}.
+        \end{align*}
+        And, for each $b \in A$, we have \dots TBC
+
+        Therefore, $\gamma_{g}$ is a bijection; i.e. a permutation of $A$.
+
+        \item For every $g, h \in G$ and $a \in A$, we have
+        \begin{equation*}
+            (\gamma_{g} \circ \gamma_{b}) (a)
+            = \gamma_{g} (\gamma_{h} (a))
+            = g \cdot (h \cdot a)
+            = (gh) \cdot a
+            = \gamma_{gh}(a).
+        \end{equation*}
+        Therefore, $\varphi(gh) = \gamma_{gh} = \gamma_{g} \circ \gamma_{h} = \varphi(g)\varphi(h)$. Therefore, $\varphi$ is a homomorphism.
+        \qedhere
+    \end{enumerate}
+\end{proof}
 
 \end{document}
