@@ -1,0 +1,242 @@
+\documentclass[11pt]{penrose}
+
+% \input{header}
+
+\usepackage{mathsphystools}
+
+\author{}
+
+\newenvironment{problem}[2][Question]{\textbf{#1 #2.}\par}{}
+\newcommand{\solution}{\textit{Solution.}\hspace{2mm}}
+
+\newcommand{\warningtext}{\textbf{Disclaimer:} Use at your own risk. Errors possible.}
+
+\usepackage{graphicx}
+
+\title{Past Paper: Mathematical Modelling}
+\subtitle{Final Exam, 2024}
+\begin{document}
+
+\maketitle
+\warningtext
+
+\begin{problem}{2a}
+    This scenario can be modelled as $a_{k+1} = ra_{k} + b$ with $r = 1.005$ and $b = -1000$, along with $a_{96} = 0$. So,
+    \begin{equation*}
+        a_{k} = r^{k} c + \frac{b}{1-r} = (1.005)^{k} c + 200 000
+    \end{equation*}
+    Now, $a_{96} = 0 \implies (1.005)^{96} c + 200 000 = 0$. So,
+    \begin{equation*}
+        c = - \frac{200 000}{(1.005)^{96}} = - 123 904.78.
+    \end{equation*}
+    Therefore, $a_{0} = (1.005)^{0} (- 123 904.78) + 200 000 = 76 095.22$ is the required amount.
+\end{problem}
+
+\begin{problem}{2b}
+    We can model this as $\alpha_{k+1} = r\alpha_{k} + \beta$ with $r = 1.005$, $\alpha_{0} = 0$, and $\alpha_{240} = a_{0} = 76 095.22$. The explicit solution is
+    \begin{equation*}
+        \alpha_{k} = r^{k} c + \frac{\beta}{1-r} = (1.005)^{k} c - 200 \beta.
+    \end{equation*}
+    Now, $\alpha_{0} = 0 \implies c - 200\beta = 0 \implies c = 200\beta$. So, $\alpha_{k} = 200 ((1.005)^{k} - 1) \beta$. And,
+    \begin{equation*}
+        \alpha_{240} = 76 095.22
+        \implies
+        200 ((1.005)^{240} - 1) \beta = 76 095.22
+    \end{equation*}
+    Therefore, the required monthly deposit is
+    \begin{equation*}
+        \beta = \frac{76 095.22}{200 ((1.005)^{240} - 1)} = 160.69.
+    \end{equation*}
+\end{problem}
+
+\begin{problem}{3a}
+    We are given that the average length of the disease is $5/3$ weeks. So, $3/5 = 0.6$ of the infected individuals are removed per week. Therefore, $R(n+1) = R(n) + 0.6I(n)$.
+
+    Next, $I(n+1)$ depends on how many infected individuals were removed, and how many susceptible individual became infected due to their interaction with infected individuals. Thus, $I(n+1) = I(n) - 0.6I(n) + aI(n)S(n)$.
+
+    To determine the value of $a$, note that $I(0) = 5, I(1) = 9$ and $S(0) = 995$. Therefore,
+    \begin{equation*}
+        I(1) = I(0) - 0.6I(0) + aI(0)S(0)
+        \implies
+        9 = 5 - 0.6(5) + a(5)(995)
+        \implies
+        a = 0.001407.
+    \end{equation*}
+
+    Lastly, $S(n+1) = S(n) - aI(n)S(n)$ describes how susceptible individuals catch the infection as indicated above.
+
+    Overall,
+    \begin{align*}
+        S(n+1) &= S(n) - 0.001407I(n)S(n),\\
+        I(n+1) &= I(n) - 0.6I(n) + 0.001407I(n)S(n),\\
+        R(n+1) &= R(n) + 0.6I(n).
+    \end{align*}
+\end{problem}
+
+\begin{problem}{3b}
+    Equilibrium occurs when $S(n+1) = S(n) = S(0)$, $I(n+1) = I(n) = I(0)$ and $R(n+1) = R(n) = R(0)$. So,
+    \begin{equation*}
+        \begin{aligned}
+            S(n+1) &= S(n) - aI(n)S(n),\\
+            I(n+1) &= I(n) - 0.6I(n) + aI(n)S(n),\\
+            R(n+1) &= R(n) + 0.6I(n).
+        \end{aligned}
+        \implies
+        \begin{aligned}
+            0 &= - aI(0)S(0),\\
+            0 &= - 0.6I(0) + aI(0)S(0),\\
+            0 &= 0.6I(0).
+        \end{aligned}
+    \end{equation*}
+    In other words, $I(0) = 0$. Thus, we must have $S(0) = 1000$ because $R(0) = 0$. So, the equilibrium value ($S = 1000, I = 0, R = 0$) occurs only when there are no infected individuals in the society initially.
+\end{problem}
+
+\begin{problem}{3c}
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{sir-model.pdf}
+    \end{center}
+\end{problem}
+
+\begin{problem}{4a}
+    This is a reasonable model because it captures all of the stated modelling assumptions. In particular,
+    \begin{itemize}
+        \item If $P > M$, then $dP/dt < 0$. So, $P$ decreases back to the carrying capacity $M$.
+        \item If $m < P < M$, then $dP/dt > 0$. So, $P$ grows until it reaches the upper bound $M$.
+        \item If $0 < P < m$, then $dP/dt < 0$. So, $P$ decays to extinction.
+        \item We don't need to consider $P < 0$, as the population must remain non-negative.
+    \end{itemize}
+\end{problem}
+
+\begin{problem}{4b}
+    This model has an extra factor of $(P - m)$. This factor ensures that if the initial population is between $m$ and $M$, then it will grow to $M$, but if it is lower than $m$ then it will decay to extinction. This behaviour is absent in the logistic model, where any initial population between $0$ and $M$ increases to the carrying capacity $M$.
+
+    Therefore, this model is better and more realistic than the logistic model.
+\end{problem}
+
+\begin{problem}{4c}
+    If $P > M$, then $P(P - m) > 0$ but $(M - P) < 0$. So, $dP/dT < 0$. So, $P$ is a strictly decreasing continuous function that can take an initial value arbitrarily close to $P = M$. Therefore, $\displaystyle P(0) > M \implies \lim_{t \to \infty} P(t) = M$.
+\end{problem}
+
+\begin{problem}{4d}
+    We have two different cases here.
+    \begin{itemize}
+        \item If $m < P < M$ for all $t$, then $dP/dt > 0$ for all $t$. Therefore, $P(t)$ is strictly increasing with a least upper bound $P = M$. Therefore, $P(t) \to M$ as $t \to \infty$; i.e. it reaches the carrying capacity.
+        \item If $0 < P < m$ for all $t$, then $dP/dt < 0$ for all $t$. So, $P(t)$ is strictly decreasing with a greatest lower bound $P = 0$. Thus, $P(t) \to 0$ as $t \to \infty$; i.e. it decays to extinction.
+    \end{itemize}
+\end{problem}
+
+\begin{problem}{4e}
+    The equilibrium occurs when $dP/dt = 0$. This corresponds to $P = 0$, $P = m$ and $P = M$.
+
+    The behaviour of the solutions based on the initial values has already been discussed above. Here we present this graphically.
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{q4.pdf}
+    \end{center}
+
+    The analytic solution is as follows.
+    \begin{equation*}
+        \frac{dP}{dt} = rP(M-P)(P-m)
+        \implies
+        \int_{P_{0}}^{P} \frac{1}{P(M-P)(P-m)} \,dP = \int_{0}^{t} r \,dt = rt.
+    \end{equation*}
+    Now, using partial fraction decomposition,
+    \begin{align*}
+        \MoveEqLeft
+        \frac{1}{P(M-P)(P-m)} = \frac{A}{P} + \frac{B}{M - P} + \frac{C}{P - m}\\
+        &\implies 1 = A(M - P)(P - m) + BP(P - m) + CP(M - P)\\
+        &\implies A = - \frac{1}{mM}, \quad B = \frac{1}{M(M-m)}, \quad C = \frac{1}{m(M-m)}.
+    \end{align*}
+    So,
+    \begin{align*}
+        \int_{P_{0}}^{P} \frac{1}{P(M-P)(P-m)} \,dP
+        &= \int_{P_{0}}^{P} \paren*{ \frac{A}{P} + \frac{B}{M - P} + \frac{C}{P - m} } \,dP\\
+        &= A\ln\abs{P} - B\ln\abs{M-P} + C\ln\abs{P-m} \at[\bigg]{P_{0}}^{P}\\
+        &= \ln\abs*{ \frac{P^{A}(P-m)^{C}}{(M-P)^{B}} } \at[\bigg]{P_{0}}^{P}\\
+        &= \ln\abs*{ \frac{P^{A}(P-m)^{C}}{(M-P)^{B}} } - \ln\abs*{ \frac{P_{0}^{A}(P_{0}-m)^{C}}{(M-P_{0})^{B}} }.
+    \end{align*}
+    Therefore,
+    \begin{align*}
+        \ln\abs*{ \frac{P^{A}(P-m)^{C}}{(M-P)^{B}} } = \ln\abs*{ \frac{P_{0}^{A}(P_{0}-m)^{C}}{(M-P_{0})^{B}} } + rt
+        \implies
+        \frac{P^{A}(P-m)^{C}}{(M-P)^{B}} = \frac{P_{0}^{A}(P_{0}-m)^{C}}{(M-P_{0})^{B}} e^{rt},
+    \end{align*}
+    with
+    \begin{equation*}
+        A = - \frac{1}{mM}, \quad B = \frac{1}{M(M-m)}, \quad C = \frac{1}{m(M-m)}.
+    \end{equation*}
+\end{problem}
+
+\begin{problem}{5a}
+    In the absence of cooperation:
+    \begin{itemize}
+        \item $\dot{x} = -ax$. Therefore, the bee population decays exponentially.
+        \item $\dot{y} = -my$. Therefore, the plant population decays exponentially.
+    \end{itemize}
+\end{problem}
+
+\begin{problem}{5b}
+    There parameters can be interpreted as follows:
+    \begin{itemize}
+        \item $a$ denotes the decay rate of the bee population in the absence of cooperation.
+        \item $b$ denotes the growth rate of the bee population due to mutual cooperation.
+        \item $m$ denotes the decay rate of the plant population in the absence of cooperation.
+        \item $n$ denotes the growth rate of the plant population due to mutual cooperation.
+    \end{itemize}
+\end{problem}
+
+\begin{problem}{5c}
+    Equilibrium occurs when $\dot{x} = \dot{y} = 0$. So,
+    \begin{equation*}
+        \begin{aligned}
+            -ax + bxy &= 0\\
+            -my + nxy &= 0
+        \end{aligned}
+        \quad\implies\quad
+        \begin{aligned}
+            (-a + by)x &= 0\\
+            (-m + nx)y &= 0
+        \end{aligned}
+    \end{equation*}
+    Therefore, $x=0$ and $y = 0$, or $x = m/n$ and $y = a/b$. Thus the equilibrium points are $(0,0)$ and $(m/n, a/b)$.
+\end{problem}
+
+\begin{problem}{5d}
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{q5.pdf}
+    \end{center}
+\end{problem}
+
+\begin{problem}{5e}
+    The analytic solution is as follows.
+    \begin{equation*}
+        \begin{aligned}
+            \frac{dx}{dt} &= (-a + by)x\\
+            \frac{dy}{dt} &= (-m + nx)y
+        \end{aligned}
+        \implies
+        \frac{dy}{dx} = \frac{(nx - m)y}{(by - a)x}
+        \implies
+        \int \frac{by - a}{y} \,dy = \int \frac{nx - m}{x} \,dx.
+    \end{equation*}
+    And,
+    \begin{align*}
+        \int \frac{by - a}{y} \,dy = \int \frac{nx - m}{x} \,dx
+        &\implies \int \paren*{b - \frac{a}{y}} \,dy = \int \paren*{n - \frac{m}{x}} \,dx\\
+        &\implies by - a\ln y = nx - m\ln x + c\\
+        &\implies by - nx = \ln y^{a} - \ln x^{m} + c\\
+        &\implies by - nx = \ln \paren*{\frac{y^{a}}{x^{m}}} + c\\
+        &\implies A \frac{y^{a}}{x^{m}} = e^{by - nx}\\
+        &\implies A y^{a} e^{-by} = x^{m} e^{-nx}.
+    \end{align*}
+    Here, $A$ is an arbitrary constant, determined by the initial conditions.
+\end{problem}
+
+\begin{problem}{5f}
+    Starting at $(0,0)$ and $(m/n, a/b)$ leaves the values of the population unchanged because these are the equilibrium points.
+
+    If we start with $x < m/n$ and $y < a/b$, then both the populations decrease over time. If, instead, $x > m/n$ while $y < a/b$, then the bee population decreases, while the plant population increases. On the other hand, if $x < m/n$ and $y > a/b$, then the bee population increases, while the plant population decreases. Lastly, if both $x > m/n$ and $y > a/b$, then both of the populations grow unbounded.
+
+    This model is unrealistic because it shows unbounded growth of both the populations if the initial values are $x > m/n$ and $y > a/b$.
+\end{problem}
+
+\end{document}
